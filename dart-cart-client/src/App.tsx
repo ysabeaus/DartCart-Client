@@ -6,19 +6,19 @@ import './App.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import ShopProductDisplay from './Components/ShopProduct';
-//import 
+import store from './Components/store';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {/*<Provider store={store}>*/}
+      <Provider store={store}>
           <Routes>
             <Route path="/Display" element={<Display />}></Route>
             <Route path="/ShopProduct" element={<ShopProductDisplay />}></Route>
           </Routes>
           
-      {/*</Provider>*/}
+      </Provider>
       </BrowserRouter>
     </div>
   );
