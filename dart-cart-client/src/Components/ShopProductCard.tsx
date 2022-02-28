@@ -11,6 +11,17 @@ const ComputerUrl = "https://images.unsplash.com/photo-1587831990711-23ca6441447
 export function ShopProductCard ({ShopProduct}: ShopProductCard)  {
 
 
+    //Add .navbar-fixed-top 
+    //and include a .container
+    // or .container-fluid to center and pad navbar content.
+//  <nav class="navbar navbar-default navbar-fixed-top">
+//   <div class="container">
+//     ...
+//   </div>
+// </nav>
+
+
+
     return (
         <>
         <div className=" card" style={{width: "18rem"}}>
@@ -20,8 +31,13 @@ export function ShopProductCard ({ShopProduct}: ShopProductCard)  {
         <div className="card-body">
             <h1>{`${ShopProduct.product.name}`}</h1>
             <h4>${`${ShopProduct.price}`}.95</h4>
+
+
             <p className="card-text">{`${ShopProduct.product.description}`}</p>
-            <Link className="btn  stretched-link" to={`/DisplayProduct/${ShopProduct.product.product_id}`}></Link>
+
+            
+            <p className="card-text">In Stock: {`${ShopProduct.quantity}`}</p>
+            <Link className="btn  stretched-link" to={`/DisplayProduct/${ShopProduct.product.product_id}`} state={ShopProduct}></Link>
         </div>
         </div>
               

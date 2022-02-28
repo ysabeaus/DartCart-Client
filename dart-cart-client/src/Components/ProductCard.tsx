@@ -20,7 +20,7 @@ export function ProductCard ({Product}: ProductCard)  {
         <div className="card-body">
             <h1>{`${Product.name}`}</h1>
             <p className="card-text">{`${Product.description}`}</p>
-            <Link className="btn btn-primary stretched-link" to={`/ShopProduct/${Product.product_id}`} ></Link>
+            <Link className="btn btn-primary stretched-link" to={`/ShopProduct`} state={Product.product_id}></Link>
         </div>
         </div>
               
