@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import exampleReducer from "../features/example/exampleSlice";
+import exampleReducer from "./exampleSlice";
 import { exampleApi } from "../services/product";
 
 // Here we configure the store object that redux uses for storing data
