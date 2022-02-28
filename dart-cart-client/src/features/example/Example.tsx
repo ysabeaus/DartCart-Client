@@ -2,14 +2,14 @@ import React from "react";
 import { RootState } from "../../common/store";
 import { Container, Button, Row, Spinner } from "react-bootstrap";
 import { useSelector } from 'react-redux'
-import { selectOrderedProducts } from '../example/exampleSlice'
+import { selectOrderedProducts } from '../../common/exampleSlice'
 import { useGetAllProductsQuery } from "../../services/product"
 import { Product } from '../../common/types'
 
 function Example() {
 
     const { data, error, isLoading } = useGetAllProductsQuery(null)
-    const products = useSelector((state: RootState) => state.products)
+    // const products = useSelector((state: RootState) => state.products)
     // const orderedProducts = useSelector(selectOrderedProducts)
 
     let content
