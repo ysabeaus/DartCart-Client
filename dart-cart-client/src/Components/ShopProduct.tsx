@@ -4,6 +4,7 @@ import { ShopProduct } from "./models"
 import { useEffect, useState } from "react"
 import { ShopProductCard } from "./ShopProductCard"
 import Header from "./Header"
+import Footer from "./Footer"
 
 const MOCK_SERVER = "https://59749c7b-15b7-4456-b980-124c0bb0d8b0.mock.pstmn.io"
 
@@ -39,6 +40,8 @@ const ShopProductDisplay = () => {
             })
             :   ""
            }
+
+           <Footer></Footer>
             </>
         
     )
