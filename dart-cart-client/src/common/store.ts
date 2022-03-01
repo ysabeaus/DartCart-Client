@@ -1,5 +1,6 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit'
-import { ShopProductAPI } from '../services/ShopProduct';
+//import { StoreAPI } from '../services/APIQuery'
+import SPSlice from './ShopProductSlice'
 
 // const reducer = (state, action) => {
 //     switch (action.type) {
@@ -15,13 +16,18 @@ import { ShopProductAPI } from '../services/ShopProduct';
 //
 // we also declare all the middleware we'll be using (here we add the exampleApi
 // to the default middleware that comes with RTK)
+
+
+//############################### ALL REDUCERS FOR ENTIRE STORE CAN BE DEFINED HERE
+
 const store = configureStore({
     reducer: {
-        // examples: exampleReducer,
-        // [exampleApi.reducerPath]: exampleApi.reducer
+        ShopProducts: SPSlice
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ShopProductAPI.middleware)
+    //middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(StoreAPI.middleware)
 })
+
+//############################### ALL REDUCERS FOR ENTIRE STORE CAN BE DEFINED HERE
 
 export default store;
 

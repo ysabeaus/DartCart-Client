@@ -11,17 +11,6 @@ const ComputerUrl = "https://images.unsplash.com/photo-1587831990711-23ca6441447
 export function ShopProductCard ({ShopProduct}: ShopProductCard)  {
 
 
-    //Add .navbar-fixed-top 
-    //and include a .container
-    // or .container-fluid to center and pad navbar content.
-//  <nav class="navbar navbar-default navbar-fixed-top">
-//   <div class="container">
-//     ...
-//   </div>
-// </nav>
-
-
-
     return (
         <>
         <div className=" card" style={{width: "18rem"}}>

@@ -5,8 +5,8 @@ import Display from './Components/Display';
 import './App.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
-import ShopProductDisplay from './Components/ShopProduct';
-import store from './Components/store';
+import ShopProductDisplay from './Components/ShopProductDisplay';
+import store from './common/store'
 
 function App() {
   return (
