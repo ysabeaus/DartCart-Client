@@ -13,9 +13,9 @@ export const LoginComponent = () => {
         if (response === "invalid") {
             setAlert("Wrong username or password");
         } else {
-            // let user = await userService.getUserByUsername(username);
-            // localStorage.setItem("user", JSON.stringify(user.data));
-            // await setUser();
+            let user = await userService.getUserByUsername(username);
+            localStorage.setItem("user", JSON.stringify(user.data));
+            
             window.alert("Login succeed");
         }
     }

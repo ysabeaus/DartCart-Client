@@ -21,14 +21,14 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("user");
+    // localStorage.removeItem("user");
     localStorage.removeItem("username");
     localStorage.removeItem("accessToken");
   }
 
-  getCurrentUser() {
-    return localStorage.getItem("user");
-  }
+  // getCurrentUser() {
+  //   return localStorage.getItem("user");
+  // }
   getCurrentUsername() {
     return localStorage.getItem("username");
   }
