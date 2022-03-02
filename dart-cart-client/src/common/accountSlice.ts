@@ -7,7 +7,8 @@ import {
 import { User } from "../common/types";
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/";
+// JSON server URL. Change to backend URL for testing/in production
+const API_URL = "http://localhost:8080/";
 
 // createEntityAdapter gives us several premade reducer functions
 // for manipulating state. It gives us:
@@ -19,7 +20,7 @@ const API_URL = "http://localhost:8000/";
 //
 // We also get:
 // getInitialState: returns an object that looks like { ids: [], entities: {} },
-//     for storing a normalized state of items along with an array of all item IDs
+// for storing a normalized state of items along with an array of all item IDs
 // getSelectors: generates a standard set of selector functions
 const accountAdapter = createEntityAdapter<User>();
 
@@ -32,6 +33,7 @@ const accountSlice = createSlice({
   reducers: {
     addedUser: accountAdapter.addOne,
   },
+  // Extra reducers to handle the promise produced by createAsyncThunk
   extraReducers: (builder) => {
     builder
       .addCase(saveUser.pending, (state, action) => {
@@ -39,8 +41,6 @@ const accountSlice = createSlice({
       })
       .addCase(saveUser.fulfilled, (state, action) => {
         state.status = "idle";
-        // Put in post-creation functionality, maybe
-        // get state for account and any tokens/headers
       })
       .addCase(saveUser.rejected, (state, action) => {
         state.status = "rejected";
@@ -67,7 +67,7 @@ export const { selectAll: selectUsers, selectById: selectUserById } =
 export const saveUser = createAsyncThunk(
   "accounts/saveUser",
   async (user: User) => {
-    return axios.post(API_URL + "posts", {
+    return axios.post(API_URL + "register", {
       id: user.id,
       username: user.username,
       password: user.password,

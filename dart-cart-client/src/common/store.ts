@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import accountSlice from "./accountSlice";
+import accountReducer from "./accountSlice";
 import { accountApi } from "../services/account";
 
 // Here we configure the store object that redux uses for storing data
@@ -10,7 +10,7 @@ import { accountApi } from "../services/account";
 // to the default middleware that comes with RTK)
 const store = configureStore({
   reducer: {
-    account: accountSlice,
+    account: accountReducer,
     [accountApi.reducerPath]: accountApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

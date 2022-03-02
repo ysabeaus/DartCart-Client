@@ -1,9 +1,8 @@
-import { Alert } from "react-bootstrap";
+import { Alert, Button, Modal } from "react-bootstrap";
 import { addedUser, saveUser } from "../../common/accountSlice";
 import { User } from "../../common/types";
 import { useDispatch } from "react-redux";
 import { useRef, useState } from "react";
-import { stringify } from "querystring";
 
 export function Account() {
   const currentDate = Date.now();
@@ -18,6 +17,8 @@ export function Account() {
   const phoneField = useRef<HTMLInputElement>(null);
 
   const [error, setError] = useState("");
+  // Modal show boolean
+  const show: boolean = false;
 
   const user: User = {
     id: 0,
@@ -32,9 +33,9 @@ export function Account() {
   };
 
   const onChangeHandler = () => {
-    user.username = usernameField?.current?.value || "";
-    user.email = emailField?.current?.value || "";
-    user.password = passwordField?.current?.value || "";
+    user.username = usernameField?.current?.value ?? "";
+    user.email = emailField?.current?.value ?? "";
+    user.password = passwordField?.current?.value ?? "";
     user.firstName = firstNameField?.current?.value ?? "";
     user.lastName = lastNameField?.current?.value ?? "";
     user.location = locationField?.current?.value ?? "";
@@ -42,7 +43,9 @@ export function Account() {
     user.registrationDate = currentDate;
   };
 
-  // Input validation; no empty fields, passwords must match, formatting requirements
+  // BASIC input validation: no empty fields, passwords must match, formatting requirements
+  // Possible TODO: Password complexity requirements
+  // Possible TODO: Enforcing username requirements, address formatting
   function validateInput() {
     if (usernameField?.current?.value === "") {
       setError("Please enter a username.");
@@ -85,6 +88,9 @@ export function Account() {
       dispatch(saveUser(user));
     }
   };
+
+  // Modal close functionality
+  function handleClose() {}
 
   return (
     <>
@@ -207,7 +213,7 @@ export function Account() {
                     <div className="form-outline mb-4 col-6">
                       <input
                         type="text"
-                        placeholder="100 Main Street, Anytown, USA 12345"
+                        placeholder="1 Main St, Anytown, CA 12345"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         ref={locationField}
@@ -232,6 +238,20 @@ export function Account() {
                   >
                     Register
                   </button>
+
+                  <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Registration</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      Account created. Welcome to DartCart!
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="primary" onClick={handleClose}>
+                        Close
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
                 </div>
               </div>
             </div>
