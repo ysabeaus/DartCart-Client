@@ -7,7 +7,7 @@ import {
 import { User } from "../common/types";
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/";
+const API_URL = "http://localhost:8000/";
 
 // createEntityAdapter gives us several premade reducer functions
 // for manipulating state. It gives us:
@@ -34,13 +34,16 @@ const accountSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(postUser.pending, (state, action) => {
+      .addCase(saveUser.pending, (state, action) => {
         state.status = "loading";
       })
-      .addCase(postUser.fulfilled, (state, action) => {
+      .addCase(saveUser.fulfilled, (state, action) => {
         state.status = "idle";
         // Put in post-creation functionality, maybe
         // get state for account and any tokens/headers
+      })
+      .addCase(saveUser.rejected, (state, action) => {
+        state.status = "rejected";
       });
   },
 });
@@ -61,18 +64,19 @@ export const { selectAll: selectUsers, selectById: selectUserById } =
   accountAdapter.getSelectors((state: any) => state.users);
 
 // Async functionality
-export const postUser = createAsyncThunk("accounts/postUser", async (user: User) => {
-  console.log(user);
-
-  // return axios.post(API_URL + "register", {
-  //     id:
-  //     username:
-  //     password:
-  //     firstName:
-  //     lastName:
-  //     email:
-  //     phone:
-  //     location:
-  //     registrationDate:
-  // })
-});
+export const saveUser = createAsyncThunk(
+  "accounts/saveUser",
+  async (user: User) => {
+    return axios.post(API_URL + "posts", {
+      id: user.id,
+      username: user.username,
+      password: user.password,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      phone: user.phone,
+      location: user.location,
+      registrationDate: user.registrationDate,
+    });
+  }
+);

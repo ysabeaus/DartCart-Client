@@ -1,8 +1,9 @@
 import { Alert } from "react-bootstrap";
-import { addedUser, postUser } from "../../common/accountSlice";
+import { addedUser, saveUser } from "../../common/accountSlice";
 import { User } from "../../common/types";
 import { useDispatch } from "react-redux";
 import { useRef, useState } from "react";
+import { stringify } from "querystring";
 
 export function Account() {
   const currentDate = Date.now();
@@ -10,7 +11,7 @@ export function Account() {
   const usernameField = useRef<HTMLInputElement>(null);
   const emailField = useRef<HTMLInputElement>(null);
   const passwordField = useRef<HTMLInputElement>(null);
-  const repasswordField = useRef<HTMLInputElement>(null);
+  const rePasswordField = useRef<HTMLInputElement>(null);
   const firstNameField = useRef<HTMLInputElement>(null);
   const lastNameField = useRef<HTMLInputElement>(null);
   const locationField = useRef<HTMLInputElement>(null);
@@ -34,29 +35,54 @@ export function Account() {
     user.username = usernameField?.current?.value || "";
     user.email = emailField?.current?.value || "";
     user.password = passwordField?.current?.value || "";
-    // Test matching password logic with repasswordField
-    // user.username = usernameField.current.value || "";
-    user.firstName = firstNameField?.current?.value || "";
-    user.lastName = lastNameField?.current?.value || "";
-    user.location = locationField?.current?.value || "";
-    user.phone = phoneField?.current?.value || "";
+    user.firstName = firstNameField?.current?.value ?? "";
+    user.lastName = lastNameField?.current?.value ?? "";
+    user.location = locationField?.current?.value ?? "";
+    user.phone = phoneField?.current?.value ?? "";
     user.registrationDate = currentDate;
   };
 
-  // Input error handling & User creation
-  // TODO: Gracefully handle non-unique username input (SQL constraint error!)
-  // TODO: Input validation and password complexity requirements
-  const createUser = () => {
+  // Input validation; no empty fields, passwords must match, formatting requirements
+  function validateInput() {
     if (usernameField?.current?.value === "") {
-      setError("Error: Please enter a username.");
-    } else if (passwordField?.current?.value === "") {
-      setError("Error: Please enter a password.");
+      setError("Please enter a username.");
+    } else if (emailField?.current?.value === "") {
+      setError("Please enter an email address.");
     } else if (
-      passwordField?.current?.value !== repasswordField?.current?.value
+      !emailField?.current?.value.includes("@") ||
+      !emailField?.current?.value.includes(".")
     ) {
-      setError("Error: Passwords do not match.");
+      setError("Invalid email address.");
+    } else if (passwordField?.current?.value === "") {
+      setError("Please enter a password.");
+    } else if (
+      passwordField?.current?.value !== rePasswordField?.current?.value
+    ) {
+      setError("Passwords do not match. Please confirm your password.");
+    } else if (firstNameField?.current?.value === "") {
+      setError("Please enter your first name.");
+    } else if (lastNameField?.current?.value === "") {
+      setError("Please enter your last name.");
+    } else if (locationField?.current?.value === "") {
+      setError("Please enter your home address.");
+    } else if (phoneField?.current?.value === "") {
+      setError("Please enter your phone number.");
+    } else if (
+      !phoneField.current?.value.search(/[^0-9()-]/g) ||
+      phoneField.current.value.length != 14 ||
+      !phoneField.current.value.includes("(") ||
+      !phoneField.current.value.includes(")") ||
+      !phoneField.current.value.includes("-")
+    ) {
+      setError("Invalid phone number.");
     } else {
-      dispatch(postUser(user));
+      return true;
+    }
+  }
+
+  const createUser = () => {
+    if (validateInput()) {
+      dispatch(saveUser(user));
     }
   };
 
@@ -132,7 +158,7 @@ export function Account() {
                         placeholder="P@S5W0RD!"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
-                        ref={repasswordField}
+                        ref={rePasswordField}
                         onChange={onChangeHandler}
                       />
                     </div>
