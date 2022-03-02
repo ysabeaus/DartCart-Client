@@ -3,12 +3,13 @@ import {
   addedUser,
   saveUser,
   selectStatus,
-  userRegistered,
+  homeRedirect,
 } from "../../common/accountSlice";
 import { User } from "../../common/types";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import authService from "../../services/auth.service";
 
 export function Account() {
   const currentDate = Date.now();
@@ -24,7 +25,8 @@ export function Account() {
 
   const [error, setError] = useState("");
   // Modal show/hide state
-  const success = useSelector(selectStatus) === "success";
+  const result = useSelector(selectStatus);
+  let showModal = false;
   const nav = useNavigate();
 
   const user: User = {
@@ -93,12 +95,26 @@ export function Account() {
   const createUser = () => {
     if (validateInput()) {
       dispatch(saveUser(user));
+
+      if (result === "success") {
+        showModal = true;
+        authService.login(user.username, user.password);
+      } else {
+        setError("That username is unavailable.");
+      }
     }
   };
 
-  // Modal close functionality
+  function handleShow() {
+    if (result === "success") {
+      return true;
+    }
+  }
+
+  // Redirect upon modal close
   function handleClose() {
-    dispatch(userRegistered(null));
+    dispatch(homeRedirect(null));
+    // TODO: Store the JWT passed from the server upon successful POST request
     nav("/");
   }
 
@@ -249,7 +265,7 @@ export function Account() {
                     Register
                   </button>
 
-                  <Modal show={success} onHide={handleClose}>
+                  <Modal show={handleShow()} onHide={handleClose}>
                     <Modal.Header closeButton>
                       <Modal.Title>Registration</Modal.Title>
                     </Modal.Header>
