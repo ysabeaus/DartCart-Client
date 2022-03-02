@@ -7,14 +7,14 @@ import { useRef, useState } from "react";
 export function Account() {
   const currentDate = Date.now();
   const dispatch = useDispatch();
-  const usernameField = useRef(null);
-  const emailField = useRef(null);
-  const passwordField = useRef(null);
-  const repasswordField = useRef(null);
-  const firstNameField = useRef(null);
-  const lastNameField = useRef(null);
-  const locationField = useRef(null);
-  const phoneField = useRef(null);
+  const usernameField = useRef<HTMLInputElement>(null);
+  const emailField = useRef<HTMLInputElement>(null);
+  const passwordField = useRef<HTMLInputElement>(null);
+  const repasswordField = useRef<HTMLInputElement>(null);
+  const firstNameField = useRef<HTMLInputElement>(null);
+  const lastNameField = useRef<HTMLInputElement>(null);
+  const locationField = useRef<HTMLInputElement>(null);
+  const phoneField = useRef<HTMLInputElement>(null);
 
   const [error, setError] = useState("");
 
@@ -31,15 +31,15 @@ export function Account() {
   };
 
   const onChangeHandler = () => {
-    user.username = usernameField.current.value || "";
-    user.email = emailField.current.value || "";
-    user.password = passwordField.current.value || "";
+    user.username = usernameField?.current?.value || "";
+    user.email = emailField?.current?.value || "";
+    user.password = passwordField?.current?.value || "";
     // Test matching password logic with repasswordField
     // user.username = usernameField.current.value || "";
-    user.firstName = firstNameField.current.value || "";
-    user.lastName = lastNameField.current.value || "";
-    user.location = locationField.current.value || "";
-    user.phone = phoneField.current.value || "";
+    user.firstName = firstNameField?.current?.value || "";
+    user.lastName = lastNameField?.current?.value || "";
+    user.location = locationField?.current?.value || "";
+    user.phone = phoneField?.current?.value || "";
     user.registrationDate = currentDate;
   };
 
@@ -47,11 +47,13 @@ export function Account() {
   // TODO: Gracefully handle non-unique username input (SQL constraint error!)
   // TODO: Input validation and password complexity requirements
   const createUser = () => {
-    if (usernameField.current.value === "") {
+    if (usernameField?.current?.value === "") {
       setError("Error: Please enter a username.");
-    } else if (passwordField.current.value === "") {
+    } else if (passwordField?.current?.value === "") {
       setError("Error: Please enter a password.");
-    } else if (passwordField.current.value !== repasswordField.current.value) {
+    } else if (
+      passwordField?.current?.value !== repasswordField?.current?.value
+    ) {
       setError("Error: Passwords do not match.");
     } else {
       dispatch(postUser(user));
