@@ -1,6 +1,8 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit'
+import CompetitorsSlice from './CompetitorsSlice';
 //import { StoreAPI } from '../services/APIQuery'
 import SPSlice from './ShopProductSlice'
+import CPSlice from './CompetitorsSlice'
 
 // const reducer = (state, action) => {
 //     switch (action.type) {
@@ -22,7 +24,8 @@ import SPSlice from './ShopProductSlice'
 
 const store = configureStore({
     reducer: {
-        ShopProducts: SPSlice
+        ShopProducts: SPSlice,
+        CompetitorProducts: CPSlice
     },
     //middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(StoreAPI.middleware)
 })
