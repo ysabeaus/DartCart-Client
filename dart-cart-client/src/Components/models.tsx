@@ -15,13 +15,15 @@ export class Product {
 
 export class ShopProduct {
 
+    shop_product_id: number;
     shop_id:        number;
     product:        Product;
     quantity:       number;
     price:          number;
     discount:       number;
 
-    constructor (product: Product, shop_id:  number, quantity: number, price: number, discount: number) {
+    constructor (shop_product_id: number, product: Product, shop_id:  number, quantity: number, price: number, discount: number) {
+        this.shop_product_id = shop_product_id;
         this.shop_id = shop_id;
         this.product = product;
         this.price = price;

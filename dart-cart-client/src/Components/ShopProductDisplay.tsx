@@ -9,7 +9,7 @@ import RootState from "../common/store"
 import { ShopProductPage } from "./ShopProductPage"
 import { useDispatch, useSelector } from "react-redux"
 //import { useGetShopProductByIdQuery, useGetAllShopProductsQuery } from "../services/APIQuery"
-import { fetchShopProducts, selectShopProductById } from '../common/ShopProductSlice'
+import { fetchShopProducts, selectShopProducts, selectShopProductById } from '../common/ShopProductSlice'
 
 
 //const MOCK_SERVER = "https://59749c7b-15b7-4456-b980-124c0bb0d8b0.mock.pstmn.io"
@@ -22,8 +22,18 @@ const ShopProductDisplay = () => {
     const dispatch = useDispatch()
     
     //const [showPID, setPID] = useState(state)
-    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, 1)) || null
 
+    //Incorrect syntax
+    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, 1))
+    const list = []
+    //list.push(ReduxShopProducts)
+
+    //const ReduxShopProducts = useSelector(selectShopProducts)
+
+
+    console.log(ReduxShopProducts)
+    // const push = []
+    // push.push(ReduxShopProducts)
     //console.log(state)
 
     useEffect(()=> {
@@ -53,13 +63,16 @@ const ShopProductDisplay = () => {
     //     :   ""
     //    }//<ShopProductPage></ShopProductPage>
 
+    //{ReduxShopProducts.map((ShopProduct) => {return(<h1>{ShopProduct.shop_id}</h1>)})}
+
     return (
 
         <>
         <Header></Header>
             
-            {ReduxShopProducts.map((ShopProduct) => {return(<h1>{ShopProduct.shop_id}</h1>)})}
-            <h1></h1>
+            
+           {ReduxShopProducts?.shop_product_id}
+
  
         <Footer></Footer>
         </>
