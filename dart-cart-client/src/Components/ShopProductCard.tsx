@@ -10,23 +10,20 @@ const ComputerUrl = "https://images.unsplash.com/photo-1587831990711-23ca6441447
 
 export function ShopProductCard ({ShopProduct}: ShopProductCard)  {
 
-
+    console.log(ShopProduct)
     return (
         <>
-        <div className=" card" style={{width: "18rem"}}>
+        <div className=" card bg-black text-warning" style={{width: "18rem"}}>
         <img className="card-img-top" 
         src={ComputerUrl}
          alt="Card image cap"></img>
         <div className="card-body">
             <h1>{`${ShopProduct.product.name}`}</h1>
-            <h4>${`${ShopProduct.price}`}.95</h4>
-
+            <h4>${`${ShopProduct.price}`}.69</h4>
 
             <p className="card-text">{`${ShopProduct.product.description}`}</p>
-
             
-            <p className="card-text">In Stock: {`${ShopProduct.quantity}`}</p>
-            <Link className="btn  stretched-link" to={`/DisplayProduct/${ShopProduct.product.product_id}`} ></Link>
+            <Link id="Chosen Shop Product" className="btn  stretched-link" to={`/ShopProduct/${ShopProduct.product.product_id}`} ></Link>
         </div>
         </div>
               
