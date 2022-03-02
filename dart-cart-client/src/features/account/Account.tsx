@@ -1,8 +1,14 @@
 import { Alert, Button, Modal } from "react-bootstrap";
-import { addedUser, saveUser } from "../../common/accountSlice";
+import {
+  addedUser,
+  saveUser,
+  selectStatus,
+  userRegistered,
+} from "../../common/accountSlice";
 import { User } from "../../common/types";
-import { useDispatch } from "react-redux";
-import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Account() {
   const currentDate = Date.now();
@@ -17,8 +23,9 @@ export function Account() {
   const phoneField = useRef<HTMLInputElement>(null);
 
   const [error, setError] = useState("");
-  // Modal show boolean
-  const show: boolean = false;
+  // Modal show/hide state
+  const success = useSelector(selectStatus) === "success";
+  const nav = useNavigate();
 
   const user: User = {
     id: 0,
@@ -90,7 +97,10 @@ export function Account() {
   };
 
   // Modal close functionality
-  function handleClose() {}
+  function handleClose() {
+    dispatch(userRegistered(null));
+    nav("/");
+  }
 
   return (
     <>
@@ -239,7 +249,7 @@ export function Account() {
                     Register
                   </button>
 
-                  <Modal show={show} onHide={handleClose}>
+                  <Modal show={success} onHide={handleClose}>
                     <Modal.Header closeButton>
                       <Modal.Title>Registration</Modal.Title>
                     </Modal.Header>

@@ -6,9 +6,10 @@ import {
 } from "@reduxjs/toolkit";
 import { User } from "../common/types";
 import axios from "axios";
+import { RootState } from "../common/types";
 
 // JSON server URL. Change to backend URL for testing/in production
-const API_URL = "http://localhost:8080/";
+const API_URL = "http://localhost:8000/";
 
 // createEntityAdapter gives us several premade reducer functions
 // for manipulating state. It gives us:
@@ -32,6 +33,9 @@ const accountSlice = createSlice({
   }),
   reducers: {
     addedUser: accountAdapter.addOne,
+    userRegistered(state, action) {
+      state.status = "idle";
+    },
   },
   // Extra reducers to handle the promise produced by createAsyncThunk
   extraReducers: (builder) => {
@@ -40,7 +44,7 @@ const accountSlice = createSlice({
         state.status = "loading";
       })
       .addCase(saveUser.fulfilled, (state, action) => {
-        state.status = "idle";
+        state.status = "success";
       })
       .addCase(saveUser.rejected, (state, action) => {
         state.status = "rejected";
@@ -51,7 +55,7 @@ const accountSlice = createSlice({
 // With Redux Toolkit we get our reducers wrapped in actions, which simplifies the logic
 // a lot. Our React components will use dispatch on these actions to actually perform
 // state management
-export const { addedUser } = accountSlice.actions;
+export const { addedUser, userRegistered } = accountSlice.actions;
 export default accountSlice.reducer;
 
 // In this next section is where we define our selectors, ie how our react components get/derive
@@ -63,11 +67,16 @@ export default accountSlice.reducer;
 export const { selectAll: selectUsers, selectById: selectUserById } =
   accountAdapter.getSelectors((state: any) => state.users);
 
+export const selectStatus = createSelector(
+  (state: RootState) => state.accounts,
+  (accounts) => accounts.status
+);
+
 // Async functionality
 export const saveUser = createAsyncThunk(
   "accounts/saveUser",
   async (user: User) => {
-    return axios.post(API_URL + "register", {
+    return axios.post(API_URL + "posts", {
       id: user.id,
       username: user.username,
       password: user.password,

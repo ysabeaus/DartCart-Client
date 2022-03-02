@@ -10,11 +10,8 @@ import { accountApi } from "../services/account";
 // to the default middleware that comes with RTK)
 const store = configureStore({
   reducer: {
-    account: accountReducer,
-    [accountApi.reducerPath]: accountApi.reducer,
+    accounts: accountReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(accountApi.middleware),
 });
 
 export default store;
