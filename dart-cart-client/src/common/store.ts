@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import accountReducer from "./accountSlice";
-import { accountApi } from "../services/account";
 
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here. Note that redux

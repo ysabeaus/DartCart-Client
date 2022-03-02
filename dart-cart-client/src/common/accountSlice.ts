@@ -9,7 +9,7 @@ import axios from "axios";
 import { RootState } from "../common/types";
 
 // JSON server URL. Change to backend URL for testing/in production
-const API_URL = "http://localhost:8000/";
+const API_URL = "http://localhost:8081/";
 
 // createEntityAdapter gives us several premade reducer functions
 // for manipulating state. It gives us:
@@ -33,7 +33,7 @@ const accountSlice = createSlice({
   }),
   reducers: {
     addedUser: accountAdapter.addOne,
-    userRegistered(state, action) {
+    homeRedirect(state, action) {
       state.status = "idle";
     },
   },
@@ -55,7 +55,7 @@ const accountSlice = createSlice({
 // With Redux Toolkit we get our reducers wrapped in actions, which simplifies the logic
 // a lot. Our React components will use dispatch on these actions to actually perform
 // state management
-export const { addedUser, userRegistered } = accountSlice.actions;
+export const { addedUser, homeRedirect } = accountSlice.actions;
 export default accountSlice.reducer;
 
 // In this next section is where we define our selectors, ie how our react components get/derive
@@ -76,7 +76,7 @@ export const selectStatus = createSelector(
 export const saveUser = createAsyncThunk(
   "accounts/saveUser",
   async (user: User) => {
-    return axios.post(API_URL + "posts", {
+    return axios.post(API_URL + "register", {
       id: user.id,
       username: user.username,
       password: user.password,
