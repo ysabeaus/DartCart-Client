@@ -24,6 +24,8 @@ export function CompetingSellers ({Seller}: SellerProduct) {
 
             {ReduxCompetitorProducts && ReduxCompetitorProducts?.product.product_id}
 
+            <button className="btn btn-primary" >Add to Cart</button>
+
             </div>
             
             

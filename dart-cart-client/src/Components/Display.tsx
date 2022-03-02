@@ -1,51 +1,47 @@
 import Header from "./Header";
 import axios from "axios";
-import { Product } from "./models"
+import { ShopProduct } from "./models"
 import { ProductCard } from "./ProductCard";
 import { Link } from "react-router-dom";
 import "./Display.css"
 import { useEffect, useState } from "react";
+import Footer from "./Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchShopProducts, selectShopProducts } from "../common/ShopProductSlice";
 
-const MOCK_SERVER = "https://59749c7b-15b7-4456-b980-124c0bb0d8b0.mock.pstmn.io"
-
-
-//const products: Product[] = getProducts()
-
-// type DisplayProps = {
-//     ProductsID: number
-// }
 
 const Display = () => {
 
-    const [viewProducts, setProducts ] = useState<Product[]>([])
+    const dispatch = useDispatch()
+
+    //console.log(params)
+    const ReduxShopProducts = useSelector(selectShopProducts)
+
+    console.log(ReduxShopProducts)
 
     useEffect(()=> {
-        getProducts()
-    })
-    
+        dispatch(fetchShopProducts()) // places return value into REDUX global state
+    }, [])
 
-    async function getProducts() {
-
-        if(viewProducts.length < 1){
-            const response = await axios.get(MOCK_SERVER+"/products")
-        .then(request => setProducts(request.data))
-        console.table(response)
-        
-        }
-        
-    }
 
     return (
 
         <>
         <Header></Header>
-            { viewProducts.length > 0 ?
-            viewProducts.map(product => {
-                return <ProductCard Product={product}></ProductCard>
+            <div className="">
+
+            </div>
+
+            <div className="ProductCardContainer">
+            { ReduxShopProducts.length > 0 ?
+            ReduxShopProducts.map(ShopProduct => {
+                return <ProductCard ShopProduct={ShopProduct}></ProductCard>
             })
             :   ""
            }
-            </>
+           </div>
+        <Footer></Footer>
+        </>
         
     )
 }

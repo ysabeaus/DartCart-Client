@@ -15,7 +15,7 @@ function App() {
       <Provider store={store}>
           <Routes>
             <Route path="/Display" element={<Display />}></Route>
-            <Route path="/ShopProduct" element={<ShopProductDisplay />}></Route>
+            <Route path="/ShopProduct/:id" element={<ShopProductDisplay />}></Route>
           </Routes>
           
       </Provider>
@@ -23,5 +23,7 @@ function App() {
     </div>
   );
 }
-
+{
+  //"/ShopProduct/:id"
+}
 export default App;

@@ -1,18 +1,18 @@
-import axios from "axios"
+
 import { ShopProduct } from "./models"
 import { useEffect, useState } from "react"
 import { ShopProductCard } from "./ShopProductCard"
+import { useParams } from "react-router-dom"
 import Header from "./Header"
 import Footer from "./Footer"
 import "./ShopProduct.css"
-import { ShopProductPage } from "./ShopProductPage"
 import { useDispatch, useSelector } from "react-redux"
 //import { useGetShopProductByIdQuery, useGetAllShopProductsQuery } from "../services/APIQuery"
-import { fetchShopProducts, selectShopProducts, selectShopProductById } from '../common/ShopProductSlice'
+import { fetchShopProducts, selectShopProductById } from '../common/ShopProductSlice'
 import { CompetingSellers } from "./CompetingSellers"
 
+
 //imgs
-import logo from "../img/boldDart.jpg"
 import cartoonBat from "../imgs/cartoon-baseball-bat.png"
 import cartoonComputer from "../imgs/cartoon-computer.png"
 import cartoonSteak from "../imgs/cartoon-steak.png"
@@ -24,11 +24,13 @@ import cartoonShoes from "../imgs/Sneaker-tennis-shoes.png"
 
 const ShopProductDisplay = () => {
 
+    const {product_id} = useParams()
     const dispatch = useDispatch()
 
-    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, 1))
+    //console.log(params)
+    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id!))
 
-    console.log(ReduxShopProducts)
+    console.log(product_id)
 
     useEffect(()=> {
         dispatch(fetchShopProducts()) // places return value into REDUX global state
@@ -84,9 +86,10 @@ const ShopProductDisplay = () => {
             <div className="ProductContainer">
                 <div className="InnerProduct">
                     <div className="ProductInfoContainer">
-                        <div style={ImgSplice(ReduxShopProducts?.product.catagories!) || {}}>
+                        {ReduxShopProducts &&
+                            <div style={ImgSplice(ReduxShopProducts?.product.catagories!)}>
                        
-                        </div>
+                        </div>}
                         
                         <div className="ProductInfoPocket">
                             <h2>{(ReduxShopProducts?.product.name)?.toUpperCase()}</h2>

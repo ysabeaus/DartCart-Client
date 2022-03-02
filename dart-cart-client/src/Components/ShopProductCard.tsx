@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 interface ShopProductCard {
     ShopProduct: ShopProduct
 }
-
+//state={ShopProduct}
 const ComputerUrl = "https://images.unsplash.com/photo-1587831990711-23ca6441447b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGVza3RvcCUyMGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
 
 export function ShopProductCard ({ShopProduct}: ShopProductCard)  {
@@ -26,7 +26,7 @@ export function ShopProductCard ({ShopProduct}: ShopProductCard)  {
 
             
             <p className="card-text">In Stock: {`${ShopProduct.quantity}`}</p>
-            <Link className="btn  stretched-link" to={`/DisplayProduct/${ShopProduct.product.product_id}`} state={ShopProduct}></Link>
+            <Link className="btn  stretched-link" to={`/DisplayProduct/${ShopProduct.product.product_id}`} ></Link>
         </div>
         </div>
               
