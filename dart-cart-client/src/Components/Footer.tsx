@@ -2,7 +2,7 @@ export default function Footer () {
 
     return (
         <>
-<footer className="text-center text-lg-start bg-light text-muted">
+<footer className="text-center text-lg-start bg-black text-warning">
   
   <section
     className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"

@@ -4,12 +4,22 @@ import { useEffect, useState } from "react"
 import { ShopProductCard } from "./ShopProductCard"
 import Header from "./Header"
 import Footer from "./Footer"
-
+import "./ShopProduct.css"
 import { ShopProductPage } from "./ShopProductPage"
 import { useDispatch, useSelector } from "react-redux"
 //import { useGetShopProductByIdQuery, useGetAllShopProductsQuery } from "../services/APIQuery"
 import { fetchShopProducts, selectShopProducts, selectShopProductById } from '../common/ShopProductSlice'
 import { CompetingSellers } from "./CompetingSellers"
+
+//imgs
+import logo from "../img/boldDart.jpg"
+import cartoonBat from "../imgs/cartoon-baseball-bat.png"
+import cartoonComputer from "../imgs/cartoon-computer.png"
+import cartoonSteak from "../imgs/cartoon-steak.png"
+import cartoonClothing from "../imgs/Clothing-baby-clothes.png"
+import cartoonDiamond from "../imgs/diamond-ring.png"
+import cartoonMeds from "../imgs/Free-medica.png"
+import cartoonShoes from "../imgs/Sneaker-tennis-shoes.png"
 
 
 const ShopProductDisplay = () => {
@@ -24,17 +34,79 @@ const ShopProductDisplay = () => {
         dispatch(fetchShopProducts()) // places return value into REDUX global state
     }, [])
     
+    const ImgStyleBase = {
+        backgroundImage:    "",
+        backgroundSize:     "contain",
+        backgroundPosition: 'center',
+        backgroundRepeat:   "no-repeat",
+        width:              "40%",
+    }
+
+    function ImgSplice (catagories: String[]) {
+
+            let newImg = Object.assign({}, ImgStyleBase)
+            catagories.forEach(catagory => {
+                switch(catagory){
+                    case "Perishable":
+                    newImg.backgroundImage = `url('${cartoonSteak}')`
+                    break
+                    case "Electronics":
+                    newImg.backgroundImage = `url('${cartoonComputer}')`
+                    break
+                    case "Clothing":
+                    newImg.backgroundImage = `url('${cartoonClothing}')`
+                    break
+                    case "Luxury":
+                    newImg.backgroundImage = `url('${cartoonDiamond}')`
+                    break
+                    case "Entertainment":
+                    newImg.backgroundImage = `url('${cartoonBat}')`
+                    break
+                    case "Medical":
+                    newImg.backgroundImage = `url('${cartoonMeds}')`
+                    break
+                    case "Footware":
+                    newImg.backgroundImage = `url('${cartoonShoes}')`
+                    break
+                }
+            })
+            return newImg
+        
+    }
+
+    
 
     return (
 
         <>
         <Header></Header>
             
-            
-            {ReduxShopProducts?.shop_product_id}
-            
+            <div className="ProductContainer">
+                <div className="InnerProduct">
+                    <div className="ProductInfoContainer">
+                        <div style={ImgSplice(ReduxShopProducts?.product.catagories!) || {}}>
+                       
+                        </div>
+                        
+                        <div className="ProductInfoPocket">
+                            <h2>{(ReduxShopProducts?.product.name)?.toUpperCase()}</h2>
+                            <br/>
+                            <h3>Price: ${ReduxShopProducts?.price}.99</h3>
+                            <h3>In Stock: {ReduxShopProducts?.quantity}</h3>
+                            <h3>Seller: {ReduxShopProducts?.shop_id}</h3>
+                        </div>
+                    </div>
 
-            <CompetingSellers Seller={1}></CompetingSellers>
+                    <div className="ProductDescriptionPocket">
+                        <p>{ReduxShopProducts?.product.description}</p>
+                    </div>
+                
+                    
+                </div>
+                <CompetingSellers Seller={1}></CompetingSellers>
+            </div>
+            
+            
             
 
         <Footer></Footer>

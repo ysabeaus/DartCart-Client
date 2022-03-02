@@ -35,8 +35,6 @@ const Display = () => {
         
     }
 
-
-
     return (
 
         <>

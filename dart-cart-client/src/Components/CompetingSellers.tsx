@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCompetitorProducts, selectCompetitorProductById } from "../common/CompetitorsSlice";
-import { Product } from "./models";
+import "./ShopProduct.css"
 
 interface SellerProduct {
     Seller: number//product ID
@@ -20,8 +20,12 @@ export function CompetingSellers ({Seller}: SellerProduct) {
 
     return (
         <>
+            <div className="Competitors">
 
             {ReduxCompetitorProducts && ReduxCompetitorProducts?.product.product_id}
+
+            </div>
+            
             
 
         </>
