@@ -330,3 +330,6 @@ thumb
 sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/react,intellij,intellij+all,node
+
+/dartcart-client/node_modules
+*.orig
