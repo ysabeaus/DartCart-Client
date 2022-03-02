@@ -13,9 +13,9 @@ export const LoginComponent = () => {
         if (response === "invalid") {
             setAlert("Wrong username or password");
         } else {
-            let user = await userService.getUserByUsername(username);
-            localStorage.setItem("user", JSON.stringify(user.data));
-            
+            //let user = await userService.getUserByUsername(username);
+            //localStorage.setItem("user", JSON.stringify(user.data));
+
             window.alert("Login succeed");
         }
     }
@@ -37,10 +37,10 @@ export const LoginComponent = () => {
                                 <div className="card-body p-4 text-center">
 
                                     {(alert)
-                                            &&
-                                            (<div class="alert alert-danger" role="alert">
-                                                {alert}
-                                            </div>)}
+                                        &&
+                                        (<div className="alert alert-danger" role="alert">
+                                            {alert}
+                                        </div>)}
 
 
                                     <div className="row">
@@ -61,11 +61,11 @@ export const LoginComponent = () => {
 
                                     <div className="row">
                                         <div className="form-outline mb-4 col-12">
-                                        <button className="btn btn-success btn-lg" onClick={handleSubmit} >Login</button>
+                                            <button className="btn btn-success btn-lg" onClick={handleSubmit} >Login</button>
                                         </div>
                                     </div>
 
-                                    
+
                                 </div>
                             </div>
                         </div>
