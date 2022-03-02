@@ -24,11 +24,11 @@ import cartoonShoes from "../imgs/Sneaker-tennis-shoes.png"
 
 const ShopProductDisplay = () => {
 
-    const {product_id} = useParams()
+    const product_id = useParams()?.product_id || ''
     const dispatch = useDispatch()
 
     //console.log(params)
-    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id!))
+    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id ))
 
     console.log(product_id)
 
