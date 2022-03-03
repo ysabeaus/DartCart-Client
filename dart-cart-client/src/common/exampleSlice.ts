@@ -77,7 +77,7 @@ export const { selectAll: selectProducts, selectById: selectProductById } = exam
 
 export const selectOrderedProducts = createSelector(
     selectProducts,
-    products => products.map(product => product.ordered)
+    products => products.filter(product => product.ordered)
 )
 
 export const selectStatus = createSelector(
