@@ -16,7 +16,7 @@ export function ProductCard ({ShopProduct}: ProductCard)  {
         <div className=" card bg-black text-warning" style={{width: "18rem"}}>
         <img className="card-img-top" 
         src={ComputerUrl}
-         alt="Card image cap"></img>
+        alt="Card image cap"></img>
         <div className="card-body">
             <h1>{`${ShopProduct.product.name}`}</h1>
             <p className="card-text">{`${ShopProduct.product.description}`}</p>

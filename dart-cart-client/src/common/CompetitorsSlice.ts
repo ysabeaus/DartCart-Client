@@ -1,4 +1,4 @@
-import { 
+import {
     createSlice,
     createSelector,
     createEntityAdapter,
@@ -13,13 +13,13 @@ const CPAdapter = createEntityAdapter<ShopProduct>() // Entity is mapped to our 
 
 //
 
-export  const fetchCompetitorProducts = createAsyncThunk(
-        'CompetitorProducts/fetchCompetitorProducts', async (productId: number) => {
-          const response = await axios.get(MOCK_SERVER+"/ShopProducts", { params: { product_id: `${productId}`}} )
-          console.log(response.data)  
-          return response.data
-            
-        })
+export const fetchCompetitorProducts = createAsyncThunk(
+    'CompetitorProducts/fetchCompetitorProducts', async (productId: number) => {
+        const response = await axios.get(MOCK_SERVER + "/ShopProducts", { params: { product_id: `${productId}` } })
+        console.log(response.data)
+        return response.data
+
+    })
 
 // axios replaces this syntax:
 
@@ -29,30 +29,30 @@ export  const fetchCompetitorProducts = createAsyncThunk(
 //     const body = await reponse.json()
 // }
 
-    const intitialState = CPAdapter.getInitialState({
-        status: "idle"
-    })
+const intitialState = CPAdapter.getInitialState({
+    status: "idle"
+})
 
 const CPSlice = createSlice({
     name: 'CompetitorProducts',
     initialState: intitialState, //format is identical to getInitialState(), but we added a "status" field to the js Object
     reducers: {
-       //addCompetitorProducts: CPAdapter.addOne,///example reducer. Can't seem to get a selector without one reducer existing????
+        //addCompetitorProducts: CPAdapter.addOne,///example reducer. Can't seem to get a selector without one reducer existing????
     },
     extraReducers: (builder) => {
         builder.addCase(fetchCompetitorProducts.pending, (state, action) => {
             state.status = 'Loading'
         })
-        .addCase(fetchCompetitorProducts.fulfilled, (state, action) => {
-            const newEntities = {}
-            action.payload.forEach(CompetitorProduct => {
-                state.ids[CompetitorProduct.shop_product_id-1] = CompetitorProduct.shop_product_id
-                newEntities[CompetitorProduct.shop_product_id] = CompetitorProduct
-            })
-            state.entities = newEntities
-            state.status = "idle"
+            .addCase(fetchCompetitorProducts.fulfilled, (state, action) => {
+                const newEntities = {}
+                action.payload.forEach(CompetitorProduct => {
+                    state.ids[CompetitorProduct.shop_product_id - 1] = CompetitorProduct.shop_product_id
+                    newEntities[CompetitorProduct.shop_product_id] = CompetitorProduct
+                })
+                state.entities = newEntities
+                state.status = "idle"
 
-        })
+            })
     }
 })
 

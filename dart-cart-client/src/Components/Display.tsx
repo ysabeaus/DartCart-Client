@@ -16,13 +16,13 @@ const Display = () => {
 
     //console.log(params)
     const ReduxShopProducts = useSelector(selectShopProducts)
-    
-    function findCheapest (List: ShopProduct[]) {
-        let productMap : Map<number, number> = new Map<number, number>();
+
+    function findCheapest(List: ShopProduct[]) {
+        let productMap: Map<number, number> = new Map<number, number>();
 
         let finalList: ShopProduct[] = []
 
-        for(let i=0; i < List.length; i++) {
+        for (let i = 0; i < List.length; i++) {
             if (productMap[List[i].product.product_id]) {
                 if (List[i].price < productMap[List[i].product.product_id]) {
                     productMap[List[i].product.product_id] = List[i].price
@@ -31,7 +31,7 @@ const Display = () => {
                 productMap[List[i].product.product_id] = List[i].price
             }
         }
-        
+
         List.forEach(Sproduct => {
             if (Sproduct.price == productMap[Sproduct.product.product_id]) {
                 finalList.push(Sproduct)
@@ -40,7 +40,7 @@ const Display = () => {
         return finalList
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(fetchShopProducts()) // places return value into REDUX global state
     }, [])
 
@@ -48,25 +48,25 @@ const Display = () => {
     return (
 
         <>
-        <Header></Header>
+            <Header></Header>
             <div className="">
 
             </div>
 
             <div className="ProductCardContainer">
-            { 
-            
-            ReduxShopProducts.length > 0 ?
-           findCheapest(ReduxShopProducts)
-            .map(ShopProduct => {
-                return <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
-            })
-            :   ""
-           }
-           </div>
-        <Footer></Footer>
+                {
+
+                    ReduxShopProducts.length > 0 ?
+                        findCheapest(ReduxShopProducts)
+                            .map(ShopProduct => {
+                                return <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
+                            })
+                        : ""
+                }
+            </div>
+            <Footer></Footer>
         </>
-        
+
     )
 }
 

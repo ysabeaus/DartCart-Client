@@ -16,7 +16,7 @@ export function ShopProductCard ({ShopProduct}: ShopProductCard)  {
         <div className=" card bg-black text-warning" style={{width: "18rem"}}>
         <img className="card-img-top" 
         src={ComputerUrl}
-         alt="Card image cap"></img>
+        alt="Card image cap"></img>
         <div className="card-body">
             <h1>{`${ShopProduct.product.name}`}</h1>
             <h4>${`${ShopProduct.price}`}.69</h4>
@@ -26,7 +26,6 @@ export function ShopProductCard ({ShopProduct}: ShopProductCard)  {
             <Link id="Chosen Shop Product" className="btn  stretched-link" to={`/ShopProduct/${ShopProduct.product.product_id}`} ></Link>
         </div>
         </div>
-              
         
         </>
     )

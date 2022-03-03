@@ -1,4 +1,4 @@
-import { 
+import {
     createSlice,
     createSelector,
     createEntityAdapter,
@@ -13,10 +13,10 @@ const SPAdapter = createEntityAdapter<ShopProduct>() // Entity is mapped to our 
 
 export const fetchShopProducts = createAsyncThunk(
     'ShopProducts/fetchShopProducts', async () => {
-      const response = await axios.get(MOCK_SERVER+"/ShopProducts")
-      console.log(response.data)  
-      return response.data
-        
+        const response = await axios.get(MOCK_SERVER + "/ShopProducts")
+        console.log(response.data)
+        return response.data
+
     })
 
 
@@ -28,30 +28,30 @@ export const fetchShopProducts = createAsyncThunk(
 //     const body = await reponse.json()
 // }
 
-    const intitialState = SPAdapter.getInitialState({
-        status: "idle"
-    })
+const intitialState = SPAdapter.getInitialState({
+    status: "idle"
+})
 
 const SPSlice = createSlice({
     name: 'ShopProducts',
     initialState: intitialState, //format is identical to getInitialState(), but we added a "status" field to the js Object
     reducers: {
-       //addShopProducts: SPAdapter.addOne,///example reducer. Can't seem to get a selector without one reducer existing????
+        //addShopProducts: SPAdapter.addOne,///example reducer. Can't seem to get a selector without one reducer existing????
     },
     extraReducers: (builder) => {
         builder.addCase(fetchShopProducts.pending, (state, action) => {
             state.status = 'Loading'
         })
-        .addCase(fetchShopProducts.fulfilled, (state, action) => {
-            const newEntities = {}
-            action.payload.forEach(ShopProduct => {
-                state.ids[ShopProduct.shop_product_id-1] = ShopProduct.shop_product_id
-                newEntities[ShopProduct.shop_product_id] = ShopProduct
-            })
-            state.entities = newEntities
-            state.status = "idle"
+            .addCase(fetchShopProducts.fulfilled, (state, action) => {
+                const newEntities = {}
+                action.payload.forEach(ShopProduct => {
+                    state.ids[ShopProduct.shop_product_id - 1] = ShopProduct.shop_product_id
+                    newEntities[ShopProduct.shop_product_id] = ShopProduct
+                })
+                state.entities = newEntities
+                state.status = "idle"
 
-        })
+            })
     }
 })
 
