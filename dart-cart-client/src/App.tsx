@@ -7,6 +7,7 @@ import './App.css';
 import { Provider } from 'react-redux';
 import ShopProductDisplay from './Components/ShopProductDisplay';
 import store from './common/store'
+import SearchDisplay from './Components/SearchDisplay';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/Display" element={<Display />}></Route>
             <Route path="/ShopProduct/:product_id" element={<ShopProductDisplay />}></Route>
+            <Route path='/SearchDisplay/' element={<SearchDisplay/>} />
           </Routes>
           
       </Provider>

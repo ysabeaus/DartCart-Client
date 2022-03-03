@@ -14,7 +14,10 @@ import { Link } from 'react-router-dom'
 import logo from '../imgs/boldDart.jpg'
 import "./Display.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import 
+import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
+
+// const [GetSearch, setSearch] = useState("Header")
 
 
 const logoStyle = {
@@ -25,6 +28,22 @@ const logoStyle = {
 }
 
 const Header = () => {
+
+  
+const searchString = useRef<HTMLInputElement>(null);
+const [search, setSearchResults] = useState([]);
+
+
+function SearchChange (e) {
+  // let navigate = useNavigate()
+  // event.preventDefault();
+  console.log('event:  ' + searchString.current?.value)
+
+  // navigate({pathname: `/Search/${searchString.current}`})
+
+  // setSearch = event.value
+
+}
 
 
     return (
@@ -61,7 +80,7 @@ const Header = () => {
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
-          <input className="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search"></input>
+          <input className="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search" onKeyUp={SearchChange} ref={searchString}></input>
           <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>

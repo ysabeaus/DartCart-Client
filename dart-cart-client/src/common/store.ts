@@ -3,6 +3,7 @@ import CompetitorsSlice from './CompetitorsSlice';
 //import { StoreAPI } from '../services/APIQuery'
 import SPSlice from './ShopProductSlice'
 import CPSlice from './CompetitorsSlice'
+import SearchSlice from './SearchSlice'
 
 // const reducer = (state, action) => {
 //     switch (action.type) {
@@ -25,7 +26,8 @@ import CPSlice from './CompetitorsSlice'
 const store = configureStore({
     reducer: {
         ShopProducts: SPSlice,
-        CompetitorProducts: CPSlice
+        CompetitorProducts: CPSlice,
+        searchShopProducts: SearchSlice
     },
     //middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(StoreAPI.middleware)
 })
