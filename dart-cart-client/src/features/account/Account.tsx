@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
+import { loginUser } from "../../common/authSlice";
 
 export function Account() {
   const currentDate = Date.now();
@@ -98,7 +99,7 @@ export function Account() {
 
       if (result === "success") {
         showModal = true;
-        authService.login(user.username, user.password);
+        dispatch(loginUser({ username: user.username, password: user.password }));
       } else {
         setError("That username is unavailable.");
       }

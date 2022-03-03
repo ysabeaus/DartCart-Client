@@ -19,3 +19,5 @@ export interface User {
 }
 
 export type RootState = ReturnType<typeof store.getState>;
+export type SecurityToken = string;
+export type AppDispatch = typeof store.dispatch;
