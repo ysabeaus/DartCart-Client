@@ -3,7 +3,7 @@ import {
   createEntityAdapter,
   createAsyncThunk
 } from "@reduxjs/toolkit";
-import { User } from "./types";
+import { User } from "../types";
 import axios from "axios";
 
 // JSON server URL. Change to backend URL for testing/in production
@@ -21,16 +21,16 @@ const API_URL = process.env.REACT_APP_API_URL;
 // getInitialState: returns an object that looks like { ids: [], entities: {} },
 // for storing a normalized state of items along with an array of all item IDs
 // getSelectors: generates a standard set of selector functions
-const accountAdapter = createEntityAdapter<User>();
+const userRegisterAdapter = createEntityAdapter<User>();
 
 // Create slice that will manage the state of some type of object
-const accountSlice = createSlice({
+const userRegisterSlice = createSlice({
   name: "userRegister",
-  initialState: accountAdapter.getInitialState({
+  initialState: userRegisterAdapter.getInitialState({
     status: "idle"
   }),
   reducers: {
-    addedUser: accountAdapter.addOne,
+    addedUser: userRegisterAdapter.addOne,
     homeRedirect(state, action) {
       state.status = "idle";
     }
@@ -52,8 +52,8 @@ const accountSlice = createSlice({
 
 // With Redux Toolkit we get our reducers wrapped in actions, which simplifies the logic a lot.
 // Our React components will use dispatch on these actions to actually perform state management
-export const { addedUser, homeRedirect } = accountSlice.actions;
-export default accountSlice.reducer;
+export const { addedUser, homeRedirect } = userRegisterSlice.actions;
+export default userRegisterSlice.reducer;
 
 // In this next section is where we define our selectors, ie how our react components get/derive
 // the state they need from Redux. The base method is useSelector, but it has some optimizations
@@ -62,10 +62,10 @@ export default accountSlice.reducer;
 // What we've done here is override the built in selectors given by the adapater object
 // we can also create custom selectors with createSelector
 export const { selectAll: selectUsers, selectById: selectUserById } =
-  accountAdapter.getSelectors((state: any) => state.users);
+  userRegisterAdapter.getSelectors((state: any) => state.users);
 
 export const saveUser = createAsyncThunk(
-  "accounts/saveUser",
+  "userRegister/saveUser",
   async (user: User) => {
     return await axios.post(API_URL + "register", {
       id: user.id,

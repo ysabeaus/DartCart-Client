@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userRegisterReducer from "./userRegisterSlice";
-import authenticationReducer from "./authSlice";
+import userRegisterReducer from "./slices/userRegisterSlice";
+import authenticationReducer from "./slices/authSlice";
 
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here. Note that redux
@@ -10,7 +10,7 @@ import authenticationReducer from "./authSlice";
 // to the default middleware that comes with RTK)
 const store = configureStore({
   reducer: {
-    userReegister: userRegisterReducer,
+    userRegister: userRegisterReducer,
     authentication: authenticationReducer
   }
 });

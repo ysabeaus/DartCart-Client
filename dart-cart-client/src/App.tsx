@@ -1,9 +1,9 @@
 import "./App.css";
-import { LoginComponent } from "./LoginComponent";
+import { Login } from "./features/login/Login";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./common/Home";
-import Account from "./features/userRegister/userRegister";
+import Home from "./features/Home";
+import UserRegister from "./features/user-register/UserRegister";
 
 function App() {
   return (
@@ -11,8 +11,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/register" element={<Account />}></Route>
-          <Route path="/login" element={<LoginComponent />}></Route>
+          <Route path="/register" element={<UserRegister />}></Route>
+          <Route path="/login" element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

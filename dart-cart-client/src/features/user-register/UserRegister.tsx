@@ -1,25 +1,13 @@
 import { Alert, Modal } from "react-bootstrap";
-import {
-  addedUser,
-  saveUser,
-  homeRedirect
-} from "../../common/userRegisterSlice";
+import { saveUser, homeRedirect } from "../../common/slices/userRegisterSlice";
 import { User } from "../../common/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
-import { loginUser } from "../../common/authSlice";
+import { loginUser } from "../../common/slices/authSlice";
 
-export function Account() {
+export function UserRegister() {
   const currentDate = Date.now();
-  // const usernameField = useRef<HTMLInputElement>(null);
-  // const emailField = useRef<HTMLInputElement>(null);
-  // const passwordField = useRef<HTMLInputElement>(null);
-  // const rePasswordField = useRef<HTMLInputElement>(null);
-  // const firstNameField = useRef<HTMLInputElement>(null);
-  // const lastNameField = useRef<HTMLInputElement>(null);
-  // const locationField = useRef<HTMLInputElement>(null);
-  // const phoneField = useRef<HTMLInputElement>(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -60,40 +48,35 @@ export function Account() {
   // BASIC input validation: no empty fields, passwords must match, formatting requirements
   // Possible TODO: Password complexity requirements
   // Possible TODO: Enforcing username requirements, address formatting
-  // function validateInput() {
-  //     if (usernameField?.current?.value === "") {
-  //         setError("Please enter a username.");
-  //     } else if (emailField?.current?.value === "") {
-  //         setError("Please enter an email address.");
-  //     } else if (!emailField?.current?.value.includes("@") || !emailField?.current?.value.includes(".")) {
-  //         setError("Invalid email address.");
-  //     } else if (passwordField?.current?.value === "") {
-  //         setError("Please enter a password.");
-  //     } else if (passwordField?.current?.value !== rePasswordField?.current?.value) {
-  //         setError("Passwords do not match. Please confirm your password.");
-  //     } else if (firstNameField?.current?.value === "") {
-  //         setError("Please enter your first name.");
-  //     } else if (lastNameField?.current?.value === "") {
-  //         setError("Please enter your last name.");
-  //     } else if (locationField?.current?.value === "") {
-  //         setError("Please enter your home address.");
-  //     } else if (phoneField?.current?.value === "") {
-  //         setError("Please enter your phone number.");
-  //     } else if (
-  //         !phoneField?.current?.value.search(/[^0-9()-]/g) ||
-  //         phoneField?.current?.value.length != 14 ||
-  //         !phoneField?.current?.value.includes("(") ||
-  //         !phoneField?.current?.value.includes(")") ||
-  //         !phoneField?.current?.value.includes("-")
-  //     ) {
-  //         setError("Invalid phone number.");
-  //     } else {
-  //         return true;
-  //     }
-  // }
+  function validateInput() {
+    if (username === "") {
+      setError("Please enter a username.");
+    } else if (email === "") {
+      setError("Please enter an email address.");
+    } else if (!email.includes("@") || !email.includes(".")) {
+      setError("Invalid email address.");
+    } else if (password === "") {
+      setError("Please enter a password.");
+    } else if (password !== rePassword) {
+      setError("Passwords do not match. Please confirm your password.");
+    } else if (firstName === "") {
+      setError("Please enter your first name.");
+    } else if (lastName === "") {
+      setError("Please enter your last name.");
+    } else if (location === "") {
+      setError("Please enter your home address.");
+    } else if (phone === "") {
+      setError("Please enter your phone number.");
+    } else if (
+      !phone.match(/^\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/)
+    ) {
+      setError("Invalid phone number.");
+    } else {
+      return true;
+    }
+  }
 
   const createUser = async () => {
-    // if (validateInput())
     user.username = username;
     user.email = email;
     user.password = password;
@@ -102,6 +85,10 @@ export function Account() {
     user.location = location;
     user.phone = phone;
     user.registrationDate = currentDate;
+
+    if (!validateInput()) {
+      return;
+    }
 
     await dispatch(saveUser(user))
       .unwrap()
@@ -119,13 +106,6 @@ export function Account() {
 
   function clearInputs() {
     setUsername("");
-    setEmail("");
-    setPassword("");
-    setRePassword("");
-    setFirstName("");
-    setLastName("");
-    setLocation("");
-    setPhone("");
   }
 
   // Redirect upon modal close
@@ -284,7 +264,7 @@ export function Account() {
                         className="form-control form-control-lg"
                         value={phone}
                         onChange={(e) => {
-                          setPassword(e.target.value);
+                          setPhone(e.target.value);
                         }}
                       />
                     </div>
@@ -318,4 +298,4 @@ export function Account() {
   );
 }
 
-export default Account;
+export default UserRegister;
