@@ -1,4 +1,4 @@
-import { Alert, Modal } from "react-bootstrap";
+import { Alert, Modal, Button } from "react-bootstrap";
 import { saveUser, homeRedirect } from "../../common/slices/userRegisterSlice";
 import { User } from "../../common/types";
 import { useState } from "react";
@@ -131,15 +131,10 @@ export function UserRegister() {
                   {error ? <Alert variant="danger">{error}</Alert> : null}
 
                   <div className="row">
-                    <div className="form-outline mb-0 col-6">
+                    <div className="form-outline mb-0">
                       <h4>Username</h4>
                     </div>
-                    <div className="form-outline mb-0 col-6">
-                      <h4>Email</h4>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="form-outline mb-4 col-6">
+                    <div className="form-outline mb-4">
                       <input
                         type="text"
                         placeholder="DartTheCart"
@@ -151,7 +146,10 @@ export function UserRegister() {
                         }}
                       />
                     </div>
-                    <div className="form-outline mb-4 col-6">
+                    <div className="form-outline mb-0">
+                      <h4>Email</h4>
+                    </div>
+                    <div className="form-outline mb-4">
                       <input
                         type="email"
                         placeholder="dartcart@email.com"
@@ -166,15 +164,10 @@ export function UserRegister() {
                   </div>
 
                   <div className="row">
-                    <div className="form-outline mb-0 col-6">
+                    <div className="form-outline mb-0">
                       <h4>Password</h4>
                     </div>
-                    <div className="form-outline mb-0 col-6">
-                      <h4>Confirm Password</h4>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="form-outline mb-4 col-6">
+                    <div className="form-outline mb-4">
                       <input
                         type="password"
                         placeholder="P@S5W0RD!"
@@ -186,7 +179,10 @@ export function UserRegister() {
                         }}
                       />
                     </div>
-                    <div className="form-outline mb-4 col-6">
+                    <div className="form-outline mb-0">
+                      <h4>Confirm Password</h4>
+                    </div>
+                    <div className="form-outline mb-4">
                       <input
                         type="password"
                         placeholder="P@S5W0RD!"
@@ -201,15 +197,10 @@ export function UserRegister() {
                   </div>
 
                   <div className="row">
-                    <div className="form-outline mb-0 col-6">
+                    <div className="form-outline mb-0">
                       <h4>First Name</h4>
                     </div>
-                    <div className="form-outline mb-0 col-6">
-                      <h4>Last Name</h4>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="form-outline mb-4 col-6">
+                    <div className="form-outline mb-4">
                       <input
                         type="text"
                         placeholder="John"
@@ -221,7 +212,10 @@ export function UserRegister() {
                         }}
                       />
                     </div>
-                    <div className="form-outline mb-4 col-6">
+                    <div className="form-outline mb-0">
+                      <h4>Last Name</h4>
+                    </div>
+                    <div className="form-outline mb-4">
                       <input
                         type="text"
                         placeholder="Doe"
@@ -236,15 +230,10 @@ export function UserRegister() {
                   </div>
 
                   <div className="row">
-                    <div className="form-outline mb-0 col-6">
+                    <div className="form-outline mb-0">
                       <h4>Address</h4>
                     </div>
-                    <div className="form-outline mb-0 col-6">
-                      <h4>Phone Number</h4>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="form-outline mb-4 col-6">
+                    <div className="form-outline mb-4">
                       <input
                         type="text"
                         placeholder="1 Main St, Anytown, CA 12345"
@@ -256,7 +245,10 @@ export function UserRegister() {
                         }}
                       />
                     </div>
-                    <div className="form-outline mb-4 col-6">
+                    <div className="form-outline mb-0">
+                      <h4>Phone Number</h4>
+                    </div>
+                    <div className="form-outline mb-4">
                       <input
                         type="phone"
                         placeholder="(555) 555-5555"
@@ -285,7 +277,7 @@ export function UserRegister() {
                       Account created. Welcome to DartCart!
                     </Modal.Body>
                     <Modal.Footer>
-                      <button onClick={handleClose}>Close</button>
+                      <Button onClick={handleClose}>Close</Button>
                     </Modal.Footer>
                   </Modal>
                 </div>
