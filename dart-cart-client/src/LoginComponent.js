@@ -32,7 +32,6 @@ export const LoginComponent = () => {
         setAlert("Wrong username or password");
     }
 
-    console.log(status == "loading");
     return (
         <>
             {!user ?
