@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import accountReducer from "./accountSlice";
+import accountReducer from "./userRegisterSlice";
 import authenticationReducer from "./authSlice";
 
 // Here we configure the store object that redux uses for storing data

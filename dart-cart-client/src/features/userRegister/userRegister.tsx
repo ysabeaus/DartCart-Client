@@ -1,10 +1,12 @@
 import { Alert, Modal } from "react-bootstrap";
-import { addedUser, saveUser, homeRedirect } from "../../common/accountSlice";
+import {
+  addedUser,
+  saveUser,
+  homeRedirect
+} from "../../common/userRegisterSlice";
 import { User } from "../../common/types";
-import { useSelector } from "react-redux";
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import authService from "../../services/auth.service";
 import { useAppDispatch } from "../../common/hooks";
 import { loginUser } from "../../common/authSlice";
 

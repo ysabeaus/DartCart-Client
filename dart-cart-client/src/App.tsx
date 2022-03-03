@@ -3,7 +3,7 @@ import { LoginComponent } from "./LoginComponent";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./common/Home";
-import Account from "./features/account/Account";
+import Account from "./features/userRegister/userRegister";
 
 function App() {
   return (
