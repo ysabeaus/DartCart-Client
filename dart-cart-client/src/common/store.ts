@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import accountReducer from "./accountSlice";
-import authenticationReducer from "./authSlice"
+import authenticationReducer from "./authSlice";
+import invoiceReduce from "./invoiceSlice";
 
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here. Note that redux
@@ -12,6 +13,7 @@ const store = configureStore({
   reducer: {
     accounts: accountReducer,
     authentication: authenticationReducer,
+    invoices: invoiceReduce,
   },
 });
 
