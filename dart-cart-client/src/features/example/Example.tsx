@@ -6,7 +6,7 @@ import { Product } from '../../common/types'
 
 function Example() {
 
-    const products = useAppSelector(state => selectProducts(state))
+    const products = useAppSelector(selectProducts)
     const status = useAppSelector(state => selectStatus(state))
     const dispatch = useAppDispatch();
     let content
@@ -19,7 +19,7 @@ function Example() {
         content = <Spinner animation="border" />
     } else {
         content = <ul className="list-group">
-            {/* { data.map((product: Product) => <li key={product.id} className="list-group-item text-center"> {product.id}. {product.name} </li>) } */}
+            { products.map((product: Product) => <li key={product.id} className="list-group-item text-center"> {product.id}. {product.name} </li>) }
         </ul>
     }
 

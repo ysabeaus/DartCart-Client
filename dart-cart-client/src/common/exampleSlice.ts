@@ -47,12 +47,7 @@ const exampleSlice = createSlice({
                 state.status = "loading"
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
-                const newProducts: any = {}
-                action.payload.forEach((product: Product) => {
-                    newProducts[product.id] = product
-                })
-
-                state.entities = newProducts
+                exampleAdapter.addMany(state, action.payload)
                 state.status = "idle"
             })
     }
@@ -75,7 +70,7 @@ export default exampleSlice.reducer
 
 // What we've done here is override the built in selectors given by the adapater object
 // we can also create custom selectors with createSelector
-export const { selectAll: selectProducts, selectById: selectProductById } = exampleAdapter.getSelectors((state: any) => state.products);
+export const { selectAll: selectProducts, selectById: selectProductById } = exampleAdapter.getSelectors((state: RootState) => state.products);
 
 export const selectOrderedProducts = createSelector(
     selectProducts,
