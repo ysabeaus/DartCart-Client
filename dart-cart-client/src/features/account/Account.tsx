@@ -1,32 +1,34 @@
-import { Alert, Button, Modal } from "react-bootstrap";
-import {
-  addedUser,
-  saveUser,
-  selectStatus,
-  homeRedirect,
-} from "../../common/accountSlice";
+import { Alert, Modal } from "react-bootstrap";
+import { addedUser, saveUser, homeRedirect } from "../../common/accountSlice";
 import { User } from "../../common/types";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
+import { useAppDispatch } from "../../common/hooks";
 
 export function Account() {
   const currentDate = Date.now();
-  const dispatch = useDispatch();
-  const usernameField = useRef<HTMLInputElement>(null);
-  const emailField = useRef<HTMLInputElement>(null);
-  const passwordField = useRef<HTMLInputElement>(null);
-  const rePasswordField = useRef<HTMLInputElement>(null);
-  const firstNameField = useRef<HTMLInputElement>(null);
-  const lastNameField = useRef<HTMLInputElement>(null);
-  const locationField = useRef<HTMLInputElement>(null);
-  const phoneField = useRef<HTMLInputElement>(null);
-
+  // const usernameField = useRef<HTMLInputElement>(null);
+  // const emailField = useRef<HTMLInputElement>(null);
+  // const passwordField = useRef<HTMLInputElement>(null);
+  // const rePasswordField = useRef<HTMLInputElement>(null);
+  // const firstNameField = useRef<HTMLInputElement>(null);
+  // const lastNameField = useRef<HTMLInputElement>(null);
+  // const locationField = useRef<HTMLInputElement>(null);
+  // const phoneField = useRef<HTMLInputElement>(null);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [location, setLocation] = useState("");
+  const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
-  // Modal show/hide state
-  const result = useSelector(selectStatus);
-  let showModal = false;
+  const [showModal, setShowModal] = useState(false);
+
+  const dispatch = useAppDispatch();
   const nav = useNavigate();
 
   const user: User = {
@@ -38,83 +40,92 @@ export function Account() {
     email: "",
     phone: "",
     location: "",
-    registrationDate: 0,
+    registrationDate: 0
   };
 
   const onChangeHandler = () => {
-    user.username = usernameField?.current?.value ?? "";
-    user.email = emailField?.current?.value ?? "";
-    user.password = passwordField?.current?.value ?? "";
-    user.firstName = firstNameField?.current?.value ?? "";
-    user.lastName = lastNameField?.current?.value ?? "";
-    user.location = locationField?.current?.value ?? "";
-    user.phone = phoneField?.current?.value ?? "";
+    user.username = username;
+    user.email = email;
+    user.password = password;
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.location = location;
+    user.phone = phone;
     user.registrationDate = currentDate;
   };
 
   // BASIC input validation: no empty fields, passwords must match, formatting requirements
   // Possible TODO: Password complexity requirements
   // Possible TODO: Enforcing username requirements, address formatting
-  function validateInput() {
-    if (usernameField?.current?.value === "") {
-      setError("Please enter a username.");
-    } else if (emailField?.current?.value === "") {
-      setError("Please enter an email address.");
-    } else if (
-      !emailField?.current?.value.includes("@") ||
-      !emailField?.current?.value.includes(".")
-    ) {
-      setError("Invalid email address.");
-    } else if (passwordField?.current?.value === "") {
-      setError("Please enter a password.");
-    } else if (
-      passwordField?.current?.value !== rePasswordField?.current?.value
-    ) {
-      setError("Passwords do not match. Please confirm your password.");
-    } else if (firstNameField?.current?.value === "") {
-      setError("Please enter your first name.");
-    } else if (lastNameField?.current?.value === "") {
-      setError("Please enter your last name.");
-    } else if (locationField?.current?.value === "") {
-      setError("Please enter your home address.");
-    } else if (phoneField?.current?.value === "") {
-      setError("Please enter your phone number.");
-    } else if (
-      !phoneField.current?.value.search(/[^0-9()-]/g) ||
-      phoneField.current.value.length != 14 ||
-      !phoneField.current.value.includes("(") ||
-      !phoneField.current.value.includes(")") ||
-      !phoneField.current.value.includes("-")
-    ) {
-      setError("Invalid phone number.");
-    } else {
-      return true;
-    }
-  }
+  // function validateInput() {
+  //     if (usernameField?.current?.value === "") {
+  //         setError("Please enter a username.");
+  //     } else if (emailField?.current?.value === "") {
+  //         setError("Please enter an email address.");
+  //     } else if (!emailField?.current?.value.includes("@") || !emailField?.current?.value.includes(".")) {
+  //         setError("Invalid email address.");
+  //     } else if (passwordField?.current?.value === "") {
+  //         setError("Please enter a password.");
+  //     } else if (passwordField?.current?.value !== rePasswordField?.current?.value) {
+  //         setError("Passwords do not match. Please confirm your password.");
+  //     } else if (firstNameField?.current?.value === "") {
+  //         setError("Please enter your first name.");
+  //     } else if (lastNameField?.current?.value === "") {
+  //         setError("Please enter your last name.");
+  //     } else if (locationField?.current?.value === "") {
+  //         setError("Please enter your home address.");
+  //     } else if (phoneField?.current?.value === "") {
+  //         setError("Please enter your phone number.");
+  //     } else if (
+  //         !phoneField?.current?.value.search(/[^0-9()-]/g) ||
+  //         phoneField?.current?.value.length != 14 ||
+  //         !phoneField?.current?.value.includes("(") ||
+  //         !phoneField?.current?.value.includes(")") ||
+  //         !phoneField?.current?.value.includes("-")
+  //     ) {
+  //         setError("Invalid phone number.");
+  //     } else {
+  //         return true;
+  //     }
+  // }
 
-  const createUser = () => {
-    if (validateInput()) {
-      dispatch(saveUser(user));
+  const createUser = async () => {
+    // if (validateInput())
+    user.username = username;
+    user.email = email;
+    user.password = password;
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.location = location;
+    user.phone = phone;
+    user.registrationDate = currentDate;
 
-      if (result === "success") {
-        showModal = true;
-        authService.login(user.username, user.password);
-      } else {
+    await dispatch(saveUser(user))
+      .unwrap()
+      .then((originalPromiseResult) => {
+        setShowModal(true);
+      })
+      .catch((rejectedValueOrSerializedError) => {
         setError("That username is unavailable.");
-      }
-    }
+      });
+    clearInputs();
   };
 
-  function handleShow() {
-    if (result === "success") {
-      return true;
-    }
+  function clearInputs() {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setRePassword("");
+    setFirstName("");
+    setLastName("");
+    setLocation("");
+    setPhone("");
   }
 
   // Redirect upon modal close
   function handleClose() {
     dispatch(homeRedirect(null));
-    // TODO: Store the JWT passed from the server upon successful POST request
+    authService.login(user.username, user.password);
     nav("/");
   }
 
@@ -149,8 +160,10 @@ export function Account() {
                         placeholder="DartTheCart"
                         id="typeEmailX-2"
                         className="form-control form-control-lg"
-                        ref={usernameField}
-                        onChange={onChangeHandler}
+                        value={username}
+                        onChange={(e) => {
+                          setUsername(e.target.value);
+                        }}
                       />
                     </div>
                     <div className="form-outline mb-4 col-6">
@@ -159,8 +172,10 @@ export function Account() {
                         placeholder="dartcart@email.com"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
-                        ref={emailField}
-                        onChange={onChangeHandler}
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -180,8 +195,10 @@ export function Account() {
                         placeholder="P@S5W0RD!"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
-                        ref={passwordField}
-                        onChange={onChangeHandler}
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                       />
                     </div>
                     <div className="form-outline mb-4 col-6">
@@ -190,8 +207,10 @@ export function Account() {
                         placeholder="P@S5W0RD!"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
-                        ref={rePasswordField}
-                        onChange={onChangeHandler}
+                        value={rePassword}
+                        onChange={(e) => {
+                          setRePassword(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -211,8 +230,10 @@ export function Account() {
                         placeholder="John"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
-                        ref={firstNameField}
-                        onChange={onChangeHandler}
+                        value={firstName}
+                        onChange={(e) => {
+                          setFirstName(e.target.value);
+                        }}
                       />
                     </div>
                     <div className="form-outline mb-4 col-6">
@@ -221,8 +242,10 @@ export function Account() {
                         placeholder="Doe"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
-                        ref={lastNameField}
-                        onChange={onChangeHandler}
+                        value={lastName}
+                        onChange={(e) => {
+                          setLastName(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -242,18 +265,22 @@ export function Account() {
                         placeholder="1 Main St, Anytown, CA 12345"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
-                        ref={locationField}
-                        onChange={onChangeHandler}
+                        value={location}
+                        onChange={(e) => {
+                          setLocation(e.target.value);
+                        }}
                       />
                     </div>
                     <div className="form-outline mb-4 col-6">
                       <input
                         type="phone"
                         placeholder="(555) 555-5555"
-                        onChange={onChangeHandler}
                         id="typePasswordX-2"
-                        ref={phoneField}
                         className="form-control form-control-lg"
+                        value={phone}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -265,7 +292,7 @@ export function Account() {
                     Register
                   </button>
 
-                  <Modal show={handleShow()} onHide={handleClose}>
+                  <Modal show={showModal}>
                     <Modal.Header closeButton>
                       <Modal.Title>Registration</Modal.Title>
                     </Modal.Header>
@@ -273,9 +300,7 @@ export function Account() {
                       Account created. Welcome to DartCart!
                     </Modal.Body>
                     <Modal.Footer>
-                      <Button variant="primary" onClick={handleClose}>
-                        Close
-                      </Button>
+                      <button onClick={handleClose}>Close</button>
                     </Modal.Footer>
                   </Modal>
                 </div>

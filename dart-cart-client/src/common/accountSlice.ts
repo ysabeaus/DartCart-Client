@@ -2,7 +2,7 @@ import {
   createSlice,
   createSelector,
   createEntityAdapter,
-  createAsyncThunk,
+  createAsyncThunk
 } from "@reduxjs/toolkit";
 import { User } from "../common/types";
 import axios from "axios";
@@ -29,13 +29,13 @@ const accountAdapter = createEntityAdapter<User>();
 const accountSlice = createSlice({
   name: "accounts",
   initialState: accountAdapter.getInitialState({
-    status: "idle",
+    status: "idle"
   }),
   reducers: {
     addedUser: accountAdapter.addOne,
     homeRedirect(state, action) {
       state.status = "idle";
-    },
+    }
   },
   // Extra reducers to handle the promise produced by createAsyncThunk
   extraReducers: (builder) => {
@@ -44,17 +44,16 @@ const accountSlice = createSlice({
         state.status = "loading";
       })
       .addCase(saveUser.fulfilled, (state, action) => {
-        state.status = "success";
+        state.status = "successful";
       })
       .addCase(saveUser.rejected, (state, action) => {
-        state.status = "rejected";
+        state.status = "unsuccessful";
       });
-  },
+  }
 });
 
-// With Redux Toolkit we get our reducers wrapped in actions, which simplifies the logic
-// a lot. Our React components will use dispatch on these actions to actually perform
-// state management
+// With Redux Toolkit we get our reducers wrapped in actions, which simplifies the logic a lot.
+// Our React components will use dispatch on these actions to actually perform state management
 export const { addedUser, homeRedirect } = accountSlice.actions;
 export default accountSlice.reducer;
 
@@ -67,16 +66,10 @@ export default accountSlice.reducer;
 export const { selectAll: selectUsers, selectById: selectUserById } =
   accountAdapter.getSelectors((state: any) => state.users);
 
-export const selectStatus = createSelector(
-  (state: RootState) => state.accounts,
-  (accounts) => accounts.status
-);
-
-// Async functionality
 export const saveUser = createAsyncThunk(
   "accounts/saveUser",
   async (user: User) => {
-    return axios.post(API_URL + "register", {
+    return await axios.post(API_URL + "register", {
       id: user.id,
       username: user.username,
       password: user.password,
@@ -85,7 +78,7 @@ export const saveUser = createAsyncThunk(
       email: user.email,
       phone: user.phone,
       location: user.location,
-      registrationDate: user.registrationDate,
+      registrationDate: user.registrationDate
     });
   }
 );

@@ -1,0 +1,206 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "username": "DartCart",
+      "password": "Password!",
+      "firstName": "Man",
+      "lastName": "Hugh",
+      "email": "dartcart@gmail.com",
+      "phone": "(123) 019-4029",
+      "location": "Street, Town, USA",
+      "registrationDate": 1646192852519
+    },
+    {
+      "id": 3,
+      "username": "Hehe",
+      "password": "password",
+      "firstName": "Smile",
+      "lastName": "Man",
+      "email": "",
+      "phone": "1234567890",
+      "location": "XD",
+      "registrationDate": 1646193227693
+    },
+    {
+      "id": 4,
+      "username": "Te",
+      "password": "donk",
+      "firstName": "Ha",
+      "lastName": "Ha",
+      "email": "xd@gmail.com",
+      "phone": "51209510293124",
+      "location": "Street",
+      "registrationDate": 1646194333427
+    },
+    {
+      "id": 5,
+      "username": "",
+      "password": "",
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "phone": "",
+      "location": "",
+      "registrationDate": 0
+    },
+    {
+      "id": 6,
+      "username": "DartTheCart",
+      "password": "password",
+      "firstName": "Jawn",
+      "lastName": "Doh",
+      "email": "dartcart@email.com",
+      "phone": "(757)-903-8423",
+      "location": "100 Main Street, Santa Claus, IN 23410",
+      "registrationDate": 1646195234631
+    },
+    {
+      "id": 7,
+      "username": "D",
+      "password": "password",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "david@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "1 Street, Town, USA 12345",
+      "registrationDate": 1646240761422
+    },
+    {
+      "id": 8,
+      "username": "Dfasji",
+      "password": "password",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "david@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "1 Street, Town, USA 12345",
+      "registrationDate": 1646241332608
+    },
+    {
+      "id": 9,
+      "username": "D",
+      "password": "password",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "email@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "Address",
+      "registrationDate": 1646241783703
+    },
+    {
+      "id": 10,
+      "username": "Da",
+      "password": "pass",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "email@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "ADDRESS",
+      "registrationDate": 1646242382993
+    },
+    {
+      "id": 11,
+      "username": "Dart",
+      "password": "pass",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "dart@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "ADDRESS",
+      "registrationDate": 1646242880673
+    },
+    {
+      "id": 12,
+      "username": "Dart",
+      "password": "Pass",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "dartcart@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "ADDRESS",
+      "registrationDate": 1646243063128
+    },
+    {
+      "id": 13,
+      "username": "Dart",
+      "password": "Password",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "dartcart@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "OFJaPOSIj",
+      "registrationDate": 1646243205803
+    },
+    {
+      "id": 14,
+      "username": "D",
+      "password": "password",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "dart@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "ADJAOISJFD",
+      "registrationDate": 1646243267286
+    },
+    {
+      "id": 15,
+      "username": "ASFopjpoi",
+      "password": "pass",
+      "firstName": "JOIFJAOIS",
+      "lastName": "OFJAOISFJ",
+      "email": "dare@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "9148120984",
+      "registrationDate": 1646243376727
+    },
+    {
+      "id": 16,
+      "username": "D",
+      "password": "pass",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "d@g.com",
+      "phone": "(123) 456-7890",
+      "location": "ADDRESS",
+      "registrationDate": 1646243427966
+    },
+    {
+      "id": 17,
+      "username": "Testman",
+      "password": "password",
+      "firstName": "Man",
+      "lastName": "Test",
+      "email": "testman@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "1 Main St, Anytown, VA 23462",
+      "registrationDate": 1646248665430
+    },
+    {
+      "id": 18,
+      "username": "C",
+      "password": "pass",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "c@gmail.com",
+      "phone": "(123) 456-7890",
+      "location": "ADDRESS",
+      "registrationDate": 1646248852488
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
