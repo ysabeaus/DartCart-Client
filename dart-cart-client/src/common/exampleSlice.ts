@@ -53,6 +53,9 @@ const exampleSlice = createSlice({
     }
 })
 
+// This Thunk is used to make the api call to the backend (here mocked using json-server)
+// The extraReducers field of the slice contains a set of reducers (added through addCase)
+// to modify state based on the response's status
 export const fetchProducts = createAsyncThunk('products/fectProducts', async () => {
     const response = await axios("http://localhost:3001/products");
     return response.data;
