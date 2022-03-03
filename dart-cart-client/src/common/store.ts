@@ -1,16 +1,9 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit'
-import CompetitorsSlice from './CompetitorsSlice';
-//import { StoreAPI } from '../services/APIQuery'
-import SPSlice from './ShopProductSlice'
-import CPSlice from './CompetitorsSlice'
-
-// const reducer = (state, action) => {
-//     switch (action.type) {
-//         case "addProduct":
-//             return state + action.payload
-//     }
-// }
-
+import { configureStore } from "@reduxjs/toolkit";
+import SPSlice from "./slices/shopProductSlice";
+import CPSlice from "./slices/competitorsSlice";
+import accountSlice from "./slices/accountSlice";
+import userRegisterReducer from "./slices/accountSlice";
+import authenticationReducer from "./slices/authSlice";
 
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here. Note that redux
@@ -18,21 +11,16 @@ import CPSlice from './CompetitorsSlice'
 //
 // we also declare all the middleware we'll be using (here we add the exampleApi
 // to the default middleware that comes with RTK)
-
-
-//############################### ALL REDUCERS FOR ENTIRE STORE CAN BE DEFINED HERE
-
 const store = configureStore({
-    reducer: {
-        ShopProducts: SPSlice,
-        CompetitorProducts: CPSlice
-    },
-    //middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(StoreAPI.middleware)
-})
-
-//############################### ALL REDUCERS FOR ENTIRE STORE CAN BE DEFINED HERE
+  reducer: {
+    userRegister: userRegisterReducer,
+    authentication: authenticationReducer,
+    ShopProducts: SPSlice,
+    CompetitorProducts: CPSlice,
+    accounts: accountSlice,
+  },
+});
 
 export default store;
-
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

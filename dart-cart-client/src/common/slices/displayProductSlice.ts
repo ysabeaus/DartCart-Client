@@ -1,11 +1,11 @@
-import { 
-    createSlice,
-    createSelector,
-    createEntityAdapter,
-    createAsyncThunk
+import {
+  createSlice,
+  createSelector,
+  createEntityAdapter,
+  createAsyncThunk,
 } from "@reduxjs/toolkit";
 import axios from "axios";
-import { ShopProduct } from '../Components/models'
+import { ShopProduct } from "../../features/display/models";
 
 // const MOCK_SERVER = "https://59749c7b-15b7-4456-b980-124c0bb0d8b0.mock.pstmn.io"
 
@@ -14,11 +14,10 @@ import { ShopProduct } from '../Components/models'
 // // export const fetchDisplayProducts = createAsyncThunk(
 // //     'ShopProducts/fetchDisplayProducts', async () => {
 // //       const response = await axios.get(MOCK_SERVER+"/ShopProducts")
-// //       console.log(response.data)  
+// //       console.log(response.data)
 // //       return response.data
-        
-// //     })
 
+// //     })
 
 // // axios replaces this syntax:
 
@@ -42,9 +41,8 @@ import { ShopProduct } from '../Components/models'
 
 // export const { selectAll: selectShopProducts, selectById: selectShopProductById } = DPSAdapter.getSelectors((state: any) => state.ShopProducts); // state.ShopProduct is the NAME field of our slice
 
-// export default SPSlice.reducer //exported to the REDUX STORE 
+// export default SPSlice.reducer //exported to the REDUX STORE
 //Creates a selectors to retrieve for ALL shopProducts or ShopProducts by ID
-
 
 // export const selectedShopProducts = createSelector(
 //     selectShopProducts,
