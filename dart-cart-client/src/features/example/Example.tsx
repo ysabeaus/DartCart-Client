@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Container, Button, Row, Spinner } from "react-bootstrap";
 import { useAppSelector, useAppDispatch } from "../../common/hooks";
-import { fetchProducts, selectProducts } from '../../common/exampleSlice'
+import { fetchProducts, selectProducts, selectStatus } from '../../common/exampleSlice'
 import { Product } from '../../common/types'
 
 function Example() {
 
     const products = useAppSelector(state => selectProducts(state))
+    const status = useAppSelector(state => selectStatus(state))
     const dispatch = useAppDispatch();
     let content
 
@@ -14,13 +15,13 @@ function Example() {
         dispatch(fetchProducts())
     }, [])
 
-    // if(isLoading) {
-    //     content = <Spinner animation="border" />
-    // } else {
-    //     content = <ul className="list-group">
-    //         { data.map((product: Product) => <li key={product.id} className="list-group-item text-center"> {product.id}. {product.name} </li>) }
-    //     </ul>
-    // }
+    if(status === "loading") {
+        content = <Spinner animation="border" />
+    } else {
+        content = <ul className="list-group">
+            {/* { data.map((product: Product) => <li key={product.id} className="list-group-item text-center"> {product.id}. {product.name} </li>) } */}
+        </ul>
+    }
 
     return (<>
         <Row>
