@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import accountReducer from "./userRegisterSlice";
+import userRegisterReducer from "./userRegisterSlice";
 import authenticationReducer from "./authSlice";
 
 // Here we configure the store object that redux uses for storing data
@@ -11,7 +10,7 @@ import authenticationReducer from "./authSlice";
 // to the default middleware that comes with RTK)
 const store = configureStore({
   reducer: {
-    accounts: accountReducer,
+    userReegister: userRegisterReducer,
     authentication: authenticationReducer
   }
 });

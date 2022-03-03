@@ -25,7 +25,7 @@ const accountAdapter = createEntityAdapter<User>();
 
 // Create slice that will manage the state of some type of object
 const accountSlice = createSlice({
-  name: "accounts",
+  name: "userRegister",
   initialState: accountAdapter.getInitialState({
     status: "idle"
   }),
