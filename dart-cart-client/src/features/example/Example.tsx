@@ -19,7 +19,7 @@ function Example() {
     }, [])
 
     const deleteOrderedProducts = () => {
-        dispatch(orderedProductsDeleted(null))
+        dispatch(orderedProductsDeleted())
     }
 
     if(status === "loading") {

@@ -32,7 +32,7 @@ const exampleSlice = createSlice({
     }),
     reducers: {
         productDeleted: exampleAdapter.removeOne,
-        orderedProductsDeleted(state, action) {
+        orderedProductsDeleted(state) {
             const orderedProductIds: any[] = Object.values(state.entities)
                 .filter(product => product?.ordered)
                 .map(product => product?.id)
