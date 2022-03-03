@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
 import { useAppDispatch } from "../../common/hooks";
+import { loginUser } from "../../common/authSlice";
 
 export function Account() {
   const currentDate = Date.now();
@@ -102,10 +103,13 @@ export function Account() {
 
     await dispatch(saveUser(user))
       .unwrap()
-      .then((originalPromiseResult) => {
+      .then((originalPromiseResult: any) => {
         setShowModal(true);
+        dispatch(
+          loginUser({ username: user.username, password: user.password })
+        );
       })
-      .catch((rejectedValueOrSerializedError) => {
+      .catch((rejectedValueOrSerializedError: any) => {
         setError("That username is unavailable.");
       });
     clearInputs();
@@ -125,7 +129,6 @@ export function Account() {
   // Redirect upon modal close
   function handleClose() {
     dispatch(homeRedirect(null));
-    authService.login(user.username, user.password);
     nav("/");
   }
 

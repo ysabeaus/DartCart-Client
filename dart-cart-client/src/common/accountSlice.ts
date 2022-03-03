@@ -9,7 +9,7 @@ import axios from "axios";
 import { RootState } from "../common/types";
 
 // JSON server URL. Change to backend URL for testing/in production
-const API_URL = "http://localhost:8081/";
+const API_URL = process.env.REACT_APP_API_URL;
 
 // createEntityAdapter gives us several premade reducer functions
 // for manipulating state. It gives us:
