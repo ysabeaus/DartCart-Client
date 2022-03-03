@@ -1,4 +1,4 @@
-import { ShopProduct } from "./models";
+import { ShopProduct } from "../../common/models";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 

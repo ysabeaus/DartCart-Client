@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
-import "./ShopProduct.css";
+import "./shopProduct.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchShopProducts,
   selectShopProductById,
 } from "../../common/slices/shopProductSlice";
-import { CompetingSellers } from "../display/CompetingSellers";
+import { CompetingSellers } from "../competing-sellers/CompetingSellers";
 
 //imgs
 import cartoonBat from "../../imgs/cartoon-baseball-bat.png";

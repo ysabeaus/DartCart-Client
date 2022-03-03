@@ -4,7 +4,7 @@ import {
   fetchCompetitorProducts,
   selectCompetitorProductById,
 } from "../../common/slices/competitorsSlice";
-import "./ShopProduct.css";
+import "./competingSellers.css";
 
 interface SellerProduct {
   Seller: number; //product ID

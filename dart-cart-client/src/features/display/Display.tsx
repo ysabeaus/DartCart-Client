@@ -1,6 +1,6 @@
-import { ShopProduct } from "./models";
-import { ShopProductCard } from "./ShopProductCard";
-import "./Display.css";
+import { ShopProduct } from "../../common/models";
+import { ShopProductCard } from "../product-details/ShopProductCard";
+import "./display.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,12 +10,10 @@ import {
 
 const Display = () => {
   const dispatch = useDispatch();
-
   const ReduxShopProducts = useSelector(selectShopProducts);
 
   function findCheapest(list: ShopProduct[]) {
     let productMap: Map<number, number> = new Map<number, number>();
-
     let finalList: ShopProduct[] = [];
 
     for (let i = 0; i < list.length; i++) {
