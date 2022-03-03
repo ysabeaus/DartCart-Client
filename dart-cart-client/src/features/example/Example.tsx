@@ -1,26 +1,26 @@
-import React from "react";
-import { RootState } from "../../common/store";
+import React, { useEffect } from "react";
 import { Container, Button, Row, Spinner } from "react-bootstrap";
-import { useSelector } from 'react-redux'
-import { selectOrderedProducts } from '../../common/exampleSlice'
-import { useGetAllProductsQuery } from "../../services/product"
+import { useAppSelector, useAppDispatch } from "../../common/hooks";
+import { fetchProducts, selectProducts } from '../../common/exampleSlice'
 import { Product } from '../../common/types'
 
 function Example() {
 
-    const { data, error, isLoading } = useGetAllProductsQuery(null)
-    // const products = useSelector((state: RootState) => state.products)
-    // const orderedProducts = useSelector(selectOrderedProducts)
-
+    const products = useAppSelector(state => selectProducts(state))
+    const dispatch = useAppDispatch();
     let content
 
-    if(isLoading) {
-        content = <Spinner animation="border" />
-    } else {
-        content = <ul className="list-group">
-            { data.map((product: Product) => <li key={product.id} className="list-group-item text-center"> {product.id}. {product.name} </li>) }
-        </ul>
-    }
+    useEffect(() => {
+        dispatch(fetchProducts())
+    }, [])
+
+    // if(isLoading) {
+    //     content = <Spinner animation="border" />
+    // } else {
+    //     content = <ul className="list-group">
+    //         { data.map((product: Product) => <li key={product.id} className="list-group-item text-center"> {product.id}. {product.name} </li>) }
+    //     </ul>
+    // }
 
     return (<>
         <Row>

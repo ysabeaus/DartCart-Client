@@ -1,9 +1,13 @@
 import { 
     createSlice,
     createSelector,
+    createAsyncThunk,
     createEntityAdapter
 } from "@reduxjs/toolkit";
 import { Product } from './types'
+import { RootState } from "./store";
+
+const axios = require('axios').default;
 
 // createEntityAdapter gives us several premade reducer functions
 // for manipulating state. It gives us:
@@ -23,7 +27,9 @@ const exampleAdapter = createEntityAdapter<Product>();
 // in this example slice we're using an example Product type
 const exampleSlice = createSlice({
     name: 'products',
-    initialState: exampleAdapter.getInitialState(),
+    initialState: exampleAdapter.getInitialState({
+        status: "idle"
+    }),
     reducers: {
         productDeleted: exampleAdapter.removeOne,
         orderedProductsDeleted(state, action) {
@@ -34,7 +40,27 @@ const exampleSlice = createSlice({
             // note that orderedProductIds is type any[], not worth fighting the type system here
             exampleAdapter.removeMany(state, orderedProductIds)
         }
+    },
+    extraReducers: builder => {
+        builder
+            .addCase(fetchProducts.pending, (state, action) => {
+                state.status = "loading"
+            })
+            .addCase(fetchProducts.fulfilled, (state, action) => {
+                const newProducts: any = {}
+                action.payload.forEach((product: Product) => {
+                    newProducts[product.id] = product
+                })
+
+                state.entities = newProducts
+                state.status = "idle"
+            })
     }
+})
+
+export const fetchProducts = createAsyncThunk('products/fectProducts', async () => {
+    const response = await axios("http://localhost:3001/products");
+    return response.data;
 })
 
 // With Redux Toolkit we get our reducers wrapped in actions, which simplifies the logic
@@ -54,4 +80,9 @@ export const { selectAll: selectProducts, selectById: selectProductById } = exam
 export const selectOrderedProducts = createSelector(
     selectProducts,
     products => products.map(product => product.ordered)
+)
+
+export const selectStatus = createSelector(
+    (state: RootState) => state.products.status,
+    status => status
 )

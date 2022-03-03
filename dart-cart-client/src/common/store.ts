@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import exampleReducer from "./exampleSlice";
-import { exampleApi } from "../services/product";
 
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here. Note that redux
@@ -10,10 +9,8 @@ import { exampleApi } from "../services/product";
 // to the default middleware that comes with RTK)
 const store = configureStore({
     reducer: {
-        examples: exampleReducer,
-        [exampleApi.reducerPath]: exampleApi.reducer
+        products: exampleReducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(exampleApi.middleware)
 })
 
 export default store;
