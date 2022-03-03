@@ -7,15 +7,15 @@ import {
 import axios from "axios";
 import { ShopProduct } from '../Components/models'
 
-const MOCK_SERVER = "https://59749c7b-15b7-4456-b980-124c0bb0d8b0.mock.pstmn.io"
+const MOCK_SERVER = "http://localhost:8081"
 
 const CPAdapter = createEntityAdapter<ShopProduct>() // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 
 //
 
 export  const fetchCompetitorProducts = createAsyncThunk(
-        'CompetitorProducts/fetchCompetitorProducts', async (productId: number) => {
-          const response = await axios.get(MOCK_SERVER+"/ShopProducts", { params: { product_id: `${productId}`}} )
+        'CompetitorProducts/fetchCompetitorProducts', async (ShopProductId: number) => {
+          const response = await axios.get(MOCK_SERVER+"/sellers/" + ShopProductId,)
           console.log(response.data)  
           return response.data
             
@@ -24,7 +24,7 @@ export  const fetchCompetitorProducts = createAsyncThunk(
 // axios replaces this syntax:
 
 // async function GET_REQUEST () {
-//     const reponse =  await fetch(MOCK_SERVER)
+//     const reponse =  await fetch.(MOCK_SERVER.get)
 
 //     const body = await reponse.json()
 // }

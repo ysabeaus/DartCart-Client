@@ -44,7 +44,6 @@ const Display = () => {
         dispatch(fetchShopProducts()) // places return value into REDUX global state
     }, [])
 
-
     return (
 
         <>
@@ -54,7 +53,7 @@ const Display = () => {
             </div>
 
             <div className="ProductCardContainer">
-            { 
+        { 
             
             ReduxShopProducts.length > 0 ?
            findCheapest(ReduxShopProducts)

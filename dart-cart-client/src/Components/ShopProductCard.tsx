@@ -23,7 +23,7 @@ export function ShopProductCard ({ShopProduct}: ShopProductCard)  {
 
             <p className="card-text">{`${ShopProduct.product.description}`}</p>
             
-            <Link id="Chosen Shop Product" className="btn  stretched-link" to={`/ShopProduct/${ShopProduct.product.product_id}`} ></Link>
+            <Link id="Chosen Shop Product" className="btn  stretched-link" to={`/ShopProduct/${ShopProduct.shop_product_id}`} ></Link>
         </div>
         </div>
               

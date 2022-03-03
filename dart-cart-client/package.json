@@ -1,5 +1,5 @@
 {
-  "name": "dart-cart-client",
+  "name": "dartcart-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,10 +22,9 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-redux": "^7.2.6",
-    "react-router-dom": "^6.2.1",
+    "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
-    "typescript": "^4.5.5",
-    "web-vitals": "^2.1.4"
+    "typescript": "~4.1.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,10 +33,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

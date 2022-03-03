@@ -1,7 +1,6 @@
 
 import { ShopProduct } from "./models"
 import { useEffect, useState } from "react"
-import { ShopProductCard } from "./ShopProductCard"
 import { useParams } from "react-router-dom"
 import Header from "./Header"
 import Footer from "./Footer"
@@ -24,17 +23,17 @@ import cartoonShoes from "../imgs/Sneaker-tennis-shoes.png"
 
 const ShopProductDisplay = () => {
 
-    const product_id = useParams()?.product_id || ''
+    const shopProduct_id = useParams()?.shopProduct_id || ''
     const dispatch = useDispatch()
 
     //console.log(params)
-    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id ))
+    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, shopProduct_id ))
 
-    console.log(product_id)
+    //console.log(ReduxShopProducts)
 
-    useEffect(()=> {
-        dispatch(fetchShopProducts()) // places return value into REDUX global state
-    }, [])
+    // useEffect(()=> {
+    //     dispatch(fetchShopProducts()) // places return value into REDUX global state
+    // }, [])
     
     const ImgStyleBase = {
         backgroundImage:    "",
@@ -76,8 +75,6 @@ const ShopProductDisplay = () => {
         
     }
 
-    
-
     return (
 
         <>
@@ -106,12 +103,11 @@ const ShopProductDisplay = () => {
                 
                     
                 </div>
-                <CompetingSellers Seller={1}></CompetingSellers>
+                
+                    <CompetingSellers Seller={1}></CompetingSellers>
+                
             </div>
             
-            
-            
-
         <Footer></Footer>
         </>
         

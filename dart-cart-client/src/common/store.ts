@@ -3,14 +3,8 @@ import CompetitorsSlice from './CompetitorsSlice';
 //import { StoreAPI } from '../services/APIQuery'
 import SPSlice from './ShopProductSlice'
 import CPSlice from './CompetitorsSlice'
-
-// const reducer = (state, action) => {
-//     switch (action.type) {
-//         case "addProduct":
-//             return state + action.payload
-//     }
-// }
-
+import userRegisterReducer from "./slices/userRegisterSlice";
+import authenticationReducer from "./slices/authSlice";
 
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here. Note that redux
@@ -25,7 +19,9 @@ import CPSlice from './CompetitorsSlice'
 const store = configureStore({
     reducer: {
         ShopProducts: SPSlice,
-        CompetitorProducts: CPSlice
+        CompetitorProducts: CPSlice,
+        userRegister: userRegisterReducer,
+        authentication: authenticationReducer
     },
     //middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(StoreAPI.middleware)
 })
