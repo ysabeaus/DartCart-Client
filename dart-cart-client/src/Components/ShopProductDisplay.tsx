@@ -28,72 +28,72 @@ const ShopProductDisplay = () => {
     const dispatch = useDispatch()
 
     //console.log(params)
-    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id ))
+    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id))
 
     console.log(product_id)
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(fetchShopProducts()) // places return value into REDUX global state
     }, [])
-    
+
     const ImgStyleBase = {
-        backgroundImage:    "",
-        backgroundSize:     "contain",
+        backgroundImage: "",
+        backgroundSize: "contain",
         backgroundPosition: 'center',
-        backgroundRepeat:   "no-repeat",
-        width:              "40%",
+        backgroundRepeat: "no-repeat",
+        width: "40%",
     }
 
-    function ImgSplice (catagories: String[]) {
+    function ImgSplice(catagories: String[]) {
 
-            let newImg = Object.assign({}, ImgStyleBase)
-            catagories.forEach(catagory => {
-                switch(catagory){
-                    case "Perishable":
+        let newImg = Object.assign({}, ImgStyleBase)
+        catagories.forEach(catagory => {
+            switch (catagory) {
+                case "Perishable":
                     newImg.backgroundImage = `url('${cartoonSteak}')`
                     break
-                    case "Electronics":
+                case "Electronics":
                     newImg.backgroundImage = `url('${cartoonComputer}')`
                     break
-                    case "Clothing":
+                case "Clothing":
                     newImg.backgroundImage = `url('${cartoonClothing}')`
                     break
-                    case "Luxury":
+                case "Luxury":
                     newImg.backgroundImage = `url('${cartoonDiamond}')`
                     break
-                    case "Entertainment":
+                case "Entertainment":
                     newImg.backgroundImage = `url('${cartoonBat}')`
                     break
-                    case "Medical":
+                case "Medical":
                     newImg.backgroundImage = `url('${cartoonMeds}')`
                     break
-                    case "Footware":
+                case "Footware":
                     newImg.backgroundImage = `url('${cartoonShoes}')`
                     break
-                }
-            })
-            return newImg
-        
+            }
+        })
+        return newImg
+
     }
 
-    
+
 
     return (
 
         <>
-        <Header></Header>
-            
+            <Header></Header>
+
             <div className="ProductContainer">
                 <div className="InnerProduct">
                     <div className="ProductInfoContainer">
                         {ReduxShopProducts &&
                             <div style={ImgSplice(ReduxShopProducts?.product.catagories!)}>
-                       
-                        </div>}
-                        
+
+                            </div>}
+
                         <div className="ProductInfoPocket">
                             <h2>{(ReduxShopProducts?.product.name)?.toUpperCase()}</h2>
-                            <br/>
+                            <br />
                             <h3>Price: ${ReduxShopProducts?.price}.99</h3>
                             <h3>In Stock: {ReduxShopProducts?.quantity}</h3>
                             <h3>Seller: {ReduxShopProducts?.shop_id}</h3>
@@ -103,18 +103,18 @@ const ShopProductDisplay = () => {
                     <div className="ProductDescriptionPocket">
                         <p>{ReduxShopProducts?.product.description}</p>
                     </div>
-                
-                    
+
+
                 </div>
                 <CompetingSellers Seller={1}></CompetingSellers>
             </div>
-            
-            
-            
 
-        <Footer></Footer>
+
+
+
+            <Footer></Footer>
         </>
-        
+
     )
 }
 

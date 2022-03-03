@@ -16,7 +16,6 @@ export const fetchProducts = createAsyncThunk(
         const response = await axios.get(MOCK_SERVER + "/Products")
         console.log(response.data)
         return response.data
-
     })
 
     const intitialState = SPAdapter.getInitialState({
@@ -44,6 +43,11 @@ export const fetchProducts = createAsyncThunk(
 
             })
     }
+
+
 })
+
+export const { selectAll: selectProducts, selectById: selectProductById } = SPAdapter.getSelectors((state: any) => state.ShopProducts); // state.ShopProduct is the NAME field of our slice
+
 
 export default SPSlice.reducer

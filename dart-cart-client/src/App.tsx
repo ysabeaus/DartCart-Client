@@ -7,7 +7,7 @@ import './App.css';
 import { Provider } from 'react-redux';
 import ShopProductDisplay from './Components/ShopProductDisplay';
 import store from './common/store'
-import ListItem from './Components/ListItem';
+import Product from './Components/Product';
 
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
       <Provider store={store}>
           <Routes>
             <Route path="/Display" element={<Display />}></Route>
-            <Route path="/ListItem" element={<ListItem />}></Route>
+            <Route path="/Product" element={<Product />}></Route>
             <Route path="/ShopProduct/:product_id" element={<ShopProductDisplay />}></Route>
           </Routes>
           
