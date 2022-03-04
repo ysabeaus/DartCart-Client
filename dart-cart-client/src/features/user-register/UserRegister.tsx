@@ -127,12 +127,12 @@ export function UserRegister() {
                 <div className="card-header card text-center bg-success text-white">
                   <h3 className="mb-0">Make a New Account</h3>
                 </div>
-                <div className="card-body p-5 text-center">
+                <div className="card-body p-5 text-center" style={{ backgroundColor: '#a6a6a6' }}>
                   {error ? <Alert variant="danger">{error}</Alert> : null}
 
                   <div className="row">
                     <div className="form-outline mb-0">
-                      <h4>Username</h4>
+                      <h4>Username:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
