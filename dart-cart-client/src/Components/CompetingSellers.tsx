@@ -50,7 +50,7 @@ export function CompetingSellers ({Seller}: SellerProduct) {
                                 {competitors.discount > 0 && <span className="SellerDiscount">Discount: ${competitors.discount}.00</span>}
                             </div>
                             <div className="SellerInfo">
-                                <span>Location: {competitors.seller.location}</span><br/>
+                                <span>Location: {competitors.location}</span><br/>
                                 <span>In Stock: {competitors.quantity}</span><br/>
                             </div>
 

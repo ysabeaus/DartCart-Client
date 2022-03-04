@@ -49,15 +49,15 @@ export class ShopProduct {
     quantity:       number;
     price:          number;
     discount:       number;
-    seller:         Seller;
+    location:         string;
 
-    constructor (shop_product_id: number, product: Product, shop_id:  number, quantity: number, price: number, discount: number, seller: Seller) {
+    constructor (shop_product_id: number, product: Product, shop_id:  number, quantity: number, price: number, discount: number, location: string) {
         this.shop_product_id = shop_product_id;
         this.shop_id = shop_id;
         this.product = product;
         this.price = price;
         this.quantity = quantity;         
         this.discount = discount;
-        this.seller    = seller;
+        this.location    = location;
     }
 }

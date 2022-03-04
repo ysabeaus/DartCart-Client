@@ -16,7 +16,7 @@ const CPAdapter = createEntityAdapter<ShopProduct>() // Entity is mapped to our 
 
 export  const fetchCompetitorProducts = createAsyncThunk(
         'CompetitorProducts/fetchCompetitorProducts', async (ShopProductId: number) => {
-          const response = await axios.get(MOCK_SERVER+"/sellers/" + ShopProductId,)
+          const response = await axios.get(REAL_SERVER+"/sellers/" + ShopProductId,)
           console.log(response.data)  
           return response.data
             
