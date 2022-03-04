@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCompetitorProducts, selectCompetitorProductById } from "../common/CompetitorsSlice";
+import { fetchCompetitorProducts, selectCompetitorProducts } from "../common/CompetitorsSlice";
+import { selectShopProductById } from "../common/ShopProductSlice"
 import { ShopProduct } from "./models";
 import "./ShopProduct.css"
 
@@ -12,26 +13,61 @@ export function CompetingSellers ({Seller}: SellerProduct) {
 
     const dispatch = useDispatch()
     
-    const ReduxCompetitorProducts = useSelector((state) => selectCompetitorProductById(state, Seller))
+    const ReduxCompetitorProducts = useSelector(selectCompetitorProducts)
 
+    console.log(ReduxCompetitorProducts)
+
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+    //Competing sellers are fetched by using the shopProduct ID of the product card from /DISPLAY
+    //We then use shopProduct to retrieve all other shopproducts with matching product ID inside of Shop product model
+    //finally, then use the shopID inside all of the retrieved shopProducts to get seller information
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
     useEffect(()=> {
         dispatch(fetchCompetitorProducts(Seller)) // places return value into REDUX global state
     }, [])
 
 
     return (
-        <>
+        
             <div className="Competitors">
 
-            {ReduxCompetitorProducts && ReduxCompetitorProducts?.product.product_id}
+            {ReduxCompetitorProducts && ReduxCompetitorProducts.
+            map(competitors => {
+                return (
+                    
+                    <div className="SellerContainer">
+                        <div className="SellerWindow">
 
-            <button className="btn btn-primary" >Add to Cart</button>
+                            <div className="SellerLogo"></div>
+
+                        </div>
+
+                        <div className="SellerPocket">
+                        
+                            <div className="SellerInfo">
+                                <span>{competitors.product.name}</span><br/>
+                                <span>Price: ${competitors.price}.99</span><br/>
+                                {competitors.discount > 0 && <span className="SellerDiscount">Discount: ${competitors.discount}.00</span>}
+                            </div>
+                            <div className="SellerInfo">
+                                <span>Location: {competitors.seller.location}</span><br/>
+                                <span>In Stock: {competitors.quantity}</span><br/>
+                            </div>
+
+                        </div>
+                        <button className="btn btn-primary" >Add to Cart</button>
+                    </div>
+                    
+                )
+                
+
+            }) || ""
+            }
+
+            
 
             </div>
-            
-            
-
-        </>
+         
     )
 
 }

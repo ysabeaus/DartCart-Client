@@ -23,7 +23,7 @@ import cartoonShoes from "../imgs/Sneaker-tennis-shoes.png"
 
 const ShopProductDisplay = () => {
 
-    const shopProduct_id = useParams()?.shopProduct_id || ''
+    const shopProduct_id = parseInt(useParams()?.shopProduct_id!) || 0
     const dispatch = useDispatch()
 
     //console.log(params)
@@ -104,7 +104,7 @@ const ShopProductDisplay = () => {
                     
                 </div>
                 
-                    <CompetingSellers Seller={1}></CompetingSellers>
+                    <CompetingSellers Seller={shopProduct_id}></CompetingSellers>
                 
             </div>
             

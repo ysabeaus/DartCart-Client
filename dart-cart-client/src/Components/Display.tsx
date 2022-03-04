@@ -56,7 +56,8 @@ const Display = () => {
         { 
             
             ReduxShopProducts.length > 0 ?
-           findCheapest(ReduxShopProducts)
+            //findCheapest(ReduxShopProducts)
+            ReduxShopProducts
             .map(ShopProduct => {
                 return <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
             })

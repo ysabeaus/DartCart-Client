@@ -12,62 +12,34 @@ export class Product {
         this.description = description
         this.catagories = catagories;
     }
-    
 }
 
-/*
-[     {         
-    "id": 1,         
-    "quantity": 10,         
-    "price": 15,        
-    "discount": 2,        
-    "shop": {             
-        "id": 1,             
-        "location": "1",             
-        "seller": {                 
-            "id": 1,                 
-            "homepage": "/sellers/bestseller",                 
-            "description": "THE BEST SELLER!",                 
-            "user": {                    
-                "id": 2,                     
-                "username": "Sammykins",                     
-                "password": "3e4463134cf818db84a14d750b86603aa0611b1989c337d4bc9f0a14e3a08bb1",                     
-                "firstName": "Samantha",                     
-                "lastName": "Mann",                     
-                "email": "sammannnotthefish@gmail.com",                     
-                "phone": "757-978-6422",                     
-                "location": "address",                     
-                "registrationDate": 1645737413547                 }             }         },        
-                "product": {             
-                    "id": 1,             
-                    "name": "Kelloggs Froot Loops",             
-                    "description": "Delicious frooty flava",
-                    "categories": [
-                    {
-                        "id": 1,
-                        "name": "Food"
-                    }
-                    ]
-                }
+export class Shop {
+    location:   string;
+    shop_id:    number;
+
+    constructor (location: string, shop_id: number) {
+        this.location = location
+        this.shop_id =  shop_id
     }
-*/
+
+}
 
 export class Seller {
     seller_id:      number;
+    shop:           Shop;
     location:       string;
     homepage:       string;
     user:           User;
     
-    constructor (seller_id: number, location: string, homepage:  string, user:  User) {
+    constructor (seller_id: number, location: string, homepage:  string, user:  User, shop: Shop) {
         this.seller_id = seller_id;
         this.location = location;
         this.homepage = homepage;
         this.user =     user;
+        this.shop =     shop;
     }
-
 }
-
-
 
 export class ShopProduct {
 
@@ -88,5 +60,4 @@ export class ShopProduct {
         this.discount = discount;
         this.seller    = seller;
     }
-    
 }

@@ -1,10 +1,9 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit'
-import CompetitorsSlice from './CompetitorsSlice';
-//import { StoreAPI } from '../services/APIQuery'
 import SPSlice from './ShopProductSlice'
 import CPSlice from './CompetitorsSlice'
-import userRegisterReducer from "./slices/userRegisterSlice";
-import authenticationReducer from "./slices/authSlice";
+import userRegisterReducer from "./slices/userRegisterSlice"
+import authenticationReducer from "./slices/authSlice"
+//import { StoreAPI } from '../services/APIQuery'
 
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here. Note that redux
