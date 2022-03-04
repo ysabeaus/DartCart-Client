@@ -1,4 +1,3 @@
-import { Form, Button } from "react-bootstrap";
 import "./BillingForm.css";
 
 export function Billing() {
@@ -10,7 +9,7 @@ export function Billing() {
                     <div className="row gx-3">
                         <div className="col-12">
                             <div className="d-flex flex-column">
-                                <p className="text mb-1">Person Name</p> <input className="form-control mb-3" type="text" placeholder="Name" value="Barry Allen"></input>
+                                <p className="text mb-1">Person Name</p> <input className="form-control mb-3" type="text" placeholder="Name"></input>
                             </div>
                         </div>
                         <div className="col-12">
@@ -27,9 +26,6 @@ export function Billing() {
                             <div className="d-flex flex-column">
                                 <p className="text mb-1">CVV/CVC</p> <input className="form-control mb-3 pt-2 " type="password" placeholder="***"></input>
                             </div>
-                        </div>
-                        <div className="col-12">
-                            <div className="btn btn-primary mb-3"> <span className="ps-3">Pay $243</span> <span className="fas fa-arrow-right"></span> </div>
                         </div>
                     </div>
                 </div>
