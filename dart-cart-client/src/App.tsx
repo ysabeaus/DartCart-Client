@@ -10,12 +10,15 @@ import Display from "./features/display/Display";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
+import Header from "./features/layout/Header"
+import Footer from "./features/layout/Footer"
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Provider store={store}>
+        <Header/>
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/register" element={<UserRegister />}></Route>
@@ -26,6 +29,7 @@ function App() {
               element={<ShopProductDisplay />}
             ></Route>
           </Routes>
+          <Footer/>
         </Provider>
       </BrowserRouter>
     </div>

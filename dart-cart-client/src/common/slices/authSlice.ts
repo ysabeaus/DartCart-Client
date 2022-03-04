@@ -77,6 +77,7 @@ export const selectUser = createSelector(
   (state: RootState) => state.authentication,
   (authentication) => authentication.user
 );
+
 export const selectToken = createSelector(
   (state: RootState) => state.authentication,
   (authentication) => authentication.token
