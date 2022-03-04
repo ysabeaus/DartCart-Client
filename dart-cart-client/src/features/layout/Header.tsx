@@ -1,6 +1,6 @@
-import logo from "../../imgs/boldDart.jpg";
+import logo from "../../imgs/Brand.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import
+import "../styles.css";
 
 const logoStyle = {
   height: "15%",
@@ -11,11 +11,10 @@ const logoStyle = {
 const Header = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-black">
-        <img style={logoStyle} src={logo} alt="logo"></img>
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
+      <nav className="navbar navbar-expand-lg navbar-fixed-top navbar-custom">
+        <div className = "image-container">
+        <img className="logo-img" style={logoStyle} src={logo} alt="logo"></img>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -31,43 +30,23 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
-                Home <span className="sr-only">(current)</span>
+              <a className="nav-link" href="display">
+                Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
+              <a className="nav-link" href="login">
+                Login
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown
+              <a className="nav-link" href="register">
+                Register
               </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </div>
             </li>
             <li className="nav-item">
-              <a className="nav-link disabled" href="#">
-                Disabled
+              <a className="nav-link" href="#">
+                Explore
               </a>
             </li>
           </ul>
