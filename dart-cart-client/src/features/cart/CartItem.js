@@ -15,7 +15,7 @@ const CartItem = ({element,handleUpdate}) => {
         <div className="card">
                 <div className="row no-gutters">
                     <div className="col-3">
-                        <img className="cardImg" src="https://www.findingtheuniverse.com/wp-content/uploads/2018/10/Anse-Georgette-Praslin_by_Laurence-Norah-3.jpg" alt="" />
+                        <img className="cardImg" src="https://www.findingtheuniverse.com/wp-content/uploads/2018/10/Anse-Georgette-Praslin_by_Laurence-Norah-3.jpg"/>
                     </div>
                     <div className="col-9">
                         <div className="card-block px-2" style={{ textAlign: 'left' }}>

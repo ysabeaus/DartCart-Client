@@ -53,8 +53,12 @@ export const fetchCart = createAsyncThunk(
 
 export const addToCart = createAsyncThunk(
     'cards/addToCart',
+    /**  @param arg {number} */
+
     async (shop_product_id) => {
-        // console.log(userid)
+        if(!shop_product_id){
+            shop_product_id=localStorage.getItem("shopId")
+        }
         return (await axios.post(API_URL + "carts",{
             quantity: 1,
             saved : false,
@@ -67,6 +71,8 @@ export const addToCart = createAsyncThunk(
         })).data
     }
 )
+// @ts-expect-error Expected 1 arguments, but got 0.ts(2554)
+
 
 export const updateCart = createAsyncThunk(
     'cards/UpdateCart',
