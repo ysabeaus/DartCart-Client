@@ -10,6 +10,7 @@ import Display from "./features/display/Display";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
+import Checkout from "./features/checkout/CheckoutDisplay";
 
 function App() {
   return (
@@ -21,10 +22,8 @@ function App() {
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/Display" element={<Display />}></Route>
-            <Route
-              path="/ShopProduct/:product_id"
-              element={<ShopProductDisplay />}
-            ></Route>
+            <Route path="/ShopProduct/:product_id" element={<ShopProductDisplay />}></Route>
+            <Route path="/Checkout" element={<Checkout />}></Route>
           </Routes>
         </Provider>
       </BrowserRouter>
