@@ -1,6 +1,7 @@
 import { createEntityAdapter, createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
-import { Invoice, RootState } from "./types";
+import { useDispatch } from 'react-redux';
+import { Invoice, RootState, User } from "./types";
 
 // JSON server URL. Change to backend URL for testing/in production
 const API_URL = process.env.REACT_APP_API_URL;
@@ -27,6 +28,8 @@ const invoiceSlice = createSlice({
     }),
     reducers: {
         addInvoice: invoiceAdapter.addOne,
+        addInvoices: invoiceAdapter.addMany,
+        clearInvoices: invoiceAdapter.removeAll
     },
     // Extra reducers to handle the promise produced by createAsyncThunk
     extraReducers: (builder) => {
@@ -46,7 +49,7 @@ const invoiceSlice = createSlice({
 // With Redux Toolkit we get our reducers wrapped in actions, which simplifies the logic
 // a lot. Our React components will use dispatch on these actions to actually perform
 // state management
-export const { addInvoice } = invoiceSlice.actions
+export const { addInvoice, clearInvoices, addInvoices } = invoiceSlice.actions
 export default invoiceSlice.reducer;
 
 // In this next section is where we define our selectors, ie how our react components get/derive
@@ -74,6 +77,18 @@ export const saveInvoice = createAsyncThunk(
             shippedTo: invoice.shippedTo,
             customer: invoice.customer.id,
             shop: invoice.shop.id
+        })
+    }
+)
+
+export const getInvoicesByUser = createAsyncThunk(
+    "invoices/getInvoicesByUser",
+    async (user: User) => {
+        return axios.get(API_URL + "invoices/user/" + user.username, {
+        }).then(response => {
+            var invoices: Invoice[] = JSON.parse(response.data)
+            useDispatch()(clearInvoices(null))
+            useDispatch()(addInvoices(invoices))
         })
     }
 )
