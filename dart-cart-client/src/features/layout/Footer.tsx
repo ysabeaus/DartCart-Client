@@ -2,71 +2,39 @@ export default function Footer () {
 
     return (
         <>
-<footer className="text-center text-lg-start bg-black text-warning">
-  
-  <section
-    className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
-  >
+<footer className="text-center text-lg-start bg-black">
 
-    <div className="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
-    </div>
-
-    <div>
-      <a href="" className="me-4 text-reset">
-        <i className="fab fa-facebook-f"></i>
-      </a>
-      <a href="" className="me-4 text-reset">
-        <i className="fab fa-twitter"></i>
-      </a>
-      <a href="" className="me-4 text-reset">
-        <i className="fab fa-google"></i>
-      </a>
-      <a href="" className="me-4 text-reset">
-        <i className="fab fa-instagram"></i>
-      </a>
-      <a href="" className="me-4 text-reset">
-        <i className="fab fa-linkedin"></i>
-      </a>
-      <a href="" className="me-4 text-reset">
-        <i className="fab fa-github"></i>
-      </a>
-    </div>
-
-  </section>
-
-  <section className="">
+  <section className="footer-info">
     <div className="container text-center text-md-start mt-5">
-
       <div className="row mt-3">
-
         <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-
           <h6 className="text-uppercase fw-bold mb-4">
-            <i className="fas fa-gem me-3"></i>Company name
+            <i className="fas fa-gem me-3"></i>Dart Cart
           </h6>
-          <p>
-            Here you can use rows and columns to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
-          </p>
+          <a href="#" className="fa fa-facebook"></a>
+          <a href="#" className="fa fa-twitter"></a>
+          <a href="#" className="fa fa-linkedin"></a>
+          <a href="#" className="fa fa-instagram"></a>
+          <a href="#" className="fa fa-pinterest"></a>
+          <a href="#" className="fa fa-snapchat-ghost"></a>
         </div>
 
         <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
           <h6 className="text-uppercase fw-bold mb-4">
-
+            Navigation
           </h6>
           <p>
-            <a href="#!" className="text-reset">Angular</a>
+            <a href="#!" className="text-reset">Home</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">React</a>
+            <a href="#!" className="text-reset">Login</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">Vue</a>
+            <a href="#!" className="text-reset">Register</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">Laravel</a>
+            <a href="#!" className="text-reset">Explore</a>
           </p>
         </div>
 
@@ -76,10 +44,10 @@ export default function Footer () {
             Useful links
           </h6>
           <p>
-            <a href="#!" className="text-reset">Pricing</a>
+            <a href="#!" className="text-reset">Sell on Dart Cart</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">Settings</a>
+            <a href="#!" className="text-reset">Returns</a>
           </p>
           <p>
             <a href="#!" className="text-reset">Orders</a>
