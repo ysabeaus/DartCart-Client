@@ -7,7 +7,7 @@ import axios from "axios";
 import { ShopProduct } from "../models";
 
 const MOCK_SERVER =
-  "https://59749c7b-15b7-4456-b980-124c0bb0d8b0.mock.pstmn.io";
+  "https://6a03c0f8-707b-4c71-9de2-eba10f74363b.mock.pstmn.io";
 
 const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 

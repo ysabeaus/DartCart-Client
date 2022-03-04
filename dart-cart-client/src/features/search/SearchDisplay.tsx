@@ -1,13 +1,13 @@
-import Header from "./Header";
+import Header from "../layout/Header";
 import axios from "axios";
-import { ShopProduct } from "./models"
-import { ShopProductCard } from "./ShopProductCard";
+import { ShopProduct } from "../../common/models"
+import { ShopProductCard } from "../product-details/ShopProductCard";
 import { Link } from "react-router-dom";
 import "./Display.css"
 import { useEffect, useRef, useState } from "react";
-import Footer from "./Footer";
+import Footer from "../layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { searchShopProducts, selectShopProducts } from "../../common/slices/SearchSlice";
+import { searchShopProducts, selectShopProducts } from "../../common/slices/searchSlice";
 
 
 const SearchDisplay = () => {

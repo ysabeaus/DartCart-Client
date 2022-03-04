@@ -5,9 +5,9 @@ import {
     createAsyncThunk
 } from "@reduxjs/toolkit";
 import axios from "axios";
-import { ShopProduct } from '../Components/models'
+import { ShopProduct } from '../models'
 
-const MOCK_SERVER = "https://59749c7b-15b7-4456-b980-124c0bb0d8b0.mock.pstmn.io"
+const MOCK_SERVER = "https://6a03c0f8-707b-4c71-9de2-eba10f74363b.mock.pstmn.io"
 
 const SPAdapter = createEntityAdapter<ShopProduct>() // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 
@@ -29,14 +29,18 @@ export const searchShopProducts = createAsyncThunk(
 // }
 
     const intitialState = SPAdapter.getInitialState({
-        status: "idle"
+        status: "idle",
+        searchString: ""
     })
 
-const SearchSlice = createSlice({
+const searchSlice = createSlice({
     name: 'SearchShopProducts',
     initialState: intitialState, //format is identical to getInitialState(), but we added a "status" field to the js Object
     reducers: {
-       //addShopProducts: SPAdapter.addOne,///example reducer. Can't seem to get a selector without one reducer existing????
+       updatedSearchString(state, action) {
+           state.searchString = action.payload;
+       }
+        //addShopProducts: SPAdapter.addOne,///example reducer. Can't seem to get a selector without one reducer existing????
     },
     extraReducers: (builder) => {
         builder.addCase(searchShopProducts.pending, (state, action) => {
@@ -55,9 +59,11 @@ const SearchSlice = createSlice({
     }
 })
 
+export const {updatedSearchString} = searchSlice.actions
+
 export const { selectAll: selectShopProducts, selectById: selectShopProductByName } = SPAdapter.getSelectors((state: any) => state.SearchShopProducts); // state.ShopProduct is the NAME field of our slice
 
-export default SearchSlice.reducer //exported to the REDUX STORE 
+export default searchSlice.reducer //exported to the REDUX STORE 
 //Creates a selectors to retrieve for ALL shopProducts or ShopProducts by ID
 
 
