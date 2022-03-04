@@ -6,6 +6,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./common/Home";
 import Account from "./features/account/Account";
+import PreviousOrders from './features/previous-orders/previous-orders';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/register" element={<Account />}></Route>
           <Route path="/login" element={<LoginComponent />}></Route>
+          <Route path="/orders" element={<PreviousOrders />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

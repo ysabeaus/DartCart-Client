@@ -24,7 +24,8 @@ const invoiceAdapter = createEntityAdapter<Invoice>()
 const invoiceSlice = createSlice({
     name: "invoices",
     initialState: invoiceAdapter.getInitialState({
-        status: "idle",
+        saveStatus: "idle",
+        getByUserStatus: "idle",
     }),
     reducers: {
         addInvoice: invoiceAdapter.addOne,
@@ -35,13 +36,23 @@ const invoiceSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(saveInvoice.pending, (invoiceSliceState, action) => {
-                invoiceSliceState.status = "loading"
+                invoiceSliceState.saveStatus = "loading"
             })
             .addCase(saveInvoice.fulfilled, (invoiceSliceState, action) => {
-                invoiceSliceState.status = "finished"
+                invoiceSliceState.saveStatus = "finished"
             })
             .addCase(saveInvoice.rejected, (invoiceSliceState, action) => {
-                invoiceSliceState.status = "rejected"
+                invoiceSliceState.saveStatus = "rejected"
+            })
+
+            .addCase(getInvoicesByUser.pending, (invoiceSliceState, action) => {
+                invoiceSliceState.getByUserStatus = "loading"
+            })
+            .addCase(getInvoicesByUser.fulfilled, (invoiceSliceState, action) => {
+                invoiceSliceState.getByUserStatus = "finished"
+            })
+            .addCase(getInvoicesByUser.rejected, (invoiceSliceState, action) => {
+                invoiceSliceState.getByUserStatus = "rejected"
             })
     }
 })
@@ -61,9 +72,13 @@ export default invoiceSlice.reducer;
 export const { selectAll: selectInvoices, selectById: selectInvoiceByID } =
     invoiceAdapter.getSelectors((state: RootState) => state.invoices)
 
-export const selectStatus = createSelector(
+export const selectSaveStatus = createSelector(
     (state: RootState) => state.invoices,
-    (invoices) => invoices.status
+    (invoices) => invoices.saveStatus
+)
+export const selectGetByUserStatus = createSelector(
+    (state: RootState) => state.invoices,
+    (invoices) => invoices.getByUserStatus
 )
 
 // Async functionality
@@ -87,7 +102,7 @@ export const getInvoicesByUser = createAsyncThunk(
         return axios.get(API_URL + "invoices/user/" + user.username, {
         }).then(response => {
             var invoices: Invoice[] = JSON.parse(response.data)
-            useDispatch()(clearInvoices(null))
+            useDispatch()(clearInvoices())
             useDispatch()(addInvoices(invoices))
         })
     }
