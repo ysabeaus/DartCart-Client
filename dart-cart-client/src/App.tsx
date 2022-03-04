@@ -20,20 +20,17 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Provider store={store}>
-        <Header/>
+          <Header />
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
-          <Route path="/orders" element={<PreviousOrders />}></Route>
-          <Route path="/*" element={<Error404Page />}></Route>
+            <Route path="/orders" element={<PreviousOrders />}></Route>
+            <Route path="/*" element={<Error404Page />}></Route>
             <Route path="/Display" element={<Display />}></Route>
-            <Route
-              path="/ShopProduct/:product_id"
-              element={<ShopProductDisplay />}
-            ></Route>
+            <Route path="/ShopProduct/:product_id" element={<ShopProductDisplay />}></Route>
           </Routes>
-          <Footer/>
+          <Footer />
         </Provider>
       </BrowserRouter>
     </div>

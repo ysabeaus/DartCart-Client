@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../common/slices/authSlice"
 import { selectGetByUserStatus, getInvoicesByUser } from "../../common/slices/invoiceSlice"
 import { useNavigate } from 'react-router-dom';
+import Error404Page from '../../components/Error';
 
 
 
@@ -33,7 +34,16 @@ function PreviousOrders() {
 
     return (
         <>
-            <img src={logo} className="App-logo" style={{ width: '50%' }} alt="logo"></img>
+            {((result === "idle" || result === "loading") &&
+                <>
+                    <h1>Loading</h1>
+                    <img src={logo} className="App-logo" style={{ width: '50%' }} alt="logo"></img>
+                </>
+            ) || (result === "success") &&
+                <>
+                </>
+                || <Error404Page />
+            }
         </>
     )
 }
