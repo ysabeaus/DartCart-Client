@@ -32,16 +32,23 @@ marginLeft: "3%"
 const Header = () => {
 
 
-const searchString = useRef<HTMLInputElement>(null);
+// const searchString = useRef<HTMLInputElement>(null);
 const [search, setSearchResults] = useState([]);
 const dispatch = useDispatch();
 
 
+const handleSearch = (e: any) => {
+  if(e.code !== "Enter") {
+    console.log(e)
+  }
+}
+
 function SearchChange (e) {
 // let navigate = useNavigate()
 // event.preventDefault();
-console.log('event:  ' + searchString.current?.value)
-dispatch(updatedSearchString(searchString.current?.value))
+// console.log('event:  ' + searchString.current?.value)
+// console.log(e)
+// dispatch(updatedSearchString(searchString.current?.value))
 
 
 // navigate({pathname: `/Search/${searchString.current}`})
@@ -85,7 +92,7 @@ dispatch(updatedSearchString(searchString.current?.value))
         </li>
       </ul>
       <form className="form-inline my-2 my-lg-0">
-        <input className="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search" onKeyUp={SearchChange} ref={searchString}></input>
+        <input className="form-control mr-sm-2 " type="text" placeholder="Search" aria-label="Search" onKeyUp={e => handleSearch(e)}></input>
         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
@@ -94,39 +101,5 @@ dispatch(updatedSearchString(searchString.current?.value))
   </>
 );
 }
-
-      /* bootstrap Css 
-
-
-<div classNameName='DisplayHeader'>
-      
-
-      <input classNameName='fbar' placeholder="&#128270;"></input>
-      
-      <div classNameName='CatagoryNav'>
-        
-      <Link style={linkStyle}  to="/Clothing"><div classNameName='Catalink '>Clothing</div></Link>
-      <Link style={linkStyle}  to="/Shoes"><div classNameName='Catalink '>Shoes</div></Link>
-      <Link style={linkStyle}  to="/Baby"><div classNameName='Catalink '>Baby</div></Link>
-      <Link style={linkStyle}  to="/Jewelry"><div classNameName='Catalink '>Jewelry</div></Link>
-      <Link style={linkStyle}  to="/Home"><div classNameName='Catalink '>Home</div></Link>
-      <Link style={linkStyle}  to="/Sport"><div classNameName='Catalink '>Sport</div></Link>
-      <Link style={linkStyle}  to="/Health + Beauty"><div classNameName='Catalink '>Health + Beauty</div></Link>
-      <Link style={linkStyle}  to="/Pharmacy"><div classNameName='Catalink '>Pharmacy</div></Link>
-      <Link style={linkStyle}  to="/Appliances"><div classNameName='Catalink '>Appliances</div></Link>
-      <Link style={linkStyle}  to="/Tools"><div classNameName='Catalink '>Tools</div></Link>
-      <Link style={linkStyle}  to="/Outdoor"><div classNameName='Catalink '>Outdoor</div></Link>
-      <Link style={linkStyle}  to="/Electronics"><div classNameName='Catalink '>Electronics</div></Link>
-      <Link style={linkStyle}  to="/Toys"><div classNameName='Catalink '>Toys</div></Link>
-      <Link style={linkStyle}  to="/Toys"><div classNameName='Catalink '>Grocery</div></Link>
-
-
-        
-      </div>
-
-
-    </div>
-
-      */
 
 export default Header

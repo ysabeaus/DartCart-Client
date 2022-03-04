@@ -21,6 +21,7 @@ export const fetchShopProducts = createAsyncThunk(
 
 const intitialState = SPAdapter.getInitialState({
   status: "idle",
+  searchString: ""
 });
 
 const SPSlice = createSlice({

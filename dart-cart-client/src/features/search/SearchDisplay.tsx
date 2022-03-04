@@ -3,11 +3,12 @@ import axios from "axios";
 import { ShopProduct } from "../../common/models"
 import { ShopProductCard } from "../product-details/ShopProductCard";
 import { Link } from "react-router-dom";
-import "./Display.css"
+import "../display/display.css"
 import { useEffect, useRef, useState } from "react";
 import Footer from "../layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { searchShopProducts, selectShopProducts } from "../../common/slices/searchSlice";
+import { fetchShopProducts } from "../../common/slices/shopProductSlice";
 
 
 const SearchDisplay = () => {
@@ -15,7 +16,12 @@ const SearchDisplay = () => {
     const dispatch = useDispatch()
 
     //console.log(params)
-    const ReduxShopProducts = useSelector(selectShopProducts);
+    // console.log("Select:   " + selectShopProducts(""))
+    // const ReduxShopProducts = useSelector(selectShopProducts);
+    // console.log("Redux:   " + ReduxShopProducts)
+
+    // console.log(searchShopProducts)
+
     // const searchString = useRef<HTMLHeadingElement>(null);
     
     // function findCheapest (List: ShopProduct[]) {
@@ -40,27 +46,13 @@ const SearchDisplay = () => {
     //     return finalList
     // }
 
-    useEffect(()=> {
-        dispatch(searchShopProducts("froio")) // places return value into REDUX global state
-    }, [])
+    // useEffect(()=> {
+    //     dispatch(searchShopProducts("")) // places return value into REDUX global state
+    // }, [])
 
 
 const searchString = useRef<HTMLInputElement>(null);
 const [search, setSearchResults] = useState([]);
-
-
-function SearchChange (e) {
-  // let navigate = useNavigate()
-  // event.preventDefault();
-  console.log('event:  ' + searchString.current?.value)
-//   setSearchResults = "";
-
-
-  // navigate({pathname: `/Search/${searchString.current}`})
-
-  // setSearch = event.value
-
-}
 
     return (
 
@@ -69,19 +61,15 @@ function SearchChange (e) {
             <div className="">
 
             </div>
-            <input className="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search" onKeyUp={SearchChange} ref={searchString}></input>
-
             <div className="ProductCardContainer">
                  {/* <input onKeyUp={searchShopProducts()} placeholder="Search for products"></input> */}
-            { 
-            
-            ReduxShopProducts.length > 0 ?
-           ReduxShopProducts
-            .map(ShopProduct => {
-                return <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
+            {/* { 
+            ReduxShopProducts.length > 0 ? 
+                ReduxShopProducts.map(ShopProduct => {
+                    return <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
             })
             :   ""
-           }
+           } */}
            </div>
         <Footer></Footer>
         </>

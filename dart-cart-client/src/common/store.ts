@@ -19,7 +19,6 @@ const store = configureStore({
     ShopProducts: SPSlice,
     CompetitorProducts: CPSlice,
     accounts: accountSlice,
-    search: searchSlice
   },
 });
 
