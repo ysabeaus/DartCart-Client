@@ -7,14 +7,14 @@ import axios from "axios";
 import { ShopProduct } from "../models";
 
 const MOCK_SERVER =
-  "https://59749c7b-15b7-4456-b980-124c0bb0d8b0.mock.pstmn.io";
+  "http://localhost:9005/";
 
 const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 
 export const fetchShopProducts = createAsyncThunk(
   "ShopProducts/fetchShopProducts",
   async () => {
-    const response = await axios.get(MOCK_SERVER + "/ShopProducts");
+    const response = await axios.get(MOCK_SERVER + "shop_products");
     return response.data;
   }
 );
@@ -37,9 +37,9 @@ const SPSlice = createSlice({
       .addCase(fetchShopProducts.fulfilled, (state, action) => {
         const newEntities = {};
         action.payload.forEach((ShopProduct) => {
-          state.ids[ShopProduct.shop_product_id - 1] =
-            ShopProduct.shop_product_id;
-          newEntities[ShopProduct.shop_product_id] = ShopProduct;
+          state.ids[ShopProduct.id - 1] =
+            ShopProduct.id;
+          newEntities[ShopProduct.id] = ShopProduct;
         });
         state.entities = newEntities;
         state.status = "idle";
