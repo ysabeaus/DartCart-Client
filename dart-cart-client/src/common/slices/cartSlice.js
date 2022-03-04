@@ -62,7 +62,7 @@ export const addToCart = createAsyncThunk(
                 username: username
             },
             shopProduct: {
-                id : shop_product_id
+                shop_product_id : shop_product_id
             },
         })).data
     }

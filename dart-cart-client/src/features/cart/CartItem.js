@@ -10,6 +10,7 @@ const CartItem = ({element,handleUpdate}) => {
     const handleUpdateCart = () =>{
         return handleUpdate(element.id,quantity)
     }
+    console.log(element)
     return (
         <div className="card">
                 <div className="row no-gutters">
