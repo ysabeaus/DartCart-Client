@@ -17,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updatedSearchString } from '../../common/slices/searchSlice';
+import { updatedSearchString } from '../../common/slices/shopProductSlice';
 
 // const [GetSearch, setSearch] = useState("Header")
 
@@ -31,31 +31,16 @@ marginLeft: "3%"
 
 const Header = () => {
 
-
-// const searchString = useRef<HTMLInputElement>(null);
-const [search, setSearchResults] = useState([]);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
 
-const handleSearch = (e: any) => {
-  if(e.code !== "Enter") {
-    console.log(e)
+  const handleSearch = (e: any) => {
+    if(e.code !== "Enter") {
+      dispatch(updatedSearchString(e.target.value))
+    } else {
+      // navigate to search page
+    }
   }
-}
-
-function SearchChange (e) {
-// let navigate = useNavigate()
-// event.preventDefault();
-// console.log('event:  ' + searchString.current?.value)
-// console.log(e)
-// dispatch(updatedSearchString(searchString.current?.value))
-
-
-// navigate({pathname: `/Search/${searchString.current}`})
-
-// setSearch = event.value
-
-}
 
 
   return (
@@ -91,10 +76,8 @@ function SearchChange (e) {
           <a className="nav-link disabled" href="#">Disabled</a>
         </li>
       </ul>
-      <form className="form-inline my-2 my-lg-0">
         <input className="form-control mr-sm-2 " type="text" placeholder="Search" aria-label="Search" onKeyUp={e => handleSearch(e)}></input>
         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
     </div>
   </nav>
     

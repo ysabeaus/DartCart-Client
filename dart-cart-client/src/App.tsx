@@ -22,7 +22,7 @@ function App() {
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/Display" element={<Display />}></Route>
-            <Route path="/Search/:query" element={<SearchDisplay />}></Route>
+            <Route path="/Search/" element={<SearchDisplay />}></Route>
             <Route
               path="/ShopProduct/:product_id"
               element={<ShopProductDisplay />}
