@@ -1,7 +1,7 @@
 import logo from '../../logo.svg';
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../common/slices/authSlice"
-import { selectGetByUserStatus, getInvoicesByUser } from "../../common/slices/invoiceSlice"
+import { selectGetByUserStatus, getInvoicesByUser, selectInvoices } from "../../common/slices/invoiceSlice"
 import { useNavigate } from 'react-router-dom';
 import Error404Page from '../../components/Error';
 
@@ -14,6 +14,7 @@ function PreviousOrders() {
     const userString: string = useSelector(selectUser) || ""
     const user = JSON.parse(userString)
     const nav = useNavigate();
+    const invoices = useSelector(selectInvoices)
 
     if (!userString)
         nav("/login")
@@ -21,10 +22,9 @@ function PreviousOrders() {
     switch (result) {
         case "idle":
             dispatch(getInvoicesByUser(user))
-            break
-        case "loading":
             break;
         case "success":
+
             break;
         case "failure":
             break;

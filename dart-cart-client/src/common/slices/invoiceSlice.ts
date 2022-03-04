@@ -101,7 +101,7 @@ export const getInvoicesByUser = createAsyncThunk(
     async (user: User) => {
         return axios.get(API_URL + "invoices/user/" + user.username, {
         }).then(response => {
-            var invoices: Invoice[] = JSON.parse(response.data)
+            var invoices: Invoice[] = response.data
             useDispatch()(clearInvoices())
             useDispatch()(addInvoices(invoices))
         })
