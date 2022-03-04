@@ -10,7 +10,7 @@ interface Orders {
     cards: JSX.Element[]
 }
 
-function PreviousOrders() {
+function PreviousSales() {
 
     const dispatch = useDispatch()
     const result = useSelector(selectGetByUserStatus)
@@ -71,4 +71,4 @@ function PreviousOrders() {
     )
 }
 
-export default PreviousOrders
+export default PreviousSales

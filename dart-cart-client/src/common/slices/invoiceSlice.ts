@@ -26,6 +26,7 @@ const invoiceSlice = createSlice({
     initialState: invoiceAdapter.getInitialState({
         saveStatus: "idle",
         getByUserStatus: "idle",
+        getBySellerStatus: "idle",
     }),
     reducers: {
         addInvoice: invoiceAdapter.addOne,
@@ -53,6 +54,16 @@ const invoiceSlice = createSlice({
             })
             .addCase(getInvoicesByUser.rejected, (invoiceSliceState, action) => {
                 invoiceSliceState.getByUserStatus = "rejected"
+            })
+
+            .addCase(getInvoicesBySeller.pending, (invoiceSliceState, action) => {
+                invoiceSliceState.getBySellerStatus = "loading"
+            })
+            .addCase(getInvoicesBySeller.fulfilled, (invoiceSliceState, action) => {
+                invoiceSliceState.getBySellerStatus = "finished"
+            })
+            .addCase(getInvoicesBySeller.rejected, (invoiceSliceState, action) => {
+                invoiceSliceState.getBySellerStatus = "rejected"
             })
     }
 })
@@ -97,6 +108,18 @@ export const saveInvoice = createAsyncThunk(
 )
 
 export const getInvoicesByUser = createAsyncThunk(
+    "invoices/getInvoicesByUser",
+    async (user: User) => {
+        return axios.get(API_URL + "invoices/user/" + user.username, {
+        }).then(response => {
+            var invoices: Invoice[] = response.data
+            useDispatch()(clearInvoices())
+            useDispatch()(addInvoices(invoices))
+        })
+    }
+)
+
+export const getInvoicesBySeller = createAsyncThunk(
     "invoices/getInvoicesByUser",
     async (user: User) => {
         return axios.get(API_URL + "invoices/user/" + user.username, {
