@@ -5,10 +5,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./features/Home";
 import UserRegister from "./features/user-register/UserRegister";
 import SellerRegister from "./features/seller-register/SellerRegister";
+import { Provider } from "react-redux";
+import store from "./common/store";
 
 function App() {
   return (
-    <div className="App">
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -17,7 +19,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 }
 
