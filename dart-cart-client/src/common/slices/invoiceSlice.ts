@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { Invoice, RootState, User } from "./types";
+import { Invoice, RootState, User } from "../types";
 
 // JSON server URL. Change to backend URL for testing/in production
 const API_URL = process.env.REACT_APP_API_URL;

@@ -1,7 +1,7 @@
 import logo from '../../logo.svg';
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../common/authSlice"
-import { selectGetByUserStatus, getInvoicesByUser } from "../../common/invoiceSlice"
+import { selectUser } from "../../common/slices/authSlice"
+import { selectGetByUserStatus, getInvoicesByUser } from "../../common/slices/invoiceSlice"
 import { useNavigate } from 'react-router-dom';
 
 

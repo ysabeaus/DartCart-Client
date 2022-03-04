@@ -4,9 +4,9 @@ import {
   createEntityAdapter,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
-import { User } from "../common/types";
+import { User } from "../../common/types";
 import axios from "axios";
-import { RootState } from "../common/types";
+import { RootState } from "../../common/types";
 
 // JSON server URL. Change to backend URL for testing/in production
 const API_URL = process.env.REACT_APP_API_URL;
