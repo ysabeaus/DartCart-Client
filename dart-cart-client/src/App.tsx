@@ -10,7 +10,7 @@ import Display from "./features/display/Display";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
-import Checkout from "./features/checkout/CheckoutDisplay";
+import Checkout from "./features/checkout/components/CheckoutDisplay";
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import "./BillingForm.css";
+import "../styles/BillingForm.css";
 
 export function Billing() {
     return (

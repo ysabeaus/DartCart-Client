@@ -1,4 +1,4 @@
-import "./InvoiceContainer.css"
+import "../styles/InvoiceContainer.css"
 
 export function DisplayInvoice() {
     return (

@@ -1,4 +1,4 @@
-import "./CheckoutButton.css";
+import "../styles/CheckoutButton.css";
 
 export function CheckoutButton() {
     return(
