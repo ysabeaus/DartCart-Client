@@ -34,17 +34,6 @@ export function UserRegister() {
     registrationDate: 0
   };
 
-  const onChangeHandler = () => {
-    user.username = username;
-    user.email = email;
-    user.password = password;
-    user.firstName = firstName;
-    user.lastName = lastName;
-    user.location = location;
-    user.phone = phone;
-    user.registrationDate = currentDate;
-  };
-
   // BASIC input validation: no empty fields, passwords must match, formatting requirements
   // Possible TODO: Password complexity requirements
   // Possible TODO: Enforcing username requirements, address formatting
@@ -86,9 +75,9 @@ export function UserRegister() {
     user.phone = phone;
     user.registrationDate = currentDate;
 
-    if (!validateInput()) {
-      return;
-    }
+    // if (!validateInput()) {
+    //   return;
+    // }
 
     await dispatch(saveUser(user))
       .unwrap()
@@ -100,8 +89,8 @@ export function UserRegister() {
       })
       .catch((rejectedValueOrSerializedError: any) => {
         setError("That username is unavailable.");
+        clearInputs();
       });
-    clearInputs();
   };
 
   function clearInputs() {
@@ -111,7 +100,7 @@ export function UserRegister() {
   // Redirect upon modal close
   function handleClose() {
     dispatch(homeRedirect(null));
-    nav("/");
+    nav("/signup");
   }
 
   return (
@@ -119,15 +108,15 @@ export function UserRegister() {
       <section className="vh-200">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-8">
+            <div className="col-10">
               <div
                 className="card shadow-2-strong"
                 style={{ borderRadius: "1rem" }}
               >
                 <div className="card-header card text-center bg-success text-white">
-                  <h3 className="mb-0">Make a New Account</h3>
+                  <h3 className="mb-0">Create Your Account</h3>
                 </div>
-                <div className="card-body p-5 text-center">
+                <div className="card-body p-3 text-center">
                   {error ? <Alert variant="danger">{error}</Alert> : null}
 
                   <div className="row">
