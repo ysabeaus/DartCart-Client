@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
 import { loginUser } from "../../common/slices/authSlice";
 
+import logo from "../../logo.svg";
+
 export function UserRegister() {
   const currentDate = Date.now();
   const [username, setUsername] = useState("");
@@ -118,6 +120,7 @@ export function UserRegister() {
                   <h3 className="mb-0">Create Your Account</h3>
                 </div>
                 <div className="card-body p-3 text-center">
+                  <img src={logo}></img>
                   {error ? <Alert variant="danger">{error}</Alert> : null}
 
                   <div className="row">
