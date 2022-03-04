@@ -42,7 +42,7 @@ export const { selectAll: selectSellers, selectById: selectSellerById } =
 
 // Async thunks
 export const saveSellerShop = createAsyncThunk(
-  "sellerRegister/saveShop",
+  "sellerRegister/createdSellerShop",
   async (shop: Shop) => {
     return await axios.post(API_URL + "signup", {
       id: shop.id,

@@ -75,19 +75,19 @@ export function UserRegister() {
     user.phone = phone;
     user.registrationDate = currentDate;
 
-    // if (!validateInput()) {
-    //   return;
-    // }
+    if (!validateInput()) {
+      return;
+    }
 
     await dispatch(saveUser(user))
       .unwrap()
-      .then((originalPromiseResult: any) => {
+      .then((originalPromiseResult) => {
         setShowModal(true);
         dispatch(
           loginUser({ username: user.username, password: user.password })
         );
       })
-      .catch((rejectedValueOrSerializedError: any) => {
+      .catch((rejectedValueOrSerializedError) => {
         setError("That username is unavailable.");
         clearInputs();
       });
@@ -99,8 +99,9 @@ export function UserRegister() {
 
   // Redirect upon modal close
   function handleClose() {
+    setShowModal(false);
     dispatch(homeRedirect(null));
-    nav("/signup");
+    nav("/");
   }
 
   return (

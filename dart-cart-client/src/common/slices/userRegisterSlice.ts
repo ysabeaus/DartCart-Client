@@ -45,7 +45,7 @@ export default userRegisterSlice.reducer;
 
 // Async thunks
 export const saveUser = createAsyncThunk(
-  "userRegister/saveUser",
+  "userRegister/createdUser",
   async (user: User) => {
     return await axios.post(API_URL + "register", {
       id: user.id,

@@ -12,8 +12,8 @@ import { useSelector } from "react-redux";
 
 export function SellerRegister() {
   // Get user from store
-  const stateUser = useSelector(selectUser);
-  const currentUser = JSON.parse(stateUser || "{}");
+  const currentUserString = useSelector(selectUser);
+  const currentUser = JSON.parse(currentUserString || "{}");
 
   const [name, setName] = useState("");
   const [homepage, setHomepage] = useState("");
