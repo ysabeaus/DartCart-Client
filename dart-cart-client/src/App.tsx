@@ -10,6 +10,7 @@ import Display from "./features/display/Display";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
+import SearchDisplay from "./features/search/SearchDisplay";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/Display" element={<Display />}></Route>
+            <Route path="/Search/" element={<SearchDisplay />}></Route>
             <Route
               path="/ShopProduct/:product_id"
               element={<ShopProductDisplay />}
