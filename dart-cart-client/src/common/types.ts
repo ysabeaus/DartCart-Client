@@ -18,6 +18,20 @@ export interface User {
   registrationDate: number;
 }
 
+export interface Seller {
+  id: number;
+  name: string;
+  homepage: string;
+  description: string;
+  user: User;
+}
+
+export interface Shop {
+  id: number;
+  location: string;
+  seller: Seller;
+}
+
 export type RootState = ReturnType<typeof store.getState>;
 export type SecurityToken = string;
 export type AppDispatch = typeof store.dispatch;
