@@ -4,13 +4,16 @@ export class Product {
     product_id:     number;
     name:           string;
     description:    string;
-    catagories:     string[];
+    categories:     [{
+        id: number;
+        name:   string;
+    }];
 
-    constructor (product_id: number, name: string, description: string, catagories: string[]) {
+    constructor (product_id: number, name: string, description: string, categories: [{  id: number; name:   string;}]) {
         this.product_id = product_id;
         this.name = name;         
         this.description = description
-        this.catagories = catagories;
+        this.categories = categories;
     }
 }
 

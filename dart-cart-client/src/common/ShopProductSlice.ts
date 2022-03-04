@@ -14,7 +14,7 @@ const SPAdapter = createEntityAdapter<ShopProduct>() // Entity is mapped to our 
 
 export const fetchShopProducts = createAsyncThunk(
     'ShopProducts/fetchShopProducts', async () => {
-      const response = await axios.get(MOCK_SERVER+"/shop_products")
+      const response = await axios.get(REAL_SERVER+"/shop_products")
       console.log(response.data)  
       return response.data
         

@@ -43,11 +43,12 @@ const ShopProductDisplay = () => {
         width:              "40%",
     }
 
-    function ImgSplice (catagories: String[]) {
+    function ImgSplice (categories: [{id: number, name: string}]) {
 
             let newImg = Object.assign({}, ImgStyleBase)
-            catagories.forEach(catagory => {
-                switch(catagory){
+            
+            categories.forEach(category => {
+                switch( category.name ){
                     case "Perishable":
                     newImg.backgroundImage = `url('${cartoonSteak}')`
                     break
@@ -84,7 +85,7 @@ const ShopProductDisplay = () => {
                 <div className="InnerProduct">
                     <div className="ProductInfoContainer">
                         {ReduxShopProducts &&
-                            <div style={ImgSplice(ReduxShopProducts?.product.catagories!)}>
+                            <div style={ImgSplice(ReduxShopProducts?.product.categories!)}>
                        
                         </div>}
                         
@@ -104,7 +105,7 @@ const ShopProductDisplay = () => {
                     
                 </div>
                 
-                    <CompetingSellers Seller={shopProduct_id}></CompetingSellers>
+                    {shopProduct_id && <CompetingSellers Seller={shopProduct_id}></CompetingSellers>}
                 
             </div>
             
