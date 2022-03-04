@@ -7,7 +7,7 @@ import "./Display.css"
 import { useEffect, useRef, useState } from "react";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { searchShopProducts, selectShopProducts } from "../common/SearchSlice";
+import { searchShopProducts, selectShopProducts } from "../../common/slices/SearchSlice";
 
 
 const SearchDisplay = () => {
