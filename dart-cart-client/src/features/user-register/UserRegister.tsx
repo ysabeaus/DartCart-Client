@@ -137,7 +137,7 @@ export function UserRegister() {
                     <div className="form-outline mb-4">
                       <input
                         type="text"
-                        placeholder="DartTheCart"
+                        placeholder="Type your username here"
                         id="typeEmailX-2"
                         className="form-control form-control-lg"
                         value={username}
@@ -147,12 +147,12 @@ export function UserRegister() {
                       />
                     </div>
                     <div className="form-outline mb-0">
-                      <h4>Email</h4>
+                      <h4>Email:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="email"
-                        placeholder="dartcart@email.com"
+                        placeholder="Provide a valid email address"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={email}
@@ -165,12 +165,12 @@ export function UserRegister() {
 
                   <div className="row">
                     <div className="form-outline mb-0">
-                      <h4>Password</h4>
+                      <h4>Password:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="password"
-                        placeholder="P@S5W0RD!"
+                        placeholder="Provide a strong password"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={password}
@@ -180,12 +180,12 @@ export function UserRegister() {
                       />
                     </div>
                     <div className="form-outline mb-0">
-                      <h4>Confirm Password</h4>
+                      <h4>Confirm Password:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="password"
-                        placeholder="P@S5W0RD!"
+                        placeholder="Retype the password"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={rePassword}
@@ -198,12 +198,12 @@ export function UserRegister() {
 
                   <div className="row">
                     <div className="form-outline mb-0">
-                      <h4>First Name</h4>
+                      <h4>First Name:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="text"
-                        placeholder="John"
+                        placeholder="Type your first name only"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={firstName}
@@ -213,12 +213,12 @@ export function UserRegister() {
                       />
                     </div>
                     <div className="form-outline mb-0">
-                      <h4>Last Name</h4>
+                      <h4>Last Name:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="text"
-                        placeholder="Doe"
+                        placeholder="Type your last name only"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={lastName}
@@ -231,12 +231,12 @@ export function UserRegister() {
 
                   <div className="row">
                     <div className="form-outline mb-0">
-                      <h4>Address</h4>
+                      <h4>Address:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="text"
-                        placeholder="1 Main St, Anytown, CA 12345"
+                        placeholder="Provide a home address"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={location}
@@ -246,12 +246,12 @@ export function UserRegister() {
                       />
                     </div>
                     <div className="form-outline mb-0">
-                      <h4>Phone Number</h4>
+                      <h4>Phone Number:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="phone"
-                        placeholder="(555) 555-5555"
+                        placeholder="Provide a valid phone number"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={phone}
