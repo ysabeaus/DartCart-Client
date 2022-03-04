@@ -1,9 +1,9 @@
 
-function ErrorPage({ code }) {
+function Error404Page() {
 
-    return ({
-        <> { code } Error Code</>
-    })
+    return (
+        <h1> Error 404: Not Found</h1>
+    )
 }
 
-export default ErrorPage
+export default Error404Page

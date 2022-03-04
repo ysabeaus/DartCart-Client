@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./common/Home";
 import Account from "./features/account/Account";
 import PreviousOrders from './features/previous-orders/previous-orders';
+import Error404Page from './components/Error';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/register" element={<Account />}></Route>
           <Route path="/login" element={<LoginComponent />}></Route>
           <Route path="/orders" element={<PreviousOrders />}></Route>
+          <Route path="/*" element={<Error404Page />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
