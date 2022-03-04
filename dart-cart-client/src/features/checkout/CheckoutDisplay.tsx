@@ -10,9 +10,21 @@ import axios from "axios";
 import { User } from "../../common/types";
 import { CheckoutButton } from "./CheckoutButton";
 
+const url = "something/for/sure";
+
+const fetchShopProducts = createAsyncThunk(
+    "ShopProducts/fetchShopProducts",
+    async (user: User) => {
+      const response = await axios.post(url + "/invoices", {
+
+      });
+      return response.data;
+    }
+  );
 
 export function Checkout() {
-
+    const currentUser = useSelector(selectUser);
+    const accessToken = localStorage.getItem("accessToken");
 
     return (
         <>
