@@ -16,10 +16,6 @@ const Cart = () => {
             "id": id,
             "quantity":quantity
         }))
-        // console.log(dispatch(fetchCart))
-        // setCartList(carts.map((element) => (
-        //     <CartItem element={element} handleUpdate={handleUpdate}/>
-        // )))
         
         return dispatch(fetchCart)
     }
