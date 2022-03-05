@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../imgs/Brand.png";
+import { Navbar } from 'react-bootstrap';
 
 const logoStyle = {
   height: "15%",
@@ -10,6 +11,7 @@ const logoStyle = {
 const Logo = () => {
   return (
     <>
+    <Navbar>
       <a href="Display" style={{ textDecoration: "none", color: "black" }}>
         <h2>DartCart</h2>
       </a>
@@ -23,6 +25,7 @@ const Logo = () => {
           ></img>
         </a>
       </div>
+      </Navbar>
     </>
   );
 };
