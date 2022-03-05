@@ -44,11 +44,20 @@ const Display = () => {
 
       <div className="ProductCardContainer">
         {ReduxShopProducts.length > 0
+<<<<<<< HEAD
+          //? findCheapest(ReduxShopProducts).map((ShopProduct) => {
+            ? ReduxShopProducts.map(ShopProduct => {return (
+              <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
+            )})
+              
+            //})
+=======
           ? ReduxShopProducts.map((ShopProduct) => {
               return (
                 <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
               );
             })
+>>>>>>> origin/feature-search
           : ""}
       </div>
     </>

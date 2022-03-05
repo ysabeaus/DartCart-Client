@@ -23,7 +23,8 @@ export const fetchShopProducts = createAsyncThunk(
 
 const intitialState = SPAdapter.getInitialState({
   status: "idle",
-  searchString: ""
+  searchString: "",
+  items: new Array()
 });
 
 const SPSlice = createSlice({
@@ -42,11 +43,13 @@ const SPSlice = createSlice({
       })
       .addCase(fetchShopProducts.fulfilled, (state, action) => {
         const newEntities = {};
+        const newProducts = new Array();
         action.payload.forEach((ShopProduct) => {
-          state.ids[ShopProduct.shop_product_id - 1] =
-            ShopProduct.shop_product_id;
+          state.ids[ShopProduct.shop_product_id - 1] = ShopProduct.shop_product_id;
           newEntities[ShopProduct.shop_product_id] = ShopProduct;
+          newProducts[ShopProduct.shop_product_id - 1] = ShopProduct.product;
         });
+        state.items = newProducts; 
         state.entities = newEntities;
         state.status = "idle";
       });
@@ -61,15 +64,20 @@ export const {
   selectById: selectShopProductById,
 } = SPAdapter.getSelectors((state: any) => state.ShopProducts); // state.ShopProduct is the NAME field of our slice
 
-// Selectors take in global state, so to filter the 
-// products by the search string we need to get the
-// shop products and the search string, then we write a
-// final string that actually performs the filtering.
+
 export const selectFilteredProducts = createSelector(
+
   (state: RootState) => state.ShopProducts,
   (state: RootState) => state.ShopProducts.searchString,
   (products, searchString) => {
-    // Filter products here
-    // return the filtered products
+    
+    let p= new Array()
+    for(let prod of products.items){
+      if (prod !== undefined) p.push(prod)
+    }
+
+    let re = new RegExp(searchString, 'i')
+
+    return (p.filter(prod => prod.name.match(re)?.length>0 ));
   }
 )

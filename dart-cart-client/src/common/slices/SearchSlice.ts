@@ -14,7 +14,7 @@ const SPAdapter = createEntityAdapter<ShopProduct>() // Entity is mapped to our 
 export const searchShopProducts = createAsyncThunk(
     'SearchShopProducts/searchShopProducts', async (query: string) => {
       const response = await axios.get(MOCK_SERVER+"/shop_products/search", { params: { query: `${query}`}})
-      console.log(response.data)
+      //console.log(response.data)
       return response.data
     })
 
@@ -39,12 +39,6 @@ const searchSlice = createSlice({
         .addCase(searchShopProducts.fulfilled, (state, action) => {
             console.log(action.payload)
             SPAdapter.addMany(state, action.payload)
-            // const newEntities = {}
-            // action.payload.forEach(ShopProduct => {
-            //     state.ids[ShopProduct.shop_product_id-1] = ShopProduct.shop_product_id
-            //     newEntities[ShopProduct.shop_product_id] = ShopProduct
-            // })
-            // state.entities = newEntities
             state.status = "idle"
 
         })
@@ -57,10 +51,3 @@ export const { selectAll: selectShopProducts, selectById: selectShopProductById 
     SPAdapter.getSelectors((state: any) => state.SearchShopProducts); // state.ShopProduct is the NAME field of our slice
 
 export default searchSlice.reducer //exported to the REDUX STORE 
-//Creates a selectors to retrieve for ALL shopProducts or ShopProducts by ID
-
-
-// export const selectedShopProducts = createSelector(
-//     selectShopProducts,
-//     products => products.map(product => product.product.product_id)
-// )

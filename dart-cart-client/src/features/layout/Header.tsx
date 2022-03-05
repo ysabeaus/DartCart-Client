@@ -9,17 +9,11 @@ import {
 
 } from 'mdb-react-ui-kit';
 
-import { IoMdSearch } from 'react-icons/io'
-import { Link } from 'react-router-dom'
 import logo from '../../imgs/boldDart.jpg'
 import "../display/display.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
-import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updatedSearchString } from '../../common/slices/shopProductSlice';
-
-// const [GetSearch, setSearch] = useState("Header")
 
 
 const logoStyle = {
@@ -39,9 +33,9 @@ const Header = () => {
       dispatch(updatedSearchString(e.target.value))
     } else {
       // navigate to search page
+
     }
   }
-
 
   return (
     <>
@@ -76,7 +70,7 @@ const Header = () => {
           <a className="nav-link disabled" href="#">Disabled</a>
         </li>
       </ul>
-        <input className="form-control mr-sm-2 " type="text" placeholder="Search" aria-label="Search" onKeyUp={e => handleSearch(e)}></input>
+        <input className="form-control mr-sm-2 " type="text" placeholder="Search" aria-label="Search" onChange={e => handleSearch(e)}></input>
         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </div>
   </nav>

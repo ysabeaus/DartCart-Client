@@ -1,21 +1,21 @@
 import Header from "../layout/Header";
-import axios from "axios";
-import { ShopProduct } from "../../common/models"
-import { ShopProductCard } from "../product-details/ShopProductCard";
-import { Link } from "react-router-dom";
 import "../display/display.css"
 import { useEffect, useRef, useState } from "react";
 import Footer from "../layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { searchShopProducts, selectShopProducts } from "../../common/slices/searchSlice";
 import { fetchShopProducts } from "../../common/slices/shopProductSlice";
 import { selectFilteredProducts } from '../../common/slices/shopProductSlice'
-
+import { RootState } from "../../common/types";
+import { ProductCard } from "../product-details/ProductCard";
 
 const SearchDisplay = () => {
 
     const dispatch = useDispatch()
-    const filteredProducts = useSelector(selectFilteredProducts)
+    const filteredProducts = useSelector( (state: RootState) => selectFilteredProducts(state))
+
+    useEffect(() => {
+        dispatch(fetchShopProducts());
+    }, [])
 
     return (
 
@@ -25,14 +25,13 @@ const SearchDisplay = () => {
 
             </div>
             <div className="ProductCardContainer">
-                 {/* <input onKeyUp={searchShopProducts()} placeholder="Search for products"></input> */}
-            {/* { 
-            ReduxShopProducts.length > 0 ? 
-                ReduxShopProducts.map(ShopProduct => {
-                    return <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
-            })
-            :   ""
-           } */}
+            { 
+                filteredProducts.length > 0 ? 
+                filteredProducts.map(Product => {
+                    console.log(Product)
+                    return <ProductCard Product={Product}></ProductCard> })
+                : ""
+            }
            </div>
         <Footer></Footer>
         </>
