@@ -12,6 +12,7 @@ import store from "./common/store";
 import Header from "./features/layout/Header";
 import Footer from "./features/layout/Footer";
 
+
 function App() {
   useEffect(() => {
     document.title = "Dart Cart";

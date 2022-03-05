@@ -1,19 +1,23 @@
 import "../styles.css";
 import Logo from "./Logo";
 import Searchbar from "./Searchbar";
-import Navbar from "./Navbar";
+import Nav from "./Navbar";
 import Categories from "./Categories";
+import { Navbar } from 'react-bootstrap';
+
 
 const Header = () => {
   return (
-    <header className="navbar navbar-expand-lg navbar-fixed-top navbar-custom">
-      <div className="container-fluid">
+    <Navbar>
+    <header className="navbar navbar-expand-lg navbar-fixed-top navbar-custom" style= {{width: '100%'}}>
+      {/* <div className="container-fluid"> */}
         <Logo />
         <Searchbar />
         <Categories />
-        <Navbar />
-      </div>
+        <Nav />
+      {/* </div> */}
     </header>
+    </Navbar>
   );
 };
 

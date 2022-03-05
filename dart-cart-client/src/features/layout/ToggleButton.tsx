@@ -1,7 +1,6 @@
 import React from "react";
 
 const ToggleButton = () => {
-  return (
     <>
       {/* What does this do? */}
       <button
@@ -27,7 +26,6 @@ const ToggleButton = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
     </>
-  );
 };
 
 export default ToggleButton;

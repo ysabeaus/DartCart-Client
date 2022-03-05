@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Navbar } from 'react-bootstrap';
 
-const Navbar = (props) => {
+
+
+
+const Nav = (props) => {
   const textClasses = props.footer ? "text-reset" : "nav-link";
   const linkClasses = props.footer ? "nav-item mb-3" : "nav-item";
 
@@ -10,6 +14,7 @@ const Navbar = (props) => {
     Login: "/login",
     Register: "/register",
   };
+
 
   const navLinks = Object.keys(links).map((link) => {
     return (
@@ -22,15 +27,15 @@ const Navbar = (props) => {
   });
 
   return (
-    <nav className="navbar-header">
-      <ul
-        className="navbar-nav mr-auto link-container"
-        style={!props.footer ? { textAlign: "center" } : {}}
-      >
-        {navLinks}
-      </ul>
-    </nav>
+      <nav className="navbar-header">
+        <ul
+          className="navbar-nav mr-auto link-container"
+          style={!props.footer ? { textAlign: "center" } : {}}
+        >
+          {navLinks}
+        </ul>
+      </nav>
   );
 };
 
-export default Navbar;
+export default Nav;
