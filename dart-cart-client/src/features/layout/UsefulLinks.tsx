@@ -11,7 +11,7 @@ const UsefulLinks = () => {
 
   const navLinks = Object.keys(links).map((link) => {
     return (
-      <p>
+      <p key={link}>
         <Link to={links[link]} className="text-reset">
           {link}
         </Link>
