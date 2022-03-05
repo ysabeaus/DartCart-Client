@@ -1,10 +1,11 @@
 import logo from '../../logo.svg';
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../common/slices/authSlice"
-import { selectGetByUserStatus, getInvoicesByUser, selectInvoices } from "../../common/slices/invoiceSlice"
+import { selectGetByUserStatus, getInvoicesByUser, selectInvoices, clearInvoices, resetState } from "../../common/slices/invoiceSlice"
 import { useNavigate } from 'react-router-dom';
 import Error404Page from '../../components/Error';
 import OrderCard from './OrderCard';
+import { useEffect } from 'react';
 
 interface Orders {
     date: Date
@@ -21,6 +22,10 @@ function PreviousOrders() {
     const invoices = useSelector(selectInvoices)
     var orders: Orders[] = [];
 
+    useEffect(() => {
+        dispatch(clearInvoices)
+        dispatch(resetState)
+    }, [])
 
     if (!userString)
         nav("/login")

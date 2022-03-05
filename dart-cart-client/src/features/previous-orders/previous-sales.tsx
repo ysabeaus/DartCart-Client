@@ -1,11 +1,12 @@
 import logo from '../../logo.svg';
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../common/slices/authSlice"
-import { selectGetByShopStatus, getInvoicesByShop, selectInvoices } from "../../common/slices/invoiceSlice"
+import { selectGetByShopStatus, getInvoicesByShop, selectInvoices, resetState, clearInvoices } from "../../common/slices/invoiceSlice"
 import { useNavigate } from 'react-router-dom';
 import Error404Page from '../../components/Error';
 import OrderCard from './OrderCard';
 import { Shop } from '../../common/types';
+import { useEffect } from 'react';
 
 interface Orders {
     date: Date
@@ -26,6 +27,10 @@ function PreviousOrders({ shop }: shopProp) {
     const invoices = useSelector(selectInvoices)
     var orders: Orders[] = [];
 
+    useEffect(() => {
+        dispatch(clearInvoices)
+        dispatch(resetState)
+    }, [])
 
     if (!userString)
         nav("/login")

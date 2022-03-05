@@ -31,7 +31,11 @@ const invoiceSlice = createSlice({
     reducers: {
         addInvoice: invoiceAdapter.addOne,
         addInvoices: invoiceAdapter.addMany,
-        clearInvoices: invoiceAdapter.removeAll
+        clearInvoices: invoiceAdapter.removeAll,
+        resetState(invoiceSliceState, action) {
+            invoiceSliceState.getByShopStatus = "idle"
+            invoiceSliceState.getByUserStatus = "idle"
+        },
     },
     // Extra reducers to handle the promise produced by createAsyncThunk
     extraReducers: (builder) => {
@@ -83,7 +87,7 @@ const invoiceSlice = createSlice({
 // With Redux Toolkit we get our reducers wrapped in actions, which simplifies the logic
 // a lot. Our React components will use dispatch on these actions to actually perform
 // state management
-export const { addInvoice, clearInvoices, addInvoices } = invoiceSlice.actions
+export const { addInvoice, clearInvoices, addInvoices, resetState } = invoiceSlice.actions
 export default invoiceSlice.reducer;
 
 // In this next section is where we define our selectors, ie how our react components get/derive
@@ -129,7 +133,6 @@ export const getInvoicesByUser = createAsyncThunk(
         return axios.get(API_URL + "invoices/customer/" + user.id, {
         }).then(response => {
             var invoices: Invoice[] = response.data
-            console.log(invoices)
             return invoices
         })
     }
