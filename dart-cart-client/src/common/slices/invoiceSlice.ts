@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { Invoice, RootState, User } from "../types";
+import { Invoice, RootState, Shop, User } from "../types";
 
 // JSON server URL. Change to backend URL for testing/in production
 const API_URL = process.env.REACT_APP_API_URL;
@@ -26,7 +26,7 @@ const invoiceSlice = createSlice({
     initialState: invoiceAdapter.getInitialState({
         saveStatus: "idle",
         getByUserStatus: "idle",
-        getBySellerStatus: "idle",
+        getByShopStatus: "idle",
     }),
     reducers: {
         addInvoice: invoiceAdapter.addOne,
@@ -62,11 +62,11 @@ const invoiceSlice = createSlice({
                 invoiceSliceState.getByUserStatus = "rejected"
             })
 
-            .addCase(getInvoicesBySeller.pending, (invoiceSliceState, action) => {
-                invoiceSliceState.getBySellerStatus = "loading"
+            .addCase(getInvoicesByShop.pending, (invoiceSliceState, action) => {
+                invoiceSliceState.getByShopStatus = "loading"
             })
-            .addCase(getInvoicesBySeller.fulfilled, (invoiceSliceState, action) => {
-                invoiceSliceState.getBySellerStatus = "finished"
+            .addCase(getInvoicesByShop.fulfilled, (invoiceSliceState, action) => {
+                invoiceSliceState.getByShopStatus = "finished"
                 invoiceSliceState.ids = []
                 invoiceSliceState.entities = {}
                 for (let i = 0; i < action.payload.length; ++i) {
@@ -74,8 +74,8 @@ const invoiceSlice = createSlice({
                     invoiceSliceState.entities[action.payload[i].id] = action.payload[i]
                 }
             })
-            .addCase(getInvoicesBySeller.rejected, (invoiceSliceState, action) => {
-                invoiceSliceState.getBySellerStatus = "rejected"
+            .addCase(getInvoicesByShop.rejected, (invoiceSliceState, action) => {
+                invoiceSliceState.getByShopStatus = "rejected"
             })
     }
 })
@@ -103,7 +103,7 @@ export const selectGetByUserStatus = createSelector(
     (state: RootState) => state.invoices,
     (invoices) => invoices.getByUserStatus
 )
-export const selectGetBySellerStatus = createSelector(
+export const selectGetByShopStatus = createSelector(
     (state: RootState) => state.invoices,
     (invoices) => invoices.getByUserStatus
 )
@@ -129,15 +129,16 @@ export const getInvoicesByUser = createAsyncThunk(
         return axios.get(API_URL + "invoices/customer/" + user.id, {
         }).then(response => {
             var invoices: Invoice[] = response.data
+            console.log(invoices)
             return invoices
         })
     }
 )
 
-export const getInvoicesBySeller = createAsyncThunk(
-    "invoices/getInvoicesBySeller",
-    async (user: User) => {
-        return axios.get(API_URL + "invoices/user/" + user.username, {
+export const getInvoicesByShop = createAsyncThunk(
+    "invoices/getInvoicesByShop",
+    async (shop: Shop) => {
+        return axios.get(API_URL + "invoices/shop/" + shop.id, {
         }).then(response => {
             var invoices: Invoice[] = response.data
             return invoices

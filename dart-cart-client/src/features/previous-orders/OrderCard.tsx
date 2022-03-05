@@ -20,8 +20,8 @@ function OrderCard({ detail }: IDetails) {
                 ></img>
                 <div className="card-body">
                     <h1>{detail.name}</h1>
-                    <h4>$ {detail.cost / 10}</h4>
-
+                    <h4>Quantity: {detail.quantity}</h4>
+                    <h4>Total: ${(detail.cost / 100)}{(detail.cost % 100 ? "" : ".0")}{(detail.cost % 10 ? "" : "0")}</h4>
                     <p className="card-text">{`${detail.description}`}</p>
 
                 </div>

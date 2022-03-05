@@ -1,19 +1,25 @@
 import logo from '../../logo.svg';
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../common/slices/authSlice"
-import { selectGetByUserStatus, getInvoicesByUser, selectInvoices } from "../../common/slices/invoiceSlice"
+import { selectGetByShopStatus, getInvoicesByShop, selectInvoices } from "../../common/slices/invoiceSlice"
 import { useNavigate } from 'react-router-dom';
 import Error404Page from '../../components/Error';
 import OrderCard from './OrderCard';
+import { Shop } from '../../common/types';
 
 interface Orders {
+    date: Date
     cards: JSX.Element[]
 }
 
-function PreviousSales() {
+interface shopProp {
+    shop: Shop;
+}
+
+function PreviousOrders({ shop }: shopProp) {
 
     const dispatch = useDispatch()
-    const result = useSelector(selectGetByUserStatus)
+    const result = useSelector(selectGetByShopStatus)
     const userString: string = useSelector(selectUser) || ""
     const user = JSON.parse(userString)
     const nav = useNavigate();
@@ -26,11 +32,11 @@ function PreviousSales() {
 
     switch (result) {
         case "idle":
-            dispatch(getInvoicesByUser(user))
+            dispatch(getInvoicesByShop(shop))
             break;
-        case "success":
+        case "finished":
             for (let i = 0; i < invoices.length; ++i) {
-                orders.push({ cards: [] })
+                orders.push({ cards: [], date: new Date(Number(invoices[i].orderPlaced)) })
                 for (let j = 0; j < invoices[i].orderDetails.length; ++j)
                     orders[i].cards.push(
                         <>
@@ -53,17 +59,19 @@ function PreviousSales() {
                     <img src={logo} className="App-logo" style={{ width: '50%' }} alt="logo"></img>
                 </>
 
-            ) || (result === "finished") &&
+            ) || ((result === "finished") &&
                 <>
-                    <div className=""></div>
                     {orders.map((order) => {
                         return (
-                            <div className="ProductCardContainer">
-                                {order.cards}
-                            </div>
+                            <>
+                                <div className="">{order.date.toDateString()}</div>
+                                <div className="ProductCardContainer">
+                                    {order.cards}
+                                </div>
+                            </>
                         )
                     })}
-                </>
+                </>)
 
                 || <Error404Page />
             }
@@ -71,4 +79,4 @@ function PreviousSales() {
     )
 }
 
-export default PreviousSales
+export default PreviousOrders

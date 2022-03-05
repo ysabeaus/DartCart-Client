@@ -7,6 +7,7 @@ import Error404Page from '../../components/Error';
 import OrderCard from './OrderCard';
 
 interface Orders {
+    date: Date
     cards: JSX.Element[]
 }
 
@@ -29,9 +30,8 @@ function PreviousOrders() {
             dispatch(getInvoicesByUser(user))
             break;
         case "finished":
-            console.log(invoices)
             for (let i = 0; i < invoices.length; ++i) {
-                orders.push({ cards: [] })
+                orders.push({ cards: [], date: new Date(Number(invoices[i].orderPlaced)) })
                 for (let j = 0; j < invoices[i].orderDetails.length; ++j)
                     orders[i].cards.push(
                         <>
@@ -56,12 +56,14 @@ function PreviousOrders() {
 
             ) || ((result === "finished") &&
                 <>
-                    <div className=""></div>
                     {orders.map((order) => {
                         return (
-                            <div className="ProductCardContainer">
-                                {order.cards}
-                            </div>
+                            <>
+                                <div className="">{order.date.toDateString()}</div>
+                                <div className="ProductCardContainer">
+                                    {order.cards}
+                                </div>
+                            </>
                         )
                     })}
                 </>)
