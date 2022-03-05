@@ -91,6 +91,10 @@ export const selectGetByUserStatus = createSelector(
     (state: RootState) => state.invoices,
     (invoices) => invoices.getByUserStatus
 )
+export const selectGetBySellerStatus = createSelector(
+    (state: RootState) => state.invoices,
+    (invoices) => invoices.getByUserStatus
+)
 
 // Async functionality
 export const saveInvoice = createAsyncThunk(
@@ -120,7 +124,7 @@ export const getInvoicesByUser = createAsyncThunk(
 )
 
 export const getInvoicesBySeller = createAsyncThunk(
-    "invoices/getInvoicesByUser",
+    "invoices/getInvoicesBySeller",
     async (user: User) => {
         return axios.get(API_URL + "invoices/user/" + user.username, {
         }).then(response => {
