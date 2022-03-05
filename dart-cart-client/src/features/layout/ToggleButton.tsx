@@ -1,5 +1,4 @@
 import React from "react";
-import { Toggle } from "react-bootstrap/lib/Dropdown";
 
 const ToggleButton = () => {
   return (

@@ -9,7 +9,6 @@ const Navbar = (props) => {
     Home: "/",
     Login: "/login",
     Register: "/register",
-    Explore: "/explore",
   };
 
   const navLinks = Object.keys(links).map((link) => {
