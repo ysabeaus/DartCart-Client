@@ -51,6 +51,12 @@ const invoiceSlice = createSlice({
             })
             .addCase(getInvoicesByUser.fulfilled, (invoiceSliceState, action) => {
                 invoiceSliceState.getByUserStatus = "finished"
+                invoiceSliceState.ids = []
+                invoiceSliceState.entities = {}
+                for (let i = 0; i < action.payload.length; ++i) {
+                    invoiceSliceState.ids.push(action.payload[i].id)
+                    invoiceSliceState.entities[action.payload[i].id] = action.payload[i]
+                }
             })
             .addCase(getInvoicesByUser.rejected, (invoiceSliceState, action) => {
                 invoiceSliceState.getByUserStatus = "rejected"
@@ -61,6 +67,12 @@ const invoiceSlice = createSlice({
             })
             .addCase(getInvoicesBySeller.fulfilled, (invoiceSliceState, action) => {
                 invoiceSliceState.getBySellerStatus = "finished"
+                invoiceSliceState.ids = []
+                invoiceSliceState.entities = {}
+                for (let i = 0; i < action.payload.length; ++i) {
+                    invoiceSliceState.ids.push(action.payload[i].id)
+                    invoiceSliceState.entities[action.payload[i].id] = action.payload[i]
+                }
             })
             .addCase(getInvoicesBySeller.rejected, (invoiceSliceState, action) => {
                 invoiceSliceState.getBySellerStatus = "rejected"
@@ -114,11 +126,10 @@ export const saveInvoice = createAsyncThunk(
 export const getInvoicesByUser = createAsyncThunk(
     "invoices/getInvoicesByUser",
     async (user: User) => {
-        return axios.get(API_URL + "invoices/user/" + user.username, {
+        return axios.get(API_URL + "invoices/customer/" + user.id, {
         }).then(response => {
             var invoices: Invoice[] = response.data
-            useDispatch()(clearInvoices())
-            useDispatch()(addInvoices(invoices))
+            return invoices
         })
     }
 )
@@ -129,8 +140,7 @@ export const getInvoicesBySeller = createAsyncThunk(
         return axios.get(API_URL + "invoices/user/" + user.username, {
         }).then(response => {
             var invoices: Invoice[] = response.data
-            useDispatch()(clearInvoices())
-            useDispatch()(addInvoices(invoices))
+            return invoices
         })
     }
 )

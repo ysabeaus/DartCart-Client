@@ -28,7 +28,8 @@ function PreviousOrders() {
         case "idle":
             dispatch(getInvoicesByUser(user))
             break;
-        case "success":
+        case "finished":
+            console.log(invoices)
             for (let i = 0; i < invoices.length; ++i) {
                 orders.push({ cards: [] })
                 for (let j = 0; j < invoices[i].orderDetails.length; ++j)
@@ -53,7 +54,7 @@ function PreviousOrders() {
                     <img src={logo} className="App-logo" style={{ width: '50%' }} alt="logo"></img>
                 </>
 
-            ) || (result === "success") &&
+            ) || ((result === "finished") &&
                 <>
                     <div className=""></div>
                     {orders.map((order) => {
@@ -63,7 +64,7 @@ function PreviousOrders() {
                             </div>
                         )
                     })}
-                </>
+                </>)
 
                 || <Error404Page />
             }

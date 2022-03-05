@@ -53,7 +53,7 @@ function PreviousSales() {
                     <img src={logo} className="App-logo" style={{ width: '50%' }} alt="logo"></img>
                 </>
 
-            ) || (result === "success") &&
+            ) || (result === "finished") &&
                 <>
                     <div className=""></div>
                     {orders.map((order) => {
