@@ -4,6 +4,7 @@ import sellerRegisterReducer from "./slices/sellerRegisterSlice";
 import SPSlice from "./slices/shopProductSlice";
 import CPSlice from "./slices/competitorsSlice";
 import authenticationReducer from "./slices/authSlice";
+import listItemReducer from "./slices/listItemSlice"
 
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here
@@ -13,8 +14,8 @@ const store = configureStore({
         sellerRegister: sellerRegisterReducer,
         authentication: authenticationReducer,
         ShopProducts: SPSlice,
-        CompetitorProducts: CPSlice
-        // listItem: listItemReducer
+        CompetitorProducts: CPSlice,
+        listItem: listItemReducer
     }
 });
 

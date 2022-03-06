@@ -33,6 +33,7 @@ const authenticationSlice = createSlice({
             authenticationSliceState.user = null;
             authenticationSliceState.status = "idle";
             authenticationSliceState.seller = null;
+            authenticationSliceState.shop = null;
 
             localStorage.removeItem("user");
             localStorage.removeItem("username");

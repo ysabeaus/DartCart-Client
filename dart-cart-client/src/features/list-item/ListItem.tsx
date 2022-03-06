@@ -1,7 +1,7 @@
 import { Alert, Modal, Button } from "react-bootstrap";
 import { saveSellerandShop, shopRedirect } from "../../common/slices/sellerRegisterSlice";
 import { Seller, Shop } from "../../common/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
 import { selectUser } from "../../common/slices/authSlice";
@@ -17,66 +17,9 @@ export function ListItem() {
     const dispatch = useAppDispatch();
     const nav = useNavigate();
 
-    dispatch(getAllProducts);
+    useEffect( () => {dispatch(getAllProducts())}, [])
 
-    //   const seller: Seller = {
-    //     id: 0,
-    //     name: "",
-    //     homepage: "",
-    //     description: "",
-    //     user: currentUser
-    //   };
 
-    //   const shop: Shop = {
-    //     id: 0,
-    //     location: "",
-    //     seller: seller
-    //   };
-
-    //   function validateInput() {
-    //     if (name === "") {
-    //       setError("Please enter the name of your business.");
-    //     } else if (homepage === "") {
-    //       setError("You must create a URL for your Shop.");
-    //     } else if (description === "") {
-    //       setError("Please enter a description for your Shop.");
-    //     } else if (location === "") {
-    //       setError("Please enter your business address.");
-    //     } else {
-    //       return true;
-    //     }
-    //   }
-
-    //   const createSeller = async () => {
-    //     seller.name = name;
-    //     seller.homepage = `/${homepage}`;
-    //     seller.description = description;
-    //     shop.location = location;
-
-    //     if (!validateInput()) {
-    //       return;
-    //     }
-
-    //     await dispatch(saveSellerShop(shop))
-    //       .unwrap()
-    //       .then((originalPromiseResult) => {
-    //         setShowModal(true);
-    //       })
-    //       .catch((rejectedValueOrSerializedError) => {
-    //         setError("That Shop URL is unavailable.");
-    //         clearInputs();
-    //       });
-    //   };
-
-    //   function clearInputs() {
-    //     setHomepage("");
-    //   }
-
-    //   function handleClose() {
-    //     setShowModal(false);
-    //     dispatch(shopRedirect(null));
-    //     nav(`/shops/${homepage}`);
-    //   }
 
     return (
         <>

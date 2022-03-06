@@ -12,6 +12,7 @@ import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 import ShopPage from "./features/shop-page/ShopPage";
+import  ListItem  from "./features/list-item/ListItem";
 
 function App() {
     useEffect(() => {
@@ -26,8 +27,9 @@ function App() {
                     <Route path="/register" element={<UserRegister />}></Route>
                     <Route path="/signup" element={<SellerRegister />}></Route>
                     <Route path="/login" element={<Login />}></Route>
-                    <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
+                    <Route path="/sellers" element={<SellerHomepage />}></Route>
                     <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
+                    <Route path="/shops/:shop_id/list" element={<ListItem />}></Route>
                     <Route path="/products" element={<Display />}></Route>
                     <Route path="/products/:product_id" element={<Display />}></Route>
 

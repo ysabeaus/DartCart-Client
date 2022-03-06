@@ -1,11 +1,5 @@
 import store from "./store";
 
-export interface Product {
-    id: number;
-    name: string;
-    ordered: boolean;
-}
-
 export interface User {
     id: number;
     username: string;

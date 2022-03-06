@@ -4,34 +4,48 @@ import {
   createAsyncThunk
 } from "@reduxjs/toolkit";
 import axios from "axios";
-import { ShopProduct } from "../models";
+import { ShopProduct, Product } from "../models";
 
 const MOCK_SERVER = "http://localhost:9005/";
 
 const listItemAdapter = createEntityAdapter<ShopProduct>();
 
+const products: Product[] = [];
+
 const intitialState = listItemAdapter.getInitialState({
-  status: "idle"
+  status: "idle",
+  products
 });
 
 const listItemSlice = createSlice({
-  name: "listItems",
+  name: "listItem",
   initialState: intitialState,
   reducers: {
-    addedShopProduct: listItemAdapter.addOne
+    addedShopProduct: listItemAdapter.addOne,
+    fetchProducts(listItemSliceState, action) {
+      listItemSliceState.products = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
       .addCase(createShopProduct.pending, (state, action) => {
-        state.status = "Loading";
+        state.status = "loading";
       })
       .addCase(createShopProduct.fulfilled, (state, action) => {
         const newEntities = {};
         action.payload.forEach((ShopProduct) => {
           state.ids[ShopProduct.id - 1] = ShopProduct.id;
           newEntities[ShopProduct.id] = ShopProduct;
+          })
+      })
+      .addCase(getAllProducts.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(getAllProducts.fulfilled, (state, action) => {
+        action.payload.forEach((Product) => {
+          state.ids[Product.id - 1] = Product.id;
+          state.products[Product.id] = Product;
         });
-        state.entities = newEntities;
         state.status = "idle";
       });
   }
