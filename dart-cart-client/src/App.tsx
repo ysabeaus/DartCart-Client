@@ -7,6 +7,7 @@ import UserRegister from "./features/user-register/UserRegister";
 import React, { useEffect } from "react";
 import Display from "./features/display/Display";
 import { Provider } from "react-redux";
+import Display from "./features/display/Display";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
 import Header from "./features/layout/Header";
@@ -19,7 +20,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <Provider store={store}>
       <BrowserRouter>
         <Provider store={store}>
           <Header />
@@ -35,7 +36,7 @@ function App() {
           <Footer />
         </Provider>
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 }
 export default App;

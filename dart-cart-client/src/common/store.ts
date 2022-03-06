@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import userRegisterReducer from "./slices/userRegisterSlice";
+import sellerRegisterReducer from "./slices/sellerRegisterSlice";
 import SPSlice from "./slices/shopProductSlice";
 import CPSlice from "./slices/competitorsSlice";
-import accountSlice from "./slices/accountSlice";
-import userRegisterReducer from "./slices/accountSlice";
 import authenticationReducer from "./slices/authSlice";
 
 // Here we configure the store object that redux uses for storing data
@@ -14,10 +14,10 @@ import authenticationReducer from "./slices/authSlice";
 const store = configureStore({
   reducer: {
     userRegister: userRegisterReducer,
-    authentication: authenticationReducer,
+    sellerRegister: sellerRegisterReducer,
+    authentication: authenticationReducer
     ShopProducts: SPSlice,
-    CompetitorProducts: CPSlice,
-    accounts: accountSlice,
+    CompetitorProducts: CPSlice
   },
 });
 
