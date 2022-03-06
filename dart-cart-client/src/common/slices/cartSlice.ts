@@ -4,11 +4,12 @@ import axios from 'axios'
 import { CartItem } from '../types'
 import { RootState } from '../store';
 
-const API_URL = "http://localhost:3001"
+const API_URL = "http://localhost:9005"
 
 const cartAdapater = createEntityAdapter<CartItem>();
 
-export const fetchCart = createAsyncThunk('cart/fetchCart', async (username: string) => {
+export const fetchCart = createAsyncThunk('cart/fetchCart', async () => {
+        const username = localStorage.getItem("username")
         const response = await axios.get(API_URL + "/cart/" + username)
         return response.data
     }

@@ -9,7 +9,7 @@ const Cart = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchCart("test"))
+        dispatch(fetchCart())
     }, [])
 
     return (

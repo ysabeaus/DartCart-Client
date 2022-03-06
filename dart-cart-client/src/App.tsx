@@ -22,10 +22,10 @@ function App() {
         <Provider store={store}>
         <Header/>
           <Routes>
-            <Route path="/" element={<Cart />}></Route>
+            <Route path="/Cart" element={<Cart />}></Route>
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
-            <Route path="/Display" element={<Display />}></Route> 
+            <Route path="/" element={<Display />}></Route> 
             <Route
               path="/ShopProduct/:product_id"
               element={<ShopProductDisplay />}
