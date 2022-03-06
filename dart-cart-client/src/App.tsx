@@ -28,8 +28,11 @@ function App() {
                     <Route path="/login" element={<Login />}></Route>
                     <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
                     <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
-                    <Route path="/display" element={<Display />}></Route>
-                    <Route path="/shop/:product_id" element={<ShopProductDisplay />}></Route>
+                    <Route path="/products" element={<Display />}></Route>
+                    <Route path="/products/:product_id" element={<Display />}></Route>
+
+                    {/* Not sure if this route will work, YOLO */}
+                    <Route path="/shops/:shop_id/:product_id" element={<ShopProductDisplay />}></Route>
                 </Routes>
             </BrowserRouter>
         </Provider>
