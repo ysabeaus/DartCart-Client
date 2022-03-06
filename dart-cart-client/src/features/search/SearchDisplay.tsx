@@ -12,10 +12,7 @@ const SearchDisplay = () => {
 
     const dispatch = useDispatch()
     const filteredProducts = useSelector( (state: RootState) => selectFilteredProducts(state))
-    // const items = new Array();
-    // for(var key in filteredProducts){
-    //     items.push(filteredProducts[key])
-    // }
+
     
 
     useEffect(() => {
