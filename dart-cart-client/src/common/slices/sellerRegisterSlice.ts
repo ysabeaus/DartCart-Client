@@ -1,8 +1,4 @@
-import {
-  createSlice,
-  createEntityAdapter,
-  createAsyncThunk
-} from "@reduxjs/toolkit";
+import { createSlice, createEntityAdapter, createAsyncThunk } from "@reduxjs/toolkit";
 import { Seller, Shop } from "../types";
 import axios from "axios";
 
@@ -14,21 +10,21 @@ const sellerRegisterAdapter = createEntityAdapter<Seller>();
 
 // Create slice that will manage the state of some type of object
 const sellerRegisterSlice = createSlice({
-  name: "sellerRegister",
-  initialState: {
-    status: "idle"
-  },
-  reducers: {
-    shopRedirect(state, action) {
-      state.status = "idle";
+    name: "sellerRegister",
+    initialState: {
+        status: "idle"
+    },
+    reducers: {
+        shopRedirect(state, action) {
+            state.status = "idle";
+        }
+    },
+    // Extra reducers to handle the promise produced by createAsyncThunk
+    extraReducers: (builder) => {
+        builder.addCase(saveSellerandShop.pending, (state, action) => {
+            state.status = "loading";
+        });
     }
-  },
-  // Extra reducers to handle the promise produced by createAsyncThunk
-  extraReducers: (builder) => {
-    builder.addCase(saveSellerShop.pending, (state, action) => {
-      state.status = "loading";
-    });
-  }
 });
 
 // Wrapping reducers in actions
@@ -36,17 +32,15 @@ export const { shopRedirect } = sellerRegisterSlice.actions;
 export default sellerRegisterSlice.reducer;
 
 // Selectors
-export const { selectAll: selectSellers, selectById: selectSellerById } =
-  sellerRegisterAdapter.getSelectors((state: any) => state.users);
+export const { selectAll: selectSellers, selectById: selectSellerById } = sellerRegisterAdapter.getSelectors(
+    (state: any) => state.users
+);
 
 // Async thunks
-export const saveSellerShop = createAsyncThunk(
-  "sellerRegister/createdSellerShop",
-  async (shop: Shop) => {
-    return await axios.post(API_URL + "signup/shop", {
-      id: shop.id,
-      location: shop.location,
-      seller: shop.seller
+export const saveSellerandShop = createAsyncThunk("sellerRegister/createSellerandShop", async (shop: Shop) => {
+    return await axios.post(API_URL + "signup", {
+        id: shop.id,
+        location: shop.location,
+        seller: shop.seller
     });
-  }
-);
+});

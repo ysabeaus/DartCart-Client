@@ -1,5 +1,5 @@
 import { Alert, Modal, Button } from "react-bootstrap";
-import { saveSellerShop, shopRedirect } from "../../common/slices/sellerRegisterSlice";
+import { saveSellerandShop, shopRedirect } from "../../common/slices/sellerRegisterSlice";
 import { Seller, Shop } from "../../common/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -62,7 +62,7 @@ export function SellerRegister() {
 
         console.log(shop);
 
-        await dispatch(saveSellerShop(shop))
+        await dispatch(saveSellerandShop(shop))
             .unwrap()
             .then((originalPromiseResult) => {
                 setShowModal(true);
