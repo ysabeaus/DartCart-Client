@@ -11,6 +11,7 @@ import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
 import Header from "./features/layout/Header";
 import Footer from "./features/layout/Footer";
+import SearchDisplay from "./features/search/SearchDisplay";
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/" element={<Display />}></Route>
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/search" element={<SearchDisplay />} />
             <Route
               path="/shop-product/:product_id"
               element={<ShopProductDisplay />}

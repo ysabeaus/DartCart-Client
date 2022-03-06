@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 interface ProductCard {
-  ShopProduct: ShopProduct;
+  ShopProduct;
 }
+
+
 const ComputerUrl =
   "https://images.unsplash.com/photo-1587831990711-23ca6441447b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGVza3RvcCUyMGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80";
 
@@ -18,10 +20,10 @@ export function ProductCard({ ShopProduct }: ProductCard) {
       ></img>
       <div className="card-body">
         <h1>{ShopProduct.product.name}</h1>
-        <p className="card-text">{ShopProduct.product.description}</p>
+        <p className="card-text">{ShopProduct.poduct.description}</p>
         <Link
           className="btn stretched-link"
-          to={`/ShopProduct/${ShopProduct.product.product_id}`}
+          to={`/shop-product/${ShopProduct.product.product_id}`}
         ></Link>
       </div>
     </div>
