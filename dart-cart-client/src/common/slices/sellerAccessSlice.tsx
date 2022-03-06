@@ -17,6 +17,10 @@ const sellerAccessSlice = createSlice({
     reducers: {
         updateSeller(sellerAccessSliceState, action) {
             sellerAccessSliceState.seller = action.payload;
+        },
+        logoutSeller(sellerAccessSliceState, action) {
+            sellerAccessSliceState.seller = null;
+            localStorage.removeItem("seller");
         }
     },
     // Extra reducers to handle the promise created by createAsyncThunk
@@ -49,5 +53,5 @@ export const fetchSeller = createAsyncThunk("sellerAccess/fetchSeller", async (i
     });
 });
 
-export const { updateSeller } = sellerAccessSlice.actions;
+export const { updateSeller, logoutSeller } = sellerAccessSlice.actions;
 export default sellerAccessSlice.reducer;

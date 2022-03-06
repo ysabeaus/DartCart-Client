@@ -10,7 +10,6 @@ import Display from "./features/display/Display";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
-import SellerAccess from "./features/seller-access/SellerAccess";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
                     <Route path="/register" element={<UserRegister />}></Route>
                     <Route path="/signup" element={<SellerRegister />}></Route>
                     <Route path="/login" element={<Login />}></Route>
-                    <Route path="/sellers/" element={<SellerAccess />}></Route>
                     <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
                     <Route path="/display" element={<Display />}></Route>
                     <Route path="/shop/:product_id" element={<ShopProductDisplay />}></Route>

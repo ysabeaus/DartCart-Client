@@ -1,15 +1,7 @@
-import { Alert, Modal, Button } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
-import {
-    homeRedirect,
-    loginUser,
-    loginSeller,
-    selectStatus,
-    selectUser,
-    logout,
-    selectSeller
-} from "../../common/slices/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { Modal, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { homeRedirect, loginUser, selectStatus, selectUser, fetchSeller, logout } from "../../common/slices/authSlice";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
 
@@ -23,23 +15,28 @@ export const Login = () => {
     const dispatch = useAppDispatch();
     const status = useSelector(selectStatus);
     const stateUser = useSelector(selectUser);
-    const user = JSON.parse(stateUser);
+    let user = JSON.parse(stateUser);
 
     useEffect(() => {
         if (status === "failure") setError("Wrong username or password.");
     }, [status]);
 
-    const handleLogin = async (e) => {
+    useEffect(() => {}, [status]);
+
+    const handleLogin = async () => {
         await dispatch(loginUser({ username, password }));
+        setError("");
         setShowModal(true);
     };
 
-    const handleLogout = async (e) => {
+    const handleLogout = () => {
         dispatch(logout(null));
+        // dispatch(logoutSeller(null));
     };
 
     const handleClose = () => {
         setShowModal(false);
+        dispatch(fetchSeller(user.id));
         dispatch(homeRedirect(null));
         nav("/");
     };
