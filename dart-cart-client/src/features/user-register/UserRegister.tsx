@@ -110,7 +110,7 @@ export function UserRegister() {
                                 <div className="card-header card text-center bg-success text-white">
                                     <h3 className="mb-0">Create Your Account</h3>
                                 </div>
-                                <div className="card-body p-3 text-center">
+                                <div className="card-body p-3 text-center" style={{ backgroundColor: "#a6a6a6" }}>
                                     {error ? <Alert variant="danger">{error}</Alert> : null}
 
                                     <div className="row">
