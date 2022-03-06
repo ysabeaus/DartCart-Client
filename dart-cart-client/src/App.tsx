@@ -5,14 +5,19 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./features/Home";
 import UserRegister from "./features/user-register/UserRegister";
 import SellerRegister from "./features/seller-register/SellerRegister";
-import { Provider } from "react-redux";
+import React, { useEffect } from "react";
 import Display from "./features/display/Display";
+import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
 import SellerAccess from "./features/seller-access/SellerAccess";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 
 function App() {
+    useEffect(() => {
+        document.title = "DartCart";
+    });
+
     return (
         <Provider store={store}>
             <BrowserRouter>
@@ -30,4 +35,5 @@ function App() {
         </Provider>
     );
 }
+
 export default App;
