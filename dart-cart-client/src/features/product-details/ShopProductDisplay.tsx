@@ -72,7 +72,6 @@ const ShopProductDisplay = () => {
 
   return (
     <>
-      <Header></Header>
 
       <div className="ProductContainer">
         <div className="InnerProduct">
@@ -99,7 +98,6 @@ const ShopProductDisplay = () => {
         <CompetingSellers Seller={1}></CompetingSellers>
       </div>
 
-      <Footer></Footer>
     </>
   );
 };

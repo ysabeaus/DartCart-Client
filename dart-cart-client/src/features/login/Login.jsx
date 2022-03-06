@@ -38,7 +38,7 @@ export const Login = () => {
   return (
     <>
       {!user ? (
-        <section className="vh-100 loginForm">
+        <section className="loginForm">
           <div className="container py-5">
             <div className="row d-flex justify-content-center align-items-center">
               <div className="col-4">
@@ -49,7 +49,7 @@ export const Login = () => {
                   <div className="card-header card text-center bg-success text-white">
                     <h3 className="mb-0">Login</h3>
                   </div>
-                  <div className="card-body p-4 text-center">
+                  <div className="card-body p-4 text-center" style={{ backgroundColor: '#a6a6a6' }}>
                     {alert && (
                       <div className="alert alert-danger" role="alert">
                         {alert}
@@ -126,6 +126,7 @@ export const Login = () => {
           </div>
         </selection>
       )}
+      <footer></footer>
     </>
   );
 };
