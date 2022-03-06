@@ -1,7 +1,7 @@
 import { ShopProduct } from "../../common/models";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart } from '../../common/slices/cartSlice';
+import { addToCart } from "../../common/slices/cartSlice";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -14,11 +14,8 @@ const ComputerUrl =
 export function ShopProductCard({ ShopProduct }: IShopProductCard) {
   const dispatch = useDispatch()
 
-  function handleAddtoCard(event) {
-    event.preventDefault();
-    console.log(ShopProduct.shop_product_id)
-    localStorage.setItem("shopId", (ShopProduct.shop_product_id).toString());
-    dispatch(addToCart());
+  function handleAddtoCart() {
+    dispatch(addToCart(ShopProduct.shop_product_id));
   }
 
   return (
@@ -46,7 +43,7 @@ export function ShopProductCard({ ShopProduct }: IShopProductCard) {
         
       </div>
       <div>
-        <button className="btn btn-primary" value={ShopProduct.shop_product_id} onClick={(e) => handleAddtoCard(e)}>Add to card</button>
+        <button className="btn btn-primary" value={ShopProduct.shop_product_id} onClick={handleAddtoCart}>Add to card</button>
         </div>
     </>
   );

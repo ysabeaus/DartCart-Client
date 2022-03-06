@@ -4,7 +4,7 @@ import CPSlice from "./slices/competitorsSlice";
 import accountSlice from "./slices/accountSlice";
 import userRegisterReducer from "./slices/accountSlice";
 import authenticationReducer from "./slices/authSlice";
-import cartReducers from "./slices/cartSlice";
+import cartSlice from "./slices/cartSlice";
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here. Note that redux
 // toolkit query's createApi is creating a slice as well, so it is included
@@ -18,7 +18,7 @@ const store = configureStore({
     ShopProducts: SPSlice,
     CompetitorProducts: CPSlice,
     accounts: accountSlice,
-    carts : cartReducers
+    cart: cartSlice
   },
 });
 

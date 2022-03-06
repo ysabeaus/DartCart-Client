@@ -7,7 +7,7 @@ import axios from "axios";
 import { ShopProduct } from "../models";
 
 const MOCK_SERVER =
-  "http://localhost:9005";
+  "http://localhost:3001";
 
 const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 
@@ -26,9 +26,7 @@ const intitialState = SPAdapter.getInitialState({
 const SPSlice = createSlice({
   name: "ShopProducts",
   initialState: intitialState, //format is identical to getInitialState(), but we added a "status" field to the js Object
-  reducers: {
-    //addShopProducts: SPAdapter.addOne,///example reducer. Can't seem to get a selector without one reducer existing????
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchShopProducts.pending, (state, action) => {

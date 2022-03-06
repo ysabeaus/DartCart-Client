@@ -1,3 +1,4 @@
+import { ShopProduct } from "./models";
 import store from "./store";
 
 export interface Product {
@@ -16,6 +17,14 @@ export interface User {
   phone: string;
   location: string;
   registrationDate: number;
+}
+
+export interface CartItem {
+  id: number,
+  quantity: number,
+  saved: boolean,
+  customer: User,
+  shopProduct: ShopProduct
 }
 
 export type RootState = ReturnType<typeof store.getState>;
