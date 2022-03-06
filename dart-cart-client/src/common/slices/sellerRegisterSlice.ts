@@ -15,11 +15,10 @@ const sellerRegisterAdapter = createEntityAdapter<Seller>();
 // Create slice that will manage the state of some type of object
 const sellerRegisterSlice = createSlice({
   name: "sellerRegister",
-  initialState: sellerRegisterAdapter.getInitialState({
+  initialState: {
     status: "idle"
-  }),
+  },
   reducers: {
-    addedSeller: sellerRegisterAdapter.addOne,
     shopRedirect(state, action) {
       state.status = "idle";
     }
@@ -33,7 +32,7 @@ const sellerRegisterSlice = createSlice({
 });
 
 // Wrapping reducers in actions
-export const { addedSeller, shopRedirect } = sellerRegisterSlice.actions;
+export const { shopRedirect } = sellerRegisterSlice.actions;
 export default sellerRegisterSlice.reducer;
 
 // Selectors
@@ -44,7 +43,7 @@ export const { selectAll: selectSellers, selectById: selectSellerById } =
 export const saveSellerShop = createAsyncThunk(
   "sellerRegister/createdSellerShop",
   async (shop: Shop) => {
-    return await axios.post(API_URL + "signup", {
+    return await axios.post(API_URL + "signup/shop", {
       id: shop.id,
       location: shop.location,
       seller: shop.seller
