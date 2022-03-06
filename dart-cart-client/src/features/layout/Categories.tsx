@@ -4,8 +4,7 @@ import { Dropdown } from "react-bootstrap";
 
 const Categories = () => {
   return (
-
-    <Dropdown>
+    <Dropdown style={{ flex: "auto"}}>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         Categories
       </Dropdown.Toggle>
