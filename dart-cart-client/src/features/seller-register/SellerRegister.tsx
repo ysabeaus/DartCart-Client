@@ -4,13 +4,13 @@ import { Seller, Shop } from "../../common/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
-import { selectUser } from "../../common/slices/authSlice";
+import { selectUser, updateSeller } from "../../common/slices/authSlice";
 import { useSelector } from "react-redux";
 
 export function SellerRegister() {
     // Get user from store
     const currentUserString = useSelector(selectUser);
-    const currentUser = JSON.parse(currentUserString || "{}");
+    const currentUser = JSON.parse(currentUserString || "");
 
     const [name, setName] = useState("");
     const [homepage, setHomepage] = useState("");
@@ -77,10 +77,11 @@ export function SellerRegister() {
         setHomepage("");
     }
 
-    const handleClose = () => {
+    const handleClose = async () => {
         setShowModal(false);
+        // await dispatch(fetchSeller(seller));
         dispatch(shopRedirect(null));
-        nav(`/`);
+        nav("/");
     };
 
     return (

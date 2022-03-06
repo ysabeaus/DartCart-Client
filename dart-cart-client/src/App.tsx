@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
+import ShopPage from "./features/shop-page/ShopPage";
 
 function App() {
     useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/signup" element={<SellerRegister />}></Route>
                     <Route path="/login" element={<Login />}></Route>
                     <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
+                    <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
                     <Route path="/display" element={<Display />}></Route>
                     <Route path="/shop/:product_id" element={<ShopProductDisplay />}></Route>
                 </Routes>

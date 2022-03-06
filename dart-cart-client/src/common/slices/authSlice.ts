@@ -12,7 +12,8 @@ const authenticationSlice = createSlice({
         status: "idle",
         token: localStorage.getItem("accessToken"),
         user: localStorage.getItem("user"),
-        seller: localStorage.getItem("seller")
+        seller: localStorage.getItem("seller"),
+        shop: localStorage.getItem("shop")
     },
     reducers: {
         updateToken(authenticationSliceState, action) {
@@ -24,6 +25,9 @@ const authenticationSlice = createSlice({
         updateSeller(authenticationSliceState, action) {
             authenticationSliceState.seller = action.payload;
         },
+        updateShop(authenticationSliceState, action) {
+            authenticationSliceState.shop = action.payload;
+        },
         logout(authenticationSliceState, action) {
             authenticationSliceState.token = null;
             authenticationSliceState.user = null;
@@ -34,6 +38,7 @@ const authenticationSlice = createSlice({
             localStorage.removeItem("username");
             localStorage.removeItem("accessToken");
             localStorage.removeItem("seller");
+            localStorage.removeItem("shop");
         },
         homeRedirect(authenticationSliceState, action) {
             authenticationSliceState.status = "loading";
@@ -55,17 +60,29 @@ const authenticationSlice = createSlice({
             .addCase(loginUser.rejected, (authenticationSliceState, action) => {
                 authenticationSliceState.status = "failure";
             })
-            .addCase(fetchSeller.pending, (sellerAccessSliceState, action) => {
-                sellerAccessSliceState.status = "loading";
+            .addCase(fetchSeller.pending, (authenticationState, action) => {
+                authenticationState.status = "loading";
             })
-            .addCase(fetchSeller.fulfilled, (sellerAccessSliceState, action) => {
-                sellerAccessSliceState.seller = localStorage.getItem("seller");
+            .addCase(fetchSeller.fulfilled, (authenticationState, action) => {
+                authenticationState.seller = localStorage.getItem("seller");
 
-                if (sellerAccessSliceState.seller) sellerAccessSliceState.status = "success";
-                else sellerAccessSliceState.status = "failure";
+                if (authenticationState.seller) authenticationState.status = "success";
+                else authenticationState.status = "failure";
             })
-            .addCase(fetchSeller.rejected, (sellerAccessSliceState, action) => {
-                sellerAccessSliceState.status = "failure";
+            .addCase(fetchSeller.rejected, (authenticationState, action) => {
+                authenticationState.status = "failure";
+            })
+            .addCase(fetchShop.pending, (authenticationState, action) => {
+                authenticationState.status = "loading";
+            })
+            .addCase(fetchShop.fulfilled, (authenticationState, action) => {
+                authenticationState.shop = localStorage.getItem("shop");
+
+                if (authenticationState.shop) authenticationState.status = "success";
+                else authenticationState.status = "failure";
+            })
+            .addCase(fetchShop.rejected, (authenticationState, action) => {
+                authenticationState.status = "failure";
             });
     }
 });
@@ -78,7 +95,9 @@ export const selectStatus = createSelector(
 
 export const selectUser = (state) => state.authentication.user;
 
-export const selectSeller = (state) => state.sellerAccess.seller;
+export const selectSeller = (state) => state.authentication.seller;
+
+export const selectShop = (state) => state.authentication.shop;
 
 export const selectToken = createSelector(
     (state: RootState) => state.authentication,
@@ -109,9 +128,15 @@ export const loginUser = createAsyncThunk(
     }
 );
 
-export const fetchSeller = createAsyncThunk("sellerAccess/fetchSeller", async (id: number) => {
+export const fetchSeller = createAsyncThunk("authentication/fetchSeller", async (id: number) => {
     return axios.get(`${API_URL}sellers/${id}`).then((response) => {
         localStorage.setItem("seller", JSON.stringify(response.data));
+    });
+});
+
+export const fetchShop = createAsyncThunk("authentication/fetchShop", async (id: number) => {
+    return axios.get(`${API_URL}shops/${id}`).then((response) => {
+        localStorage.setItem("shop", JSON.stringify(response.data));
     });
 });
 
