@@ -15,9 +15,9 @@ const store = configureStore({
   reducer: {
     userRegister: userRegisterReducer,
     sellerRegister: sellerRegisterReducer,
-    authentication: authenticationReducer
+    authentication: authenticationReducer,
     ShopProducts: SPSlice,
-    CompetitorProducts: CPSlice
+    CompetitorProducts: CPSlice,
   },
 });
 

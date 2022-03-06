@@ -7,12 +7,10 @@ import UserRegister from "./features/user-register/UserRegister";
 import React, { useEffect } from "react";
 import Display from "./features/display/Display";
 import { Provider } from "react-redux";
-import Display from "./features/display/Display";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
 import Header from "./features/layout/Header";
 import Footer from "./features/layout/Footer";
-
 
 function App() {
   useEffect(() => {
