@@ -12,13 +12,13 @@ import authenticationReducer from "./slices/authSlice";
 // we also declare all the middleware we'll be using (here we add the exampleApi
 // to the default middleware that comes with RTK)
 const store = configureStore({
-  reducer: {
-    userRegister: userRegisterReducer,
-    sellerRegister: sellerRegisterReducer,
-    authentication: authenticationReducer,
-    ShopProducts: SPSlice,
-    CompetitorProducts: CPSlice
-  }
+    reducer: {
+        userRegister: userRegisterReducer,
+        sellerRegister: sellerRegisterReducer,
+        authentication: authenticationReducer,
+        ShopProducts: SPSlice,
+        CompetitorProducts: CPSlice
+    }
 });
 
 export default store;

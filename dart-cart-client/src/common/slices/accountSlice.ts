@@ -68,7 +68,7 @@ export const { selectAll: selectUsers, selectById: selectUserById } =
   accountAdapter.getSelectors((state: any) => state.users);
 
 export const selectStatus = createSelector(
-  (state: RootState) => state.accounts,
+  (state: RootState) => state.userRegister,
   (accounts) => accounts.status
 );
 
