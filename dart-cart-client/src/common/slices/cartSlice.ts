@@ -4,20 +4,21 @@ import axios from 'axios'
 import { CartItem } from '../types'
 import { RootState } from '../store';
 
-const API_URL = "http://localhost:9005"
+const API_URL = process.env.REACT_APP_API_URL
 
 const cartAdapater = createEntityAdapter<CartItem>();
 
 export const fetchCart = createAsyncThunk('cart/fetchCart', async () => {
         const username = localStorage.getItem("username")
-        const response = await axios.get(API_URL + "/cart/" + username)
+        const response = await axios.get(API_URL + "carts/" + username)
+
         return response.data
     }
 )
 
 export const addToCart = createAsyncThunk('cart/addToCart', async (shop_product_id: number) => {
         const username = localStorage.getItem("username")
-        const response = await axios.post(API_URL + "/cart", {
+        const response = await axios.post(API_URL + "carts", {
             quantity: 1,
             saved: false,
             customer: {
@@ -33,7 +34,7 @@ export const addToCart = createAsyncThunk('cart/addToCart', async (shop_product_
 )
 
 export const updateCart = createAsyncThunk('cart/updateCart', async (cartItem: CartItem) => {
-        const response = await axios.put(API_URL + "/cart/" + cartItem.id, {
+        const response = await axios.put(API_URL + "carts/" + cartItem.id, {
             quantity: cartItem.quantity
         })
 
