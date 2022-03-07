@@ -1,33 +1,15 @@
-import logo from "../../imgs/boldDart.jpg";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
-import { logout, selectUser } from "../../common/slices/authSlice";
-import { useDispatch, useSelector } from "react-redux";
-//import
-
-const logoStyle = {
-  height: "15%",
-  width: "15%",
-  marginLeft: "3%",
-};
+import "../styles.css";
+import Logo from "./Logo";
+import Searchbar from "./Searchbar";
+import Nav from "./Navbar";
+import Categories from "./Categories";
+import { Navbar } from 'react-bootstrap';
 
 
 const Header = () => {
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
-  let username = "";
-  if (user != null) {
-    username = JSON.parse(user).username;
-  }
-
-  const handleLogout = async (e) => {
-    dispatch(logout(null));
-    window.alert("Successfully Logged Out");
-  };
-
   return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-black">
+    // <>
+      /* <nav className="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-black">
         
           <img style={logoStyle} src={logo} alt="logo">
             
@@ -96,7 +78,15 @@ const Header = () => {
 
         </div>
       </nav>
-    </>
+    </> */
+    <Navbar>
+    <header className="navbar navbar-expand-lg navbar-fixed-top navbar-custom" style= {{width: '100%'}}>
+        <Logo />
+        <Searchbar />
+        <Categories />
+        <Nav />
+    </header>
+    </Navbar>
   );
 };
 

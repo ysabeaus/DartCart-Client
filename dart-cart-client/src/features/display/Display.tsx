@@ -42,15 +42,19 @@ const Display = () => {
     <>
       <div className=""></div>
 
-<div className="ProductCardContainer">
-  {ReduxShopProducts.length > 0
-    ? findCheapest(ReduxShopProducts).map((ShopProduct) => {
-        return (
-          <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
-        );
-      })
-    : ""}
-</div>
+      <div className="ProductCardContainer">
+        {ReduxShopProducts.length > 0 ? (
+          findCheapest(ReduxShopProducts).map((ShopProduct) => {
+            return (
+              <ShopProductCard ShopProduct={ShopProduct}></ShopProductCard>
+            );
+          })
+        ) : (
+          <div className="text-light fs-1 p-5 text-uppercase" style = {{textAlign: "center"}}>
+            Fetching Products...
+          </div>
+        )}
+      </div>
     </>
   );
 };
