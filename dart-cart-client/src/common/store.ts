@@ -3,6 +3,7 @@ import userRegisterReducer from "./slices/userRegisterSlice";
 import sellerRegisterReducer from "./slices/sellerRegisterSlice";
 import SPSlice from "./slices/shopProductSlice";
 import CPSlice from "./slices/competitorsSlice";
+import invoiceReducer from "./slices/invoiceSlice";
 import authenticationReducer from "./slices/authSlice";
 
 // Here we configure the store object that redux uses for storing data
@@ -18,6 +19,7 @@ const store = configureStore({
     authentication: authenticationReducer,
     ShopProducts: SPSlice,
     CompetitorProducts: CPSlice,
+    invoices: invoiceReducer,
   },
 });
 
