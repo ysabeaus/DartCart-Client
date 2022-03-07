@@ -1,5 +1,6 @@
 import { createSlice, createEntityAdapter, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import authHeader from "../../features/authentication/AuthHeader";
 import { ShopProduct, Product } from "../models";
 
 const MOCK_SERVER = "http://localhost:9005/";
@@ -57,19 +58,23 @@ export const { selectAll: selectShopProducts, selectById: selectShopProductById 
 export const selectProducts = (state) => state.products.products;
 
 export const getAllProducts = createAsyncThunk("listItem/getAllProducts", async () => {
-    const response = await axios.get(MOCK_SERVER + "products");
+    const response = await axios.get(MOCK_SERVER + "products", { headers: authHeader() });
     return response.data;
 });
 
 export const createShopProduct = createAsyncThunk("listItem/createShopProduct", async (shopProduct: ShopProduct) => {
-    return await axios.post(MOCK_SERVER + "shop_products", {
-        id: shopProduct.id,
-        shop: shopProduct.shop,
-        product: shopProduct.product,
-        quantity: shopProduct.quantity,
-        price: shopProduct.price,
-        discount: shopProduct.discount
-    });
+    return await axios.post(
+        MOCK_SERVER + "shop_products",
+        {
+            id: shopProduct.id,
+            shop: shopProduct.shop,
+            product: shopProduct.product,
+            quantity: shopProduct.quantity,
+            price: shopProduct.price,
+            discount: shopProduct.discount
+        },
+        { headers: authHeader() }
+    );
 });
 
 export default listItemSlice.reducer;

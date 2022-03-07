@@ -4,7 +4,7 @@ import { Seller, Shop } from "../../common/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
-import { selectUser, updateSeller } from "../../common/slices/authSlice";
+import { fetchSeller, selectUser, updateSeller } from "../../common/slices/authSlice";
 import { useSelector } from "react-redux";
 
 export function SellerRegister() {
@@ -60,8 +60,6 @@ export function SellerRegister() {
             return;
         }
 
-        console.log(shop);
-
         await dispatch(saveSellerandShop(shop))
             .unwrap()
             .then((originalPromiseResult) => {
@@ -79,7 +77,7 @@ export function SellerRegister() {
 
     const handleClose = async () => {
         setShowModal(false);
-        // await dispatch(fetchSeller(seller));
+        await dispatch(fetchSeller(currentUser.id));
         dispatch(shopRedirect(null));
         nav("/");
     };

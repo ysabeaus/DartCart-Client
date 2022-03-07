@@ -26,6 +26,12 @@ export interface Shop {
     seller: Seller;
 }
 
+export interface AuthContextType {
+    user: any;
+    signin: (user: string, callback: VoidFunction) => void;
+    signout: (callback: VoidFunction) => void;
+}
+
 export type RootState = ReturnType<typeof store.getState>;
 export type SecurityToken = string;
 export type AppDispatch = typeof store.dispatch;

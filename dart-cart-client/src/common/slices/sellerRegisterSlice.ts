@@ -1,6 +1,7 @@
 import { createSlice, createEntityAdapter, createAsyncThunk } from "@reduxjs/toolkit";
 import { Seller, Shop } from "../types";
 import axios from "axios";
+import authHeader from "../../features/authentication/AuthHeader";
 
 // Change URL for testing vs. production
 const API_URL = process.env.REACT_APP_API_URL;
@@ -37,10 +38,14 @@ export const { selectAll: selectSellers, selectById: selectSellerById } = seller
 );
 
 // Async thunks
-export const saveSellerandShop = createAsyncThunk("sellerRegister/createSellerandShop", async (shop: Shop) => {
-    return await axios.post(API_URL + "signup", {
-        id: shop.id,
-        location: shop.location,
-        seller: shop.seller
-    });
+export const saveSellerandShop = createAsyncThunk("sellerRegister/saveSellerandShop", async (shop: Shop) => {
+    return await axios.post(
+        API_URL + "signup",
+        {
+            id: shop.id,
+            location: shop.location,
+            seller: shop.seller
+        },
+        { headers: authHeader() }
+    );
 });

@@ -27,14 +27,7 @@ function App() {
                     <Route path="/register" element={<UserRegister />}></Route>
                     <Route path="/signup" element={<SellerRegister />}></Route>
                     <Route path="/login" element={<Login />}></Route>
-                    <Route
-                        path="/sellers/:seller_homepage"
-                        element={
-                            <RequireAuth>
-                                <SellerHomepage />
-                            </RequireAuth>
-                        }
-                    ></Route>
+                    <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
                     <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
                     <Route path="/shops/:shop_id/list" element={<ListItem />}></Route>
                     <Route path="/products" element={<Display />}></Route>

@@ -37,7 +37,7 @@ export function UserRegister() {
     // BASIC input validation: no empty fields, passwords must match, formatting requirements
     // Possible TODO: Password complexity requirements
     // Possible TODO: Enforcing username requirements, address formatting
-    function validateInput() {
+    const validateInput = () => {
         if (username === "") {
             setError("Please enter a username.");
         } else if (email === "") {
@@ -61,7 +61,7 @@ export function UserRegister() {
         } else {
             return true;
         }
-    }
+    };
 
     const createUser = async () => {
         user.username = username;

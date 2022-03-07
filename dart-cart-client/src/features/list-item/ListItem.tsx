@@ -9,14 +9,15 @@ import { useSelector } from "react-redux";
 import { createShopProduct, getAllProducts, selectProducts } from "../../common/slices/listItemSlice";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { ShopProduct } from "../../common/models";
-import NumberFormat from "react-number-format";
+import CurrencyInput, { CurrencyInputProps } from "react-currency-input-field";
 
 export function ListItem() {
     const [productName, setProductName] = useState<any[]>([]);
     const [error, setError] = useState("");
-    const [productPrice, setProductPrice] = useState(0);
     const [productQuantity, setProductQuantity] = useState(0);
-    const [productDiscount, setProductDiscount] = useState(0);
+    const [productPrice, setProductPrice] = useState<string>("");
+    const [productDiscount, setProductDiscount] = useState<string>("");
+    const [showModal, setShowModal] = useState(false);
     const stateProducts = useSelector(selectProducts);
     const stateShop = useSelector(selectShop);
     const shop = JSON.parse(stateShop);
@@ -33,7 +34,6 @@ export function ListItem() {
         });
     };
     const products = extractProductNames();
-    console.log(products);
 
     const setChosenProduct = () => {
         if (productName) {
@@ -41,7 +41,6 @@ export function ListItem() {
         }
     };
     const chosenProduct = setChosenProduct();
-    console.log(chosenProduct);
 
     const extractCategories = () => {
         return chosenProduct.categories.map((category) => {
@@ -65,23 +64,44 @@ export function ListItem() {
         discount: 0
     };
 
+    const validateInput = () => {
+        if (chosenProduct === undefined) {
+            setError("Select a product.");
+        } else if (productQuantity === 0) {
+            setError("Enter a valid quantity.");
+        } else if (productPrice === "") {
+            setError("Enter a product price.");
+        } else {
+            return true;
+        }
+    };
+
     const handleOnClick = () => {
+        console.log(chosenProduct);
+
         shopProduct.quantity = productQuantity;
-        shopProduct.price = productPrice * 100;
-        shopProduct.discount = productDiscount * 100;
+        const rawPrice = productPrice.slice(1);
+        // Multiply by 100 to convert dollar price to raw cents value
+        shopProduct.price = Number.parseFloat(rawPrice) * 100;
+        if (productDiscount) shopProduct.discount = Number.parseFloat(productDiscount) * 100;
+
+        if (!validateInput()) {
+            return;
+        }
 
         console.log(shopProduct);
 
-        // TODO: Input validation
+        dispatch(createShopProduct(shopProduct))
+            .unwrap()
+            .then((originalPromiseResult) => {
+                setShowModal(true);
+            });
+    };
 
-        // dispatch(createShopProduct(shopProduct))
-        //     .unwrap()
-        //     .then((originalPromiseResult) => {
-        //         window.alert("AAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHH");
-        //     })
-        //     .catch((rejectedValueOrSerializedError) => {
-        //         setError("Some kind of input validation thing.");
-        //     });
+    const handleClose = () => {
+        setShowModal(false);
+        dispatch(shopRedirect(null));
+        nav("/");
     };
 
     return (
@@ -110,8 +130,9 @@ export function ListItem() {
                                         </div>
                                         <div className="form-outline mb-4">
                                             <Form.Group>
-                                                <Form.Label>Single Selection</Form.Label>
+                                                <Form.Label>Select Product</Form.Label>
                                                 <Typeahead
+                                                    className="form-control form-control-lg"
                                                     id="basic-typeahead-single"
                                                     labelKey="name"
                                                     onChange={(selected) => {
@@ -151,16 +172,16 @@ export function ListItem() {
                                             <h4>Price Per Item</h4>
                                         </div>
                                         <div className="form-outline mb-4">
-                                            <input
-                                                type="number"
-                                                step={0.01}
-                                                placeholder={`0`}
+                                            <span>$</span>
+                                            <CurrencyInput
+                                                prefix="$"
                                                 id="typeEmailX-2"
+                                                name="product-price"
                                                 className="form-control form-control-lg"
-                                                value={productPrice}
-                                                onChange={(e) => {
-                                                    setProductPrice(Number.parseFloat(e.target.value));
-                                                }}
+                                                placeholder="Please enter a price."
+                                                defaultValue={0}
+                                                decimalsLimit={2}
+                                                onChange={(e) => setProductPrice(e.target.value)}
                                             />
                                         </div>
                                     </div>
@@ -169,22 +190,31 @@ export function ListItem() {
                                             <h4>Discount</h4>
                                         </div>
                                         <div className="form-outline mb-4">
-                                            <input
-                                                type="number"
-                                                step={0.01}
-                                                placeholder={`0`}
+                                            <CurrencyInput
+                                                prefix="$"
                                                 id="typeEmailX-2"
+                                                name="discount-price"
                                                 className="form-control form-control-lg"
-                                                value={productDiscount}
-                                                onChange={(e) => {
-                                                    setProductDiscount(Number.parseFloat(e.target.value));
-                                                }}
+                                                placeholder="Please enter a discount."
+                                                defaultValue={0}
+                                                decimalsLimit={2}
+                                                onChange={(e) => setProductDiscount(e.target.value)}
                                             />
                                         </div>
                                     </div>
                                     <button className="btn btn-success btn-lg btn-block" onClick={handleOnClick}>
                                         Post
                                     </button>
+
+                                    <Modal show={showModal}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>List Item</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>Item listed for sale!</Modal.Body>
+                                        <Modal.Footer>
+                                            <Button onClick={handleClose}>Close</Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                 </div>
                             </div>
                         </div>
