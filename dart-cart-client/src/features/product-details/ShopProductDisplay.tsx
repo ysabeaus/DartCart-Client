@@ -20,8 +20,10 @@ const ShopProductDisplay = () => {
     const product_id = useParams()?.product_id || "";
     const dispatch = useDispatch();
 
-    //console.log(params)
-    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id));
+ 
+  const ReduxShopProducts = useSelector((state) =>
+    selectShopProductById(state, product_id)
+  );
 
     useEffect(() => {
         dispatch(fetchShopProducts()); // places return value into REDUX global state
@@ -65,12 +67,10 @@ const ShopProductDisplay = () => {
         return newImg;
     }
 
-    return (
-        <>
-            <div className="ProductContainer">
-                <div className="InnerProduct">
-                    <div className="ProductInfoContainer">
-                        {ReduxShopProducts && <div style={ImgSplice(ReduxShopProducts?.product.categories!)}></div>}
+  console.log(ReduxShopProducts)
+
+  return (
+    <>
 
                         <div className="ProductInfoPocket">
                             <h2>{ReduxShopProducts?.product.name?.toUpperCase()}</h2>

@@ -37,6 +37,10 @@
     }
 }
 
+.cardImg {
+    width: 50%;
+    height: 50%;
+}
 .fa {
     color: rgb(25, 135, 84);
 }

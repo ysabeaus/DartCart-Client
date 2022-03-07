@@ -1,18 +1,20 @@
-import "./App.css";
-import { Login } from "./features/authentication/Login";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { Login } from "./features/login/Login";
 import Home from "./features/Home";
 import UserRegister from "./features/user-register/UserRegister";
-import SellerRegister from "./features/seller-register/SellerRegister";
-import React, { useEffect } from "react";
 import Display from "./features/display/Display";
+import PreviousOrders from "./features/previous-orders/previous-orders";
+import SellerRegister from "./features/seller-register/SellerRegister";
+import Error404Page from "./components/Error";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
-import SellerHomepage from "./features/seller-homepage/SellerHomepage";
-import ShopPage from "./features/shop-page/ShopPage";
-import ListItem from "./features/list-item/ListItem";
+import Header from "./features/layout/Header";
+import Footer from "./features/layout/Footer";
+import Cart from "./features/cart/Cart";
+import "./App.css";
 
 function App() {
     useEffect(() => {
@@ -20,24 +22,28 @@ function App() {
     });
 
     return (
-        <Provider store={store}>
+        <div className="App">
             <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    <Route path="/register" element={<UserRegister />}></Route>
-                    <Route path="/signup" element={<SellerRegister />}></Route>
-                    <Route path="/login" element={<Login />}></Route>
-                    <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
-                    <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
-                    <Route path="/shops/:shop_id/list" element={<ListItem />}></Route>
-                    <Route path="/products" element={<Display />}></Route>
-                    <Route path="/products/:product_id" element={<Display />}></Route>
-
-                    {/* Not sure if this route will work, YOLO */}
-                    <Route path="/shops/:shop_id/:product_id" element={<ShopProductDisplay />}></Route>
-                </Routes>
+                <Provider store={store}>
+                    <Header />
+                    <Routes>
+                        <Route path="/" element={<Home />}></Route>
+                        <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
+                        <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
+                        <Route path="/shops/:shop_id/list" element={<ListItem />}></Route>
+                        <Route path="/cart" element={<Cart />}></Route>
+                        <Route path="/register" element={<UserRegister />}></Route>
+                        <Route path="/signup" element={<SellerRegister />}></Route>
+                        <Route path="/login" element={<Login />}></Route>
+                        <Route path="/orders" element={<PreviousOrders />}></Route>
+                        <Route path="/display" element={<Display />}></Route>
+                        <Route path="/shop/:product_id" element={<ShopProductDisplay />}></Route>
+                        <Route path="/*" element={<Error404Page />}></Route>
+                    </Routes>
+                    <Footer />
+                </Provider>
             </BrowserRouter>
-        </Provider>
+        </div>
     );
 }
 

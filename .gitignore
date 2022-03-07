@@ -1,2 +1,6 @@
 dart-cart-client/node_modules/*
-dart-cart-client/db.json
+dart-cart-client/node_modules/
+
+*.orig
+
+*/node_modules/*
