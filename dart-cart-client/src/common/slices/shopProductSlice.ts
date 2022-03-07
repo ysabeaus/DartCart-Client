@@ -6,17 +6,17 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import { ShopProduct } from "../models";
-import { RootState } from "../types";
+import authHeader from '../../features/login/auth-header';
 
 const MOCK_SERVER =
-"https://6a03c0f8-707b-4c71-9de2-eba10f74363b.mock.pstmn.io";
+  "http://localhost:9005/";
 
 const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 
 export const fetchShopProducts = createAsyncThunk(
   "ShopProducts/fetchShopProducts",
   async () => {
-    const response = await axios.get(MOCK_SERVER + "/ShopProducts");
+    const response = await axios.get(MOCK_SERVER + "shop_products", { headers: authHeader() });
     return response.data;
   }
 );
@@ -45,10 +45,16 @@ const SPSlice = createSlice({
         const newEntities = {};
         const newProducts = new Array();
         action.payload.forEach((ShopProduct) => {
+<<<<<<< HEAD
           state.ids[ShopProduct.shop_product_id - 1] =
             ShopProduct.shop_product_id;
           newEntities[ShopProduct.shop_product_id] = ShopProduct;
           newProducts[ShopProduct.shop_product_id - 1] = ShopProduct.product;
+=======
+          state.ids[ShopProduct.id - 1] =
+            ShopProduct.id;
+          newEntities[ShopProduct.id] = ShopProduct;
+>>>>>>> dev
         });
         state.items = newProducts; 
         state.entities = newEntities;

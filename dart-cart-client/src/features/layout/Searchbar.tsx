@@ -23,7 +23,8 @@ const Searchbar = () => {
 
 
   return (
-    <div className="navbar-brand" style={{ width: "60%", marginLeft: "20px" }}>
+
+    <div className="navbar-brand" style={{width:" 60%", marginLeft: "20px" }}>
       <div className="form-inline my-2 my-lg-0">
         <input
           type="submit"
@@ -37,6 +38,8 @@ const Searchbar = () => {
         </div>
       </div>
     </div>
+
+
   );
 };
 

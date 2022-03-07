@@ -1,26 +1,19 @@
 import React from "react";
+import { Navbar } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
 const Categories = () => {
   return (
-    <ul className="navbar-nav">
-      <li className="dropdown">
-        <a className="dropdown-toggle" data-toggle="dropdown" href="#">
-          Categories
-          <span className="caret"></span>
-        </a>
-        <ul className="dropdown-menu">
-          <li>
-            <a href="#">Page 1-1</a>
-          </li>
-          <li>
-            <a href="#">Page 1-2</a>
-          </li>
-          <li>
-            <a href="#">Page 1-3</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <Dropdown style={{ flex: "auto"}}>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Categories
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
 
