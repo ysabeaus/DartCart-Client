@@ -29,6 +29,7 @@ function App() {
         <Provider store={store}>
           <Header />
           <Routes>
+            <Route path="/" element={<Home />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/signup" element={<SellerRegister />}></Route>
