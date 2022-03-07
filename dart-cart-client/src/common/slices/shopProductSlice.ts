@@ -7,9 +7,9 @@ import {
 import axios from "axios";
 import { ShopProduct } from "../models";
 import authHeader from '../../features/login/auth-header';
+import { RootState } from "../types";
 
-const MOCK_SERVER =
-  "http://localhost:9005/";
+const MOCK_SERVER = process.env.REACT_APP_API_URL;
 
 const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 

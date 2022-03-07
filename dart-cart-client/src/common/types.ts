@@ -1,5 +1,4 @@
-import internal from "stream";
-import { ShorthandPropertyAssignment } from "typescript";
+import { ShopProduct } from "./models";
 import store from "./store";
 
 export interface User {
@@ -14,6 +13,13 @@ export interface User {
   registrationDate: number;
 }
 
+export interface CartItem {
+  id: number,
+  quantity: number,
+  saved: boolean,
+  customer: User,
+  shopProduct: ShopProduct
+}
 export interface Shop {
   id: number;
 }

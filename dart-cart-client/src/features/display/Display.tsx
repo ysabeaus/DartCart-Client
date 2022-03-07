@@ -13,21 +13,17 @@ const Display = () => {
   const ReduxShopProducts = useSelector(selectShopProducts);
 
   function findCheapest(list: ShopProduct[]) {
-
     let productMap: Map<number, number> = new Map<number, number>();
     let finalList: ShopProduct[] = [];
 
     for (let i = 0; i < list.length; i++) {
-      if (list[i]) {
-        if (productMap[list[i].product.product_id]) {
-          if (list[i].price < productMap[list[i].product.product_id]) {
-            productMap[list[i].product.product_id] = list[i].price;
-          }
-        } else {
+      if (productMap[list[i].product.product_id]) {
+        if (list[i].price < productMap[list[i].product.product_id]) {
           productMap[list[i].product.product_id] = list[i].price;
         }
+      } else {
+        productMap[list[i].product.product_id] = list[i].price;
       }
-
     }
 
     list.forEach((Sproduct) => {

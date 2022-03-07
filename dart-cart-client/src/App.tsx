@@ -1,11 +1,13 @@
-import "./App.css";
+
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+
 import { Login } from "./features/login/Login";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./features/Home";
 import UserRegister from "./features/user-register/UserRegister";
+import Display from "./features/display/Display";
 import PreviousOrders from './features/previous-orders/previous-orders';
-import React, { useEffect } from "react";
 import SellerRegister from "./features/seller-register/SellerRegister";
 import Error404Page from './components/Error';
 import { Provider } from "react-redux";
@@ -13,7 +15,8 @@ import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
 import Header from "./features/layout/Header"
 import Footer from "./features/layout/Footer"
-import Display from "./features/display/Display";
+import Cart from "./features/cart/Cart";
+import './App.css';
 
 function App() {
   useEffect(() => {
@@ -27,6 +30,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/signup" element={<SellerRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
