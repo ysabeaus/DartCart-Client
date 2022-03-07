@@ -32,7 +32,6 @@ const SPSlice = createSlice({
   initialState: intitialState, //format is identical to getInitialState(), but we added a "status" field to the js Object
   reducers: {
     updatedSearchString(state, action) {
-      console.log(action.payload)
       state.searchString = action.payload;
     }
   },
