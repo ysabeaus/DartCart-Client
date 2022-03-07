@@ -4,6 +4,7 @@ import { homeRedirect, loginUser, selectStatus, selectUser, fetchSeller, logout 
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
+import { fetchCart } from "../../common/slices/cartSlice";
 
 export const Login = () => {
     const [username, setUsername] = useState("");
@@ -26,6 +27,7 @@ export const Login = () => {
     const handleLogin = async () => {
         await dispatch(loginUser({ username, password }));
         setError("");
+        dispatch(fetchCart());
         setShowModal(true);
     };
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Login } from "./features/login/Login";
+import { Login } from "./features/authentication/Login";
 import Home from "./features/Home";
 import UserRegister from "./features/user-register/UserRegister";
 import Display from "./features/display/Display";
