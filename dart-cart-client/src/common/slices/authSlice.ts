@@ -1,5 +1,6 @@
 import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import authHeader from "../../features/authentication/AuthHeader";
 import { RootState } from "../types";
 
 // Change URL for testing vs. production
@@ -130,13 +131,13 @@ export const loginUser = createAsyncThunk(
 );
 
 export const fetchSeller = createAsyncThunk("authentication/fetchSeller", async (id: number) => {
-    return axios.get(`${API_URL}sellers/${id}`).then((response) => {
+    return axios.get(`${API_URL}sellers/${id}`, { headers: authHeader() }).then((response) => {
         localStorage.setItem("seller", JSON.stringify(response.data));
     });
 });
 
 export const fetchShop = createAsyncThunk("authentication/fetchShop", async (id: number) => {
-    return axios.get(`${API_URL}shops/${id}`).then((response) => {
+    return axios.get(`${API_URL}shops/${id}`, { headers: authHeader() }).then((response) => {
         localStorage.setItem("shop", JSON.stringify(response.data));
     });
 });

@@ -91,11 +91,11 @@ export function ListItem() {
 
         console.log(shopProduct);
 
-        dispatch(createShopProduct(shopProduct))
-            .unwrap()
-            .then((originalPromiseResult) => {
-                setShowModal(true);
-            });
+        // dispatch(createShopProduct(shopProduct))
+        //     .unwrap()
+        //     .then((originalPromiseResult) => {
+        //         setShowModal(true);
+        //     });
     };
 
     const handleClose = () => {
