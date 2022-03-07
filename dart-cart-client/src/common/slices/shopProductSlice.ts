@@ -45,16 +45,10 @@ const SPSlice = createSlice({
         const newEntities = {};
         const newProducts = new Array();
         action.payload.forEach((ShopProduct) => {
-<<<<<<< HEAD
           state.ids[ShopProduct.shop_product_id - 1] =
             ShopProduct.shop_product_id;
           newEntities[ShopProduct.shop_product_id] = ShopProduct;
           newProducts[ShopProduct.shop_product_id - 1] = ShopProduct.product;
-=======
-          state.ids[ShopProduct.id - 1] =
-            ShopProduct.id;
-          newEntities[ShopProduct.id] = ShopProduct;
->>>>>>> dev
         });
         state.items = newProducts; 
         state.entities = newEntities;
