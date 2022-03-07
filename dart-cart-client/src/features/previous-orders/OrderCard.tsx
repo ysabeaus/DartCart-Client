@@ -12,7 +12,7 @@ const ComputerUrl =
 function OrderCard({ detail }: IDetails) {
     return (
         <>
-            <div className=" card bg-black text-warning" style={{ width: "18rem" }}>
+            <div key={'Detail: ' + detail.id} className=" card bg-black text-warning" style={{ width: "18rem" }}>
                 <img
                     className="card-img-top"
                     src={ComputerUrl}

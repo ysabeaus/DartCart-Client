@@ -22,14 +22,12 @@ function PreviousOrders({ shop }: shopProp) {
     const dispatch = useDispatch()
     const result = useSelector(selectGetByShopStatus)
     const userString: string = useSelector(selectUser) || ""
-    const user = JSON.parse(userString)
     const nav = useNavigate();
     const invoices = useSelector(selectInvoices)
     var orders: Orders[] = [];
 
     useEffect(() => {
-        dispatch(clearInvoices)
-        dispatch(resetState)
+        return () => { dispatch(clearInvoices()); dispatch(resetState(null)); }
     }, [])
 
     if (!userString)
@@ -44,9 +42,7 @@ function PreviousOrders({ shop }: shopProp) {
                 orders.push({ cards: [], date: new Date(Number(invoices[i].orderPlaced)) })
                 for (let j = 0; j < invoices[i].orderDetails.length; ++j)
                     orders[i].cards.push(
-                        <>
-                            <OrderCard detail={invoices[i].orderDetails[j]}></OrderCard>
-                        </>
+                        <OrderCard key={"Card: " + invoices[i].orderDetails[j].id} detail={invoices[i].orderDetails[j]}></OrderCard>
                     )
             }
             break;
