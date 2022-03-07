@@ -18,8 +18,8 @@ const store = configureStore({
     sellerRegister: sellerRegisterReducer,
     authentication: authenticationReducer,
     ShopProducts: SPSlice,
+    CompetitorProducts: CPSlice,
     invoices: invoiceReducer,
-    CompetitorProducts: CPSlice
   },
 });
 

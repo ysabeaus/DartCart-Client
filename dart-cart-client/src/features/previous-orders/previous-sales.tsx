@@ -62,7 +62,7 @@ function PreviousOrders({ shop }: shopProp) {
 
             ) || ((result === "finished") &&
                 <>
-                    {orders.map((order) => {
+                    {orders.length > 0 ? orders.map((order) => {
                         return (
                             <>
                                 <div className="">{order.date.toDateString()}</div>
@@ -71,7 +71,9 @@ function PreviousOrders({ shop }: shopProp) {
                                 </div>
                             </>
                         )
-                    })}
+                    }) :
+                        <h1>No Orders To Show</h1>
+                    }
                 </>)
 
                 || <Error404Page />

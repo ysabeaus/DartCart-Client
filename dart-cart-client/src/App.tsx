@@ -9,12 +9,11 @@ import React, { useEffect } from "react";
 import SellerRegister from "./features/seller-register/SellerRegister";
 import Error404Page from './components/Error';
 import { Provider } from "react-redux";
-import Display from "./features/display/Display";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
 import Header from "./features/layout/Header"
 import Footer from "./features/layout/Footer"
-
+import Display from "./features/display/Display";
 
 function App() {
   useEffect(() => {
