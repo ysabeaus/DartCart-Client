@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../common/types";
 
@@ -36,15 +36,18 @@ export function CheckoutButton() {
         }
     }
 
+    const [success, setSuccess] = useState(true);
+
     async function checkout() {
         if(currentUser && currentCart){
             let shippingAddress = streetAddress + ", " + city + " " + state + ", " + zip;
 
             await dispatch(addInvoice({user: JSON.parse(currentUser), currentCart: currentCart, shippingAddress: shippingAddress}));
             if(status === "fulfilled"){
+                setSuccess(true);
                 handleShow();
             }else{
-                //change modal message
+                setSuccess(false);
                 handleShow();
             }
         }
@@ -60,9 +63,9 @@ export function CheckoutButton() {
 
             <Modal show={show} >
                 <Modal.Header>
-                    <Modal.Title>Order Confirmed</Modal.Title>
+                    {success ? <Modal.Title>Order Confirmed</Modal.Title> : <Modal.Title>Order Failed</Modal.Title>}
                 </Modal.Header>
-                <Modal.Body>Your items have been successfully purchased!</Modal.Body>
+                {success ? <Modal.Body>Your items have been successfully purchased!</Modal.Body> : <Modal.Body>Something went wrong</Modal.Body>}
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}> Confirm </Button>
                 </Modal.Footer>
