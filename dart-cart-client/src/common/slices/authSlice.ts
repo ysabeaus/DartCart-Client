@@ -6,7 +6,7 @@ import {
 import axios from "axios";
 import { RootState } from "../types";
 
-// JSON server URL. Change to backend URL for testing/in production
+// Change URL for testing vs. production
 const API_URL = process.env.REACT_APP_API_URL;
 
 // Create a slice that will manage the state of the SecurityToken
@@ -57,18 +57,12 @@ const authenticationSlice = createSlice({
   }
 });
 
-// With Redux Toolkit we get our reducers wrapped in actions, which simplifies the logic
-// a lot. Our React components will use dispatch on these actions to actually perform
-// state management
+// Wrapping reducers in actions
 export const { updateToken, updateUser, redirect, logout } =
   authenticationSlice.actions;
 export default authenticationSlice.reducer;
 
-// In this next section is where we define our selectors, ie how our react components get/derive
-// the state they need from Redux. The base method is useSelector, but it has some optimizations
-// built on it via Redux Toolkit that we can get from the adapter we declared earlier
-
-// we can create custom selectors with createSelector
+// Selectors
 export const selectStatus = createSelector(
   (state: RootState) => state.authentication,
   (authentication) => authentication.status

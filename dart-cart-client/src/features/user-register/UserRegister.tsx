@@ -34,17 +34,6 @@ export function UserRegister() {
     registrationDate: 0
   };
 
-  const onChangeHandler = () => {
-    user.username = username;
-    user.email = email;
-    user.password = password;
-    user.firstName = firstName;
-    user.lastName = lastName;
-    user.location = location;
-    user.phone = phone;
-    user.registrationDate = currentDate;
-  };
-
   // BASIC input validation: no empty fields, passwords must match, formatting requirements
   // Possible TODO: Password complexity requirements
   // Possible TODO: Enforcing username requirements, address formatting
@@ -92,16 +81,16 @@ export function UserRegister() {
 
     await dispatch(saveUser(user))
       .unwrap()
-      .then((originalPromiseResult: any) => {
+      .then((originalPromiseResult) => {
         setShowModal(true);
         dispatch(
           loginUser({ username: user.username, password: user.password })
         );
       })
-      .catch((rejectedValueOrSerializedError: any) => {
+      .catch((rejectedValueOrSerializedError) => {
         setError("That username is unavailable.");
+        clearInputs();
       });
-    clearInputs();
   };
 
   function clearInputs() {
@@ -110,6 +99,7 @@ export function UserRegister() {
 
   // Redirect upon modal close
   function handleClose() {
+    setShowModal(false);
     dispatch(homeRedirect(null));
     nav("/");
   }
@@ -119,25 +109,25 @@ export function UserRegister() {
       <section className="vh-200">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-8">
+            <div className="col-10">
               <div
                 className="card shadow-2-strong"
                 style={{ borderRadius: "1rem" }}
               >
                 <div className="card-header card text-center bg-success text-white">
-                  <h3 className="mb-0">Make a New Account</h3>
+                  <h3 className="mb-0">Create Your Account</h3>
                 </div>
-                <div className="card-body p-5 text-center">
+                <div className="card-body p-5 text-center" style={{ backgroundColor: '#a6a6a6' }}>
                   {error ? <Alert variant="danger">{error}</Alert> : null}
 
                   <div className="row">
                     <div className="form-outline mb-0">
-                      <h4>Username</h4>
+                      <h4>Username:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="text"
-                        placeholder="DartTheCart"
+                        placeholder="Type your username here"
                         id="typeEmailX-2"
                         className="form-control form-control-lg"
                         value={username}
@@ -147,12 +137,12 @@ export function UserRegister() {
                       />
                     </div>
                     <div className="form-outline mb-0">
-                      <h4>Email</h4>
+                      <h4>Email:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="email"
-                        placeholder="dartcart@email.com"
+                        placeholder="Provide a valid email address"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={email}
@@ -165,12 +155,12 @@ export function UserRegister() {
 
                   <div className="row">
                     <div className="form-outline mb-0">
-                      <h4>Password</h4>
+                      <h4>Password:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="password"
-                        placeholder="P@S5W0RD!"
+                        placeholder="Provide a strong password"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={password}
@@ -180,12 +170,12 @@ export function UserRegister() {
                       />
                     </div>
                     <div className="form-outline mb-0">
-                      <h4>Confirm Password</h4>
+                      <h4>Confirm Password:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="password"
-                        placeholder="P@S5W0RD!"
+                        placeholder="Retype the password"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={rePassword}
@@ -198,12 +188,12 @@ export function UserRegister() {
 
                   <div className="row">
                     <div className="form-outline mb-0">
-                      <h4>First Name</h4>
+                      <h4>First Name:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="text"
-                        placeholder="John"
+                        placeholder="Type your first name only"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={firstName}
@@ -213,12 +203,12 @@ export function UserRegister() {
                       />
                     </div>
                     <div className="form-outline mb-0">
-                      <h4>Last Name</h4>
+                      <h4>Last Name:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="text"
-                        placeholder="Doe"
+                        placeholder="Type your last name only"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={lastName}
@@ -231,12 +221,12 @@ export function UserRegister() {
 
                   <div className="row">
                     <div className="form-outline mb-0">
-                      <h4>Address</h4>
+                      <h4>Address:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="text"
-                        placeholder="1 Main St, Anytown, CA 12345"
+                        placeholder="Provide a home address"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={location}
@@ -246,12 +236,12 @@ export function UserRegister() {
                       />
                     </div>
                     <div className="form-outline mb-0">
-                      <h4>Phone Number</h4>
+                      <h4>Phone Number:</h4>
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         type="phone"
-                        placeholder="(555) 555-5555"
+                        placeholder="Provide a valid phone number"
                         id="typePasswordX-2"
                         className="form-control form-control-lg"
                         value={phone}
