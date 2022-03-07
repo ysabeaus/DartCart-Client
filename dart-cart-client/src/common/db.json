@@ -1,4 +1,18 @@
 {
+  
+  "user":
+    {
+      "id": 2,
+      "username": "DartCart",
+      "password": "Password!",
+      "firstName": "Man",
+      "lastName": "Hugh",
+      "email": "dartcart@gmail.com",
+      "phone": "(123) 019-4029",
+      "location": "Street, Town, USA",
+      "registrationDate": 1646192852519
+    }
+  ,
   "cart": [
     {
       "id": 1,

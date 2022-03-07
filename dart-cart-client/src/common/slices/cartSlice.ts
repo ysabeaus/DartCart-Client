@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 import axios from 'axios'
 
-import { CartItem } from '../types'
+import { CartItem, CheckoutProps, User } from '../types'
 import { RootState } from '../store';
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -10,7 +10,7 @@ const cartAdapater = createEntityAdapter<CartItem>();
 
 export const fetchCart = createAsyncThunk('cart/fetchCart', async () => {
         const username = localStorage.getItem("username")
-        const response = await axios.get(API_URL + "carts/" + username)
+        const response = await axios.get("http://localhost:3001/" + "cart/" + username)
 
         return response.data
     }
@@ -42,9 +42,35 @@ export const updateCart = createAsyncThunk('cart/updateCart', async (cartItem: C
     }
 )
 
+export const addInvoice = createAsyncThunk(
+    "checkout/addInvoice",
+    async ({user, shippingAddress, currentCart}: CheckoutProps) => {
+      const response = await axios.post(API_URL + "checkout", {
+        id: user.id,
+        username: user.username,
+        password: user.password,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        location: shippingAddress,
+        registrationDate: user.registrationDate,
+        cartList: currentCart
+      }, {
+        headers: {
+          'Authorization': `Basic ${localStorage.getItem("token")}` 
+        }
+    });
+    console.log(response)
+      return response.data;
+    }
+);
+
 export const cartSlice = createSlice({
     name: 'cart',
-    initialState: cartAdapater.getInitialState(),
+    initialState: cartAdapater.getInitialState({
+        status: "idle"
+    }),
     reducers: {
         updateCartItem(state, action) {
             if(action.payload.changes.quantity == 0) {
@@ -52,7 +78,7 @@ export const cartSlice = createSlice({
             } else {
                 cartAdapater.updateOne(state, action)
             }
-        }
+        },
     },
     extraReducers: builder => {
         builder
@@ -65,6 +91,13 @@ export const cartSlice = createSlice({
             .addCase(updateCart.fulfilled, (state, action) => {
                 cartAdapater.setOne(state, action.payload)
             })
+            .addCase(addInvoice.fulfilled, (state) => {
+                cartAdapater.removeAll(state)
+                state.status = "fulfilled";
+            })
+            .addCase(addInvoice.rejected, (state) => {
+                state.status = "rejected";
+            })
     }
 })
 
@@ -72,3 +105,8 @@ export const { updateCartItem } = cartSlice.actions
 export default cartSlice.reducer
 
 export const { selectAll: selectAllCartItems, selectById: selectCartItemById} = cartAdapater.getSelectors((state: RootState) => state.cart)
+
+export const selectStatus = createSelector(
+    (state: RootState) => state.cart,
+    (cart) => cart.status
+  );

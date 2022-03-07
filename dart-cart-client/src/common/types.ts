@@ -1,3 +1,4 @@
+import { EntityState } from "@reduxjs/toolkit";
 import { ShopProduct } from "./models";
 import store from "./store";
 
@@ -25,6 +26,20 @@ export interface CartItem {
   saved: boolean,
   customer: User,
   shopProduct: ShopProduct
+}
+
+export interface CheckoutProps {
+  user: User,
+  shippingAddress: string,
+  currentCart: EntityState<CartItem>
+}
+
+export interface IShipping {
+  id: number,
+  streetAddress: string,
+  city: string,
+  state: string,
+  zip: string
 }
 
 export type RootState = ReturnType<typeof store.getState>;

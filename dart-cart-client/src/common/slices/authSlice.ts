@@ -87,7 +87,7 @@ export const selectToken = createSelector(
 export const loginUser = createAsyncThunk(
   "authentication/login",
   async (user: { username: string; password: string }) => {
-    return axios
+    return await axios
       .post(API_URL + "login", {
         username: user.username,
         password: user.password

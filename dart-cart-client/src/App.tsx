@@ -14,6 +14,7 @@ import Header from "./features/layout/Header"
 import Footer from "./features/layout/Footer"
 import Cart from "./features/cart/Cart";
 import './App.css';
+import Checkout from "./features/checkout/CheckoutDisplay";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/" element={<Display />}></Route> 
+            <Route path="/checkout" element={<Checkout></Checkout>}></Route>
             <Route
               path="/ShopProduct/:product_id"
               element={<ShopProductDisplay />}

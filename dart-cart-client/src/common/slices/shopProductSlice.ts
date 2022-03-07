@@ -7,7 +7,7 @@ import axios from "axios";
 import { ShopProduct } from "../models";
 
 const MOCK_SERVER =
-  "http://localhost:3001";
+  "http://localhost:9005";
 
 const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 
