@@ -1,5 +1,5 @@
 import "./App.css";
-import { Login } from "./features/login/Login";
+import { Login } from "./features/authentication/Login";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./features/Home";
@@ -27,7 +27,14 @@ function App() {
                     <Route path="/register" element={<UserRegister />}></Route>
                     <Route path="/signup" element={<SellerRegister />}></Route>
                     <Route path="/login" element={<Login />}></Route>
-                    <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
+                    <Route
+                        path="/sellers/:seller_homepage"
+                        element={
+                            <RequireAuth>
+                                <SellerHomepage />
+                            </RequireAuth>
+                        }
+                    ></Route>
                     <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
                     <Route path="/shops/:shop_id/list" element={<ListItem />}></Route>
                     <Route path="/products" element={<Display />}></Route>
