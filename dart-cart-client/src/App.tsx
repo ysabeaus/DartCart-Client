@@ -15,6 +15,9 @@ import Header from "./features/layout/Header";
 import Footer from "./features/layout/Footer";
 import Cart from "./features/cart/Cart";
 import "./App.css";
+import ListItem from "./features/list-item/ListItem";
+import ShopPage from "./features/shop-page/ShopPage";
+import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 
 function App() {
     useEffect(() => {

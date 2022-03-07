@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
@@ -20,10 +20,7 @@ const ShopProductDisplay = () => {
     const product_id = useParams()?.product_id || "";
     const dispatch = useDispatch();
 
- 
-  const ReduxShopProducts = useSelector((state) =>
-    selectShopProductById(state, product_id)
-  );
+    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id));
 
     useEffect(() => {
         dispatch(fetchShopProducts()); // places return value into REDUX global state
@@ -67,26 +64,22 @@ const ShopProductDisplay = () => {
         return newImg;
     }
 
-  console.log(ReduxShopProducts)
+    console.log(ReduxShopProducts);
 
-  return (
-    <>
-
-                        <div className="ProductInfoPocket">
-                            <h2>{ReduxShopProducts?.product.name?.toUpperCase()}</h2>
-                            <br />
-                            <h3>Price: $ {ReduxShopProducts?.price}</h3>
-                            <h3>In Stock: {ReduxShopProducts?.quantity}</h3>
-                            <h3>Seller: {ReduxShopProducts?.shop}</h3>
-                        </div>
-                    </div>
-
-                    <div className="ProductDescriptionPocket">
-                        <p>{ReduxShopProducts?.product.description}</p>
-                    </div>
-                </div>
-                <CompetingSellers Seller={1}></CompetingSellers>
+    return (
+        <>
+            <div className="ProductInfoPocket">
+                <h2>{ReduxShopProducts?.product.name?.toUpperCase()}</h2>
+                <br />
+                <h3>Price: $ {ReduxShopProducts?.price}</h3>
+                <h3>In Stock: {ReduxShopProducts?.quantity}</h3>
+                <h3>Seller: {ReduxShopProducts?.shop}</h3>
             </div>
+
+            <div className="ProductDescriptionPocket">
+                <p>{ReduxShopProducts?.product.description}</p>
+            </div>
+            <CompetingSellers Seller={1}></CompetingSellers>
         </>
     );
 };
