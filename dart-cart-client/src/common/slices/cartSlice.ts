@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
 import axios from 'axios'
-
+import authHeader from '../../features/login/auth-header';
 import { CartItem } from '../types'
 import { RootState } from '../store';
 
@@ -10,7 +10,7 @@ const cartAdapater = createEntityAdapter<CartItem>();
 
 export const fetchCart = createAsyncThunk('cart/fetchCart', async () => {
         const username = localStorage.getItem("username")
-        const response = await axios.get(API_URL + "carts/" + username)
+        const response = await axios.get(API_URL + "carts/" + username, { headers: authHeader() })
 
         return response.data
     }
