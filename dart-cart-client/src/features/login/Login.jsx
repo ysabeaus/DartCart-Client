@@ -41,7 +41,7 @@ export const Login = () => {
         <section className="loginForm">
           <div className="container py-5">
             <div className="row d-flex justify-content-center align-items-center">
-              <div className="col-4">
+              <div className="col col-lg-4 col-sm-12" >
                 <div
                   className="card shadow-2-strong"
                   style={{ borderRadius: "1rem" }}

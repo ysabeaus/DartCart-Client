@@ -109,7 +109,7 @@ export function UserRegister() {
       <section className="vh-200">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-10">
+            <div className="col col-lg-10 col-sm-12">
               <div
                 className="card shadow-2-strong"
                 style={{ borderRadius: "1rem" }}
