@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Button, Card, CardGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ export const SellerHomepage = () => {
     const nav = useNavigate();
 
     useEffect(() => {
-        console.log(seller)
+        console.log(seller);
         dispatch(fetchShop(seller.id));
     }, []);
 
@@ -35,8 +35,10 @@ export const SellerHomepage = () => {
                                 <CardGroup>
                                     <Card className="text-center" style={{ width: "18rem" }}>
                                         <Card.Body>
-                                            <Card.Title>{`Shop #${shop.id ?? ""}`}</Card.Title>
-                                            <Card.Subtitle className="mb-2 text-muted">{shop.location ?? ""}</Card.Subtitle>
+                                            <Card.Title>{`Shop #${shop?.id ?? ""}`}</Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">
+                                                {shop?.location ?? ""}
+                                            </Card.Subtitle>
                                             <Button onClick={handleOnClick}>GO</Button>
                                         </Card.Body>
                                     </Card>
