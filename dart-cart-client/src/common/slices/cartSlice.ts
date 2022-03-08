@@ -58,10 +58,8 @@ export const addInvoice = createAsyncThunk(
         registrationDate: user.registrationDate,
         cartList: currentCart
       }, {
-        headers: {
-          'Authorization': `Basic ${localStorage.getItem("token")}` 
-        }
-    });
+        headers: authHeader()
+      });
     console.log(response)
       return response.data;
     }
