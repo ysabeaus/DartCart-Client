@@ -60,7 +60,6 @@ export const addInvoice = createAsyncThunk(
       }, {
         headers: authHeader()
       });
-    console.log(response)
       return response.data;
     }
 );
