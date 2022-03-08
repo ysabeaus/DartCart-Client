@@ -14,6 +14,7 @@ import store from "./common/store";
 import Header from "./features/layout/Header"
 import Footer from "./features/layout/Footer"
 import Display from "./features/display/Display";
+import SearchDisplay from "./features/search/SearchDisplay";
 
 function App() {
   useEffect(() => {
@@ -32,6 +33,7 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/orders" element={<PreviousOrders />}></Route>
             <Route path="/display" element={<Display />}></Route>
+            <Route path="/search" element={<SearchDisplay/>}></Route>
             <Route path="/shop/:product_id" element={<ShopProductDisplay />}></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>
