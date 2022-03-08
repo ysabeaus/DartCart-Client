@@ -88,14 +88,6 @@ export function ListItem() {
         if (!validateInput()) {
             return;
         }
-
-        console.log(shopProduct);
-
-        // dispatch(createShopProduct(shopProduct))
-        //     .unwrap()
-        //     .then((originalPromiseResult) => {
-        //         setShowModal(true);
-        //     });
     };
 
     const handleClose = () => {
