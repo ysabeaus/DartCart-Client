@@ -33,7 +33,6 @@ export const Login = () => {
 
     const handleLogout = () => {
         dispatch(logout(null));
-        // dispatch(logoutSeller(null));
     };
 
     const handleClose = () => {
