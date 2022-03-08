@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../common/types";
 
-import { addInvoice, selectStatus } from "../../common/slices/cartSlice";
+import { addInvoice, selectAllCartItems, selectStatus } from "../../common/slices/cartSlice";
 import { Modal, Button } from "react-bootstrap";
 import { selectUser } from "../../common/slices/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ import "./CheckoutButton.css";
 export function CheckoutButton() {
     const dispatch = useDispatch();
     const currentUser = useSelector(selectUser);
-    const currentCart = useSelector((state: RootState) => state.cart);
+    const currentCart = useSelector(selectAllCartItems);
 
     const status = useSelector(selectStatus);
 
