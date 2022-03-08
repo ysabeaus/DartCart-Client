@@ -1,28 +1,29 @@
-
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-import { Login } from "./features/login/Login";
+import { Login } from "./features/authentication/Login";
 import Home from "./features/Home";
 import UserRegister from "./features/user-register/UserRegister";
 import Display from "./features/display/Display";
-import PreviousOrders from './features/previous-orders/previous-orders';
+import PreviousOrders from "./features/previous-orders/previous-orders";
 import SellerRegister from "./features/seller-register/SellerRegister";
-import Error404Page from './components/Error';
+import Error404Page from "./components/Error";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
 import store from "./common/store";
-import Header from "./features/layout/Header"
-import Footer from "./features/layout/Footer"
+import Header from "./features/layout/Header";
+import Footer from "./features/layout/Footer";
 import Cart from "./features/cart/Cart";
 import './App.css';
 import Checkout from "./features/checkout/CheckoutDisplay";
+import ListItem from "./features/list-item/ListItem";
+import ShopPage from "./features/shop-page/ShopPage";
+import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 
 function App() {
-  useEffect(() => {
-    document.title = "Dart Cart";
-  }, []);
+    useEffect(() => {
+        document.title = "DartCart";
+    });
 
   return (
     <div className="App">
@@ -31,6 +32,9 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />}></Route>
+            <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
+            <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
+            <Route path="/shops/:shop_id/list" element={<ListItem />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/signup" element={<SellerRegister />}></Route>
@@ -47,4 +51,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
