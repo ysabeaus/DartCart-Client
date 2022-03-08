@@ -28,7 +28,7 @@ export const addToCart = createAsyncThunk('cart/addToCart', async (shop_product_
             shopProduct: {
                 shop_product_id: shop_product_id
             }
-        })
+        }, { headers: authHeader() })
 
         return response.data
     }
@@ -37,7 +37,7 @@ export const addToCart = createAsyncThunk('cart/addToCart', async (shop_product_
 export const updateCart = createAsyncThunk('cart/updateCart', async (cartItem: CartItem) => {
         const response = await axios.put(API_URL + "carts/" + cartItem.id, {
             quantity: cartItem.quantity
-        })
+        }, { headers: authHeader() })
 
         return response.data
     }
