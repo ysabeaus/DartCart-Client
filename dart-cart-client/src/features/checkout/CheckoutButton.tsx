@@ -11,6 +11,10 @@ import "./CheckoutButton.css";
 
 export function CheckoutButton() {
     const dispatch = useDispatch();
+    const nav = useNavigate();
+    const [show, setShow] = useState(false);
+    const [success, setSuccess] = useState(true);
+
     const currentUser = useSelector(selectUser);
     const currentCart = useSelector(selectAllCartItems);
 
@@ -24,8 +28,6 @@ export function CheckoutButton() {
         zip: "" 
     };
 
-    const nav = useNavigate();
-    const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => {
         setShow(false);
@@ -36,7 +38,6 @@ export function CheckoutButton() {
         }
     }
 
-    const [success, setSuccess] = useState(true);
 
     async function checkout() {
         if(currentUser && currentCart){
@@ -46,7 +47,7 @@ export function CheckoutButton() {
             if(status === "fulfilled"){
                 setSuccess(true);
                 handleShow();
-            }else{
+            }else if(status === "rejected") {
                 setSuccess(false);
                 handleShow();
             }
