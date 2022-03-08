@@ -56,7 +56,7 @@ export const addInvoice = createAsyncThunk(
         phone: user.phone,
         location: shippingAddress,
         registrationDate: user.registrationDate,
-        cartList: currentCart
+        itemList: currentCart
       }, {
         headers: authHeader()
       });
