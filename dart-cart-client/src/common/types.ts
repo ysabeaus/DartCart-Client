@@ -60,7 +60,7 @@ export interface Shop {
 export interface CheckoutProps {
   user: User,
   shippingAddress: string,
-  currentCart: EntityState<CartItem>
+  currentCart: CartItem[]
 }
 
 export interface IShipping {
