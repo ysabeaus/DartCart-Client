@@ -26,15 +26,6 @@ const listItemSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            // .addCase(createShopProduct.pending, (state, action) => {
-            //   state.status = "loading";
-            // })
-            // .addCase(createShopProduct.fulfilled, (state, action) => {
-            //   action.payload.forEach((ShopProduct) => {
-            //     state.ids[ShopProduct.id - 1] = ShopProduct.id;
-            //     newEntities[ShopProduct.id] = ShopProduct;
-            //     })
-            // })
             .addCase(getAllProducts.pending, (state, action) => {
                 state.status = "loading";
             })
@@ -50,10 +41,6 @@ const listItemSlice = createSlice({
 export const { selectAll: selectShopProducts, selectById: selectShopProductById } = listItemAdapter.getSelectors(
     (state: any) => state.ShopProducts
 );
-
-// export const { selectAll: selectProducts, selectById: selectProductById } = productAdapter.getSelectors(
-//     (state: any) => state.products
-// );
 
 export const selectProducts = (state) => state.products.products;
 
