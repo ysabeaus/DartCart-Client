@@ -8,7 +8,6 @@ import {
 } from "../../common/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchCart } from "../../common/slices/cartSlice";
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +20,6 @@ export const Login = () => {
 
   const handleLogin = async (e) => {
     dispatch(loginUser({ username, password }));
-    dispatch(fetchCart())
   };
 
   const handleLogout = async (e) => {
