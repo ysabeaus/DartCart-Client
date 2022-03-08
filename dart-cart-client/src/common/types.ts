@@ -2,12 +2,6 @@ import { EntityState } from "@reduxjs/toolkit";
 import { ShopProduct } from "./models";
 import store from "./store";
 
-export interface Product {
-  id: number;
-  name: string;
-  ordered: boolean;
-}
-
 export interface User {
   id: number;
   username: string;
@@ -26,6 +20,41 @@ export interface CartItem {
   saved: boolean,
   customer: User,
   shopProduct: ShopProduct
+}
+export interface Shop {
+  id: number;
+}
+
+export interface OrderDetail {
+  id: number;
+  cost: number;
+  name: string;
+  description: string;
+  quantity: number;
+}
+
+export interface Invoice {
+  id: number;
+  orderPlaced: bigint;
+  shippedFrom: string;
+  shippedTo: string;
+  customer: User;
+  shop: Shop;
+  orderDetails: OrderDetail[]
+}
+
+export interface Seller {
+  id: number;
+  name: string;
+  homepage: string;
+  description: string;
+  user: User;
+}
+
+export interface Shop {
+  id: number;
+  location: string;
+  seller: Seller;
 }
 
 export interface CheckoutProps {

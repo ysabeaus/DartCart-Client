@@ -23,7 +23,7 @@ const ShopProductDisplay = () => {
   const product_id = useParams()?.product_id || "";
   const dispatch = useDispatch();
 
-  //console.log(params)
+ 
   const ReduxShopProducts = useSelector((state) =>
     selectShopProductById(state, product_id)
   );
@@ -70,9 +70,10 @@ const ShopProductDisplay = () => {
     return newImg;
   }
 
+  console.log(ReduxShopProducts)
+
   return (
     <>
-      {/* <Header></Header> */}
 
       <div className="ProductContainer">
         <div className="InnerProduct">
@@ -99,7 +100,6 @@ const ShopProductDisplay = () => {
         <CompetingSellers Seller={1}></CompetingSellers>
       </div>
 
-      {/* <Footer></Footer> */}
     </>
   );
 };

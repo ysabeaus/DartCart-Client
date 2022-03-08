@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import userRegisterReducer from "./slices/userRegisterSlice";
+import sellerRegisterReducer from "./slices/sellerRegisterSlice";
 import SPSlice from "./slices/shopProductSlice";
 import CPSlice from "./slices/competitorsSlice";
-import accountSlice from "./slices/accountSlice";
-import userRegisterReducer from "./slices/accountSlice";
+import invoiceReducer from "./slices/invoiceSlice";
 import authenticationReducer from "./slices/authSlice";
 import cartSlice from "./slices/cartSlice";
 import shippingSlice from "./slices/shippingSlice";
@@ -15,12 +16,13 @@ import shippingSlice from "./slices/shippingSlice";
 const store = configureStore({
   reducer: {
     userRegister: userRegisterReducer,
+    sellerRegister: sellerRegisterReducer,
     authentication: authenticationReducer,
     ShopProducts: SPSlice,
     CompetitorProducts: CPSlice,
-    accounts: accountSlice,
     cart: cartSlice,
-    shipping: shippingSlice
+    shipping: shippingSlice,
+    invoices: invoiceReducer,
   },
 });
 

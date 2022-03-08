@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, createEntityAdapter, createSelector } fr
 import axios from 'axios'
 
 import { CartItem, CheckoutProps, User } from '../types'
+import authHeader from '../../features/login/auth-header';
 import { RootState } from '../store';
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -10,7 +11,7 @@ const cartAdapater = createEntityAdapter<CartItem>();
 
 export const fetchCart = createAsyncThunk('cart/fetchCart', async () => {
         const username = localStorage.getItem("username")
-        const response = await axios.get("http://localhost:3001/" + "cart/" + username)
+        const response = await axios.get(API_URL + "carts/" + username, { headers: authHeader() })
 
         return response.data
     }
