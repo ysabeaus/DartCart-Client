@@ -40,7 +40,6 @@ const CPSlice = createSlice({
         state.status = "Loading";
       })
       .addCase(fetchCompetitorProducts.fulfilled, (state, action) => {
-        console.log(action.payload)
         const newEntities = {};
         action.payload.forEach((CompetitorProduct) => {
           state.ids[CompetitorProduct.id - 1] =
