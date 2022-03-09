@@ -30,12 +30,6 @@ export function ShopProductCard({ Product }: IShopProductCard) {
           <h1>{Product?.name || ""}</h1>
 
           <p className="card-text">{`${Product?.description || ""}`}</p>
-
-          <Link
-            id="Chosen Shop Product"
-            className="btn  stretched-link"
-            to={`/shop-product/${Product?.id}` || ""}
-          ></Link>
         </div>
       </div>
       <div>
