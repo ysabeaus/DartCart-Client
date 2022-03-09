@@ -10,7 +10,7 @@ import Logo from "../layout/Logo";
 import "./competingSellers.css";
 
 interface SellerProduct {
-  Seller: number; //product ID
+    Seller: number;
 }
 
 export function CompetingSellers({ Seller }: SellerProduct) {

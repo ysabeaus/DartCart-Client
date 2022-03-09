@@ -11,13 +11,13 @@ import { ShopProductCard } from "../product-details/ShopProductCard";
 const SearchDisplay = () => {
 
     const dispatch = useDispatch()
-    const filteredProducts = useSelector( (state: RootState) => selectFilteredProducts(state))
+    
 
     
 
-    useEffect(() => {
-        dispatch(fetchShopProducts());
-    }, [])
+    // useEffect(() => {
+    //     dispatch(fetchShopProducts());
+    // }, [])
 
     return (
 
@@ -27,10 +27,10 @@ const SearchDisplay = () => {
             </div>
             <div className="ProductCardContainer">
             { 
-                filteredProducts.length > 0 ? 
-                filteredProducts.map(Product => {
-                    return <ShopProductCard ShopProduct={Product}></ShopProductCard> })
-                : ""
+                // filteredProducts.length > 0 ? 
+                // filteredProducts.map(Product => {
+                ///    return <ShopProductCard Product ={Product}></ShopProductCard> })
+               // : ""
             }
 
 
