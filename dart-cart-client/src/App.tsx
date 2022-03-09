@@ -24,6 +24,7 @@ import SearchDisplay from "./features/search/SearchDisplay";
 function App() {
   useEffect(() => {
     document.title = "DartCart";
+    //
   });
 
   return (
