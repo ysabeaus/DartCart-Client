@@ -67,26 +67,21 @@ const ShopProductDisplay = () => {
   }
 
   return (
-    <>
-      <div className="ProductContainer">
-        <div className="InnerProduct">
-          <div className="ProductInfoContainer">
-            {ReduxShopProducts && (
-              <div style={ImgSplice(ReduxShopProducts?.categories!)}></div>
-            )}
-            <div className="ProductInfoPocket">
-              <h2>{ReduxShopProducts?.name?.toUpperCase()}</h2>
-              <br />
-            </div>
-
-            <div className="ProductDescriptionPocket">
-              <p>{ReduxShopProducts?.description}</p>
-            </div>
+    <div className="ProductContainer">
+      <div className="InnerProduct">
+        <div className="ProductInfoContainer">
+          {ReduxShopProducts && <div style={ImgStyleBase}></div>}
+          <div className="ProductInfoPocket">
+            <h2>{ReduxShopProducts?.name?.toUpperCase()}</h2>
+            <br />
           </div>
         </div>
-        <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
+        <div className="ProductDescriptionPocket">
+          <p>{ReduxShopProducts?.description}</p>
+        </div>
       </div>
-    </>
+      <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
+    </div>
   );
 };
 
