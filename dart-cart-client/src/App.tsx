@@ -40,7 +40,7 @@ function App() {
                         <Route path="/login" element={<Login />}></Route>
                         <Route path="/orders" element={<PreviousOrders />}></Route>
                         <Route path="/display" element={<Display />}></Route>
-                        <Route path="/shop/:product_id" element={<ShopProductDisplay />}></Route>
+                        <Route path="/shop-product/:shop_product_id" element={<ShopProductDisplay />}></Route>
                         <Route path="/*" element={<Error404Page />}></Route>
                     </Routes>
                     <Footer />

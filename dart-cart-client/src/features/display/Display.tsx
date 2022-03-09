@@ -10,7 +10,7 @@ import {
 
 const Display = () => {
   const dispatch = useDispatch();
-  const ReduxShopProducts = useSelector(selectShopProducts);
+  const ReduxShopProducts : ShopProduct[] = useSelector(selectShopProducts);
 
   function findCheapest(list: ShopProduct[]) {
     let productMap: Map<number, number> = new Map<number, number>();

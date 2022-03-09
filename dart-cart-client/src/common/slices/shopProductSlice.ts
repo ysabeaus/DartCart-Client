@@ -10,6 +10,7 @@ const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our
 
 export const fetchShopProducts = createAsyncThunk("ShopProducts/fetchShopProducts", async () => {
     const response = await axios.get(MOCK_SERVER + "shop_products", { headers: authHeader() });
+    //console.log(response.data)
     return response.data;
 });
 
@@ -36,9 +37,9 @@ const SPSlice = createSlice({
                 const newEntities = {};
                 const newProducts = new Array();
                 action.payload.forEach((ShopProduct) => {
-                    state.ids[ShopProduct.shop_product_id - 1] = ShopProduct.shop_product_id;
-                    newEntities[ShopProduct.shop_product_id] = ShopProduct;
-                    newProducts[ShopProduct.shop_product_id - 1] = ShopProduct.product;
+                    state.ids[ShopProduct.id - 1] = ShopProduct.id;
+                    newEntities[ShopProduct.id] = ShopProduct;
+                    newProducts[ShopProduct.id - 1] = ShopProduct.product;
                 });
                 state.items = newProducts;
                 state.entities = newEntities;

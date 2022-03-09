@@ -17,10 +17,10 @@ import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
 
 const ShopProductDisplay = () => {
-    const product_id = useParams()?.product_id || "";
+    const shop_product_id = useParams()?.shop_product_id || "";
     const dispatch = useDispatch();
 
-    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id));
+    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, shop_product_id));
 
     useEffect(() => {
         dispatch(fetchShopProducts()); // places return value into REDUX global state
@@ -63,7 +63,7 @@ const ShopProductDisplay = () => {
         });
         return newImg;
     }
-
+//<CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
     console.log(ReduxShopProducts);
 
     return (
@@ -79,7 +79,7 @@ const ShopProductDisplay = () => {
             <div className="ProductDescriptionPocket">
                 <p>{ReduxShopProducts?.product.description}</p>
             </div>
-            <CompetingSellers Seller={1}></CompetingSellers>
+            
         </>
     );
 };
