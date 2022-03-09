@@ -15,7 +15,7 @@ export function ShopProductCard({ Product }: IShopProductCard) {
   const dispatch = useDispatch();
 
   function handleAddtoCart() {
-    dispatch(addToCart(Product?.product_id));
+    dispatch(addToCart(Product?.id));
   }
 
   return (
@@ -44,7 +44,7 @@ export function ShopProductCard({ Product }: IShopProductCard) {
           value={Product?.id || ""}
           onClick={handleAddtoCart}
         >
-          Add to card
+          Add to Cart
         </button>
       </div>
     </>

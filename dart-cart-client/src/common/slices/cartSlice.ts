@@ -25,7 +25,7 @@ export const addToCart = createAsyncThunk('cart/addToCart', async (shop_product_
                 username: username
             },
             shopProduct: {
-                shop_product_id: shop_product_id
+                id: shop_product_id
             }
         }, { headers: authHeader() })
 
