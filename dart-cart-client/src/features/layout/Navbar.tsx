@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../common/slices/authSlice";
+import { clearCart } from '../../common/slices/cartSlice'
 import { RootState } from "../../common/types";
 
 
@@ -20,6 +21,7 @@ const Nav = (props) => {
 
   const handleLogout = () => {
     dispatch(logout(null))
+    dispatch(clearCart())
   }
 
   return (
