@@ -14,6 +14,7 @@ import cartoonDiamond from "../../imgs/diamond-ring.png";
 import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
 import { ShopProduct } from "../../common/models";
+import { OffcanvasTitle } from "react-bootstrap";
 
 const ShopProductDisplay = () => {
     const shop_product_id = useParams()?.shop_product_id || "";
@@ -37,25 +38,31 @@ const ShopProductDisplay = () => {
         let newImg = Object.assign({}, ImgStyleBase);
         catagories.forEach((catagory) => {
             switch (catagory) {
-                case "Perishable":
+                case "perishable":
                     newImg.backgroundImage = `url('${cartoonSteak}')`;
                     break;
-                case "Electronics":
+                case "furniture":
                     newImg.backgroundImage = `url('${cartoonComputer}')`;
                     break;
-                case "Clothing":
+                case "entertainment":
+                    newImg.backgroundImage = `url('${cartoonComputer}')`;
+                    break;
+                case "clothing":
                     newImg.backgroundImage = `url('${cartoonClothing}')`;
                     break;
-                case "Luxury":
+                case "toys":
                     newImg.backgroundImage = `url('${cartoonDiamond}')`;
                     break;
-                case "Entertainment":
+                case "homegoods":
                     newImg.backgroundImage = `url('${cartoonBat}')`;
                     break;
-                case "Medical":
+                case "automotive":
+                    newImg.backgroundImage = `url('${cartoonBat}')`;
+                    break;
+                case "personal-care":
                     newImg.backgroundImage = `url('${cartoonMeds}')`;
                     break;
-                case "Footware":
+                case "school&office":
                     newImg.backgroundImage = `url('${cartoonShoes}')`;
                     break;
             }
