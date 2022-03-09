@@ -31,9 +31,13 @@ const Nav = (props) => {
       >
         {user ? (
           <>
-            <li className="nav-item-mb-3 nav-item">
-              <h3>Welcome {name}</h3>
-            </li>
+            {!props.footer ? (
+              <li className="nav-item-mb-3 nav-item">
+                <h3>Welcome {name}</h3>
+              </li>
+            ) : (
+              ""
+            )}
             <li className="nav-item-mb-3 nav-item">
               <Link to="/" className="text-reset nav-link">
                 Home
