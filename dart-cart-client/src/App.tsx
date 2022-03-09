@@ -32,7 +32,7 @@ function App() {
         <Provider store={store}>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<Display />}></Route>
             <Route
               path="/sellers/:seller_homepage"
               element={<SellerHomepage />}
