@@ -31,13 +31,13 @@ export function UserRegister() {
     email: "",
     phone: "",
     location: "",
-    registrationDate: 0
+    registrationDate: 0,
   };
 
   // BASIC input validation: no empty fields, passwords must match, formatting requirements
   // Possible TODO: Password complexity requirements
   // Possible TODO: Enforcing username requirements, address formatting
-  function validateInput() {
+  const validateInput = () => {
     if (username === "") {
       setError("Please enter a username.");
     } else if (email === "") {
@@ -63,7 +63,7 @@ export function UserRegister() {
     } else {
       return true;
     }
-  }
+  };
 
   const createUser = async () => {
     user.username = username;
@@ -117,7 +117,10 @@ export function UserRegister() {
                 <div className="card-header card text-center bg-success text-white">
                   <h3 className="mb-0">Create Your Account</h3>
                 </div>
-                <div className="card-body p-5 text-center" style={{ backgroundColor: '#a6a6a6' }}>
+                <div
+                  className="card-body p-5 text-center"
+                  style={{ backgroundColor: "#a6a6a6" }}
+                >
                   {error ? <Alert variant="danger">{error}</Alert> : null}
 
                   <div className="row align-items-center">

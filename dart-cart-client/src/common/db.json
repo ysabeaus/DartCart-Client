@@ -1,0 +1,129 @@
+{
+  
+  "user":
+    {
+      "id": 2,
+      "username": "DartCart",
+      "password": "Password!",
+      "firstName": "Man",
+      "lastName": "Hugh",
+      "email": "dartcart@gmail.com",
+      "phone": "(123) 019-4029",
+      "location": "Street, Town, USA",
+      "registrationDate": 1646192852519
+    }
+  ,
+  "cart": [
+    {
+      "id": 1,
+      "quantity": 1,
+      "saved": false,
+      "customer": "test",
+      "shopProduct": {
+        "shop_product_id": 1,
+        "quantity": 10,
+        "price": 10,
+        "discount": 0,
+        "shop": {
+          "id": 1,
+          "location": "kjbkljahbsd",
+          "seller": {
+            "id": 1,
+            "homepage": "askdjfn",
+            "description": "akjsdnbf",
+            "user": null
+          }
+        },
+        "product": {
+          "id": 1,
+          "name": "Apple",
+          "description": "lkjabsdflkjabsdf",
+          "categories": [
+            {
+              "id": 1,
+              "name": "Food"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "quantity": 1,
+      "saved": false,
+      "customer": {
+        "username": null
+      },
+      "shopProduct": {
+        "shop_product_id": 2
+      },
+      "id": 2
+    },
+    {
+      "quantity": 1,
+      "saved": false,
+      "customer": {
+        "username": null
+      },
+      "shopProduct": {
+        "shop_product_id": 1
+      },
+      "id": 3
+    }
+  ],
+  "shop_products": [
+    {
+      "shop_product_id": 1,
+      "quantity": 10,
+      "price": 10,
+      "discount": 0,
+      "shop": {
+        "id": 1,
+        "location": "kjbkljahbsd",
+        "seller": {
+          "id": 1,
+          "homepage": "askdjfn",
+          "description": "akjsdnbf",
+          "user": null
+        }
+      },
+      "product": {
+        "id": 1,
+        "name": "Apple",
+        "description": "lkjabsdflkjabsdf",
+        "categories": [
+          {
+            "id": 1,
+            "name": "Food"
+          }
+        ]
+      }
+    },
+    {
+      "shop_product_id": 2,
+      "quantity": 10,
+      "price": 10,
+      "discount": 0,
+      "shop": {
+        "id": 1,
+        "location": "kasdfsd",
+        "seller": {
+          "id": 1,
+          "homepage": "askasdffn",
+          "description": "akjkhfgdbf",
+          "user": null
+        }
+      },
+      "product": {
+        "id": 2,
+        "name": "Orange",
+        "description": "lkjabsdasdhfdabsdf",
+        "categories": [
+          {
+            "id": 1,
+            "name": "Food"
+          }
+        ]
+      }
+    }
+  ]
+}
