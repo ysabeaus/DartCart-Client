@@ -39,6 +39,13 @@ const Searchbar = () => {
             placeholder="Search"
             style={{ width: "100%" }}
             ref={string}
+            onKeyUp={(e) => {
+              // Check if keypress is enter button
+              if (e.key === "Enter") {
+                handleSearch(e);
+              }
+            }}
+            onBlur={(e) => handleSearch(e)}
             onChange={(e) => {
               onChangeHandler(e);
             }}
