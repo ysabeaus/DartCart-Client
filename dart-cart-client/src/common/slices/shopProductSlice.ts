@@ -35,6 +35,11 @@ const SPSlice = createSlice({
   name: "ShopProducts",
   initialState: intitialState, //format is identical to getInitialState(), but we added a "status" field to the js Object
   reducers: {
+    clearSlice(state, action) {
+      state.status = "idle";
+      state.ids = [];
+      state.entities = {};
+    },
     updatedSearchString(state, action) {
       state.searchString = action.payload;
     },
@@ -45,21 +50,21 @@ const SPSlice = createSlice({
         state.status = "Loading";
       })
       .addCase(fetchShopProducts.fulfilled, (state, action) => {
-        const newEntities = {};
         const newProducts = new Array();
+        state.ids = []
+        state.entities = {}
         action.payload.forEach((ShopProduct) => {
-          state.ids[ShopProduct.id - 1] = ShopProduct.id;
-          newEntities[ShopProduct.id] = ShopProduct;
+          state.ids.push(ShopProduct.id);
+          state.entities[ShopProduct.id] = ShopProduct;
           newProducts[ShopProduct.id - 1] = ShopProduct.product;
         });
         state.items = newProducts;
-        state.entities = newEntities;
-        state.status = "idle";
+        state.status = "success";
       });
   },
 });
 
-export const { updatedSearchString } = SPSlice.actions;
+export const { updatedSearchString, clearSlice } = SPSlice.actions;
 
 export const {
   selectAll: selectShopProducts,
@@ -70,6 +75,13 @@ export const getSearchString = createSelector(
   (state: RootState) => state.ShopProducts.searchString,
   (search) => {
     return search;
+  }
+);
+
+export const getStatus = createSelector(
+  (state: RootState) => state.ShopProducts.status,
+  (status) => {
+    return status;
   }
 );
 
