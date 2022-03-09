@@ -26,18 +26,22 @@ const Display = () => {
       <div className=""></div>
 
       <div className="ProductCardContainer">
-        {status === "success" ? (
+        {status === "success" ? ReduxShopProducts.length && (
 
           ReduxShopProducts.map((Product) => {
             return (
               <ShopProductCard Product={Product}></ShopProductCard>
             );
           })
-        ) : (
-          <div className="text-light fs-1 p-5 text-uppercase" style={{ textAlign: "center" }}>
-            Fetching Products...
-          </div>
-        )}
+        ) ||
+          (<>
+            <h1 style={{ color: 'white' }}>No Items Found</h1>
+          </>)
+          : (
+            <div className="text-light fs-1 p-5 text-uppercase" style={{ textAlign: "center" }}>
+              Fetching Products...
+            </div>
+          )}
       </div>
     </>
   );
