@@ -47,13 +47,14 @@ const SPSlice = createSlice({
       .addCase(fetchShopProducts.fulfilled, (state, action) => {
         const newEntities = {};
         const newProducts = new Array();
+        state.ids = []
+        state.entities = {}
         action.payload.forEach((ShopProduct) => {
-          state.ids[ShopProduct.id - 1] = ShopProduct.id;
-          newEntities[ShopProduct.id] = ShopProduct;
+          state.ids.push(ShopProduct.id);
+          state.entities[ShopProduct.id] = ShopProduct;
           newProducts[ShopProduct.id - 1] = ShopProduct.product;
         });
         state.items = newProducts;
-        state.entities = newEntities;
         state.status = "idle";
       });
   },
