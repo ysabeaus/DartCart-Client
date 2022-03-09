@@ -27,7 +27,6 @@ export const Login = () => {
     const handleLogin = async () => {
         await dispatch(loginUser({ username, password }));
         setError("");
-        dispatch(fetchCart());
         setShowModal(true);
     };
 

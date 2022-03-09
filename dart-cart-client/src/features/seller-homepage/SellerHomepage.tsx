@@ -14,7 +14,6 @@ export const SellerHomepage = () => {
     const nav = useNavigate();
 
     useEffect(() => {
-        console.log(seller);
         dispatch(fetchShop(seller.id));
     }, []);
 

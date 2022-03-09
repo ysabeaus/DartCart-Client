@@ -4,6 +4,7 @@ import {
   createAsyncThunk,
 } from "@reduxjs/toolkit";
 import axios from "axios";
+import authHeader from "../../features/authentication/AuthHeader";
 import { ShopProduct } from "../models";
 
 const MOCK_SERVER = process.env.REACT_APP_API_URL;
@@ -14,13 +15,14 @@ const CPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our
 
 export const fetchCompetitorProducts = createAsyncThunk(
   "CompetitorProducts/fetchCompetitorProducts",
-  async (productId: number) => {
-    const response = await axios.get(MOCK_SERVER + "/ShopProducts", {
-      params: { product_id: `${productId}` },
+  async (shopProductId: number) => {
+    const response = await axios.get(MOCK_SERVER + "sellers/" + shopProductId, {
+      headers: authHeader(),
     });
+    
     return response.data;
   }
-);
+)
 
 const intitialState = CPAdapter.getInitialState({
   status: "idle",
@@ -40,9 +42,9 @@ const CPSlice = createSlice({
       .addCase(fetchCompetitorProducts.fulfilled, (state, action) => {
         const newEntities = {};
         action.payload.forEach((CompetitorProduct) => {
-          state.ids[CompetitorProduct.shop_product_id - 1] =
-            CompetitorProduct.shop_product_id;
-          newEntities[CompetitorProduct.shop_product_id] = CompetitorProduct;
+          state.ids[CompetitorProduct.id - 1] =
+            CompetitorProduct.id;
+          newEntities[CompetitorProduct.id] = CompetitorProduct;
         });
         state.entities = newEntities;
         state.status = "idle";

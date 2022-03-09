@@ -1,17 +1,21 @@
 import React from "react";
-import { Navbar } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 
 const Categories = () => {
   return (
-    <Dropdown style={{ flex: "auto"}}>
+    <Dropdown style={{ flex: "auto" }}>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         Categories
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">Toys</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Clothing</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Furniture</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Entertainment</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Automotive</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Home Goods</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">School and Office</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Personal Care</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

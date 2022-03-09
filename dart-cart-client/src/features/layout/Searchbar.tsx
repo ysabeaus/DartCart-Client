@@ -1,45 +1,51 @@
 import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { updatedSearchString } from "../../common/slices/shopProductSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchShopProducts,
+  getSearchString,
+  updatedSearchString,
+} from "../../common/slices/shopProductSlice";
+import { useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
-
-
   const dispatch = useDispatch();
   const string = useRef<HTMLInputElement>(null);
+  const search: string = useSelector(getSearchString);
 
+  const nav = useNavigate();
   const handleSearch = (e: any) => {
-    if(e.code !== "Enter") {
-      console.log(string.current?.value)
-      dispatch(updatedSearchString(string.current?.value))
-    } 
-  }
+    dispatch(fetchShopProducts(search));
+    nav("/display");
+  };
 
-  const buttonHandler = (e: any) => {
-    dispatch(updatedSearchString(string.current?.value))
-  }
-
-
-
+  const onChangeHandler = (e: any) => {
+    dispatch(updatedSearchString(string.current?.value));
+  };
 
   return (
-
-    <div className="navbar-brand" style={{width:" 60%", marginLeft: "20px" }}>
+    <div className="navbar-brand" style={{ width: " 60%", marginLeft: "20px" }}>
       <div className="form-inline my-2 my-lg-0">
-        <input
-          type="submit"
-          onClick={e => buttonHandler(e)}
+        <button
+          onClick={(e) => handleSearch(e)}
           className="btn btn-success"
           value="Search"
           style={{ float: "right", backgroundColor: "#198754" }}
-        />
+        >
+          Search{" "}
+        </button>
         <div style={{ overflow: "hidden", paddingRight: ".5em" }}>
-          <input type="text" placeholder="Search" style={{ width: "100%" }} ref={string} onChange={(e) => {handleSearch(e)}}/>
+          <input
+            type="text"
+            placeholder="Search"
+            style={{ width: "100%" }}
+            ref={string}
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+          />
         </div>
       </div>
     </div>
-
-
   );
 };
 

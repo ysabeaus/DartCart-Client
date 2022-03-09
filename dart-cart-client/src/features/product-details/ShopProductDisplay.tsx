@@ -1,10 +1,7 @@
-import { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
 import "./shopProduct.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchShopProducts, selectShopProductById } from "../../common/slices/shopProductSlice";
+import { useSelector } from "react-redux";
+import { selectShopProductById } from "../../common/slices/shopProductSlice";
 import { CompetingSellers } from "../competing-sellers/CompetingSellers";
 
 //imgs
@@ -17,71 +14,80 @@ import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
 
 const ShopProductDisplay = () => {
-    const product_id = useParams()?.product_id || "";
-    const dispatch = useDispatch();
+  const { shop_product_id } = useParams();
 
-    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, product_id));
+  const id: number = parseInt(shop_product_id!);
 
-    useEffect(() => {
-        dispatch(fetchShopProducts()); // places return value into REDUX global state
-    }, []);
+  const ReduxShopProducts = useSelector((state) =>
+    selectShopProductById(state, id)
+  );
 
-    const ImgStyleBase = {
-        backgroundImage: "",
-        backgroundSize: "contain",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        width: "40%"
-    };
+  const ImgStyleBase = {
+    backgroundImage: "",
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    width: "40%",
+  };
 
-    function ImgSplice(catagories: String[]) {
-        let newImg = Object.assign({}, ImgStyleBase);
-        catagories.forEach((catagory) => {
-            switch (catagory) {
-                case "Perishable":
-                    newImg.backgroundImage = `url('${cartoonSteak}')`;
-                    break;
-                case "Electronics":
-                    newImg.backgroundImage = `url('${cartoonComputer}')`;
-                    break;
-                case "Clothing":
-                    newImg.backgroundImage = `url('${cartoonClothing}')`;
-                    break;
-                case "Luxury":
-                    newImg.backgroundImage = `url('${cartoonDiamond}')`;
-                    break;
-                case "Entertainment":
-                    newImg.backgroundImage = `url('${cartoonBat}')`;
-                    break;
-                case "Medical":
-                    newImg.backgroundImage = `url('${cartoonMeds}')`;
-                    break;
-                case "Footware":
-                    newImg.backgroundImage = `url('${cartoonShoes}')`;
-                    break;
-            }
-        });
-        return newImg;
-    }
+  function ImgSplice(catagories: String[]) {
+    let newImg = Object.assign({}, ImgStyleBase);
+    catagories.forEach((catagory) => {
+      switch (catagory) {
+        case "perishable":
+          newImg.backgroundImage = `url('${cartoonSteak}')`;
+          break;
+        case "furniture":
+          newImg.backgroundImage = `url('${cartoonComputer}')`;
+          break;
+        case "entertainment":
+          newImg.backgroundImage = `url('${cartoonComputer}')`;
+          break;
+        case "clothing":
+          newImg.backgroundImage = `url('${cartoonClothing}')`;
+          break;
+        case "toys":
+          newImg.backgroundImage = `url('${cartoonDiamond}')`;
+          break;
+        case "homegoods":
+          newImg.backgroundImage = `url('${cartoonBat}')`;
+          break;
+        case "automotive":
+          newImg.backgroundImage = `url('${cartoonBat}')`;
+          break;
+        case "personal-care":
+          newImg.backgroundImage = `url('${cartoonMeds}')`;
+          break;
+        case "school&office":
+          newImg.backgroundImage = `url('${cartoonShoes}')`;
+          break;
+      }
+    });
+    return newImg;
+  }
 
-    console.log(ReduxShopProducts);
-
-    return (
-        <>
+  return (
+    <>
+      <div className="ProductContainer">
+        <div className="InnerProduct">
+          <div className="ProductInfoContainer">
+            {ReduxShopProducts && (
+              <div style={ImgSplice(ReduxShopProducts?.categories!)}></div>
+            )}
             <div className="ProductInfoPocket">
-                <h2>{ReduxShopProducts?.product.name?.toUpperCase()}</h2>
-                <br />
-                <h3>Price: $ {ReduxShopProducts?.price}</h3>
-                <h3>In Stock: {ReduxShopProducts?.quantity}</h3>
-                <h3>Seller: {ReduxShopProducts?.shop}</h3>
+              <h2>{ReduxShopProducts?.name?.toUpperCase()}</h2>
+              <br />
             </div>
 
             <div className="ProductDescriptionPocket">
-                <p>{ReduxShopProducts?.product.description}</p>
+              <p>{ReduxShopProducts?.description}</p>
             </div>
-            <CompetingSellers Seller={1}></CompetingSellers>
-        </>
-    );
+          </div>
+        </div>
+        <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
+      </div>
+    </>
+  );
 };
 
 export default ShopProductDisplay;

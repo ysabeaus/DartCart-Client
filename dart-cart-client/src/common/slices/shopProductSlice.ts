@@ -6,19 +6,21 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import authHeader from "../../features/authentication/AuthHeader";
-import { ShopProduct } from "../models";
+import { Product } from "../models";
 import { RootState } from "../types";
 
 const MOCK_SERVER = process.env.REACT_APP_API_URL;
 
-const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
+const SPAdapter = createEntityAdapter<Product>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 
 export const fetchShopProducts = createAsyncThunk(
   "ShopProducts/fetchShopProducts",
-  async () => {
-    const response = await axios.get(MOCK_SERVER + "shop_products", {
+  async (name: string) => {
+    const response = await axios.get(MOCK_SERVER + "shop_products/search", {
       headers: authHeader(),
+      params: { name },
     });
+
     return response.data;
   }
 );
@@ -46,10 +48,9 @@ const SPSlice = createSlice({
         const newEntities = {};
         const newProducts = new Array();
         action.payload.forEach((ShopProduct) => {
-          state.ids[ShopProduct.shop_product_id - 1] =
-            ShopProduct.shop_product_id;
-          newEntities[ShopProduct.shop_product_id] = ShopProduct;
-          newProducts[ShopProduct.shop_product_id - 1] = ShopProduct.product;
+          state.ids[ShopProduct.id - 1] = ShopProduct.id;
+          newEntities[ShopProduct.id] = ShopProduct;
+          newProducts[ShopProduct.id - 1] = ShopProduct.product;
         });
         state.items = newProducts;
         state.entities = newEntities;
@@ -64,6 +65,13 @@ export const {
   selectAll: selectShopProducts,
   selectById: selectShopProductById,
 } = SPAdapter.getSelectors((state: any) => state.ShopProducts);
+
+export const getSearchString = createSelector(
+  (state: RootState) => state.ShopProducts.searchString,
+  (search) => {
+    return search;
+  }
+);
 
 export const selectFilteredProducts = createSelector(
   (state: RootState) => state.ShopProducts,
