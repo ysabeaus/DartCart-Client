@@ -21,6 +21,8 @@ export function CompetingSellers({ Seller }: SellerProduct) {
   useEffect(() => {
     dispatch(fetchCompetitorProducts(Seller)); // places return value into REDUX global state
   }, []);
+  
+  console.log(ReduxCompetitorProducts)
 
   function handleAddtoCard (event) {
 
@@ -36,9 +38,6 @@ export function CompetingSellers({ Seller }: SellerProduct) {
                   
                   <div className="SellerContainer">
                       <div className="SellerWindow">
-
-                          
-                          
 
                       </div>
 

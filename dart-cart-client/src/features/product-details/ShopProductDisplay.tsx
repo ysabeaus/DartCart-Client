@@ -1,7 +1,5 @@
 import { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
 import "./shopProduct.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShopProducts, selectShopProductById } from "../../common/slices/shopProductSlice";
@@ -15,16 +13,17 @@ import cartoonClothing from "../../imgs/Clothing-baby-clothes.png";
 import cartoonDiamond from "../../imgs/diamond-ring.png";
 import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
+import { ShopProduct } from "../../common/models";
 
 const ShopProductDisplay = () => {
     const shop_product_id = useParams()?.shop_product_id || "";
     const dispatch = useDispatch();
 
-    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, shop_product_id));
+    const ReduxShopProducts : ShopProduct = useSelector((state) => selectShopProductById(state, shop_product_id))!;
 
-    useEffect(() => {
-        dispatch(fetchShopProducts()); // places return value into REDUX global state
-    }, []);
+    // useEffect(() => {
+    //     dispatch(fetchShopProducts()); // places return value into REDUX global state
+    // }, []);
 
     const ImgStyleBase = {
         backgroundImage: "",
@@ -63,23 +62,32 @@ const ShopProductDisplay = () => {
         });
         return newImg;
     }
-//<CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
-    console.log(ReduxShopProducts);
 
     return (
         <>
-            <div className="ProductInfoPocket">
-                <h2>{ReduxShopProducts?.product.name?.toUpperCase()}</h2>
-                <br />
-                <h3>Price: $ {ReduxShopProducts?.price}</h3>
-                <h3>In Stock: {ReduxShopProducts?.quantity}</h3>
-                <h3>Seller: {ReduxShopProducts?.shop}</h3>
-            </div>
+        <div className="ProductContainer">
+            <div className="InnerProduct">
+                <div className="ProductInfoContainer">
+                    {ReduxShopProducts && (
+                    <div
+                        style={ImgSplice(ReduxShopProducts?.product.categories!)}
+                    ></div>
+                    )}
+                    <div className="ProductInfoPocket">
+                        <h2>{ReduxShopProducts?.product.name?.toUpperCase()}</h2>
+                        <br />
+                        <h3>Price: $ {ReduxShopProducts?.price}</h3>
+                        <h3>In Stock: {ReduxShopProducts?.quantity}</h3>
+                        <h3>Seller: {ReduxShopProducts?.shop.location}</h3>
+                    </div>
 
-            <div className="ProductDescriptionPocket">
-                <p>{ReduxShopProducts?.product.description}</p>
+                    <div className="ProductDescriptionPocket">
+                        <p>{ReduxShopProducts?.product.description}</p>
+                    </div>
+                </div>
             </div>
-            
+            <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
+        </div>
         </>
     );
 };

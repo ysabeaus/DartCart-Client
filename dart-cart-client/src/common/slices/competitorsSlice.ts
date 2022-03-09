@@ -16,10 +16,10 @@ const CPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our
 export const fetchCompetitorProducts = createAsyncThunk(
   "CompetitorProducts/fetchCompetitorProducts",
   async (shopProductId: number) => {
-    const response = await axios.get(MOCK_SERVER + "sellers/", {
+    const response = await axios.get(MOCK_SERVER + "sellers/" + shopProductId, {
       headers: authHeader(),
-      params: { shopProductId: `${shopProductId}` },
     });
+    
     return response.data;
   }
 )
@@ -40,6 +40,7 @@ const CPSlice = createSlice({
         state.status = "Loading";
       })
       .addCase(fetchCompetitorProducts.fulfilled, (state, action) => {
+        console.log(action.payload)
         const newEntities = {};
         action.payload.forEach((CompetitorProduct) => {
           state.ids[CompetitorProduct.id - 1] =
