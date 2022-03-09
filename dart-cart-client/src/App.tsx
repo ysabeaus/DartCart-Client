@@ -48,7 +48,7 @@ function App() {
             <Route path="/display" element={<Display />}></Route>
             <Route path="/search" element={<SearchDisplay />}></Route>
             <Route
-              path="/shop/:product_id"
+              path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
