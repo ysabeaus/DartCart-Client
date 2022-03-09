@@ -17,14 +17,12 @@ import { ShopProduct } from "../../common/models";
 import { OffcanvasTitle } from "react-bootstrap";
 
 const ShopProductDisplay = () => {
-    const shop_product_id = useParams()?.shop_product_id || "";
+    const { shop_product_id } = useParams();
     const dispatch = useDispatch();
 
-    const ReduxShopProducts : ShopProduct = useSelector((state) => selectShopProductById(state, shop_product_id))!;
+    const id: number = parseInt(shop_product_id!)
 
-    // useEffect(() => {
-    //     dispatch(fetchShopProducts()); // places return value into REDUX global state
-    // }, []);
+    const ReduxShopProducts = useSelector((state) => selectShopProductById(state, id));
 
     const ImgStyleBase = {
         backgroundImage: "",
@@ -93,6 +91,7 @@ const ShopProductDisplay = () => {
                     </div>
                 </div>
             </div>
+            { console.log(shop_product_id) }
             <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
         </div>
         </>
