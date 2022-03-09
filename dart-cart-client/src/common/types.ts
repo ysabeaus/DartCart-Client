@@ -1,3 +1,4 @@
+import { EntityState } from "@reduxjs/toolkit";
 import { ShopProduct } from "./models";
 import store from "./store";
 
@@ -60,6 +61,20 @@ export interface AuthContextType {
     user: any;
     signin: (user: string, callback: VoidFunction) => void;
     signout: (callback: VoidFunction) => void;
+}
+
+export interface CheckoutProps {
+  user: User,
+  shippingAddress: string,
+  currentCart: CartItem[]
+}
+
+export interface IShipping {
+  id: number,
+  streetAddress: string,
+  city: string,
+  state: string,
+  zip: string
 }
 
 export type RootState = ReturnType<typeof store.getState>;
