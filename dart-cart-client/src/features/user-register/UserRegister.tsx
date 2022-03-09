@@ -7,277 +7,265 @@ import { useAppDispatch } from "../../common/hooks";
 import { loginUser } from "../../common/slices/authSlice";
 
 export function UserRegister() {
-  const currentDate = Date.now();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [location, setLocation] = useState("");
-  const [phone, setPhone] = useState("");
-  const [error, setError] = useState("");
-  const [showModal, setShowModal] = useState(false);
+    const currentDate = Date.now();
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [rePassword, setRePassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [location, setLocation] = useState("");
+    const [phone, setPhone] = useState("");
+    const [error, setError] = useState("");
+    const [showModal, setShowModal] = useState(false);
 
-  const dispatch = useAppDispatch();
-  const nav = useNavigate();
+    const dispatch = useAppDispatch();
+    const nav = useNavigate();
 
-  const user: User = {
-    id: 0,
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    location: "",
-    registrationDate: 0
-  };
+    const user: User = {
+        id: 0,
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        location: "",
+        registrationDate: 0
+    };
 
-  // BASIC input validation: no empty fields, passwords must match, formatting requirements
-  // Possible TODO: Password complexity requirements
-  // Possible TODO: Enforcing username requirements, address formatting
-  function validateInput() {
-    if (username === "") {
-      setError("Please enter a username.");
-    } else if (email === "") {
-      setError("Please enter an email address.");
-    } else if (!email.includes("@") || !email.includes(".")) {
-      setError("Invalid email address.");
-    } else if (password === "") {
-      setError("Please enter a password.");
-    } else if (password !== rePassword) {
-      setError("Passwords do not match. Please confirm your password.");
-    } else if (firstName === "") {
-      setError("Please enter your first name.");
-    } else if (lastName === "") {
-      setError("Please enter your last name.");
-    } else if (location === "") {
-      setError("Please enter your home address.");
-    } else if (phone === "") {
-      setError("Please enter your phone number.");
-    } else if (
-      !phone.match(/^\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/)
-    ) {
-      setError("Invalid phone number.");
-    } else {
-      return true;
+    // BASIC input validation: no empty fields, passwords must match, formatting requirements
+    // Possible TODO: Password complexity requirements
+    // Possible TODO: Enforcing username requirements, address formatting
+    const validateInput = () => {
+        if (username === "") {
+            setError("Please enter a username.");
+        } else if (email === "") {
+            setError("Please enter an email address.");
+        } else if (!email.includes("@") || !email.includes(".")) {
+            setError("Invalid email address.");
+        } else if (password === "") {
+            setError("Please enter a password.");
+        } else if (password !== rePassword) {
+            setError("Passwords do not match. Please confirm your password.");
+        } else if (firstName === "") {
+            setError("Please enter your first name.");
+        } else if (lastName === "") {
+            setError("Please enter your last name.");
+        } else if (location === "") {
+            setError("Please enter your home address.");
+        } else if (phone === "") {
+            setError("Please enter your phone number.");
+        } else if (!phone.match(/^\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/)) {
+            setError("Invalid phone number.");
+        } else {
+            return true;
+        }
+    };
+
+    const createUser = async () => {
+        user.username = username;
+        user.email = email;
+        user.password = password;
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.location = location;
+        user.phone = phone;
+        user.registrationDate = currentDate;
+
+        if (!validateInput()) {
+            return;
+        }
+
+        await dispatch(saveUser(user))
+            .unwrap()
+            .then((originalPromiseResult) => {
+                setShowModal(true);
+                dispatch(loginUser({ username: user.username, password: user.password }));
+            })
+            .catch((rejectedValueOrSerializedError) => {
+                setError("That username is unavailable.");
+                clearInputs();
+            });
+    };
+
+    function clearInputs() {
+        setUsername("");
     }
-  }
 
-  const createUser = async () => {
-    user.username = username;
-    user.email = email;
-    user.password = password;
-    user.firstName = firstName;
-    user.lastName = lastName;
-    user.location = location;
-    user.phone = phone;
-    user.registrationDate = currentDate;
-
-    if (!validateInput()) {
-      return;
+    // Redirect upon modal close
+    function handleClose() {
+        setShowModal(false);
+        dispatch(homeRedirect(null));
+        nav("/");
     }
 
-    await dispatch(saveUser(user))
-      .unwrap()
-      .then((originalPromiseResult) => {
-        setShowModal(true);
-        dispatch(
-          loginUser({ username: user.username, password: user.password })
-        );
-      })
-      .catch((rejectedValueOrSerializedError) => {
-        setError("That username is unavailable.");
-        clearInputs();
-      });
-  };
+    return (
+        <>
+            <section className="vh-200">
+                <div className="container py-5 h-100">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col-10">
+                            <div className="card shadow-2-strong" style={{ borderRadius: "1rem" }}>
+                                <div className="card-header card text-center bg-success text-white">
+                                    <h3 className="mb-0">Create Your Account</h3>
+                                </div>
+                                <div className="card-body p-3 text-center" style={{ backgroundColor: "#a6a6a6" }}>
+                                    {error ? <Alert variant="danger">{error}</Alert> : null}
 
-  function clearInputs() {
-    setUsername("");
-  }
+                                    <div className="row">
+                                        <div className="form-outline mb-0">
+                                            <h4>Username</h4>
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="text"
+                                                placeholder="DartTheCart"
+                                                id="typeEmailX-2"
+                                                className="form-control form-control-lg"
+                                                value={username}
+                                                onChange={(e) => {
+                                                    setUsername(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="form-outline mb-0">
+                                            <h4>Email</h4>
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="email"
+                                                placeholder="dartcart@email.com"
+                                                id="typePasswordX-2"
+                                                className="form-control form-control-lg"
+                                                value={email}
+                                                onChange={(e) => {
+                                                    setEmail(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
 
-  // Redirect upon modal close
-  function handleClose() {
-    setShowModal(false);
-    dispatch(homeRedirect(null));
-    nav("/");
-  }
+                                    <div className="row">
+                                        <div className="form-outline mb-0">
+                                            <h4>Password</h4>
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="password"
+                                                placeholder="P@S5W0RD!"
+                                                id="typePasswordX-2"
+                                                className="form-control form-control-lg"
+                                                value={password}
+                                                onChange={(e) => {
+                                                    setPassword(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="form-outline mb-0">
+                                            <h4>Confirm Password</h4>
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="password"
+                                                placeholder="P@S5W0RD!"
+                                                id="typePasswordX-2"
+                                                className="form-control form-control-lg"
+                                                value={rePassword}
+                                                onChange={(e) => {
+                                                    setRePassword(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
 
-  return (
-    <>
-      <section className="vh-200">
-        <div className="container py-5 h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-10">
-              <div
-                className="card shadow-2-strong"
-                style={{ borderRadius: "1rem" }}
-              >
-                <div className="card-header card text-center bg-success text-white">
-                  <h3 className="mb-0">Create Your Account</h3>
+                                    <div className="row">
+                                        <div className="form-outline mb-0">
+                                            <h4>First Name</h4>
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="text"
+                                                placeholder="John"
+                                                id="typePasswordX-2"
+                                                className="form-control form-control-lg"
+                                                value={firstName}
+                                                onChange={(e) => {
+                                                    setFirstName(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="form-outline mb-0">
+                                            <h4>Last Name</h4>
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="text"
+                                                placeholder="Doe"
+                                                id="typePasswordX-2"
+                                                className="form-control form-control-lg"
+                                                value={lastName}
+                                                onChange={(e) => {
+                                                    setLastName(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="form-outline mb-0">
+                                            <h4>Address</h4>
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="text"
+                                                placeholder="1 Main St, Anytown, CA 12345"
+                                                id="typePasswordX-2"
+                                                className="form-control form-control-lg"
+                                                value={location}
+                                                onChange={(e) => {
+                                                    setLocation(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="form-outline mb-0">
+                                            <h4>Phone Number</h4>
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="phone"
+                                                placeholder="(555) 555-5555"
+                                                id="typePasswordX-2"
+                                                className="form-control form-control-lg"
+                                                value={phone}
+                                                onChange={(e) => {
+                                                    setPhone(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <button className="btn btn-success btn-lg btn-block" onClick={createUser}>
+                                        Register
+                                    </button>
+
+                                    <Modal show={showModal}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Registration</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>Account created. Welcome to DartCart!</Modal.Body>
+                                        <Modal.Footer>
+                                            <Button onClick={handleClose}>Close</Button>
+                                        </Modal.Footer>
+                                    </Modal>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="card-body p-5 text-center" style={{ backgroundColor: '#a6a6a6' }}>
-                  {error ? <Alert variant="danger">{error}</Alert> : null}
-
-                  <div className="row">
-                    <div className="form-outline mb-0">
-                      <h4>Username:</h4>
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        type="text"
-                        placeholder="Type your username here"
-                        id="typeEmailX-2"
-                        className="form-control form-control-lg"
-                        value={username}
-                        onChange={(e) => {
-                          setUsername(e.target.value);
-                        }}
-                      />
-                    </div>
-                    <div className="form-outline mb-0">
-                      <h4>Email:</h4>
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        type="email"
-                        placeholder="Provide a valid email address"
-                        id="typePasswordX-2"
-                        className="form-control form-control-lg"
-                        value={email}
-                        onChange={(e) => {
-                          setEmail(e.target.value);
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="form-outline mb-0">
-                      <h4>Password:</h4>
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        type="password"
-                        placeholder="Provide a strong password"
-                        id="typePasswordX-2"
-                        className="form-control form-control-lg"
-                        value={password}
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
-                      />
-                    </div>
-                    <div className="form-outline mb-0">
-                      <h4>Confirm Password:</h4>
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        type="password"
-                        placeholder="Retype the password"
-                        id="typePasswordX-2"
-                        className="form-control form-control-lg"
-                        value={rePassword}
-                        onChange={(e) => {
-                          setRePassword(e.target.value);
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="form-outline mb-0">
-                      <h4>First Name:</h4>
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        type="text"
-                        placeholder="Type your first name only"
-                        id="typePasswordX-2"
-                        className="form-control form-control-lg"
-                        value={firstName}
-                        onChange={(e) => {
-                          setFirstName(e.target.value);
-                        }}
-                      />
-                    </div>
-                    <div className="form-outline mb-0">
-                      <h4>Last Name:</h4>
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        type="text"
-                        placeholder="Type your last name only"
-                        id="typePasswordX-2"
-                        className="form-control form-control-lg"
-                        value={lastName}
-                        onChange={(e) => {
-                          setLastName(e.target.value);
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="form-outline mb-0">
-                      <h4>Address:</h4>
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        type="text"
-                        placeholder="Provide a home address"
-                        id="typePasswordX-2"
-                        className="form-control form-control-lg"
-                        value={location}
-                        onChange={(e) => {
-                          setLocation(e.target.value);
-                        }}
-                      />
-                    </div>
-                    <div className="form-outline mb-0">
-                      <h4>Phone Number:</h4>
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        type="phone"
-                        placeholder="Provide a valid phone number"
-                        id="typePasswordX-2"
-                        className="form-control form-control-lg"
-                        value={phone}
-                        onChange={(e) => {
-                          setPhone(e.target.value);
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <button
-                    className="btn btn-success btn-lg btn-block"
-                    onClick={createUser}
-                  >
-                    Register
-                  </button>
-
-                  <Modal show={showModal}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Registration</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      Account created. Welcome to DartCart!
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button onClick={handleClose}>Close</Button>
-                    </Modal.Footer>
-                  </Modal>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+            </section>
+        </>
+    );
 }
 
 export default UserRegister;

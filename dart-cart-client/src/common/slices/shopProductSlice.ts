@@ -5,19 +5,20 @@ import {
   createAsyncThunk,
 } from "@reduxjs/toolkit";
 import axios from "axios";
+import authHeader from "../../features/authentication/AuthHeader";
 import { ShopProduct } from "../models";
-import authHeader from '../../features/login/auth-header';
 import { RootState } from "../types";
 
-const MOCK_SERVER =
-  "http://localhost:9005/";
+const MOCK_SERVER = process.env.REACT_APP_API_URL;
 
 const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 
 export const fetchShopProducts = createAsyncThunk(
   "ShopProducts/fetchShopProducts",
   async () => {
-    const response = await axios.get(MOCK_SERVER + "shop_products", { headers: authHeader() });
+    const response = await axios.get(MOCK_SERVER + "shop_products", {
+      headers: authHeader(),
+    });
     return response.data;
   }
 );
@@ -25,7 +26,7 @@ export const fetchShopProducts = createAsyncThunk(
 const intitialState = SPAdapter.getInitialState({
   status: "idle",
   searchString: "",
-  items: new Array()
+  items: new Array(),
 });
 
 const SPSlice = createSlice({
@@ -34,7 +35,7 @@ const SPSlice = createSlice({
   reducers: {
     updatedSearchString(state, action) {
       state.searchString = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -50,38 +51,33 @@ const SPSlice = createSlice({
           newEntities[ShopProduct.shop_product_id] = ShopProduct;
           newProducts[ShopProduct.shop_product_id - 1] = ShopProduct.product;
         });
-        state.items = newProducts; 
+        state.items = newProducts;
         state.entities = newEntities;
         state.status = "idle";
       });
   },
 });
 
-export const { updatedSearchString } = SPSlice.actions
+export const { updatedSearchString } = SPSlice.actions;
 
 export const {
   selectAll: selectShopProducts,
   selectById: selectShopProductById,
-} = SPAdapter.getSelectors((state: any) => state.ShopProducts); 
-
+} = SPAdapter.getSelectors((state: any) => state.ShopProducts);
 
 export const selectFilteredProducts = createSelector(
-
   (state: RootState) => state.ShopProducts,
   (state: RootState) => state.ShopProducts.searchString,
   (products, searchString) => {
-    
     const items = new Array();
-    for(var key in products.entities){
-        items.push(products.entities[key])
-    
+    for (var key in products.entities) {
+      items.push(products.entities[key]);
     }
 
-    let re = new RegExp(searchString, 'i')
-   
-    return (items.filter(prod => prod.product.name.match(re)?.length>0 ));
+    let re = new RegExp(searchString, "i");
 
+    return items.filter((prod) => prod.product.name.match(re)?.length > 0);
   }
-)
+);
 
-export default SPSlice.reducer; 
+export default SPSlice.reducer;
