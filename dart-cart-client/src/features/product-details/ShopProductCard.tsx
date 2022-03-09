@@ -44,7 +44,7 @@ export function ShopProductCard({ Product }: IShopProductCard) {
           value={Product?.id || ""}
           onClick={handleAddtoCart}
         >
-          Add to card
+          Add to Cart
         </button>
       </div>
     </>
