@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import "./shopProduct.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectShopProductById } from "../../common/slices/shopProductSlice";
 import { CompetingSellers } from "../competing-sellers/CompetingSellers";
 
@@ -12,11 +12,9 @@ import cartoonClothing from "../../imgs/Clothing-baby-clothes.png";
 import cartoonDiamond from "../../imgs/diamond-ring.png";
 import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
-import { Product } from "../../common/models";
 
 const ShopProductDisplay = () => {
   const { shop_product_id } = useParams();
-  const dispatch = useDispatch();
 
   const id: number = parseInt(shop_product_id!);
 
