@@ -19,7 +19,6 @@ import Checkout from "./features/checkout/CheckoutDisplay";
 import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
-import SearchDisplay from "./features/search/SearchDisplay";
 
 function App() {
   useEffect(() => {
@@ -47,7 +46,6 @@ function App() {
             <Route path="/orders" element={<PreviousOrders />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/display" element={<Display />}></Route>
-            <Route path="/search" element={<SearchDisplay />}></Route>
             <Route
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
