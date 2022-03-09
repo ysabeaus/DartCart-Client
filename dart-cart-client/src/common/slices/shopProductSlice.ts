@@ -6,19 +6,21 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import authHeader from "../../features/authentication/AuthHeader";
-import { ShopProduct } from "../models";
+import { Product } from "../models";
 import { RootState } from "../types";
 
 const MOCK_SERVER = process.env.REACT_APP_API_URL;
 
-const SPAdapter = createEntityAdapter<ShopProduct>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
+const SPAdapter = createEntityAdapter<Product>(); // Entity is mapped to our Model. Create Entity Adapter provides REDUCERS
 
 export const fetchShopProducts = createAsyncThunk(
   "ShopProducts/fetchShopProducts",
-  async () => {
-    const response = await axios.get(MOCK_SERVER + "shop_products", {
+  async (name: string) => {
+    const response = await axios.get(MOCK_SERVER + "shop_products/search", {
       headers: authHeader(),
+      params: { name },
     });
+
     return response.data;
   }
 );
@@ -33,6 +35,11 @@ const SPSlice = createSlice({
   name: "ShopProducts",
   initialState: intitialState, //format is identical to getInitialState(), but we added a "status" field to the js Object
   reducers: {
+    clearSlice(state, action) {
+      state.status = "idle";
+      state.ids = [];
+      state.entities = {};
+    },
     updatedSearchString(state, action) {
       state.searchString = action.payload;
     },
@@ -43,27 +50,40 @@ const SPSlice = createSlice({
         state.status = "Loading";
       })
       .addCase(fetchShopProducts.fulfilled, (state, action) => {
-        const newEntities = {};
         const newProducts = new Array();
+        state.ids = []
+        state.entities = {}
         action.payload.forEach((ShopProduct) => {
-          state.ids[ShopProduct.shop_product_id - 1] =
-            ShopProduct.shop_product_id;
-          newEntities[ShopProduct.shop_product_id] = ShopProduct;
-          newProducts[ShopProduct.shop_product_id - 1] = ShopProduct.product;
+          state.ids.push(ShopProduct.id);
+          state.entities[ShopProduct.id] = ShopProduct;
+          newProducts[ShopProduct.id - 1] = ShopProduct.product;
         });
         state.items = newProducts;
-        state.entities = newEntities;
-        state.status = "idle";
+        state.status = "success";
       });
   },
 });
 
-export const { updatedSearchString } = SPSlice.actions;
+export const { updatedSearchString, clearSlice } = SPSlice.actions;
 
 export const {
   selectAll: selectShopProducts,
   selectById: selectShopProductById,
 } = SPAdapter.getSelectors((state: any) => state.ShopProducts);
+
+export const getSearchString = createSelector(
+  (state: RootState) => state.ShopProducts.searchString,
+  (search) => {
+    return search;
+  }
+);
+
+export const getStatus = createSelector(
+  (state: RootState) => state.ShopProducts.status,
+  (status) => {
+    return status;
+  }
+);
 
 export const selectFilteredProducts = createSelector(
   (state: RootState) => state.ShopProducts,

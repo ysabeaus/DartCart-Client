@@ -19,11 +19,11 @@ import Checkout from "./features/checkout/CheckoutDisplay";
 import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
-import SearchDisplay from "./features/search/SearchDisplay";
 
 function App() {
   useEffect(() => {
     document.title = "DartCart";
+    //
   });
 
   return (
@@ -32,7 +32,7 @@ function App() {
         <Provider store={store}>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<Display />}></Route>
             <Route
               path="/sellers/:seller_homepage"
               element={<SellerHomepage />}
@@ -46,9 +46,8 @@ function App() {
             <Route path="/orders" element={<PreviousOrders />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/display" element={<Display />}></Route>
-            <Route path="/search" element={<SearchDisplay />}></Route>
             <Route
-              path="/shop/:product_id"
+              path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
