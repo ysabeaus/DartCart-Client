@@ -10,7 +10,6 @@ const Searchbar = () => {
 
   const handleSearch = (e: any) => {
     if(e.code !== "Enter") {
-      console.log(string.current?.value)
       dispatch(updatedSearchString(string.current?.value))
     } 
   }
