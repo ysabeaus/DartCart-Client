@@ -77,7 +77,6 @@ export function ListItem() {
     };
 
     const handleOnClick = () => {
-        console.log(chosenProduct);
 
         shopProduct.quantity = productQuantity;
         const rawPrice = productPrice.slice(1);

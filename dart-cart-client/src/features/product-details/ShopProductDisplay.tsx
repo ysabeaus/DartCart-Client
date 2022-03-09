@@ -15,12 +15,14 @@ import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
 import { Product } from "../../common/models";
 
 const ShopProductDisplay = () => {
-  const shop_product_id = useParams()?.shop_product_id || "";
+  const { shop_product_id } = useParams();
   const dispatch = useDispatch();
 
-  const ReduxShopProducts: Product = useSelector((state) =>
-    selectShopProductById(state, shop_product_id)
-  )!;
+  const id: number = parseInt(shop_product_id!);
+
+  const ReduxShopProducts = useSelector((state) =>
+    selectShopProductById(state, id)
+  );
 
   const ImgStyleBase = {
     backgroundImage: "",

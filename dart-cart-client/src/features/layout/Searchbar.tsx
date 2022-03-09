@@ -14,9 +14,22 @@ const Searchbar = () => {
 
   const nav = useNavigate();
   const handleSearch = (e: any) => {
+<<<<<<< HEAD
     dispatch(fetchShopProducts(search));
     nav("/Display");
   };
+=======
+    if(e.code !== "Enter") {
+      dispatch(updatedSearchString(string.current?.value))
+    } 
+  }
+
+  const buttonHandler = (e: any) => {
+    dispatch(updatedSearchString(string.current?.value))
+  }
+
+
+>>>>>>> b14a86d78367c1da688f6f03c2f85b3ca4a32371
 
   const onChangeHandler = (e: any) => {
     dispatch(updatedSearchString(string.current?.value));
