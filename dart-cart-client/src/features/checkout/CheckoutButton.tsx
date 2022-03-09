@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../common/types";
 
-import { addInvoice, selectAllCartItems, selectStatus } from "../../common/slices/cartSlice";
+import { addInvoice, selectAllCartItems, selectStatus, resetStatus } from "../../common/slices/cartSlice";
 import { Modal, Button } from "react-bootstrap";
 import { selectUser } from "../../common/slices/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -28,12 +28,23 @@ export function CheckoutButton() {
         zip: "" 
     };
 
-    const handleShow = () => setShow(true);
+    useEffect(() => {
+        if(status === "fulfilled") {
+            setSuccess(true)
+            setShow(true)
+        } else if(status === "rejected") {
+            setSuccess(false)
+            setShow(true)
+        }
+    }, [status])
+
     const handleClose = () => {
         setShow(false);
         if(status === "fulfilled"){
+            dispatch(resetStatus())
             nav("/");
         }else{
+            dispatch(resetStatus())
             nav("/cart");
         }
     }
@@ -43,14 +54,7 @@ export function CheckoutButton() {
         if(currentUser && currentCart){
             let shippingAddress = streetAddress + ", " + city + " " + state + ", " + zip;
 
-            await dispatch(addInvoice({user: JSON.parse(currentUser), currentCart: currentCart, shippingAddress: shippingAddress}));
-            if(status === "fulfilled"){
-                setSuccess(true);
-                handleShow();
-            }else if(status === "rejected") {
-                setSuccess(false);
-                handleShow();
-            }
+            dispatch(addInvoice({user: JSON.parse(currentUser), currentCart: currentCart, shippingAddress: shippingAddress}));
         }
     }
 
