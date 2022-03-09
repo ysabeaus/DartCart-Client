@@ -16,9 +16,7 @@ const Display = () => {
   const status = useSelector(getStatus);
 
   useEffect(() => {
-    if (status === "idle")
-      dispatch(fetchShopProducts("")); // places return value into REDUX global state
-    return () => { dispatch(clearSlice(null)) };
+    if (status === "idle") dispatch(fetchShopProducts("")); // places return value into REDUX global state
   }, []);
 
   return (
@@ -27,14 +25,19 @@ const Display = () => {
 
       <div className="ProductCardContainer">
         {status === "success" ? (
-
-          ReduxShopProducts.map((Product) => {
-            return (
-              <ShopProductCard Product={Product}></ShopProductCard>
-            );
-          })
+          (ReduxShopProducts.length &&
+            ReduxShopProducts.map((Product) => {
+              return <ShopProductCard Product={Product}></ShopProductCard>;
+            })) || (
+            <>
+              <h1 style={{ color: "white" }}>No Items Found</h1>
+            </>
+          )
         ) : (
-          <div className="text-light fs-1 p-5 text-uppercase" style={{ textAlign: "center" }}>
+          <div
+            className="text-light fs-1 p-5 text-uppercase"
+            style={{ textAlign: "center" }}
+          >
             Fetching Products...
           </div>
         )}

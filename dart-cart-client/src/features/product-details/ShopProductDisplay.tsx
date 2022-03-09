@@ -12,6 +12,7 @@ import cartoonClothing from "../../imgs/Clothing-baby-clothes.png";
 import cartoonDiamond from "../../imgs/diamond-ring.png";
 import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
+import { useEffect } from "react";
 
 const ShopProductDisplay = () => {
   const { shop_product_id } = useParams();
@@ -21,6 +22,10 @@ const ShopProductDisplay = () => {
   const ReduxShopProducts = useSelector((state) =>
     selectShopProductById(state, id)
   );
+
+  useEffect((): void => {
+    console.log(ReduxShopProducts);
+  }, [ReduxShopProducts]);
 
   const ImgStyleBase = {
     backgroundImage: "",
