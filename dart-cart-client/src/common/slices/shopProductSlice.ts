@@ -65,7 +65,6 @@ export const {
   selectAll: selectShopProducts,
   selectById: selectShopProductById,
 } = SPAdapter.getSelectors((state: any) => state.ShopProducts);
-<<<<<<< HEAD
 
 export const getSearchString = createSelector(
   (state: RootState) => state.ShopProducts.searchString,
@@ -73,8 +72,6 @@ export const getSearchString = createSelector(
     return search;
   }
 );
-=======
->>>>>>> b14a86d78367c1da688f6f03c2f85b3ca4a32371
 
 export const selectFilteredProducts = createSelector(
   (state: RootState) => state.ShopProducts,
