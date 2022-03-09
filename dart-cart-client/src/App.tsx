@@ -15,39 +15,49 @@ import Header from "./features/layout/Header";
 import Footer from "./features/layout/Footer";
 import Cart from "./features/cart/Cart";
 import "./App.css";
+import Checkout from "./features/checkout/CheckoutDisplay";
 import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
+import SearchDisplay from "./features/search/SearchDisplay";
 
 function App() {
-    useEffect(() => {
-        document.title = "DartCart";
-    });
+  useEffect(() => {
+    document.title = "DartCart";
+  });
 
-    return (
-        <div className="App">
-            <BrowserRouter>
-                <Provider store={store}>
-                    <Header />
-                    <Routes>
-                        <Route path="/" element={<Home />}></Route>
-                        <Route path="/sellers/:seller_homepage" element={<SellerHomepage />}></Route>
-                        <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
-                        <Route path="/shops/:shop_id/list" element={<ListItem />}></Route>
-                        <Route path="/cart" element={<Cart />}></Route>
-                        <Route path="/register" element={<UserRegister />}></Route>
-                        <Route path="/signup" element={<SellerRegister />}></Route>
-                        <Route path="/login" element={<Login />}></Route>
-                        <Route path="/orders" element={<PreviousOrders />}></Route>
-                        <Route path="/display" element={<Display />}></Route>
-                        <Route path="/shop/:product_id" element={<ShopProductDisplay />}></Route>
-                        <Route path="/*" element={<Error404Page />}></Route>
-                    </Routes>
-                    <Footer />
-                </Provider>
-            </BrowserRouter>
-        </div>
-    );
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Provider store={store}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route
+              path="/sellers/:seller_homepage"
+              element={<SellerHomepage />}
+            ></Route>
+            <Route path="/shops/:shop_id" element={<ShopPage />}></Route>
+            <Route path="/shops/:shop_id/list" element={<ListItem />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/register" element={<UserRegister />}></Route>
+            <Route path="/signup" element={<SellerRegister />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/orders" element={<PreviousOrders />}></Route>
+            <Route path="/checkout" element={<Checkout />}></Route>
+            <Route path="/display" element={<Display />}></Route>
+            <Route path="/search" element={<SearchDisplay />}></Route>
+            <Route
+              path="/shop/:product_id"
+              element={<ShopProductDisplay />}
+            ></Route>
+            <Route path="/*" element={<Error404Page />}></Route>
+          </Routes>
+          <Footer />
+        </Provider>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
