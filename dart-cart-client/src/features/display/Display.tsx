@@ -21,8 +21,6 @@ const Display = () => {
     return () => { dispatch(clearSlice(null)) };
   }, []);
 
-  console.log(status)
-  console.log(status !== "idle")
   return (
     <>
       <div className=""></div>
