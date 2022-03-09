@@ -76,6 +76,9 @@ export const cartSlice = createSlice({
         },
         clearCart(state) {
             cartAdapater.removeMany(state, state.ids)
+        },
+        resetStatus(state) {
+            state.status = "idle"
         }
     },
     extraReducers: (builder) => {
@@ -99,7 +102,7 @@ export const cartSlice = createSlice({
     }
 });
 
-export const { clearCart, updateCartItem } = cartSlice.actions;
+export const { clearCart, updateCartItem, resetStatus } = cartSlice.actions;
 export default cartSlice.reducer;
 
 export const { selectAll: selectAllCartItems, selectById: selectCartItemById } = cartAdapater.getSelectors((state: RootState) => state.cart)
