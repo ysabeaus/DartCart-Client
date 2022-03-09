@@ -21,15 +21,6 @@ export const fetchShopProducts = createAsyncThunk(
       params: { name },
     });
 
-<<<<<<< HEAD
-=======
-export const fetchShopProducts = createAsyncThunk(
-  "ShopProducts/fetchShopProducts",
-  async () => {
-    const response = await axios.get(MOCK_SERVER + "shop_products", {
-      headers: authHeader(),
-    });
->>>>>>> b14a86d78367c1da688f6f03c2f85b3ca4a32371
     return response.data;
   }
 );
