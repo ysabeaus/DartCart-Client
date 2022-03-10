@@ -31,7 +31,7 @@ const Nav = (props) => {
                             <span style={{ fontWeight: "bold" }}>Welcome, {name} |</span>
                         </li>
                         <li className="nav-item-mb-3 nav-item">
-                            <Link to="/signup" className="text-reset nav-link">
+                            <Link to="/sellers" className="text-reset nav-link">
                                 Sell
                             </Link>
                         </li>
@@ -61,11 +61,6 @@ const Nav = (props) => {
                     </>
                 ) : (
                     <>
-                        <li className="nav-item-mb-3 nav-item">
-                            <Link to="/" className="text-reset nav-link">
-                                Home
-                            </Link>
-                        </li>
                         <li className="nav-item-mb-3 nav-item">
                             <Link to="/login" className="text-reset nav-link">
                                 Login

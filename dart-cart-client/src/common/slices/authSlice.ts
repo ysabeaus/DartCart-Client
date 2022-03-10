@@ -131,7 +131,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const fetchSeller = createAsyncThunk("authentication/fetchSeller", async (id: number) => {
-    return axios.get(`${API_URL}sellers/${id}`, { headers: authHeader() }).then((response) => {
+    return axios.get(`${API_URL}sellers/users/${id}`, { headers: authHeader() }).then((response) => {
         localStorage.setItem("seller", JSON.stringify(response.data));
     });
 });
