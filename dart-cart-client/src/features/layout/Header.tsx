@@ -9,7 +9,7 @@ const Header = () => {
     <Navbar>
       <header
         className="navbar navbar-expand-lg navbar-fixed-top navbar-custom"
-        style={{ width: "100%" }}
+        style={{ width: "100%", marginTop: "-10px" }}
       >
         <Logo />
         <Searchbar />

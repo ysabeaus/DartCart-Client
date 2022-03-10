@@ -6,23 +6,29 @@ import { fetchCart, selectAllCartItems } from "../../common/slices/cartSlice";
 import CartItemView from "./CartItemView";
 
 const Cart = () => {
-    const items = useSelector(selectAllCartItems)
-    const dispatch = useDispatch()
+  const items = useSelector(selectAllCartItems);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchCart())
-    }, [])
+  useEffect(() => {
+    dispatch(fetchCart());
+  }, []);
 
-    return (
-        <>
-            {
-                items.map(item => {
-                    return <CartItemView key={item.id} {...item} />
-                })
-            }
-            <Link to="/checkout">Checkout</Link>
-        </>
-    )
-}
+  return (
+    <>
+      {items.map((item) => {
+        return <CartItemView key={item.id} {...item} />;
+      })}
+      <div
+        style={{
+          padding: "1em",
+        }}
+      >
+        <Link to="/checkout" style={{ textDecoration: "none" }}>
+          Checkout
+        </Link>
+      </div>
+    </>
+  );
+};
 
-export default Cart
+export default Cart;
