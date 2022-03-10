@@ -4,31 +4,26 @@ import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const logoStyle = {
-  height: "15%",
-  width: "15%",
-  marginLeft: "3%",
+    height: "50px",
+    width: "75px",
+    marginLeft: "5%"
 };
 
 const Logo = () => {
-  return (
-    <>
-      <Navbar>
-        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-          <h2>DartCart</h2>
-        </Link>
-        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-          <div style={{ textAlign: "left" }}>
-            <img
-              className="logo-img"
-              style={logoStyle}
-              src={logo}
-              alt="logo"
-            ></img>
-          </div>
-        </Link>
-      </Navbar>
-    </>
-  );
+    return (
+        <>
+            <Navbar style={{ width: "30%" }}>
+                <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                    <h2>DartCart</h2>
+                </Link>
+                <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                    <div style={{ textAlign: "left" }}>
+                        <img className="logo-img" style={logoStyle} src={logo} alt="logo"></img>
+                    </div>
+                </Link>
+            </Navbar>
+        </>
+    );
 };
 
 export default Logo;
