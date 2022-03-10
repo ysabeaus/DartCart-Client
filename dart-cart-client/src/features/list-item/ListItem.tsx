@@ -77,7 +77,6 @@ export function ListItem() {
     };
 
     const handleOnClick = () => {
-        console.log(chosenProduct);
 
         shopProduct.quantity = productQuantity;
         const rawPrice = productPrice.slice(1);
@@ -88,6 +87,10 @@ export function ListItem() {
         if (!validateInput()) {
             return;
         }
+
+        dispatch(createShopProduct(shopProduct)).unwrap().then(originalPromiseResult => setShowModal(true)).catch(rejectValueOrSerializedError => {
+            setError("Something went wrong...")
+        })
     };
 
     const handleClose = () => {

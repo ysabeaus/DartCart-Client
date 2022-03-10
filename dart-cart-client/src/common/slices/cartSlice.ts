@@ -17,47 +17,47 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
 });
 
 export const addToCart = createAsyncThunk('cart/addToCart', async (shop_product_id: number) => {
-        const username = localStorage.getItem("username")
-        const response = await axios.post(API_URL + "carts", {
-            quantity: 1,
-            saved: false,
-            customer: {
-                username: username
-            },
-            shopProduct: {
-                shop_product_id: shop_product_id
-            }
-        }, { headers: authHeader() })
+    const username = localStorage.getItem("username")
+    const response = await axios.post(API_URL + "carts", {
+        quantity: 1,
+        saved: false,
+        customer: {
+            username: username
+        },
+        shopProduct: {
+            id: shop_product_id
+        }
+    }, { headers: authHeader() })
 
     return response.data;
 });
 
 export const updateCart = createAsyncThunk('cart/updateCart', async (cartItem: CartItem) => {
-        const response = await axios.put(API_URL + "carts/" + cartItem.id, {
-            quantity: cartItem.quantity
-        }, { headers: authHeader() })
+    const response = await axios.put(API_URL + "carts/" + cartItem.id, {
+        quantity: cartItem.quantity
+    }, { headers: authHeader() })
 
     return response.data;
 });
 
 export const addInvoice = createAsyncThunk(
     "checkout/addInvoice",
-    async ({user, shippingAddress, currentCart}: CheckoutProps) => {
-      const response = await axios.post(API_URL + "checkout", {
-        id: user.id,
-        username: user.username,
-        password: user.password,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        phone: user.phone,
-        location: shippingAddress,
-        registrationDate: user.registrationDate,
-        itemList: currentCart
-      }, {
-        headers: authHeader()
-      });
-      return response.data;
+    async ({ user, shippingAddress, currentCart }: CheckoutProps) => {
+        const response = await axios.post(API_URL + "checkout", {
+            id: user.id,
+            username: user.username,
+            password: user.password,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            phone: user.phone,
+            location: shippingAddress,
+            registrationDate: user.registrationDate,
+            itemList: currentCart
+        }, {
+            headers: authHeader()
+        });
+        return response.data;
     }
 );
 
@@ -74,6 +74,12 @@ export const cartSlice = createSlice({
                 cartAdapater.updateOne(state, action);
             }
         },
+        clearCart(state) {
+            cartAdapater.removeMany(state, state.ids)
+        },
+        resetStatus(state) {
+            state.status = "idle"
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -96,12 +102,12 @@ export const cartSlice = createSlice({
     }
 });
 
-export const { updateCartItem } = cartSlice.actions;
+export const { clearCart, updateCartItem, resetStatus } = cartSlice.actions;
 export default cartSlice.reducer;
 
-export const { selectAll: selectAllCartItems, selectById: selectCartItemById} = cartAdapater.getSelectors((state: RootState) => state.cart)
+export const { selectAll: selectAllCartItems, selectById: selectCartItemById } = cartAdapater.getSelectors((state: RootState) => state.cart)
 
 export const selectStatus = createSelector(
     (state: RootState) => state.cart,
     (cart) => cart.status
-  );
+);
