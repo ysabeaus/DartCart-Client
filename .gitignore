@@ -4,3 +4,5 @@ dart-cart-client/node_modules/
 *.orig
 
 */node_modules/*
+.settings
+.project
