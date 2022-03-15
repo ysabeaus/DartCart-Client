@@ -20,15 +20,28 @@ import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 
+import useLocalStorage from 'use-local-storage';
+
 function App() {
+  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+  const switchTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  }
+ 
   useEffect(() => {
     document.title = "DartCart";
     //
   });
 
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
       <BrowserRouter>
+      <button onClick={switchTheme}>
+        {theme === 'light' ? 'Dark' : 'Light'} Theme
+      </button>
         <Provider store={store}>
           <Header />
           <Routes>
