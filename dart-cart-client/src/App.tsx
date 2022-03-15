@@ -38,10 +38,10 @@ function App() {
 
   return (
     <div className="App" data-theme={theme}>
-      <BrowserRouter>
       <button onClick={switchTheme}>
         {theme === 'light' ? 'Dark' : 'Light'} Theme
       </button>
+      <BrowserRouter>
         <Provider store={store}>
           <Header />
           <Routes>
