@@ -41,6 +41,11 @@ export const Login = () => {
         nav("/");
     };
 
+    const handleCollectEmailForResetPassword = () => {
+        // change route to /collect-email
+       
+    }
+
     return (
         <>
             {!user ? (
@@ -82,11 +87,17 @@ export const Login = () => {
                                                 />
                                             </div>
                                         </div>
-
                                         <div className="row">
                                             <div className="form-outline mb-4 col-12">
                                                 <button className="btn btn-success btn-lg" onClick={handleLogin}>
                                                     Login
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="form-outline mb-4 col-12">
+                                                <button className="btn btn-success btn-sm" onClick={handleCollectEmailForResetPassword()}>
+                                                    Reset Password
                                                 </button>
                                             </div>
                                         </div>
