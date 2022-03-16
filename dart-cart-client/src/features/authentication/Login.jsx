@@ -6,11 +6,48 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
 import { fetchCart } from "../../common/slices/cartSlice";
 
+function CollectEmailForPasswordResetModal(props) {
+    const [username, setUsername] = useState("");
+    let showThis = props.show; 
+
+    const handleClose = () => {
+        showThis = false;
+        props.parentCallback();
+    }
+
+    const emailResetPasswordLink = () => {
+        // 
+        console.log("--- "+username);
+    }
+
+    return(
+        <Modal show={showThis} onHide={handleClose} backdrop="static">
+        <Modal.Header closeButton>
+            <Modal.Title>Login</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <div className="">
+                <input
+                    type="text"
+                    placeholder="Enter Username to Reset Password"
+                    className="form-control form-control-md"
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+            </div>     
+        </Modal.Body>
+        <Modal.Footer>
+            <Button onClick={emailResetPasswordLink}>Reset Password</Button>
+        </Modal.Footer>
+        </Modal>
+    );
+}
+
 export const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [showResetModal, setShowResetModal] = useState(false);
 
     const nav = useNavigate();
     const dispatch = useAppDispatch();
@@ -41,13 +78,18 @@ export const Login = () => {
         nav("/");
     };
 
-    const handleCollectEmailForResetPassword = () => {
-        // change route to /collect-email
-       
+    const showResetPasswordModal = () => {
+        setShowResetModal(true);
+    }
+
+    const hideResetPasswordModal = () => {
+        setShowResetModal(false);
     }
 
     return (
-        <>
+        <>  
+            {showResetModal ? <CollectEmailForPasswordResetModal parentCallback={hideResetPasswordModal} show={showResetModal}/> : null}
+            
             {!user ? (
                 <section className="vh-100 loginForm">
                     <div className="container py-5">
@@ -96,7 +138,7 @@ export const Login = () => {
                                         </div>
                                         <div className="row">
                                             <div className="form-outline mb-4 col-12">
-                                                <button className="btn btn-success btn-sm" onClick={handleCollectEmailForResetPassword()}>
+                                                <button className="btn btn-success btn-sm" onClick={showResetPasswordModal}>
                                                     Reset Password
                                                 </button>
                                             </div>
