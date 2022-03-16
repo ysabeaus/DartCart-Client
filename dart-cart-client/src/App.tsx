@@ -19,6 +19,7 @@ import Checkout from "./features/checkout/CheckoutDisplay";
 import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
+import { WishList } from "./features/wishlist/WishList";
 
 function App() {
   useEffect(() => {
@@ -50,6 +51,7 @@ function App() {
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
             ></Route>
+            <Route path="/wishlist" element={<WishList/>}></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>
           <Footer />
