@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Login } from "./features/authentication/Login";
+import {ResetPassword} from "./features/authentication/ResetPassword";
 import Home from "./features/Home";
 import UserRegister from "./features/user-register/UserRegister";
 import Display from "./features/display/Display";
@@ -46,6 +47,7 @@ function App() {
             <Route path="/orders" element={<PreviousOrders />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/display" element={<Display />}></Route>
+            <Route path="/resetpassword" element={<ResetPassword />}></Route>
             <Route
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}

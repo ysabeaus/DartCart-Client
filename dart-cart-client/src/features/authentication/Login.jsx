@@ -22,13 +22,15 @@ function CollectEmailForPasswordResetModal(props) {
     }
 
     const emailResetPasswordLink = () => {
-        console.log("--- "+username);
         axios.get(API_URL + "resetpass/" + username );
         /*
-        createAsyncThunk("authentication/resetpass", async () => {
-            const response = await ;
-        
-            return response.data;
+        .then((response) => {
+            if (response.headers) {
+                console.log("RESP: "+response);
+            }
+        })
+        .catch((error) => {
+            console.log("ERR: "+error);
         });
         */
     }
@@ -36,7 +38,7 @@ function CollectEmailForPasswordResetModal(props) {
     return(
         <Modal show={showThis} onHide={handleClose} backdrop="static">
         <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
+            <Modal.Title>Reset Password</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <div className="">
