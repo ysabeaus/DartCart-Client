@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../common/hooks";
 import { fetchCart } from "../../common/slices/cartSlice";
 import axios from "axios";
 import authHeader from "../../features/authentication/AuthHeader";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // Change URL for testing vs. production
 const API_URL = process.env.REACT_APP_API_URL;
@@ -22,9 +23,14 @@ function CollectEmailForPasswordResetModal(props) {
 
     const emailResetPasswordLink = () => {
         console.log("--- "+username);
-        axios.get(`${API_URL}resetpass/${username}`, { headers: authHeader() }).then(() => {
-                alert("Email Sent!");
+        axios.get(API_URL + "resetpass/" + username );
+        /*
+        createAsyncThunk("authentication/resetpass", async () => {
+            const response = await ;
+        
+            return response.data;
         });
+        */
     }
 
     return(
