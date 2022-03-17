@@ -42,18 +42,16 @@ export default function Product() {
     }
     return (<div className="ProductContainer">
         <div className="InnerProduct">
-
             <div className="ProductInfoContainer" >
                 <img className="card-img-top" style={{ width: "18rem" }}
                     src={pro.image}
                     alt="Card image cap"
-                ></img>
+                ></img> 
                 <div className="ProductInfoPocket">
                     <h1> id = {pro.id}</h1>
                     <h1>{pro.productName}</h1>
                 </div>
             </div>
-
         </div>
     </div>
     )
