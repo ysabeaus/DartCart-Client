@@ -102,3 +102,17 @@ input[type="checkbox"]{
     left: 105px;
     box-shadow: 0 0 5px #13b3ff, 0 0 15px #13b3ff;
   }
+.card {
+    color: var(--text-primary);
+    background-color: var(--background);
+}
+
+.card-header {
+    color: var(--text-primary);
+    background-color: var(--background);
+}
+
+.card-body {
+    color: var(--text-primary);
+    background-color: var(--background);
+}
