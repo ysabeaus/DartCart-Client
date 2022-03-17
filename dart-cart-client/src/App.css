@@ -60,3 +60,18 @@ button {
 .fa {
     color: rgb(25, 135, 84);
 }
+
+.card {
+    color: var(--text-primary);
+    background-color: var(--background);
+}
+
+.card-header {
+    color: var(--text-primary);
+    background-color: var(--background);
+}
+
+.card-body {
+    color: var(--text-primary);
+    background-color: var(--background);
+}
