@@ -12,22 +12,25 @@ const MOCK_SERVER = process.env.REACT_APP_API_URL;
 
 
 export default function Featured_Products() {
-    const [anyThing, setanyThing] = useState<any>();
+    const [anyThing, setanyThing] = useState<any>([]);
 
-    useEffect(() => {
-        axios.get(MOCK_SERVER + "shop_products/search", {
+    const fetchData = () => {
+        axios.get(MOCK_SERVER + "featured_products", {
             headers: authHeader(),
             // params: { name },
         }).then((data) => setanyThing(data.data));
 
-    }, []);
+    };
 
+    useEffect(fetchData, []);
+    useEffect(() => { console.log(anyThing[0]); }, [anyThing]);
     // anyThing.then(data => console.log(data));
-    // console.log(anyThing[0].name);
+
     return (<>
-        <Featured_Product productName={anyThing[0].name} id={anyThing[0].id} imageUrl="https://picsum.photos/100/100?random=1" />
-        <Featured_Product productName={anyThing[1].name} id={anyThing[1].id} imageUrl="https://picsum.photos/100/100?random=2" />
-        <Featured_Product productName={anyThing[2].name} id={anyThing[2].id} imageUrl="https://picsum.photos/100/100?random=3" />
-        {/* //loop */}
+        {anyThing.map(elem => {
+           return <Featured_Product productName={elem.name} id="1" imageUrl="https://picsum.photos/100/100?random=1" />
+        }
+        )}
+
     </>);
 }
