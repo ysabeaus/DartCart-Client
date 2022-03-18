@@ -39,7 +39,7 @@ DartCart is an e-commerce web application designed to buy and sell products deve
 
 > Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
 
-## Contributors
+## Contributors of first iteration (DartCart 1)
 
 * Abdul Samad Sadat
 * Alejandro Gomez
@@ -64,4 +64,26 @@ DartCart is an e-commerce web application designed to buy and sell products deve
 * Thanh Nguyen
 * Tomas Abebaw Anbessaw
 
-This project was made for the Revature Winter Batch 2022.
+## Contributers of second iteration (DartCart 2)
+
+* Andy Escobar
+* Andrew Snyder
+* Austin Ristau
+* Hannah Hospital
+* Austin McGehee
+* Austin Blandford
+* Awaab Elamin
+* Brandon Clark
+* Michael Bronzo
+* Christian Mains
+* Philip Wentworth
+* Gurman Singh
+* Jacob Sotto
+* Paul Agilpay
+* Mike Campbell
+* Lamar Lewis
+* Robert Lavoie
+* Scott Damon
+* Tracy Bodine
+* Joshua Robles
+Dart Cart 2 was made for the Revature Java/React 1/24 batch
