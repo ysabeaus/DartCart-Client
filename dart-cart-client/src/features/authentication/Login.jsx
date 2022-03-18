@@ -5,26 +5,71 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
 import { fetchCart } from "../../common/slices/cartSlice";
+import axios from "axios";
+import authHeader from "../../features/authentication/AuthHeader";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-function CollectEmailForPasswordResetModal(props) {
-    const [username, setUsername] = useState("");
-    let showThis = props.show; 
 
+// Change URL for testing vs. production
+const API_URL = process.env.REACT_APP_API_URL;
+
+function ShowEmailSentModal(props) {
+    let showThis = props.show;
+   
     const handleClose = () => {
         showThis = false;
         props.parentCallback();
     }
+    return(
+        <Modal show={showThis} onHide={handleClose} backdrop="static">
+            <Modal.Header closeButton>
+                <Modal.Title>Reset Password</Modal.Title>
+            </Modal.Header>
+            
+            <Modal.Body>
+                <div className="">
+                    <p>An reset password instruction have been sent to the email associated with this account</p>
+                    <p>If you do not see the email check your spam folder</p>
+                </div>     
+            </Modal.Body>
+        </Modal>
+    );
+}
+
+function CollectEmailForPasswordResetModal(props) {
+    const [username, setUsername] = useState("");
+    const nav = useNavigate();
+    const dispatch = useAppDispatch();
+
+    let showThis = props.show; 
+    
+    
+    const handleClose = () => {
+        showThis = false;
+        props.parentCallback(false);
+    }
 
     const emailResetPasswordLink = () => {
-        // 
-        console.log("--- "+username);
+        showThis = false;
+        axios.get(API_URL + "resetpass/" + username )
+        .then((response) => {
+            if (response.headers) {
+                console.log(response.headers);
+                console.log(response.body);
+            }
+        })
+        .catch((error) => {
+            console.log("ERR: "+error);
+        });
+        props.parentCallback(true);
     }
 
     return(
         <Modal show={showThis} onHide={handleClose} backdrop="static">
         <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
+            <Modal.Title>Reset Password</Modal.Title>
         </Modal.Header>
+          
         <Modal.Body>
             <div className="">
                 <input
@@ -48,6 +93,7 @@ export const Login = () => {
     const [error, setError] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [showResetModal, setShowResetModal] = useState(false);
+    const [showEmailSent, setShowEmailSent] = useState(false);
 
     const nav = useNavigate();
     const dispatch = useAppDispatch();
@@ -82,12 +128,20 @@ export const Login = () => {
         setShowResetModal(true);
     }
 
-    const hideResetPasswordModal = () => {
+    const hideResetPasswordModal = (emailSent) => {
         setShowResetModal(false);
+        if(emailSent) {
+            setShowEmailSent(true);
+        }
+    }
+
+    const hideEmailSentModal = () => {
+        setShowEmailSent(false);
     }
 
     return (
         <>  
+            {showEmailSent ? <ShowEmailSentModal parentCallback={hideEmailSentModal} show={showEmailSent} /> : null}
             {showResetModal ? <CollectEmailForPasswordResetModal parentCallback={hideResetPasswordModal} show={showResetModal}/> : null}
             
             {!user ? (
