@@ -4,6 +4,8 @@ body {
         "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: var(--text-primary);
+    background-color: var(--background);
 }
 
 code {
@@ -19,11 +21,17 @@ code {
     --text-primary: black;
     --text-secondary: royalblue;
     --accent: purple;
+    --bs-black: black;
+    --bs-white: white !important;
+    --bs-body-bg: white !important;
   }
   [data-theme='dark'] {
     --background: black;
     --text-primary: white;
     --text-secondary: grey;
     --accent: darkred;
+    --bs-black: white;
+    --bs-white: black !important;
+    --bs-body-bg: black !important;
   }
 
