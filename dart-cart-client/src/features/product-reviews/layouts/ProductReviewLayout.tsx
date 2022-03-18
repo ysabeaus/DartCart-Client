@@ -5,13 +5,10 @@ import ProductReview from '../ProductReview'
 function ProductReviewLayout() {
     const [formData, setFormData] = useState({ layoutSections: "" })
     const [sections, setSections] = useState([
-        { title: "Section1", fluid: true },
-        { title: "Section2", fluid: true },
-        { title: "Section3", fluid: false },
-        { title: "Section4", fluid: false },
-        { title: "Section5", fluid: true },
-        { title: "Section6", fluid: true },
- ])
+        true,
+        true,
+        false,
+        false, false, true])
     const [showLayoutControls, setLayoutControls] = useState(true)
 
     const [dLayoutData, setDLayoutData] = useState({
@@ -67,7 +64,7 @@ function ProductReviewLayout() {
                 }
             ]
         })
-        // setSections(dLayoutData.sections.map(e => e.section))
+        setSections(dLayoutData.sections.map(e => e.section))
     }
     return (
         <>
@@ -88,9 +85,9 @@ function ProductReviewLayout() {
                 <section key={`prl-sec-${i}`} style={{ backgroundColor: 'gray' }}>
                     <h1 key={`prl-sec-h1-${i}`}>Section</h1>
                 </section>
-                <ProductReview key={`prl-${i}`} showLayoutControls={showLayoutControls}
-
-                    fluid={e.fluid} />
+                <ProductReview key={`prl-${i}`} showLayoutControls={showLayoutControls} 
+                
+                fluid={e} />
             </>)}
         </>
     )
