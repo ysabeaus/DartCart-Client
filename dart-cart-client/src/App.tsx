@@ -35,14 +35,17 @@ function App() {
 
   useEffect(() => {
     document.title = "DartCart";
+
     //
   });
 
-  
-
   return (
     <div className="App" data-theme={theme}>
-      <input onClick={switchTheme} type="checkbox" name="" />
+      { theme==='dark' ?
+      (<input onClick={switchTheme} type="checkbox" name="" checked />)  
+      : 
+      (<input onClick={switchTheme} type="checkbox" name="" />)
+      }
       <BrowserRouter>
         <Provider store={store}>
           <Header />
