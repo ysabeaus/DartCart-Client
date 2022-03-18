@@ -35,10 +35,9 @@ function App() {
 
   useEffect(() => {
     document.title = "DartCart";
+
     //
   });
-
-  
 
   return (
     <div className="App" data-theme={theme}>
