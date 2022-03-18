@@ -1,5 +1,5 @@
 # DartCart-Client
-Note: This is the front-end portion of the DartCart Application. The required back-end portion can be found here: https://github.com/Revature-DartCart/DartCart-Server
+Note: This is the front-end portion of the DartCart Application. The required back-end portion can be found here: https://github.com/Revature-DartCart-2/DartCart-Server
 
 ## Project Description
  
