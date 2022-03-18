@@ -28,7 +28,7 @@ function ShowEmailSentModal(props) {
             
             <Modal.Body>
                 <div className="">
-                    <p>An reset password instruction have been sent to the email associated with this account</p>
+                    <p>A reset password instruction have been sent to the email associated with this account</p>
                     <p>If you do not see the email check your spam folder</p>
                 </div>     
             </Modal.Body>
