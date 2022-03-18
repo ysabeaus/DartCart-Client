@@ -5,12 +5,95 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
 import { fetchCart } from "../../common/slices/cartSlice";
+import axios from "axios";
+import authHeader from "../../features/authentication/AuthHeader";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+
+// Change URL for testing vs. production
+const API_URL = process.env.REACT_APP_API_URL;
+
+function ShowEmailSentModal(props) {
+    let showThis = props.show;
+   
+    const handleClose = () => {
+        showThis = false;
+        props.parentCallback();
+    }
+    return(
+        <Modal show={showThis} onHide={handleClose} backdrop="static">
+            <Modal.Header closeButton>
+                <Modal.Title>Reset Password</Modal.Title>
+            </Modal.Header>
+            
+            <Modal.Body>
+                <div className="">
+                    <p>A reset password instruction have been sent to the email associated with this account</p>
+                    <p>If you do not see the email check your spam folder</p>
+                </div>     
+            </Modal.Body>
+        </Modal>
+    );
+}
+
+function CollectEmailForPasswordResetModal(props) {
+    const [username, setUsername] = useState("");
+    const nav = useNavigate();
+    const dispatch = useAppDispatch();
+
+    let showThis = props.show; 
+    
+    
+    const handleClose = () => {
+        showThis = false;
+        props.parentCallback(false);
+    }
+
+    const emailResetPasswordLink = () => {
+        showThis = false;
+        axios.get(API_URL + "resetpass/" + username )
+        .then((response) => {
+            if (response.headers) {
+                console.log(response.headers);
+                console.log(response.body);
+            }
+        })
+        .catch((error) => {
+            console.log("ERR: "+error);
+        });
+        props.parentCallback(true);
+    }
+
+    return(
+        <Modal show={showThis} onHide={handleClose} backdrop="static">
+        <Modal.Header closeButton>
+            <Modal.Title>Reset Password</Modal.Title>
+        </Modal.Header>
+          
+        <Modal.Body>
+            <div className="">
+                <input
+                    type="text"
+                    placeholder="Enter Username to Reset Password"
+                    className="form-control form-control-md"
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+            </div>     
+        </Modal.Body>
+        <Modal.Footer>
+            <Button onClick={emailResetPasswordLink}>Reset Password</Button>
+        </Modal.Footer>
+        </Modal>
+    );
+}
 
 export const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [showResetModal, setShowResetModal] = useState(false);
+    const [showEmailSent, setShowEmailSent] = useState(false);
 
     const nav = useNavigate();
     const dispatch = useAppDispatch();
@@ -41,13 +124,26 @@ export const Login = () => {
         nav("/");
     };
 
-    const handleCollectEmailForResetPassword = () => {
-        // change route to /collect-email
-       
+    const showResetPasswordModal = () => {
+        setShowResetModal(true);
+    }
+
+    const hideResetPasswordModal = (emailSent) => {
+        setShowResetModal(false);
+        if(emailSent) {
+            setShowEmailSent(true);
+        }
+    }
+
+    const hideEmailSentModal = () => {
+        setShowEmailSent(false);
     }
 
     return (
-        <>
+        <>  
+            {showEmailSent ? <ShowEmailSentModal parentCallback={hideEmailSentModal} show={showEmailSent} /> : null}
+            {showResetModal ? <CollectEmailForPasswordResetModal parentCallback={hideResetPasswordModal} show={showResetModal}/> : null}
+            
             {!user ? (
                 <section className="vh-100 loginForm">
                     <div className="container py-5">
@@ -96,7 +192,7 @@ export const Login = () => {
                                         </div>
                                         <div className="row">
                                             <div className="form-outline mb-4 col-12">
-                                                <button className="btn btn-success btn-sm" onClick={handleCollectEmailForResetPassword()}>
+                                                <button className="btn btn-success btn-sm" onClick={showResetPasswordModal}>
                                                     Reset Password
                                                 </button>
                                             </div>
@@ -112,7 +208,7 @@ export const Login = () => {
                     <div className="container py-5">
                         <div className="row d-flex justify-content-center align-items-center">
                             <div className="col-4">
-                                <div className="card shadow-2-strong" style={{ borderRadius: "1rem" }}>
+                                <div className="card shadow-2-strong" style={{ borderRadius: "1rem"}}>
                                     <div className="card-header card text-center bg-success text-white">
                                         <h3 className="mb-0">Logout</h3>
                                     </div>
