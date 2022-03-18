@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Row, Container, Image, Card } from "react-bootstrap";
 
 function MiscTableOne() {
+
+
+
   return (
     <><Card style={{ height: '100%' }}>
       {/* <Image src={`https://source.unsplash.com/1600x900/?${pics[e]}`} /> */}

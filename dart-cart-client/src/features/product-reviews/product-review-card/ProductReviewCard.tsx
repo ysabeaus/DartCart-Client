@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiFillStar } from 'react-icons/ai';
-function ProductReviewCard({ title = 'After Years of FireTV, I am switching to Roku.' }) {
+function ProductReviewCard({ title = 'After Years of FireTV, I am switching to Roku.', rating = 5 }) {
     return (
         <div style={{ textAlign: 'left' }}>
             <span >
@@ -13,7 +13,7 @@ function ProductReviewCard({ title = 'After Years of FireTV, I am switching to R
             </span>
             <br />
 
-            {Array.from(Array(5).keys()).map(c => {
+            {Array.from(Array(rating).keys()).map(c => {
                 return (
                     <AiFillStar key={c} style={{ color: 'orange' }} />
                 )

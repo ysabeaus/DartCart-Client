@@ -19,8 +19,7 @@ function ProductReviewDetail() {
                 </Modal.Header>
                 <Modal.Body>
                     Please tell us how you feel about this product.
-                    <br />
-                    
+                    <br />                    
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Email address</Form.Label>
