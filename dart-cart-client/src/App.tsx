@@ -20,7 +20,7 @@ import Checkout from "./features/checkout/CheckoutDisplay";
 import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
-
+import ProductReviewLayout from "./features/product-reviews/layouts/ProductReviewLayout";
 function App() {
   useEffect(() => {
     document.title = "DartCart";
@@ -52,8 +52,12 @@ function App() {
               element={<ShopProductDisplay />}
             ></Route>
             <Route
-              path="/product-review/:shop_product_id"
+              path="/product-review-display/:shop_product_id"
               element={<ProductReviewDisplay />}
+            ></Route>
+            <Route
+              path="/product-review/:shop_product_id"
+              element={<ProductReviewLayout />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>

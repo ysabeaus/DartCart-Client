@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiFillStar } from 'react-icons/ai';
-function ProductReviewCard() {
+function ProductReviewCard({ title = 'After Years of FireTV, I am switching to Roku.' }) {
     return (
         <div style={{ textAlign: 'left' }}>
             <span >
@@ -12,15 +12,15 @@ function ProductReviewCard() {
 
             </span>
             <br />
-            
-            {Array.from(Array(4).keys()).map(c => {
+
+            {Array.from(Array(5).keys()).map(c => {
                 return (
-                    <AiFillStar style={{ color: 'orange' }} />
+                    <AiFillStar key={c} style={{ color: 'orange' }} />
                 )
             })}
             <br />
-            <h5><strong>After Years of FireTV, I am switching to Roku.</strong></h5>
-            <p>Reviewed in the United States on April 29, 2021
+            <h5><strong>{title}</strong></h5>
+            <p style={{ fontSize: 12 }}>Reviewed in the United States on April 29, 2021
                 <br />
                 Configuration: Fire TV StickVerified Purchase</p>
             <p>After the update I hate the interface for the following reasons;

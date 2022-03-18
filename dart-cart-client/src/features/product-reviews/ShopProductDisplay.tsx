@@ -78,7 +78,7 @@ const ShopProductDisplay = () => {
 
   return (
     <Container fluid>
-      <section style={{ backgroundColor: '#f4f4f4f4', padding: '10px', marginBottom: '50px', width: '100vw', position: 'relative', left: '50%', right: '50%', marginLeft: '-50vw', marginRight: '-50vw' }}>
+      <section style={{ backgroundColor: 'whitesmoke', padding: '10px', marginBottom: '50px', width: '100vw', position: 'relative', left: '50%', right: '50%', marginLeft: '-50vw', marginRight: '-50vw' }}>
         <h1>Featured Review</h1>
       </section>
       <Row>
@@ -118,7 +118,7 @@ const ShopProductDisplay = () => {
         </Col>
         <Col lg={5}>
 
-          <ProductReviewCard />
+        <ProductReviewCard />
         </Col>
         <Col lg={3}>
 
@@ -166,21 +166,16 @@ const ShopProductDisplay = () => {
           </Container>
         </Col>
       </Row>
-      <section style={{ backgroundColor: '#f4f4f4f4', padding: '10px', marginTop: '50px', width: '100vw', position: 'relative', left: '50%', right: '50%', marginLeft: '-50vw', marginRight: '-50vw' }}>
-        <h1>Section</h1>
+      <section style={{ backgroundColor: 'whitesmoke', padding: '10px', marginTop: '50px', width: '100vw', position: 'relative', left: '50%', right: '50%', marginLeft: '-50vw', marginRight: '-50vw' }}>
+        <h1>Product Reviews</h1>
       </section>
       <Row>
         <Col lg={8}>
 
           <Container fluid className="" >
-
-
             <Row className="" >
-
               <Col lg={4} className="" >
-
                 <h2>{ReduxShopProducts?.name?.toUpperCase()} Ratings:</h2>
-
                 <Row>
                   {[12].map((e, i) => {
                     return (<Col lg={e}>
@@ -228,7 +223,7 @@ const ShopProductDisplay = () => {
                   <h2>{ReduxShopProducts?.name?.toUpperCase()} Reviews:</h2>
                   <Container>
                     <Row>
-                      {[4, 4, 4].map((e, i) => {
+                      {[3,3,3].map((e, i) => {
                         return (<Col lg={e}>
 
                           <Card style={{ height: '100%' }}>
