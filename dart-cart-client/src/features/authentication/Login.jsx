@@ -154,7 +154,7 @@ export const Login = () => {
                     <div className="container py-5">
                         <div className="row d-flex justify-content-center align-items-center">
                             <div className="col-4">
-                                <div className="card shadow-2-strong" style={{ borderRadius: "1rem" }}>
+                                <div className="card shadow-2-strong" style={{ borderRadius: "1rem"}}>
                                     <div className="card-header card text-center bg-success text-white">
                                         <h3 className="mb-0">Logout</h3>
                                     </div>
