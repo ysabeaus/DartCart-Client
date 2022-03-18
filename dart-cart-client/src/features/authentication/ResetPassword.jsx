@@ -26,7 +26,24 @@ export const ResetPassword = () => {
     const nav = useNavigate();
     const dispatch = useAppDispatch();
 
-    let userName = searchParams.get("data"); // puts 'data's value from query param into username
+    let userName = searchParams.get("data").split(""); // puts 'data's value from query param into username
+    // unshift the caesar cipher 
+    let unShift = -1;
+    let base = 96; 
+    for(let i = 0; i < userName.length; i++) {
+        let shiftedLetter = userName[i].charCodeAt(0)+unShift 
+        if(shiftedLetter > 122) {
+            shiftedLetter = (base + shiftedLetter % 122);
+        }
+        else if(shiftedLetter < 97) {
+            shiftedLetter = 123 - (97 - shiftedLetter);
+        }
+
+        userName[i] = String.fromCharCode( shiftedLetter );
+
+    }
+    console.log(userName);
+      
 
     // we can repurpose this to show db error, but we might be set, we'll have to test
     useEffect(() => {
@@ -34,11 +51,7 @@ export const ResetPassword = () => {
     }, [status]);
 
     // reset user password in database 
-    const handleResetPassword = () => {
-        //axios.patch(API_URL + "resetpass/" + username);
-        //await dispatch(resetPassword({ password1, password2 }));
-        //setError("");
-        
+    const handleResetPassword = () => { 
         axios
                 .patch(API_URL + "resetpassword", {
                     username: userName,
