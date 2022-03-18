@@ -30,7 +30,8 @@ The first step is to clone the Client repo. To do this, open a git bash window i
 
 $ git clone https://github.com/Revature-DartCart-2/DartCart-Client.git
 
-![this](https://github.com/Revature-DartCart-2/DartCart-Client/blob/Michael/clientDoc/dart-cart-client/src/imgs/readme/A.png)
+![](./dart-cart-client/src/imgs/readme/A.png)
+
 
 
 First, you must go to node.js and complete the download steps based on your device.
