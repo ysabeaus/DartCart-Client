@@ -10,7 +10,107 @@ import ProductReviewDetail from './ProductReviewDetail';
 
 
 function ProductReview(props) {
+    
+    const jsonData = [
+    {
+        code: "0",
+        componentType: "ProductReviewCard",
+        props: {
+            title: "zero"
+        },
+    },
+    {
+        code: "i",
+        componentType: "ProductImages",
+        // props: {
+        //     title: "one"
+        // },
+    },
+    {
+        code: "1",
+        componentType: "ProductReviewCard",
+        props: {
+            title: "Horrible! One star",
+            rating: 1
+        },
+    },
+    {
+        code: "2",
+        componentType: "ProductReviewCard",
+        props: {
+            title: "Not that good. Two stars",
+            rating: 2
+        },
+    },
+    {
+        code: "3",
+        componentType: "ProductReviewCard",
+        props: {
+            title: "It's ok. Three stars",
+            rating: 3
+        },
+    },
+    {
+        code: "4",
+        componentType: "ProductReviewCard",
+        props: {
+            title: "Really like it! Four Stars",
+            rating: 4
+        },
+    },
+    {
+        code: "5",
+        componentType: "ProductReviewCard",
+        props: {
+            title: "I Love It! Five Stars",
+            rating: 5
+        },
+    },
+    {
+        code: "t",
+        componentType: "MiscTableOne",
+        props: {
+            title: "T"
+        },
+    },
+    {
+        code: "p",
+        componentType: "ProductPurchaseCard",
+        props: {
+            title: "FREE devlivery"
+        },
+    },
+    {
+        code: "c",
+        componentType: "ProductReviewDetail",
+        props: {
+            title: "FREE devlivery"
+        },
+    },
+    {
+        code: "r",
+        componentType: "ReactIcon",
 
+    }
+]
+// const myNums = ['zero', 'one', 'two', 'three', 'four', 'five']
+// const arr = [0, 1, 2, 3];
+// const componentsArry = ["ProductReviewCard", "ProductReviewCard", "ProductReviewCard", "ProductReviewCard"];
+
+const components = {
+    "ProductReviewCard": ProductReviewCard,
+    "ProductImages": ProductImages,
+    "MiscTableOne": MiscTableOne,
+    "ProductReviewDetail": ProductReviewDetail,
+    "ProductPurchaseCard": ProductPurchaseCard,
+    "ReactIcon": ReactIcon
+};
+
+const res = jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElement(components[jsonData[i].componentType], jsonData[i].props), acc), {});
+// const res = arr.reduce((acc, curr) => (acc[curr] = React.createElement(components[componentsArry[curr]], { title: myNums[curr] }), acc), {});
+
+
+    // const [formData, setFormData] = useState({ layoutCols: props.cols.join(""), feature_types: props.featureTypesArry.join("") })
     const [formData, setFormData] = useState({ layoutCols: "", feature_types: "" })
 
     const [featureTypes, setFeatureTypes] = useState({
@@ -20,8 +120,7 @@ function ProductReview(props) {
         // 4: <MiscTableOne />,
         // 5: <ProductReviewDetail />
     })
-    const [featureTypesArry, setFeatureTypesArry] = useState([]);
-    const [cols, setCols] = useState([])
+
     
     const [features, setFeatures] = useState([
         <ProductImages />,
@@ -37,109 +136,20 @@ function ProductReview(props) {
         <ProductReviewCard title={"hi"} />
     ])
 
-    const jsonData = [
-        {
-            code: "0",
-            componentType: "ProductReviewCard",
-            props: {
-                title: "zero"
-            },
-        },
-        {
-            code: "i",
-            componentType: "ProductImages",
-            // props: {
-            //     title: "one"
-            // },
-        },
-        {
-            code: "1",
-            componentType: "ProductReviewCard",
-            props: {
-                title: "Horrible! One star",
-                rating: 1
-            },
-        },
-        {
-            code: "2",
-            componentType: "ProductReviewCard",
-            props: {
-                title: "Not that good. Two stars",
-                rating: 2
-            },
-        },
-        {
-            code: "3",
-            componentType: "ProductReviewCard",
-            props: {
-                title: "It's ok. Three stars",
-                rating: 3
-            },
-        },
-        {
-            code: "4",
-            componentType: "ProductReviewCard",
-            props: {
-                title: "Really like it! Four Stars",
-                rating: 4
-            },
-        },
-        {
-            code: "5",
-            componentType: "ProductReviewCard",
-            props: {
-                title: "I Love It! Five Stars",
-                rating: 5
-            },
-        },
-        {
-            code: "t",
-            componentType: "MiscTableOne",
-            props: {
-                title: "T"
-            },
-        },
-        {
-            code: "p",
-            componentType: "ProductPurchaseCard",
-            props: {
-                title: "FREE devlivery"
-            },
-        },
-        {
-            code: "c",
-            componentType: "ProductReviewDetail",
-            props: {
-                title: "FREE devlivery"
-            },
-        },
-        {
-            code: "r",
-            componentType: "ReactIcon",
-
-        }
-    ]
-    // const myNums = ['zero', 'one', 'two', 'three', 'four', 'five']
-    // const arr = [0, 1, 2, 3];
-    // const componentsArry = ["ProductReviewCard", "ProductReviewCard", "ProductReviewCard", "ProductReviewCard"];
-
-    const components = {
-        "ProductReviewCard": ProductReviewCard,
-        "ProductImages": ProductImages,
-        "MiscTableOne": MiscTableOne,
-        "ProductReviewDetail": ProductReviewDetail,
-        "ProductPurchaseCard": ProductPurchaseCard,
-        "ReactIcon": ReactIcon
-    };
-
-    const res = jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElement(components[jsonData[i].componentType], jsonData[i].props), acc), {});
-    // const res = arr.reduce((acc, curr) => (acc[curr] = React.createElement(components[componentsArry[curr]], { title: myNums[curr] }), acc), {});
-
+    
+    const [featureTypesArry, setFeatureTypesArry] = useState([]);
+    const [cols, setCols] = useState([])
 
     useEffect(() => {
 
-        console.log(res)
+        console.log('useEffect, res: ', res)
         setFeatureTypes(res)
+
+        console.log('useEffect[] featureTypesArry: ', featureTypesArry)
+        console.log('useEffect[] cols: ', cols)
+
+        setFeatureTypesArry(props.featureTypesArry)
+        setCols(props.cols)
 
     }, [])
 
@@ -149,7 +159,7 @@ function ProductReview(props) {
     }, [featureTypesArry])
 
     useEffect(() => {
-        console.log(formData)
+        console.log('useEffect formData: ', formData)
     }, [formData])
 
     const handleChange = (e) => {
