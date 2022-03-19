@@ -1,0 +1,23 @@
+name: Linux Container Node Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: azure/webapps-deploy@v2
+      with:
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+    - run: |
+        docker build . -t p3containerregistry.azurecr.io/dart-cart:${{ github.sha }}
+        docker push p3containerregistry.azurecr.io/dart-cart:${{ github.sha }}     
+
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'dart-cart'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: 'p3containerregistry.azurecr.io/myapp:${{ github.sha }}'
