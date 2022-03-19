@@ -10,107 +10,19 @@ import ProductReviewDetail from './ProductReviewDetail';
 
 
 function ProductReview(props) {
-    
-    const jsonData = [
-    {
-        code: "0",
-        componentType: "ProductReviewCard",
-        props: {
-            title: "zero"
-        },
-    },
-    {
-        code: "i",
-        componentType: "ProductImages",
-        // props: {
-        //     title: "one"
-        // },
-    },
-    {
-        code: "1",
-        componentType: "ProductReviewCard",
-        props: {
-            title: "Horrible! One star",
-            rating: 1
-        },
-    },
-    {
-        code: "2",
-        componentType: "ProductReviewCard",
-        props: {
-            title: "Not that good. Two stars",
-            rating: 2
-        },
-    },
-    {
-        code: "3",
-        componentType: "ProductReviewCard",
-        props: {
-            title: "It's ok. Three stars",
-            rating: 3
-        },
-    },
-    {
-        code: "4",
-        componentType: "ProductReviewCard",
-        props: {
-            title: "Really like it! Four Stars",
-            rating: 4
-        },
-    },
-    {
-        code: "5",
-        componentType: "ProductReviewCard",
-        props: {
-            title: "I Love It! Five Stars",
-            rating: 5
-        },
-    },
-    {
-        code: "t",
-        componentType: "MiscTableOne",
-        props: {
-            title: "T"
-        },
-    },
-    {
-        code: "p",
-        componentType: "ProductPurchaseCard",
-        props: {
-            title: "FREE devlivery"
-        },
-    },
-    {
-        code: "c",
-        componentType: "ProductReviewDetail",
-        props: {
-            title: "FREE devlivery"
-        },
-    },
-    {
-        code: "r",
-        componentType: "ReactIcon",
-
-    }
-]
-// const myNums = ['zero', 'one', 'two', 'three', 'four', 'five']
-// const arr = [0, 1, 2, 3];
-// const componentsArry = ["ProductReviewCard", "ProductReviewCard", "ProductReviewCard", "ProductReviewCard"];
-
-const components = {
-    "ProductReviewCard": ProductReviewCard,
-    "ProductImages": ProductImages,
-    "MiscTableOne": MiscTableOne,
-    "ProductReviewDetail": ProductReviewDetail,
-    "ProductPurchaseCard": ProductPurchaseCard,
-    "ReactIcon": ReactIcon
-};
-
-const res = jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElement(components[jsonData[i].componentType], jsonData[i].props), acc), {});
-// const res = arr.reduce((acc, curr) => (acc[curr] = React.createElement(components[componentsArry[curr]], { title: myNums[curr] }), acc), {});
 
 
-    // const [formData, setFormData] = useState({ layoutCols: props.cols.join(""), feature_types: props.featureTypesArry.join("") })
+    const components = {
+        "ProductReviewCard": ProductReviewCard,
+        "ProductImages": ProductImages,
+        "MiscTableOne": MiscTableOne,
+        "ProductReviewDetail": ProductReviewDetail,
+        "ProductPurchaseCard": ProductPurchaseCard,
+        "ReactIcon": ReactIcon
+    };
+
+    const res = props.jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElement(components[props.jsonData[i].componentType], props.jsonData[i].props), acc), {});
+
     const [formData, setFormData] = useState({ layoutCols: "", feature_types: "" })
 
     const [featureTypes, setFeatureTypes] = useState({
@@ -121,7 +33,7 @@ const res = jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElem
         // 5: <ProductReviewDetail />
     })
 
-    
+
     const [features, setFeatures] = useState([
         <ProductImages />,
         <ProductReviewCard title={"bye"} />,
@@ -136,7 +48,7 @@ const res = jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElem
         <ProductReviewCard title={"hi"} />
     ])
 
-    
+
     const [featureTypesArry, setFeatureTypesArry] = useState([]);
     const [cols, setCols] = useState([])
 
@@ -183,7 +95,9 @@ const res = jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElem
 
             </fieldset>
         </Form>}
-        <Container fluid={props.fluid}>
+        <Container fluid={props.fluid}
+            // style={{ backgroundColor: 'white', padding: '25px', marginBottom: '25px' }}
+        >
             <DLayout cols={cols} features={features} dname={"section1"} />
         </Container>
     </>

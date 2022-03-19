@@ -11,6 +11,88 @@ function ProductReviewLayout() {
     ])
     const [showLayoutControls, setLayoutControls] = useState(false)
 
+    const jsonData = [
+        {
+            code: "0",
+            componentType: "ProductReviewCard",
+            props: {
+                title: "zero"
+            },
+        },
+        {
+            code: "i",
+            componentType: "ProductImages",
+            // props: {
+            //     title: "one"
+            // },
+        },
+        {
+            code: "1",
+            componentType: "ProductReviewCard",
+            props: {
+                title: "Horrible! One star",
+                rating: 1
+            },
+        },
+        {
+            code: "2",
+            componentType: "ProductReviewCard",
+            props: {
+                title: "Not that good. Two stars",
+                rating: 2
+            },
+        },
+        {
+            code: "3",
+            componentType: "ProductReviewCard",
+            props: {
+                title: "It's ok. Three stars",
+                rating: 3
+            },
+        },
+        {
+            code: "4",
+            componentType: "ProductReviewCard",
+            props: {
+                title: "Really like it! Four Stars",
+                rating: 4
+            },
+        },
+        {
+            code: "5",
+            componentType: "ProductReviewCard",
+            props: {
+                title: "I Love It! Five Stars",
+                rating: 5
+            },
+        },
+        {
+            code: "t",
+            componentType: "MiscTableOne",
+            props: {
+                title: "T"
+            },
+        },
+        {
+            code: "p",
+            componentType: "ProductPurchaseCard",
+            props: {
+                title: "FREE devlivery"
+            },
+        },
+        {
+            code: "c",
+            componentType: "ProductReviewDetail",
+            props: {
+                title: "FREE devlivery"
+            },
+        },
+        {
+            code: "r",
+            componentType: "ReactIcon",
+
+        }]
+
     const dLayoutData = [
         {
             title: "Featured Review",
@@ -27,13 +109,13 @@ function ProductReviewLayout() {
         {
             title: "Featured Review",
             fluid: false,
-            cols: ["3","6","3","3","6","3","3","6","3","3","6","3"],
+            cols: ["3", "6", "3", "3", "6", "3", "3", "6", "3", "3", "6", "3"],
             featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
         },
         {
             title: "Reviews",
             fluid: false,
-            cols: ["4", "5", "3", "4", "4", "4"],
+            cols: ["4", "5", "3", "4", "5", "3"],
             featureTypesArry: ['i', '5', 'p', 't', 't', 'c']
         },
         {
@@ -45,7 +127,7 @@ function ProductReviewLayout() {
         {
             title: "Stories",
             fluid: true,
-            cols: ["3", "3", "3","3", "3", "3","3", "3", "3","3", "3", "3"],
+            cols: ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
             featureTypesArry: ['i', 'i', 'i', 'i', '5', '4', '3', '2']
         },
         {
@@ -100,8 +182,8 @@ function ProductReviewLayout() {
             ...sections[i],
             fluid: false,
             title: "Section",
-            cols: [],
-            featureTypesArry: []
+            cols: ["z", "4", "5", "3"],
+            featureTypesArry: ['i', 't', '5', 'p']
         }))
     }, [formData])
 
@@ -150,10 +232,11 @@ function ProductReviewLayout() {
                 </Form>
             }
             {sections.map((e, i) => <>
-                <section key={`prl-sec-${i}`} style={{ backgroundColor: 'gray' }}>
+                <section key={`prl-sec-${i}`} style={{ backgroundColor: 'whitesmoke', padding:'25px', marginBottom:'25px' }}>
                     <h1 key={`prl-sec-h1-${i}`}>{e.title}</h1>
                 </section>
                 <ProductReview key={`prl-${i}`} showLayoutControls={showLayoutControls}
+                    jsonData={jsonData}
                     cols={e.cols}
                     featureTypesArry={e.featureTypesArry}
                     fluid={e.fluid} />
