@@ -1,15 +1,17 @@
 # build stage
-FROM tiangolo/node-frontend:10 as build-stage
+FROM node:13.12.0-alpine as build-stage
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY /dart-cart-client/package*.json /app/
 COPY /dart-cart-client /app/
+RUN npm ci --silent
 RUN npm install --silent
+
 RUN npm run build
 
 # final stage
-FROM nginx:latest
+FROM nginx:stable-alpine
 COPY --from=build-stage /app/build /usr/share/nginx/html
-
+EXPOSE 80
 # Copy the default nginx.conf provided by tiangolo/node-frontend
-COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
+CMD ["nginx", "-g", "daemon-off;"]
