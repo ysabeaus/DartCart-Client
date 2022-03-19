@@ -6,7 +6,7 @@
 name: Docker
 
 env:
-  AZURE_WEBAPP_NAME: p3-webapp   # set this to your application's name
+  AZURE_WEBAPP_NAME: p3-webapp
 
 on:
   push:
