@@ -11,9 +11,10 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - run: |
+    - run:
         docker build . -t p3containerregistry.azurecr.io/dart-cart:${{ github.sha }}
         docker push p3containerregistry.azurecr.io/dart-cart:${{ github.sha }}     
 
