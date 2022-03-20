@@ -21,6 +21,7 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
+            docker container stop $(docker container ls -q --filter name=dart-cart*).
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/dart-cart:latest
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/dart-cart:latest
         - name: 'Deploy to Azure Container Instances'
