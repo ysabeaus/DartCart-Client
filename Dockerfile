@@ -4,7 +4,7 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY /dart-cart-client/package*.json /app/
 RUN npm install --silent
-COPY . ./
+COPY /dart-cart-client /app
 RUN npm run build
 
 # final stage
