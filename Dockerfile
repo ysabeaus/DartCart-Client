@@ -7,9 +7,9 @@ RUN npm install --silent
 COPY /dart-cart-client /app
 RUN npm run build
 
-# final stage
-FROM nginx:stable-alpine
-COPY --from=build-stage /app/build /usr/share/nginx/html
-EXPOSE 80
-# Copy the default nginx.conf provided by tiangolo/node-frontend
-CMD ["nginx", "-g", "daemon-off;"]
+## final stage
+#FROM nginx:stable-alpine
+#COPY --from=build-stage /app/build /usr/share/nginx/html
+#EXPOSE 80
+## Copy the default nginx.conf provided by tiangolo/node-frontend
+#CMD ["nginx", "-g", "daemon-off;"]
