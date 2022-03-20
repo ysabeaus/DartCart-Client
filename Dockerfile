@@ -5,7 +5,9 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY /dart-cart-client/package*.json /app/
 RUN npm install --silent
 COPY /dart-cart-client /app
-RUN npm run build
+
+CMD ["npm","start"]
+#RUN npm run build
 
 ## final stage
 #FROM nginx:stable-alpine
