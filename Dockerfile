@@ -8,6 +8,8 @@ COPY /dart-cart-client /app
 RUN npm start
 #RUN npm run build
 
+# Dummy comment. Testing Continuous Deployment to test server
+
 ## final stage
 #FROM nginx:stable-alpine
 #COPY --from=build-stage /app/build /usr/share/nginx/html
