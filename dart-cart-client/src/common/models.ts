@@ -22,13 +22,15 @@ export class ShopProduct {
     product: Product;
     quantity: number;
     price: number;
+    location: string;
     discount: number;
 
-    constructor(id: number, product: Product, shop: Shop, quantity: number, price: number, discount: number) {
+    constructor(id: number, product: Product, shop: Shop, quantity: number, price: number, location: string, discount: number) {
         this.id = id;
         this.shop = shop;
         this.product = product;
         this.price = price;
+        this.location = location;
         this.quantity = quantity;
         this.discount = discount;
     }

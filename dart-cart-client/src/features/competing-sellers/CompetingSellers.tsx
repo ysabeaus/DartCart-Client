@@ -50,7 +50,7 @@ export function CompetingSellers({ Seller }: SellerProduct) {
                   )}
                 </div>
                 <div className="SellerInfo">
-                  <span>Location: {competitors.shop.location}</span>
+                  <span>Location: {competitors.location}</span>
                   <br />
                   <span>In Stock: {competitors.quantity}</span>
                   <br />

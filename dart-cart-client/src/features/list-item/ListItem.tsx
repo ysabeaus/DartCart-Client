@@ -77,6 +77,7 @@ export function ListItem() {
     product: chosenProduct,
     quantity: 0,
     price: 0,
+    location: '',
     discount: 0,
   };
 
