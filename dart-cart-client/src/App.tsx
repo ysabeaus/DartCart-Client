@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Login } from "./features/authentication/Login";
+import { ResetPassword } from "./features/authentication/ResetPassword";
 import Home from "./features/Home";
 import UserRegister from "./features/user-register/UserRegister";
 import Display from "./features/display/Display";
@@ -21,14 +22,31 @@ import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 import Product from "./Models/Product";
 
+import useLocalStorage from 'use-local-storage';
+
 function App() {
+
+  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+  
+  const switchTheme = () => {
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+  }
+
   useEffect(() => {
     document.title = "DartCart";
+
     //
   });
 
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
+      { theme==='dark' ?
+      (<input onClick={switchTheme} type="checkbox" name="" checked />)  
+      : 
+      (<input onClick={switchTheme} type="checkbox" name="" />)
+      }
       <BrowserRouter>
         <Provider store={store}>
           <Header />
@@ -44,6 +62,7 @@ function App() {
             <Route path="/register" element={<UserRegister />}></Route>
             <Route path="/signup" element={<SellerRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/ResetPassword" element={<ResetPassword />}></Route>
             <Route path="/orders" element={<PreviousOrders />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/display" element={<Display />}></Route>

@@ -55,7 +55,7 @@ const SPSlice = createSlice({
         action.payload.forEach((ShopProduct) => {
           state.ids.push(ShopProduct.id);
           state.entities[ShopProduct.id] = ShopProduct;
-          newProducts[ShopProduct.id - 1] = ShopProduct.product;
+          newProducts[ShopProduct.id] = ShopProduct.product;
         });
         state.items = newProducts;
         state.status = "success";

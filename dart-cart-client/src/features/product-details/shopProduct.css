@@ -1,5 +1,5 @@
 .ProductContainer {
-  background-color: white !important;
+  background-color: var(--background) !important;
   color: black;
   padding: 2%;
   width: 100%;
@@ -7,7 +7,7 @@
 }
 
 .InnerProduct {
-  background-color: white;
+  background-color: var(--background);
   margin-left: 10%;
   margin-right: 3%;
   display: flex;

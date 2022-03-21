@@ -25,7 +25,6 @@ const ShopProductDisplay = () => {
   );
 
   useEffect((): void => {
-    console.log(ReduxShopProducts);
   }, [ReduxShopProducts]);
 
   const ImgStyleBase = {
