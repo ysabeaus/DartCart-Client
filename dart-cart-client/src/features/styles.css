@@ -70,3 +70,7 @@
 .navbar-custom .nav-item:hover .nav-link {
     color: black;
 }
+
+.textarea {
+  height:200px;
+}
