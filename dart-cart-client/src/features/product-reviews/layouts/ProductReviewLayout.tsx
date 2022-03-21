@@ -1,15 +1,64 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, lazy } from 'react'
 import { Col, Row, Container, Image, Form, Button } from "react-bootstrap";
 import ProductReview from '../ProductReview'
+// import MiscTableOne from '../misc/MiscTableOne';
+// import ReactIcon from '../misc/ReactIcon';
+// import ProductPurchaseCard from '../product-purchase-card/ProductPurchaseCard';
+// import ProductReviewCard from "../product-review-card/ProductReviewCard"
+// import ProductImages from '../ProductImages';
+// import ProductReviewDetail from '../ProductReviewDetail';
 
 function ProductReviewLayout() {
     const layoutRef = useRef()
     const [formData, setFormData] = useState({ layoutSections: "" })
     const [sections, setSections] = useState([
         { title: "", fluid: true, cols: ["z", "4", "5", "3"], featureTypesArry: ['i', 't', '5', 'p'] },
-        // { title: "", fluid: true, cols: [], featureTypesArry: [] },
     ])
     const [showLayoutControls, setLayoutControls] = useState(false)
+
+    const components = {
+        "ProductReviewCard": require('../product-review-card/ProductReviewCard').default,
+        "ProductImages": require('../ProductImages').default,
+        "MiscTableOne": require('../misc/MiscTableOne').default,
+        "ProductReviewDetail": require('../ProductReviewDetail').default,
+        "ProductPurchaseCard": require('../product-purchase-card/ProductPurchaseCard').default,
+        "ReactIcon": require('../misc/ReactIcon').default,
+        "ReviewCrousel": require('../misc/ReviewCrousel').default,
+    };
+
+    // const components2 = [
+    //     { "name": "ProductReviewCard", "path": "../product-review-card/ProductReviewCard" },
+    //     // { "name": "ProductImages", "path": "../ProductImages" },
+    //     // { "name": "MiscTableOne", "path": "../misc/MiscTableOne" },
+    //     // { "name": "ProductReviewDetail", "path": "../ProductReviewDetail" },
+    //     // { "name": "ProductPurchaseCard", "path": "../product-purchase-card/ProductPurchaseCard" },
+    //     // { "name": "ReactIcon", "path": "../misc/ReactIcon" }
+    // ].reduce((res, e) => {
+    //     return { [e.name]: require(e.path).default }
+    //     // return { ["ProductReviewCard"]: require('../product-review-card/ProductReviewCard').default }
+    // }, {})
+
+
+    // const components2 = [
+    //     { "name": "ProductReviewCard", "path": "../product-review-card/ProductReviewCard" },
+    //     { "name": "ProductImages", "path": "../ProductImages" },
+    //     { "name": "MiscTableOne", "path": "../misc/MiscTableOne" },
+    //     { "name": "ProductReviewDetail", "path": "../ProductReviewDetail" },
+    //     { "name": "ProductPurchaseCard", "path": "../product-purchase-card/ProductPurchaseCard" },
+    //     { "name": "ReactIcon", "path": "../misc/ReactIcon" }
+    // ].reduce((acc, curr, i) => acc[curr.name] = `${curr.path}`, {});
+
+    // console.log('components2: ', components2)
+
+    // const components = {
+    //     "ProductReviewCard": ProductReviewCard,
+    //     "ProductImages": ProductImages,
+    //     "MiscTableOne": MiscTableOne,
+    //     "ProductReviewDetail": ProductReviewDetail,
+    //     "ProductPurchaseCard": ProductPurchaseCard,
+    //     "ReactIcon": ReactIcon
+    // };
+
 
     const jsonData = [
         {
@@ -91,7 +140,13 @@ function ProductReviewLayout() {
             code: "r",
             componentType: "ReactIcon",
 
-        }]
+        },
+        {
+            code: "l",
+            componentType: "ReviewCrousel",
+
+        }
+    ]
 
     const dLayoutData = [
         {
@@ -156,8 +211,6 @@ function ProductReviewLayout() {
         // }
     ]
 
-
-
     useEffect(() => {
         console.log(showLayoutControls)
         console.log('sections: ', sections)
@@ -199,9 +252,7 @@ function ProductReviewLayout() {
 
     const loadLayouts = () => {
         console.log('loadLayouts')
-        // console.log(showLayoutControls)
         console.log('dLayoutData: ', dLayoutData)
-
         setSections(dLayoutData)
         // setSections(dLayoutData.sections.map(e => { return { title: "", fluid: e.section, cols: e.cols.map(e => e), featureTypesArry: e.featureTypesArry.map(e => e) } }))
     }
@@ -231,16 +282,17 @@ function ProductReviewLayout() {
                     </fieldset>
                 </Form>
             }
-            {sections.map((e, i) => <>
-                <section key={`prl-sec-${i}`} style={{ backgroundColor: 'whitesmoke', padding:'25px', marginBottom:'25px' }}>
+            {sections.map((e, i) => <div key={`div-${i}`}>
+                <section key={`prl-sec-${i}`} style={{ backgroundColor: 'whitesmoke', padding: '25px', marginBottom: '25px' }}>
                     <h1 key={`prl-sec-h1-${i}`}>{e.title}</h1>
                 </section>
                 <ProductReview key={`prl-${i}`} showLayoutControls={showLayoutControls}
+                    components={components}
                     jsonData={jsonData}
                     cols={e.cols}
                     featureTypesArry={e.featureTypesArry}
                     fluid={e.fluid} />
-            </>)}
+            </div>)}
         </>
     )
 }

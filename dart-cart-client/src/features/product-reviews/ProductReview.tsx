@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy } from 'react'
 import { Col, Row, Container, Image, Form } from "react-bootstrap";
 import DLayout from './DLayout';
-import MiscTableOne from './misc/MiscTableOne';
-import ReactIcon from './misc/ReactIcon';
-import ProductPurchaseCard from './product-purchase-card/ProductPurchaseCard';
-import ProductReviewCard from "./product-review-card/ProductReviewCard"
-import ProductImages from './ProductImages';
-import ProductReviewDetail from './ProductReviewDetail';
-
 
 function ProductReview(props) {
 
-
-    const components = {
-        "ProductReviewCard": ProductReviewCard,
-        "ProductImages": ProductImages,
-        "MiscTableOne": MiscTableOne,
-        "ProductReviewDetail": ProductReviewDetail,
-        "ProductPurchaseCard": ProductPurchaseCard,
-        "ReactIcon": ReactIcon
-    };
-
-    const res = props.jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElement(components[props.jsonData[i].componentType], props.jsonData[i].props), acc), {});
+    const res = props.jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElement(props.components[props.jsonData[i].componentType], props.jsonData[i].props), acc), {});
 
     const [formData, setFormData] = useState({ layoutCols: "", feature_types: "" })
 
@@ -33,22 +16,7 @@ function ProductReview(props) {
         // 5: <ProductReviewDetail />
     })
 
-
-    const [features, setFeatures] = useState([
-        <ProductImages />,
-        <ProductReviewCard title={"bye"} />,
-        <ProductReviewCard title={"hi"} />,
-        <ProductReviewCard title={"hi"} />,
-        <ProductImages />,
-        <ProductReviewCard title={"hi"} />,
-        <ProductReviewCard title={"hi"} />,
-        <ProductReviewCard title={"hi"} />,
-        <ProductReviewCard title={"hi"} />,
-        <ProductReviewCard title={"hi"} />,
-        <ProductReviewCard title={"hi"} />
-    ])
-
-
+    const [features, setFeatures] = useState([])
     const [featureTypesArry, setFeatureTypesArry] = useState([]);
     const [cols, setCols] = useState([])
 
