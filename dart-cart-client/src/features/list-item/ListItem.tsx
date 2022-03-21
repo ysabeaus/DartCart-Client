@@ -72,11 +72,12 @@ export function ListItem() {
   const categories = checkChosenProduct();
 
   const shopProduct: ShopProduct = {
-    id: 0,
+    shop_product_id: 0,
     shop: shop,
     product: chosenProduct,
     quantity: 0,
     price: 0,
+    location: '',
     discount: 0,
   };
 

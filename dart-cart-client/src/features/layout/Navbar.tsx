@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import useLocalStorage from "use-local-storage";
 import { logout } from "../../common/slices/authSlice";
 import { clearCart } from "../../common/slices/cartSlice";
 import { RootState } from "../../common/types";
@@ -24,7 +25,7 @@ const Nav = (props) => {
   };
 
   return (
-    <nav className="navbar-header">
+    <nav className="navbar-header" >
       <ul
         className="navbar-nav mr-auto link-container"
         style={!props.footer ? { textAlign: "center" } : {}}

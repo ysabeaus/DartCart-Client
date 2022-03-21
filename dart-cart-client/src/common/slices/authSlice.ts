@@ -44,7 +44,7 @@ const authenticationSlice = createSlice({
         },
         homeRedirect(authenticationSliceState, action) {
             authenticationSliceState.status = "loading";
-        }
+        },
     },
     // Extra reducers to handle the promise created by createAsyncThunk
     extraReducers: (builder) => {
