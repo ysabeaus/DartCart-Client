@@ -6,7 +6,7 @@ function MiscTableOne() {
 
 
     return (
-        <><Card
+        <><Card 
         // style={{ height: '100%' }}
         >
             <Card.Body>

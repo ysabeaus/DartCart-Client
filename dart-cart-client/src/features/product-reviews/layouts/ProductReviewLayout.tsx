@@ -25,6 +25,7 @@ function ProductReviewLayout() {
         "ProductPurchaseCard": require('../product-purchase-card/ProductPurchaseCard').default,
         "ReactIcon": require('../misc/ReactIcon').default,
         "ReviewCrousel": require('../misc/ReviewCrousel').default,
+        "ProductCrousel": require('../misc/ProductCrousel').default,
     };
 
     // const components2 = [
@@ -153,6 +154,11 @@ function ProductReviewLayout() {
             code: "l",
             componentType: "ReviewCrousel",
 
+        },
+        {
+            code: "k",
+            componentType: "ProductCrousel",
+
         }
     ]
 
@@ -162,6 +168,12 @@ function ProductReviewLayout() {
             fluid: true,
             cols: ["z"],
             featureTypesArry: ['l']
+        },
+        {
+            title: "Product Reviews",
+            fluid: true,
+            cols: ["z"],
+            featureTypesArry: ['k']
         },
         {
             title: "Stories",
