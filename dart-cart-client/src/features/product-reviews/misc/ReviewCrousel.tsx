@@ -5,41 +5,20 @@ function ReviewCrousel() {
     const pics = ['cellphone', 'shirt', 'shoes', 'drone', 'scooter', 'pants', 'travel', 'calm', 'javascript']
     return (<>
         <Carousel>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={`https://source.unsplash.com/1600x400/?${pics[0]}`}
-                    alt="First slide"
-                />
-                <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={`https://source.unsplash.com/1600x400/?${pics[1]}`}
-                    alt="Second slide"
-                />
-
-                <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={`https://source.unsplash.com/1600x400/?${pics[2]}`}
-                    alt="Third slide"
-                />
-
-                <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
+            {pics.map((e, i) => {
+                return (
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={`https://source.unsplash.com/1600x400/?${e}`}
+                            alt="First slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>{e}</h3>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>)
+            })}
         </Carousel>
     </>)
 }

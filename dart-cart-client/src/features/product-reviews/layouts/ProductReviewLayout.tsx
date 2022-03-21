@@ -12,7 +12,7 @@ function ProductReviewLayout() {
     const layoutRef = useRef()
     const [formData, setFormData] = useState({ layoutSections: "" })
     const [sections, setSections] = useState([
-        { title: "", fluid: true, cols: ["z", "4", "5", "3"], featureTypesArry: ['i', 't', '5', 'p'] },
+        { title: "", fluid: true, cols: ["z"], featureTypesArry: ['l'] },
     ])
     const [showLayoutControls, setLayoutControls] = useState(false)
 
@@ -149,6 +149,12 @@ function ProductReviewLayout() {
     ]
 
     const dLayoutData = [
+        {
+            title: "Product Reviews",
+            fluid: true,
+            cols: ["z"],
+            featureTypesArry: ['l']
+        },
         {
             title: "Featured Review",
             fluid: false,
