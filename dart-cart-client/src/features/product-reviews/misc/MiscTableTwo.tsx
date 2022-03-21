@@ -24,7 +24,7 @@ function MiscTableOne() {
                                 {[
                                     `${e.count} stars`,
                                     <ProgressBar striped variant="warning" now={e.percent} />,
-                                    `${e.percent}`
+                                    `${e.percent}%`
                                 ].map(c => {
                                     return (
                                         <Col> {c}</Col>

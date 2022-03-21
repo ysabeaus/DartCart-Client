@@ -197,7 +197,7 @@ function ProductReviewLayout() {
             title: "Reviews",
             fluid: false,
             cols: ["4", "5", "3", "4", "5", "3"],
-            featureTypesArry: ['i', '5', 'p', 't', 't', 'c']
+            featureTypesArry: ['i', '5', 'p', 's', 't', 'c']
         },
         {
             title: "Stories",
