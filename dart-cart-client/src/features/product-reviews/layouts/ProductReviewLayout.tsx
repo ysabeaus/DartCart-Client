@@ -158,6 +158,17 @@ function ProductReviewLayout() {
         {
             code: "k",
             componentType: "ProductCrousel",
+            props: {
+                cols: [3, 3, 3, 3]
+            },
+
+        },
+        {
+            code: "j",
+            componentType: "ProductCrousel",
+            props: {
+                cols: [4, 4, 4]
+            },
 
         }
     ]
@@ -170,16 +181,16 @@ function ProductReviewLayout() {
             featureTypesArry: ['l']
         },
         {
-            title: "Product Reviews",
-            fluid: true,
-            cols: ["z"],
-            featureTypesArry: ['k']
-        },
-        {
             title: "Stories",
             fluid: false,
             cols: ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
             featureTypesArry: ['i', 'i', 'i', '5', '4', '3', 'c', 'c', 'c']
+        },
+        {
+            title: "Product Reviews",
+            fluid: true,
+            cols: ["z", "z"],
+            featureTypesArry: ['k', 'j']
         },
         {
             title: "Stories",

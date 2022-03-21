@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Col, Row, Container, Image, Card, Carousel } from "react-bootstrap";
 
-function ProductCrousel() {
+function ProductCrousel(props) {
     const pics = ['cellphone', 'shirt', 'shoes', 'drone', 'scooter', 'pants', 'travel', 'calm', 'javascript']
     const [currentPic, setCurrentPic] = useState(Math.floor(Math.random() * (pics.length + 1)))
 
@@ -12,7 +12,7 @@ function ProductCrousel() {
                     <Carousel.Item>
                         <Container fluid>
                             <Row>
-                                {[3, 3, 3, 3].map((e, i) => {
+                                {props.cols.map((e, i) => {
                                     const randNum = Math.floor(Math.random() * (pics.length - 2))
                                     return (<Col key={`imc2-${i}`} lg={e}>
 
@@ -29,10 +29,10 @@ function ProductCrousel() {
 
                             </Row>
                         </Container>
-                        <Carousel.Caption>
+                        {/* <Carousel.Caption>
                             <h3>{e}</h3>
                             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption>
+                        </Carousel.Caption> */}
                     </Carousel.Item>)
             })}
         </Carousel>
