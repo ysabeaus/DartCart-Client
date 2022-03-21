@@ -9,9 +9,9 @@ export default function FeaturedProduct(props:any) {
         ></img>
         <h1>{props.productName}</h1>
         <p>
-            price: {props.price}
+            price: {props.price - props.discount}
         </p>
-        <p>discount: {(props.discount / props.price) * 100} %</p>
+        <p>discount: {((props.discount / props.price) * 100).toFixed(2)} %</p>
         <Link
             id="Chosen Shop Product"
             className="btn  stretched-link"

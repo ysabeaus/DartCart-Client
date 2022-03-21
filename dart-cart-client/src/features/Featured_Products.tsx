@@ -20,14 +20,15 @@ export default function Featured_Products() {
             headers: authHeader(),
             // params: { name },
         }).then((data) => {
-            let d = data.data.slice(0,2);
+            let d = data.data.slice(0,5);
             
-                return setanyThing(data.data)});
+                return setanyThing(d)});
 
     };
 
     useEffect(fetchData, []);
-    useEffect(() => { console.log(anyThing); }, [anyThing]);
+    useEffect(() => { 
+        console.log(anyThing); }, [anyThing]);
     // anyThing.then(data => console.log(data));
 
     return (<>
