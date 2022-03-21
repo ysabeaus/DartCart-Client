@@ -20,6 +20,7 @@ function ProductReviewLayout() {
         "ProductReviewCard": require('../product-review-card/ProductReviewCard').default,
         "ProductImages": require('../ProductImages').default,
         "MiscTableOne": require('../misc/MiscTableOne').default,
+        "MiscTableTwo": require('../misc/MiscTableTwo').default,
         "ProductReviewDetail": require('../ProductReviewDetail').default,
         "ProductPurchaseCard": require('../product-purchase-card/ProductPurchaseCard').default,
         "ReactIcon": require('../misc/ReactIcon').default,
@@ -123,6 +124,13 @@ function ProductReviewLayout() {
             },
         },
         {
+            code: "s",
+            componentType: "MiscTableTwo",
+            props: {
+                title: "T"
+            },
+        },
+        {
             code: "p",
             componentType: "ProductPurchaseCard",
             props: {
@@ -156,10 +164,22 @@ function ProductReviewLayout() {
             featureTypesArry: ['l']
         },
         {
+            title: "Stories",
+            fluid: false,
+            cols: ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
+            featureTypesArry: ['i', 'i', 'i', '5', '4', '3', 'c', 'c', 'c']
+        },
+        {
+            title: "Stories",
+            fluid: false,
+            cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
+            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
+        },
+        {
             title: "Featured Review",
             fluid: false,
-            cols: ["z", "4", "5", "3"],
-            featureTypesArry: ['i', 't', '5', 'p']
+            cols: ["z", "4", "5", "3", "4", "5", "3"],
+            featureTypesArry: ['i', 's', '5', 'p', 't', '5', 'p']
         },
         {
             title: "Featured Review",
@@ -181,21 +201,9 @@ function ProductReviewLayout() {
         },
         {
             title: "Stories",
-            fluid: false,
-            cols: ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
-            featureTypesArry: ['i', 'i', 'i', '5', '4', '3', 'c', 'c', 'c']
-        },
-        {
-            title: "Stories",
             fluid: true,
             cols: ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
             featureTypesArry: ['i', 'i', 'i', 'i', '5', '4', '3', '2']
-        },
-        {
-            title: "Stories",
-            fluid: false,
-            cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
-            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
         },
         {
             title: "Stories",
