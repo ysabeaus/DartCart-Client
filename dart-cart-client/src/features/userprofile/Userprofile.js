@@ -29,9 +29,12 @@ function UserProfile(){
             First Name: {user.firstName}<br/>
             Last Name: {user.lastName}<br/>
             Email: {user.email}<br/>
-            Phone: {user.phone}
+            Phone: {user.phone}<br/>
+            Location: {user.location}
 
           </Paper>
+
+
 </>
 
 
