@@ -4,8 +4,7 @@ export default function authHeader(): AxiosRequestHeaders {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
         return {
-            Authorization: "Bearer " + accessToken,
-            'Access-Control-Allow-Origin': '*'
+            Authorization: "Bearer " + accessToken
         };
     } else {
         return {};
