@@ -19,7 +19,10 @@ export default function Featured_Products() {
         axios.get(MOCK_SERVER + "featured_products", {
             headers: authHeader(),
             // params: { name },
-        }).then((data) => setanyThing(data.data));
+        }).then((data) => {
+            let d = data.data.slice(0,2);
+            
+                return setanyThing(data.data)});
 
     };
 
