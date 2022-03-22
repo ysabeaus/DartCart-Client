@@ -20,7 +20,7 @@ export const fetchShopProducts = createAsyncThunk(
       headers: authHeader(),
       params: { name },
     });
-
+    console.log(response.data);
     return response.data;
   }
 );

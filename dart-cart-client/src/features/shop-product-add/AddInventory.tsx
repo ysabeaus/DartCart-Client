@@ -1,7 +1,8 @@
 import { Alert, Modal, Button } from "react-bootstrap";
-import { addInventory, selectShopProducts } from "../../common/slices/shopProductSlice";
-import { InventoryProduct } from "../../common/types";
-import { useState } from "react";
+import { addInventory, selectShopProducts, getStatus, fetchShopProducts } from "../../common/slices/shopProductSlice";
+import { selectShops, fetchShops } from "../../common/slices/shopSlice";
+import { InventoryProduct, Shop } from "../../common/types";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
@@ -17,7 +18,15 @@ export function AddInventory() {
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
   const ReduxShopProducts: Product[] = useSelector(selectShopProducts);
-  
+  const ReduxMyShops: Shop[] = useSelector(selectShops);
+  const status = useSelector(getStatus);
+
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchShops("")); // places return value into REDUX global state
+    } 
+  }, []);
+
 
   const dispatch = useAppDispatch();
   const nav = useNavigate();
@@ -35,15 +44,15 @@ export function AddInventory() {
   // Possible TODO: Password complexity requirements
   // Possible TODO: Enforcing username requirements, address formatting
   const validateInput = () => {
-    if (quantity > 0) {
+    if (quantity < 1) {
       setError("Please enter a quantity.");
-    } else if (shop_id >0) {
+    } else if (shop_id < 0) {
       setError("Please enter a valid shop id.");
-    } else if (product_id >0) {
+    } else if (product_id < 0) {
       setError("Please enter a valid product id.");
-    } else if (discount >= 0) {
+    } else if (discount < 0) {
       setError("Please enter a discount.");
-    } else if (price > 0) {
+    } else if (price < .01) {
       setError("Please enter a price.");
     }
     else {
@@ -69,7 +78,7 @@ export function AddInventory() {
         setShowModal(true); //need to make sure this says product created, not user registered
       })
       .catch((rejectedValueOrSerializedError) => {
-        setError("That product name is unavailable.");
+        setError("Server error.");
         clearInputs();
       });
   };
@@ -111,11 +120,15 @@ export function AddInventory() {
                     </div>
                   <div className="form-outline mb-4">
                       <select className="form-control form-control-lg"
+                      id="shop_selector"
                       value={shop_id}
                       onChange={(e) => {
                         setShop( parseInt(e.target.value) );
                       }}>
-
+                        <option value="0">Select a Shop</option>
+                        {ReduxMyShops.map((Shop) => {
+                          return <option value={Shop.id}>{Shop.location}</option>;
+                        })}
                       </select>
                       </div>
                   </div>
@@ -126,10 +139,12 @@ export function AddInventory() {
                     </div>
                   <div className="form-outline mb-4">
                       <select className="form-control form-control-lg"
+                      id="product_selector"
                       value={product_id}
                       onChange={(e) => {
                         setProduct( parseInt(e.target.value) );
                       }}>
+                        <option value="0">Select a Product</option>
                         {ReduxShopProducts.map((Product) => {
                           return <option value={Product.id}>{Product.name}</option>;
                         })}
