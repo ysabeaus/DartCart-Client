@@ -1,45 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Paper } from '@mui/material';
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Paper } from "@mui/material";
 import authHeader from "../../features/authentication/AuthHeader";
+import { storage } from "./firebase";
+import { getDownloadURL, uploadBytesResumable, ref } from "firebase/storage";
+import { async } from "@firebase/util";
 
+function UserProfile() {
+  const [user, setUser] = useState({});
+  const [Url, setUrl] = useState('');
 
-function UserProfile(){
+  async function fetchUser() {
+    const response = await fetch("http://localhost:9005/getProfile", {
+      headers: authHeader(),
+    });
+    const fetchedUser = await response.json();
+    console.log(fetchedUser);
+    setUser(fetchedUser);
+  }
 
-    const[user, setUser] = useState({});
-
-    async function fetchUser() {
-        
-        const response = await fetch("http://localhost:9005/getProfile", { headers: authHeader() });
-        const fetchedUser = await response.json();
-        console.log(fetchedUser);
-        setUser(fetchedUser);
-    }
-
-  
-    useEffect(() => {
-      fetchUser();
+  useEffect(() => {
+    fetchUser();
   }, []);
 
-  return(
+  //firebase upload below this
 
+  const [progress, setProgress] = useState(0);
+
+  const handleFireBaseUpload = (e) => {
+    e.preventDefault();
+    const image = e.target[0].files[0];
+    console.log("uploading pic");
+    console.log(image);
+    uploadImage(image);
+  };
+
+  const uploadImage = (image) => {
+    if (!image) {
+      alert(`image format not supported${typeof image}`);
+      return;
+    }
+    const storageRef = ref(storage, `/images/${image.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, image);
+
+    uploadTask.on( "state_changed", (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(prog);
+      },
+      (err) => console.log(err),
+      () => {
+        //fetching download Url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) =>{
+          setUrl(url);
+          console.log(url);
+          updateImgUrl(url);
+        });
+      }      
+    );
+  };
+
+  const updateImgUrl = async =>{
+    user.imgUrl=Url;
+  }
+
+  
+
+ 
+
+  return (
     <>
+      <paper elevation={6}
+      style={{flexDirection: "row",
+      justifyContent: "flex-end"}}
+      key={user.user_id}>
+      
 
-          <Paper elevation={6} style={{margin:"10px" , padding:"15px", textAlign:"left"}} key={user.user_id}>
-            First Name: {user.firstName}<br/>
-            Last Name: {user.lastName}<br/>
-            Email: {user.email}<br/>
-            Phone: {user.phone}
+        <div className="pfp">
+        <img src={user.imgUrl}  height={150} alt="Profile Picture" />   
+          <form onSubmit={handleFireBaseUpload}>
+            <input type="file" />
+            <button onClick={() => user.imgUrl=Url}>Upload</button>
+          </form>   
+          
+        </div>
+      </paper>
 
-          </Paper>
-</>
+      <Paper
+        elevation={6}
+        style={{ margin: "10px", padding: "15px", textAlign: "left" }}
+        key={user.user_id}
+      >
+        First Name: {user.firstName}
+        <br />
+        Last Name: {user.lastName}
+        <br />
+        Email: {user.email}
+        <br />
+        Phone: {user.phone}
 
-
-
-  )
-
-
-
+      </Paper>
+    </>
+  );
 }
-
-export default UserProfile;
+export { UserProfile as default };
