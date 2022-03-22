@@ -6,3 +6,4 @@ dart-cart-client/node_modules/
 */node_modules/*
 .settings
 .project
+.github
