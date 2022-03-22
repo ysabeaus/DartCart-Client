@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Paper } from "@mui/material";
 import authHeader from "../../features/authentication/AuthHeader";
+<<<<<<< HEAD
+import { orange, red } from '@mui/material/colors';
+=======
 import { storage } from "./firebase";
 import { getDownloadURL, uploadBytesResumable, ref } from "firebase/storage";
 import { async } from "@firebase/util";
+>>>>>>> dc9e24601c88495df52d268894edf88a29660bed
 
 function UserProfile() {
   const [user, setUser] = useState({});
@@ -70,6 +74,28 @@ function UserProfile() {
 
   return (
     <>
+<<<<<<< HEAD
+          <Paper elevation={6} style={{margin:"10px" , padding:"15px", textAlign:"left"}} key={user.user_id}>
+          <h2>About Me</h2>
+            talk about yourself here
+          </Paper>
+          <Paper elevation={6} style={{margin:"10px" , padding:"15px", textAlign:"left"}} key={user.user_id}>
+            <h2>Additional information</h2>
+            First Name: {user.firstName}<br/>
+            Last Name: {user.lastName}<br/>
+            Email: {user.email}<br/>
+            Phone: {user.phone}
+
+          </Paper>
+
+          
+</>
+
+
+
+  )
+
+=======
       <paper elevation={6}
       style={{flexDirection: "row",
       justifyContent: "flex-end"}}
@@ -85,6 +111,7 @@ function UserProfile() {
           
         </div>
       </paper>
+>>>>>>> dc9e24601c88495df52d268894edf88a29660bed
 
       <Paper
         elevation={6}
