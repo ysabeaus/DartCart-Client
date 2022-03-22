@@ -20,16 +20,33 @@ import Checkout from "./features/checkout/CheckoutDisplay";
 import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
+import Product from "./Models/Product";
+import useLocalStorage from 'use-local-storage';
 import UserProfile from "./features/userprofile/Userprofile";
 
 function App() {
+
+  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+  
+  const switchTheme = () => {
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+  }
+
   useEffect(() => {
     document.title = "DartCart";
+
     //
   });
 
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
+      { theme==='dark' ?
+      (<input onClick={switchTheme} type="checkbox" name="" checked />)  
+      : 
+      (<input onClick={switchTheme} type="checkbox" name="" />)
+      }
       <BrowserRouter>
         <Provider store={store}>
           <Header />
@@ -58,6 +75,10 @@ function App() {
             <Route
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
+            ></Route>
+            <Route
+              path="/FeatureProduct/:product_id"
+              element={<Product />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>
