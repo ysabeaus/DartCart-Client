@@ -11,6 +11,7 @@ import SellerRegister from "./features/seller-register/SellerRegister";
 import Error404Page from "./components/Error";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
+import ProductReviewDisplay from "./features/product-reviews/ShopProductDisplay";
 import store from "./common/store";
 import Header from "./features/layout/Header";
 import Footer from "./features/layout/Footer";
@@ -20,18 +21,19 @@ import Checkout from "./features/checkout/CheckoutDisplay";
 import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
-import Product from "./Models/Product";
 
+import Product from "./Models/Product";
 import useLocalStorage from 'use-local-storage';
+import ProductReviewLayout from "./features/product-reviews/layouts/ProductReviewLayout";
 
 function App() {
 
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
-  
+
   const switchTheme = () => {
-      const newTheme = theme === 'light' ? 'dark' : 'light';
-      setTheme(newTheme);
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
   }
 
   useEffect(() => {
@@ -42,10 +44,10 @@ function App() {
 
   return (
     <div className="App" data-theme={theme}>
-      { theme==='dark' ?
-      (<input onClick={switchTheme} type="checkbox" name="" checked />)  
-      : 
-      (<input onClick={switchTheme} type="checkbox" name="" />)
+      {theme === 'dark' ?
+        (<input onClick={switchTheme} type="checkbox" name="" checked />)
+        :
+        (<input onClick={switchTheme} type="checkbox" name="" />)
       }
       <BrowserRouter>
         <Provider store={store}>
@@ -71,8 +73,18 @@ function App() {
               element={<ShopProductDisplay />}
             ></Route>
             <Route
+
               path="/FeatureProduct/:product_id"
               element={<Product />}
+            ></Route>
+            <Route
+              path="/product-review-display/:shop_product_id"
+              element={<ProductReviewDisplay />}
+            ></Route>
+            <Route
+              path="/product-review/:shop_product_id"
+              element={<ProductReviewLayout />}
+
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>
