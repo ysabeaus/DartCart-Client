@@ -22,7 +22,9 @@ import Checkout from "./features/checkout/CheckoutDisplay";
 import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
+import Product from "./Models/Product";
 import UserProfile from "./features/userprofile/Userprofile";
+
 
 import useLocalStorage from 'use-local-storage';
 
@@ -74,6 +76,10 @@ function App() {
             <Route
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
+            ></Route>
+            <Route
+              path="/FeatureProduct/:product_id"
+              element={<Product />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>

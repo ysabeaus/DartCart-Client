@@ -27,9 +27,6 @@ export interface CartItem {
   customer: User,
   shopProduct: ShopProduct
 }
-export interface Shop {
-  id: number;
-}
 
 export interface OrderDetail {
   id: number;

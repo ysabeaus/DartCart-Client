@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 import authHeader from "../../features/authentication/AuthHeader";
 import { Product } from "../models";
-import { RootState } from "../types";
+import { RootState, InventoryProduct } from "../types";
 
 const MOCK_SERVER = process.env.REACT_APP_API_URL;
 
@@ -20,7 +20,6 @@ export const fetchShopProducts = createAsyncThunk(
       headers: authHeader(),
       params: { name },
     });
-
     return response.data;
   }
 );
@@ -99,5 +98,17 @@ export const selectFilteredProducts = createSelector(
     return items.filter((prod) => prod.product.name.match(re)?.length > 0);
   }
 );
+
+export const addInventory = createAsyncThunk("userRegister/createUser", async (ip : InventoryProduct) => {
+  return await axios.post(MOCK_SERVER + "shop_products", {
+      shop: { id: ip.shop_id },
+      product: { id: ip.product_id },
+      discount: ip.discount,
+      price: ip.price,
+      quantity: ip.quantity
+  },
+  { headers: authHeader() } 
+  );
+});
 
 export default SPSlice.reducer;

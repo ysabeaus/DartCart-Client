@@ -46,6 +46,7 @@ export function ProductRegister() {
       .unwrap()
       .then((originalPromiseResult) => {
         setShowModal(true); //need to make sure this says product created, not user registered
+        clearInputs();
       })
       .catch((rejectedValueOrSerializedError) => {
         setError("That product name is unavailable.");
@@ -55,6 +56,7 @@ export function ProductRegister() {
 
   function clearInputs() {
     setName("");
+    setDescription("");
   }
 
   // Redirect upon modal close

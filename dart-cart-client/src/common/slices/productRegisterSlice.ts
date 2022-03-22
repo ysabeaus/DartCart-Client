@@ -39,7 +39,7 @@ const productRegisterSlice = createSlice({
 export default productRegisterSlice.reducer;
 
 // Async thunks
-export const saveProduct = createAsyncThunk("userRegister/createUser", async (product : Product) => {
+export const saveProduct = createAsyncThunk("productRegister/createProduct", async (product : Product) => {
     return await axios.post(API_URL + "products", {
         id: product.id,
         name: product.name,
