@@ -1,42 +1,61 @@
 import { Alert, Modal, Button } from "react-bootstrap";
 import { saveProduct } from "../../common/slices/productRegisterSlice";
-import { Product } from "../../common/types";
+import { Product, InventoryProduct } from "../../common/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
+import { privateEncrypt } from "crypto";
 
 export function ProductRegister() {
   const currentDate = Date.now();
   const [name, setName] = useState("");
+  const[quantity, setQuantity] = useState("");
+  const[discount, setDiscount] = useState("");
+  const[price, setPrice] = useState("");
+  const[shop_id, setShop] = useState(0);
+  const[product_id, setProduct] = useState(0);
+
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
+  
 
   const dispatch = useAppDispatch();
   const nav = useNavigate();
 
-  const product: Product = {
+  const inventoryProduct: InventoryProduct = {
     id: 0,
-    name: "",
-    description: "",
+    shop_id: 0,
+    product_id: 0,
+    quantity: 0,
+    discount: 0,
+    price:0
   };
 
   // BASIC input validation: no empty fields, passwords must match, formatting requirements
   // Possible TODO: Password complexity requirements
   // Possible TODO: Enforcing username requirements, address formatting
   const validateInput = () => {
-    if (name === "") {
-      setError("Please enter a name.");
-    } else if (description === "") {
-      setError("Please enter a description.");
-    } else {
+    if (quantity === "") {
+      setError("Please enter a quantity.");
+    } else if (shop_id >0) {
+      setError("Please enter a valid shop id.");
+    } else if (product_id >0) {
+      setError("Please enter a valid product id.");
+    } else if (discount === "") {
+      setError("Please enter a discount.");
+    } else if (price === "") {
+      setError("Please enter a price.");
+    }
+    else {
       return true;
     }
   };
 
-  const createProduct = async () => {
-    product.name = name;
-    product.description = description;
+  const createInventoryProduct = async () => {
+    inventoryProduct.name = name;
+    inventoryProduct.description = description;
+
 
     if (!validateInput()) {
       return;

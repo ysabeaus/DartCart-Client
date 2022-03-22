@@ -83,6 +83,16 @@ export interface IShipping {
   zip: string
 }
 
+export interface InventoryProduct{
+  id: number,
+  shop_id: number,
+  product_id: number,
+  quantity: number,
+  discount: number,
+  price:number
+
+}
+
 export type RootState = ReturnType<typeof store.getState>;
 export type SecurityToken = string;
 export type AppDispatch = typeof store.dispatch;
