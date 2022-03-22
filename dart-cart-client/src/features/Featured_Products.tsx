@@ -36,10 +36,10 @@ export default function Featured_Products() {
     return (<>
         
         <table><tr><th><h1>Featured Products</h1></th></tr> <tr> {anyThing.map(elem => {
-            return <tr><td><FeaturedProduct
+            return <td><FeaturedProduct
                 key={elem.id} price={elem.price} discount={elem.discount}
                 productName={elem.product.name} id="1" discprice={elem.price}
-                imageUrl="https://picsum.photos/100/100?random=1" /></td></tr>
+                imageUrl="https://picsum.photos/100/100?random=1" /></td>
                
         }
         )} </tr></table>
