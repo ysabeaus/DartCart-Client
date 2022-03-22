@@ -12,7 +12,7 @@ function ProductReviewLayout() {
     const layoutRef = useRef()
     const [formData, setFormData] = useState({ layoutSections: "" })
     const [sections, setSections] = useState([
-        { title: "", fluid: true, cols: ["z"], featureTypesArry: ['l'] },
+        { title: "", fluid: true, cols: ["z"], featureTypesArry: ['a'] },
     ])
     const [showLayoutControls, setLayoutControls] = useState(false)
 
@@ -26,6 +26,7 @@ function ProductReviewLayout() {
         "ReactIcon": require('../misc/ReactIcon').default,
         "ReviewCrousel": require('../misc/ReviewCrousel').default,
         "ProductCrousel": require('../misc/ProductCrousel').default,
+        "AggrigateRating": require('../misc/AggrigateRating').default,
     };
 
     // const components2 = [
@@ -63,6 +64,13 @@ function ProductReviewLayout() {
 
 
     const jsonData = [
+        {
+            code: "a",
+            componentType: "AggrigateRating",
+            props: {
+                title: "zero"
+            },
+        },
         {
             code: "0",
             componentType: "ProductReviewCard",
@@ -177,7 +185,7 @@ function ProductReviewLayout() {
         {
             title: "Product Reviews",
             fluid: true,
-            cols: ["z"],
+            cols: ["a"],
             featureTypesArry: ['l']
         },
         {
