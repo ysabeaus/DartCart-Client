@@ -20,22 +20,29 @@ export default function Featured_Products() {
             headers: authHeader(),
             // params: { name },
         }).then((data) => {
-            let d = data.data.slice(0,5);
-            
-                return setanyThing(d)});
+            let d = data.data.slice(0, 5);
+
+            return setanyThing(d)
+        });
 
     };
 
     useEffect(fetchData, []);
-    useEffect(() => { 
-        console.log(anyThing); }, [anyThing]);
+    useEffect(() => {
+        console.log(anyThing);
+    }, [anyThing]);
     // anyThing.then(data => console.log(data));
 
     return (<>
-        {anyThing.map(elem => {
-           return <FeaturedProduct key= {elem.id} price = {elem.price} discount = {elem.discount} productName={elem.product.name} id="1"  discprice = {elem.price} imageUrl="https://picsum.photos/100/100?random=1" />
+        
+        <table><tr><th><h1>Featured Products</h1></th></tr> <tr> {anyThing.map(elem => {
+            return <td><FeaturedProduct
+                key={elem.id} price={elem.price} discount={elem.discount}
+                productName={elem.product.name} id="1" discprice={elem.price}
+                imageUrl="https://picsum.photos/100/100?random=1" /></td>
+               
         }
-        )}
+        )} </tr></table>
 
     </>);
 }
