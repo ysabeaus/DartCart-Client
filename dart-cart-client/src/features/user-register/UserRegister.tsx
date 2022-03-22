@@ -119,7 +119,6 @@ export function UserRegister() {
                 </div>
                 <div
                   className="card-body p-5 text-center"
-                  style={{ backgroundColor: "#a6a6a6" }}
                 >
                   {error ? <Alert variant="danger">{error}</Alert> : null}
 
