@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Paper } from '@mui/material';
 import axios from "axios";
 import authHeader from "../../features/authentication/AuthHeader";
-import { orange, red } from '@mui/material/colors';
+
 
 
 function UserProfile(){

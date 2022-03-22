@@ -21,6 +21,7 @@ import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 import Product from "./Models/Product";
+import UserProfile from "./features/userprofile/Userprofile";
 
 import useLocalStorage from 'use-local-storage';
 
@@ -75,6 +76,7 @@ function App() {
               element={<Product />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
+            <Route path="/userprofile" element={<UserProfile />}></Route>
           </Routes>
           <Footer />
         </Provider>
