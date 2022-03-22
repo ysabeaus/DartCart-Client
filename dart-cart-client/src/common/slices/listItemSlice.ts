@@ -53,7 +53,7 @@ export const createShopProduct = createAsyncThunk("listItem/createShopProduct", 
     return await axios.post(
         MOCK_SERVER + "shop_products",
         {
-            id: shopProduct.id,
+            id: shopProduct.shop_product_id,
             shop: shopProduct.shop,
             product: shopProduct.product,
             quantity: shopProduct.quantity,
