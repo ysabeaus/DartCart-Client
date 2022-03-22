@@ -29,16 +29,17 @@ DartCart is an e-commerce web application designed to buy and sell products deve
 The first step is to clone the Client repo. To do this, open a git bash window in the folder you wish to save the project and run the following command using this link:
 
 $ git clone https://github.com/Revature-DartCart-2/DartCart-Client.git
-
 ![](./dart-cart-client/src/imgs/readme/A.png)
 
+Next, you must go to https://nodejs.org/en/?msclkid=e1737570a88911ec9b5ea557841437a2 and complete the download process.
+![](./dart-cart-client/src/imgs/readme/B.png)
 
+Now that you have everything you need on your computer, open a git bash window in the data-cart-client folder.
+![](./dart-cart-client/src/imgs/readme/C.png)
 
-First, you must go to node.js and complete the download steps based on your device.
+and run the command "install node"
 
-Next, you will want to 
-   
-In the project directory, you can run:
+In the same directory:
 
 ### `npm start`
 
@@ -48,30 +49,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Your browser will automaticall open for you, and you are all set.
+![](./dart-cart-client/src/imgs/readme/D.png)
 
 ## Usage
 
