@@ -44,8 +44,6 @@ export const ResetPassword = () => {
     }
     console.log(userName);
       
-
-    // we can repurpose this to show db error, but we might be set, we'll have to test
     useEffect(() => {
         if (status === "failure") setError("Wrong username or password.");
     }, [status]);
@@ -70,11 +68,6 @@ export const ResetPassword = () => {
                 nav("/login");
     }
         
-
-
-
-
-
     // handlePassword1Change and handlePassword2Change compare the two passwords
     const handlePassword1Change = (event) => {
         if(password2 != "" && password2 != event.target.value) {

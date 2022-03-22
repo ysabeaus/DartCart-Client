@@ -9,6 +9,7 @@ import {
   selectShopProducts,
   clearSlice,
 } from "../../common/slices/shopProductSlice";
+import Featured_Products from "../Featured_Products";
 
 const Display = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,9 @@ const Display = () => {
 
   return (
     <>
-      <div className=""></div>
+      <div className="ProductCardContainer">
+      <Featured_Products/>
+      </div>
 
       <div className="ProductCardContainer">
         {status === "success" ? (
