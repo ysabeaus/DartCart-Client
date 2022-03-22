@@ -7,6 +7,7 @@ import ProductPurchaseCard from './product-purchase-card/ProductPurchaseCard';
 import ProductReviewCard from "./product-review-card/ProductReviewCard"
 import ProductImages from './ProductImages';
 import ProductReviewDetail from './ProductReviewDetail';
+import ProductRatingSummary from './product-rating-summary/ProductRatingSummary';
 
 
 function ProductReview(props) {
@@ -117,6 +118,11 @@ function ProductReview(props) {
             code: "r",
             componentType: "ReactIcon",
 
+        },
+        {
+            code: "s",
+            componentType: "ProductRatingSummary",
+
         }
     ]
     // const myNums = ['zero', 'one', 'two', 'three', 'four', 'five']
@@ -129,7 +135,8 @@ function ProductReview(props) {
         "MiscTableOne": MiscTableOne,
         "ProductReviewDetail": ProductReviewDetail,
         "ProductPurchaseCard": ProductPurchaseCard,
-        "ReactIcon": ReactIcon
+        "ReactIcon": ReactIcon,
+        "ProductRatingSummary": ProductRatingSummary
     };
 
     const res = jsonData.reduce((acc, curr, i) => (acc[curr.code] = React.createElement(components[jsonData[i].componentType], jsonData[i].props), acc), {});
