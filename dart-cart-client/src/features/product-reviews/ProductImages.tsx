@@ -3,8 +3,8 @@ import { Col, Row, Container, Image, Card } from "react-bootstrap";
 
 function ProductImages() {
     const pics = ['cellphone', 'shirt', 'shoes', 'drone', 'scooter', 'pants', 'travel', 'calm', 'javascript']
-    const [currentPic, setCurrentPic] = useState(0)
-
+    const [currentPic, setCurrentPic] = useState(Math.floor(Math.random() * (pics.length + 1)))
+    const randNum = Math.floor(Math.random() * (pics.length - 2))
     return (
         <Container>
             <Row>
@@ -24,7 +24,7 @@ function ProductImages() {
                     return (<Col key={`imc2-${i}`} lg={e}>
 
                         <Card key={`imca2-${i}`} style={{ height: '100%' }}>
-                            <Image onClick={() => setCurrentPic(i)} key={`im2-${i}`} src={`https://source.unsplash.com/1600x900/?${pics[i]}`} />
+                            <Image onClick={() => setCurrentPic(randNum + i)} key={`im2-${i}`} src={`https://source.unsplash.com/1600x900/?${pics[randNum + i]}`} />
                             {/* <Card.Body>
             <Card.Title></Card.Title>
           </Card.Body> */}
