@@ -1,5 +1,5 @@
 # DartCart-Client
-Note: This is the front-end portion of the DartCart Application. The required back-end portion can be found here: https://github.com/Revature-DartCart/DartCart-Server
+Note: This is the front-end portion of the DartCart Application. The required back-end portion can be found here: https://github.com/Revature-DartCart-2/DartCart-Server
 
 ## Project Description
  
@@ -54,9 +54,30 @@ Your browser will automaticall open for you, and you are all set.
 
 ## Usage
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+> Here is a guide to using the DartCart app.
 
-## Contributors
+* Homepage
+  * This is DartCart's landing page. On this page you can view featured products and choose between light and darkmode with the switch at the top.
+  ![Homepage](./dart-cart-client/src/imgs/readme/homepage.png)
+
+* Register
+  * Register a new user by clicking the Register button and fill out the new account registration form.
+  ![Register](./dart-cart-client/src/imgs/readme/register.png)
+
+* Login
+  * Once a user is registered, they are automaticly logged in to the app. On subsequent visits the user must login before they can use the app.
+  ![Login](./dart-cart-client/src/imgs/readme/login.png)
+
+* Create a Shop
+  * If the user is wanting to sell products on DartCart, a shop can be made by clicking the Create a Shop button and filling out the registration form.
+  ![CreateShop](./dart-cart-client/src/imgs/readme/createshop.png)
+
+* Logout
+  * When the user leaves the app, be sure to close the connection to their account by clicking the Logout button.
+  ![CreateShop](./dart-cart-client/src/imgs/readme/logout.png)
+  
+
+## Contributors of first iteration (DartCart 1)
 
 * Abdul Samad Sadat
 * Alejandro Gomez
@@ -81,4 +102,26 @@ Your browser will automaticall open for you, and you are all set.
 * Thanh Nguyen
 * Tomas Abebaw Anbessaw
 
-This project was made for the Revature Winter Batch 2022.
+## Contributers of second iteration (DartCart 2)
+
+* Andy Escobar
+* Andrew Snyder
+* Austin Ristau
+* Hannah Hospital
+* Austin McGehee
+* Austin Blandford
+* Awaab Elamin
+* Brandon Clark
+* Michael Bronzo
+* Christian Mains
+* Philip Wentworth
+* Gurman Singh
+* Jacob Sotto
+* Paul Agilpay
+* Mike Campbell
+* Lamar Lewis
+* Robert Lavoie
+* Scott Damon
+* Tracy Bodine
+* Joshua Robles
+Dart Cart 2 was made for the Revature Java/React 1/24 batch
