@@ -74,7 +74,6 @@ function UserProfile() {
 
   return (
     <>
-<<<<<<< HEAD
           <Paper elevation={6} style={{margin:"10px" , padding:"15px", textAlign:"left"}} key={user.user_id}>
           <h2>About Me</h2>
             talk about yourself here
@@ -89,14 +88,13 @@ function UserProfile() {
           </Paper>
 
           
-</>
+
 
 
 
   )
 
-=======
-      <paper elevation={6}
+      <Paper elevation={6}
       style={{flexDirection: "row",
       justifyContent: "flex-end"}}
       key={user.user_id}>
@@ -110,8 +108,7 @@ function UserProfile() {
           </form>   
           
         </div>
-      </paper>
->>>>>>> dc9e24601c88495df52d268894edf88a29660bed
+      </Paper>
 
       <Paper
         elevation={6}
