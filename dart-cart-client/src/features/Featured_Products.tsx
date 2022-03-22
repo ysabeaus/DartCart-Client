@@ -20,7 +20,7 @@ export default function Featured_Products() {
             headers: authHeader(),
             // params: { name },
         }).then((data) => {
-            let d = data.data.slice(0, 5);
+            let d = data.data.slice(0, 3);
 
             return setanyThing(d)
         });
@@ -36,10 +36,10 @@ export default function Featured_Products() {
     return (<>
         
         <table><tr><th><h1>Featured Products</h1></th></tr> <tr> {anyThing.map(elem => {
-            return <td><FeaturedProduct
+            return <tr><td><FeaturedProduct
                 key={elem.id} price={elem.price} discount={elem.discount}
                 productName={elem.product.name} id="1" discprice={elem.price}
-                imageUrl="https://picsum.photos/100/100?random=1" /></td>
+                imageUrl="https://picsum.photos/100/100?random=1" /></td></tr>
                
         }
         )} </tr></table>
