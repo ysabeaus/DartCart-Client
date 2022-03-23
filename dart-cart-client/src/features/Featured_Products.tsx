@@ -37,7 +37,11 @@ export default function Featured_Products() {
         
         <table><tr><th><h1>Featured Products</h1></th></tr> <tr> {anyThing.map(elem => {
             return <td><FeaturedProduct
+<<<<<<< HEAD
                 key={elem.id} price={elem.price} discount={elem.discount}
+=======
+                price={elem.price} discount={elem.discount}
+>>>>>>> a9aff5ad981f66c84760e24a6d2fa2b162416f4a
                 productName={elem.product.name} id={elem.product.id} discprice={elem.price}
                 imageUrl="https://picsum.photos/100/100?random=1" /></td>
                
