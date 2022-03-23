@@ -1,5 +1,6 @@
 dart-cart-client/node_modules/*
 dart-cart-client/node_modules/
+dart-cart-client/.env
 
 *.orig
 

@@ -24,9 +24,9 @@ function ShowEmailSentModal(props) {
         props.parentCallback();
     }
     return(
-        <Modal show={showThis} onHide={handleClose} backdrop="static">
-            <Modal.Header closeButton>
-                <Modal.Title>Reset Password</Modal.Title>
+        <Modal show={showThis} onHide={handleClose}>
+            <Modal.Header closeButton style={{ backgroundColor:"#198754", color:"#fff"}}>
+                <Modal.Title >Reset Password</Modal.Title>
             </Modal.Header>
             
             <Modal.Body>
@@ -37,7 +37,7 @@ function ShowEmailSentModal(props) {
                         <p>If you do not see the email check your spam folder</p>
                     </div>) :
                     (<div className="">
-                        <p>{props.error} Reset password email not sent.</p>
+                        <p>{props.error} <br /> Reset password email not sent.</p>
                     
                     </div>)}
             </Modal.Body>
