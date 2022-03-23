@@ -23,10 +23,8 @@ import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 import Product from "./Models/Product";
-import UserProfile from "./features/userprofile/Userprofile";
-
-
-import useLocalStorage from 'use-local-storage';
+import UserP from "./features/userprofile/UserProfile";
+import useLocalStorage from "use-local-storage";
 
 function App() {
 
@@ -72,7 +70,7 @@ function App() {
             <Route path="/orders" element={<PreviousOrders />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/display" element={<Display />}></Route>
-            <Route path="/userprofile" element={<UserProfile />}></Route>
+            <Route path="/userprofile" element={<UserP />}></Route>
             <Route
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
