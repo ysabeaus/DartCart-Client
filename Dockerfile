@@ -9,7 +9,7 @@ COPY /dart-cart-client /app
 #CMD ["npm","start"]
 RUN npm run build
 
-RUN serve -s build -l 80
+ENTRYPOINT ["serve", "-s", "build", "-l", "80"]
 
 # final stage
 #FROM nginx:stable-alpine
