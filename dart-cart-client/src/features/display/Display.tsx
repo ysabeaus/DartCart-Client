@@ -29,8 +29,8 @@ const Display = () => {
       <div className="ProductCardContainer">
         {status === "success" ? (
           (ReduxShopProducts.length &&
-            ReduxShopProducts.map((Product) => {
-              return <ShopProductCard Product={Product}></ShopProductCard>;
+            ReduxShopProducts.map((Product, i) => {
+                return <div><ShopProductCard Product={Product}></ShopProductCard></div>;
             })) || (
             <>
               <h1 style={{ color: "white" }}>No Items Found</h1>
