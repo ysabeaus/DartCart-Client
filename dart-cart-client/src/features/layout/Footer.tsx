@@ -7,7 +7,7 @@ export default function Footer() {
   // divs dealing with managing columns were not abstracted away so this area can focus on applying styles correctly
 
   return (
-    <footer className="text-center text-lg-start bg-black">
+    <footer className="text-center text-lg-start">
       <section className="footer-info">
         <div className="container text-center text-md-start mt-5">
           <div className="row mt-3">
