@@ -38,11 +38,11 @@ export default function Featured_Products() {
         <table><tr><th><h1>Featured Products</h1></th></tr> <tr> {anyThing.map(elem => {
             return <td><FeaturedProduct
                 key={elem.id} price={elem.price} discount={elem.discount}
-                productName={elem.product.name} id={elem.id} discprice={elem.price}
+                productName={elem.product.name} id={elem.product.id} discprice={elem.price}
                 imageUrl="https://picsum.photos/100/100?random=1" /></td>
                
         }
-        )} </tr></table>
+        )}</tr></table>
 
     </>);
 }

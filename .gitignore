@@ -1,8 +1,10 @@
 dart-cart-client/node_modules/*
 dart-cart-client/node_modules/
+dart-cart-client/.env
 
 *.orig
 
 */node_modules/*
 .settings
 .project
+.github
