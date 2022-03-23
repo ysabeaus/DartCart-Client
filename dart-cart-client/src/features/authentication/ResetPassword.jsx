@@ -57,9 +57,9 @@ export const ResetPassword = () => {
     //if time sent + minutes is less than now, email has expired
     //  note: this time is enforced on the api server, the url param is for pre checking.
     let emailIsValid = expireTime < Date.now()  ? false : true;
-    console.log(emailIsValid);
+    
     useEffect(() => {
-        if (status === "failure") setError("Wrong username or password.");
+        if (status === "failure") setError("Reset Password Failed.");
     }, [status]);
 
     // reset user password in database 
