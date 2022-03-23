@@ -12,10 +12,6 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.loginForm {
-
-}
-
 :root {
     --background: white;
     --text-primary: black;
@@ -35,3 +31,9 @@ code {
     --bs-body-bg: black !important;
   }
 
+.error_rp_email {
+    color:red;
+}
+.error_rp_email_reset {
+    margin: 30px 0px;
+}
