@@ -10,7 +10,7 @@ COPY /dart-cart-client /app
 #CMD ["npm","start"]
 RUN npm run build
 
-ENTRYPOINT ["serve", "-s", "build", "-l", "80"]
+CMD ["serve", "-s", "build", "-l", "80"]
 
 
 ## final stage
