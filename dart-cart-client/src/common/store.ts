@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userRegisterReducer from "./slices/userRegisterSlice";
 import sellerRegisterReducer from "./slices/sellerRegisterSlice";
 import SPSlice from "./slices/shopProductSlice";
+import SSlice from "./slices/shopSlice";
 import CPSlice from "./slices/competitorsSlice";
 import invoiceReducer from "./slices/invoiceSlice";
 import authenticationReducer from "./slices/authSlice";
@@ -16,6 +17,7 @@ const store = configureStore({
     sellerRegister: sellerRegisterReducer,
     authentication: authenticationReducer,
     ShopProducts: SPSlice,
+    Shops: SSlice,
     CompetitorProducts: CPSlice,
     cart: cartSlice,
     shipping: shippingSlice,
