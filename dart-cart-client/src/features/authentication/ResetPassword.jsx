@@ -26,6 +26,7 @@ export const ResetPassword = () => {
     const nav = useNavigate();
     const dispatch = useAppDispatch();
 
+    // get username
     let userName = searchParams.get("data").split(""); // puts 'data's value from query param into username
     // unshift the caesar cipher 
     let unShift = -1;
@@ -38,12 +39,21 @@ export const ResetPassword = () => {
         else if(shiftedLetter < 97) {
             shiftedLetter = 123 - (97 - shiftedLetter);
         }
-
         userName[i] = String.fromCharCode( shiftedLetter );
-
     }
-    console.log(userName);
-      
+
+    // get imail id for reset password request
+    let emailId = searchParams.get("data2");
+    
+    // get time the email was sent
+    let timeSinceEmailWasSent = searchParams.get("data3");
+    console.log(timeSinceEmailWasSent+" "+Date.now());
+
+    let minutes
+    let expireTime =  parseInt(timeSinceEmailWasSent) + minutes*60000;
+    //if time sent + minutes is less than now, email has expired
+    let emailIsValid = expireTime < Date.now()  ? false : true;
+
     useEffect(() => {
         if (status === "failure") setError("Wrong username or password.");
     }, [status]);
@@ -51,21 +61,21 @@ export const ResetPassword = () => {
     // reset user password in database 
     const handleResetPassword = () => { 
         axios
-                .patch(API_URL + "resetpassword", {
-                    username: userName,
-                    password: password1
-                })
-                .then((response) => {
-                    console.log("RESP: "+response);
-                    if ("HEAD: "+response.headers) {
-                       
-                    }
-                })
-                .catch((error) => {
-                    console.log("ERR: "+error);
-                });
-                //dispatch(homeRedirect(null));
-                nav("/login");
+        .patch(API_URL + "resetpassword", {
+            emailId: emailId,
+            password: password1
+        })
+        .then((response) => {
+            console.log("RESP: "+response);
+            if ("HEAD: "+response.headers) {
+                
+            }
+        })
+        .catch((error) => {
+            console.log("ERR: "+error);
+        });
+        //dispatch(homeRedirect(null));
+        nav("/login");
     }
         
     // handlePassword1Change and handlePassword2Change compare the two passwords
@@ -100,6 +110,7 @@ export const ResetPassword = () => {
                 (<section className="vh-100 loginForm">
 
 <div className="container py-5" >
+    { emailIsValid ? (
     <div className="row d-flex justify-content-center align-items-center">
         <div className="col-14">
             <div className="card shadow-2-strong" style={{ borderRadius: "1rem" }}>
@@ -147,7 +158,9 @@ export const ResetPassword = () => {
                 </div>
             </div>
         </div>
-    </div>
+    </div>)
+    :
+    (<h3>The email has expired</h3>)}
 </div>
 
 

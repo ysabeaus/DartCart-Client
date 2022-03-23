@@ -24,7 +24,7 @@ function ShowEmailSentModal(props) {
         props.parentCallback();
     }
     return(
-        <Modal show={showThis} onHide={handleClose} backdrop="static">
+        <Modal show={showThis} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Reset Password</Modal.Title>
             </Modal.Header>
