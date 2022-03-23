@@ -12,7 +12,8 @@ RUN npm run build
 
 ENTRYPOINT ["serve", "-s", "build", "-l", "80"]
 
-# final stage
+
+## final stage
 #FROM nginx:stable-alpine
 #COPY --from=build-stage /app/build /usr/share/nginx/html
 ## Copy the default nginx.conf provided by tiangolo/node-frontend
