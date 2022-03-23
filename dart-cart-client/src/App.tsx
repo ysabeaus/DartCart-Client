@@ -23,6 +23,7 @@ import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 import Product from "./Models/Product";
+import WishList from "./features/wishlist/WishList";
 
 import useLocalStorage from 'use-local-storage';
 
@@ -78,6 +79,7 @@ function App() {
               path="/FeatureProduct/:product_id"
               element={<Product />}
             ></Route>
+            <Route path="/wishlist" element={<WishList/>}></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>
           <Footer />
