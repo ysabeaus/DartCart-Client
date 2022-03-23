@@ -5,6 +5,8 @@ import { Login } from "./features/authentication/Login";
 import { ResetPassword } from "./features/authentication/ResetPassword";
 import Home from "./features/Home";
 import UserRegister from "./features/user-register/UserRegister";
+import ProductRegister from "./features/product-register/ProductRegister";
+import AddInventory from "./features/shop-product-add/AddInventory";
 import Display from "./features/display/Display";
 import PreviousOrders from "./features/previous-orders/previous-orders";
 import SellerRegister from "./features/seller-register/SellerRegister";
@@ -20,6 +22,7 @@ import Checkout from "./features/checkout/CheckoutDisplay";
 import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
+import Product from "./Models/Product";
 
 import useLocalStorage from 'use-local-storage';
 
@@ -59,6 +62,8 @@ function App() {
             <Route path="/shops/:shop_id/list" element={<ListItem />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/register" element={<UserRegister />}></Route>
+            <Route path="/product-register" element={<ProductRegister />}></Route>
+            <Route path="/shop-product-add" element={<AddInventory />}></Route>
             <Route path="/signup" element={<SellerRegister />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/ResetPassword" element={<ResetPassword />}></Route>
@@ -68,6 +73,10 @@ function App() {
             <Route
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
+            ></Route>
+            <Route
+              path="/FeatureProduct/:product_id"
+              element={<Product />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>

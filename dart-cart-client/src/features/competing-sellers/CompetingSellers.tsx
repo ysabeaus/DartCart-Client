@@ -41,25 +41,24 @@ export function CompetingSellers({ Seller }: SellerProduct) {
                 <div className="SellerInfo">
                   <span>{competitors.product.name}</span>
                   <br />
-                  <span>Price: {competitors.price}.99</span>
+                  <span>Price: {competitors.price}</span>
                   <br />
                   {competitors.discount > 0 && (
                     <span className="SellerDiscount">
-                      Discount: {competitors.discount}.00
+                      Discount: {competitors.discount}
                     </span>
                   )}
                 </div>
                 <div className="SellerInfo">
-                  <span>Location: {competitors.shop.location}</span>
+                  <span>Location: {competitors.location}</span>
                   <br />
                   <span>In Stock: {competitors.quantity}</span>
                   <br />
                 </div>
               </div>
-
               <button
                 className="btn btn-primary"
-                value={competitors.id}
+                value={competitors.shop_product_id}
                 onClick={(e) => handleAddtoCart(e)}
               >
                 Add to cart
