@@ -75,11 +75,11 @@ function App() {
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
             ></Route>
+            <Route path="/wishlist" element={<WishList/>}></Route>
             <Route
               path="/FeatureProduct/:product_id"
               element={<Product />}
             ></Route>
-            <Route path="/wishlist" element={<WishList/>}></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>
           <Footer />

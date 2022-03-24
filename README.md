@@ -124,4 +124,5 @@ Your browser will automaticall open for you, and you are all set.
 * Scott Damon
 * Tracy Bodine
 * Joshua Robles
+
 Dart Cart 2 was made for the Revature Java/React 1/24 batch
