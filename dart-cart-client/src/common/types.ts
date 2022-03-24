@@ -80,12 +80,6 @@ export interface IShipping {
   zip: string
 }
 
-export interface WishListItem {
-  wishListId: number,
-  customer: User,
-  product: Product
-}
-
 export interface InventoryProduct{
   id: number,
   shop_id: number,
@@ -93,6 +87,12 @@ export interface InventoryProduct{
   quantity: number,
   discount: number,
   price:number
+}
+
+export interface WishListItem {
+  wishListId: number,
+  customer: User,
+  product: Product
 }
 
 export type RootState = ReturnType<typeof store.getState>;

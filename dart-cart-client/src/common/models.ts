@@ -1,4 +1,4 @@
-import { Shop } from "./types";
+import { Shop, User } from "./types";
 
 export class Product {
     product_id: number;
@@ -36,4 +36,14 @@ export class ShopProduct {
     }
 }
 
+export class WishListItem {
+    wishListId: number;
+    customer: User;
+    product: Product;
 
+    constructor(wishListId: number, customer: User, product: Product) {
+        this.wishListId = wishListId;
+        this.customer = customer;
+        this.product = product;
+    }
+}
