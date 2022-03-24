@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from "../../common/types"
 import { WishListItem } from "../../common/types";
-import { selectWishListItemById, fetchWishList } from "../../common/slices/wishlistSlice";
+import { selectWishListItemById, fetchWishList, deleteFromWishList } from "../../common/slices/wishlistSlice";
 import { Link } from "react-router-dom";
 
 const WishListItemView = ({ wishListId }: WishListItem) => {
@@ -14,13 +14,22 @@ const WishListItemView = ({ wishListId }: WishListItem) => {
         dispatch(fetchWishList())
     }, [])
 
+    const sendDelete = async (e) => {
+        await dispatch(deleteFromWishList(e));
+        setTimeout(refresh, 500);
+    }
+
+    function refresh() {
+        window.location.reload();
+    }
+
     return(
         <div className="productContainer">
             <img className="productImg" src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg"/>
             <section className="wishListBody">
                 <h5 className="productName">{ item?.product.name }</h5>
                 <Link to={`/shop-product/${ item?.product.id }`} className="btn viewProductBtn">View Product</Link>
-                <div className="btn removeWishBtn">Remove from Wishlist</div>
+                <div className="btn removeWishBtn" onClick={ () => sendDelete(item?.product.id) }>Remove from Wishlist</div>
             </section>
         </div>
     )

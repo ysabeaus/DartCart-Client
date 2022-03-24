@@ -23,6 +23,17 @@ export const fetchWishList = createAsyncThunk(
   }
 );
 
+export const deleteFromWishList = createAsyncThunk(
+  "wishlist/removeItemFromWishList",
+  async (id: number) => {
+    const response = await axios.post(`${MOCK_SERVER}removeFromWishList`, {
+      productId: id
+    },
+    { headers: authHeader() });
+    return response;
+  }
+);
+
 const intitialState = WLAdapter.getInitialState({
   status: "idle",
   items: new Array(),
