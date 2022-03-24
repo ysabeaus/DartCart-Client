@@ -1,5 +1,5 @@
 # DartCart-Client
-Note: This is the front-end portion of the DartCart Application. The required back-end portion can be found here: https://github.com/Revature-DartCart/DartCart-Server
+Note: This is the front-end portion of the DartCart Application. The required back-end portion can be found here: https://github.com/Revature-DartCart-2/DartCart-Server
 
 ## Project Description
  
@@ -25,20 +25,61 @@ DartCart is an e-commerce web application designed to buy and sell products deve
 * View previous order and transaction details.
 
 ## Getting Started
-   
-(include git clone command)
-(include all environment setup steps)
 
-> Be sure to include BOTH Windows and Unix command  
-> Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
+The first step is to clone the Client repo. To do this, open a git bash window in the folder you wish to save the project and run the following command using this link:
 
-- All the `code` required to get started
-- Images of what it should look like
+$ git clone https://github.com/Revature-DartCart-2/DartCart-Client.git
+![](./dart-cart-client/src/imgs/readme/A.png)
+
+Next, you must go to https://nodejs.org/en/?msclkid=e1737570a88911ec9b5ea557841437a2 and complete the download process.
+![](./dart-cart-client/src/imgs/readme/B.png)
+
+Now that you have everything you need on your computer, open a git bash window in the data-cart-client folder.
+![](./dart-cart-client/src/imgs/readme/C.png)
+
+and run the command "install node"
+
+In the same directory:
+
+### `npm start`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
+
+Your browser will automaticall open for you, and you are all set.
+![](./dart-cart-client/src/imgs/readme/D.png)
 
 ## Usage
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+> Here is a guide to using the DartCart app.
 
+<<<<<<< HEAD
+=======
+* Homepage
+  * This is DartCart's landing page. On this page you can view featured products and choose between light and darkmode with the switch at the top.
+  ![Homepage](./dart-cart-client/src/imgs/readme/homepage.png)
+
+* Register
+  * Register a new user by clicking the Register button and fill out the new account registration form.
+  ![Register](./dart-cart-client/src/imgs/readme/register.png)
+
+* Login
+  * Once a user is registered, they are automaticly logged in to the app. On subsequent visits the user must login before they can use the app.
+  ![Login](./dart-cart-client/src/imgs/readme/login.png)
+
+* Create a Shop
+  * If the user is wanting to sell products on DartCart, a shop can be made by clicking the Create a Shop button and filling out the registration form.
+  ![CreateShop](./dart-cart-client/src/imgs/readme/createshop.png)
+
+* Logout
+  * When the user leaves the app, be sure to close the connection to their account by clicking the Logout button.
+  ![CreateShop](./dart-cart-client/src/imgs/readme/logout.png)
+  
+
+>>>>>>> c7a7690f3cb54a9b9c636d197bb4c8c66f832f5d
 ## Contributors of first iteration (DartCart 1)
 
 * Abdul Samad Sadat
@@ -86,4 +127,8 @@ DartCart is an e-commerce web application designed to buy and sell products deve
 * Scott Damon
 * Tracy Bodine
 * Joshua Robles
+<<<<<<< HEAD
+=======
+
+>>>>>>> c7a7690f3cb54a9b9c636d197bb4c8c66f832f5d
 Dart Cart 2 was made for the Revature Java/React 1/24 batch

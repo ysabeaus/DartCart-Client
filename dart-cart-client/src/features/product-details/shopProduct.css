@@ -60,3 +60,8 @@
   border-radius: 12px;
   border-width: 0.2rem;
 }
+
+.addToWishList{
+  display: block;
+  width: 70%;
+}
