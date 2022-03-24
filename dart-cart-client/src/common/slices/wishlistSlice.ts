@@ -36,11 +36,15 @@ export const WLSlice = createSlice({
     clearSlice(state, action) {
       state.status = "idle";
       state.items = [];
+      state.entities = {};
     },
     removeWishListItem(state, action) {},
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchWishList.fulfilled, (state, action) => {
+    builder.addCase(fetchWishList.pending, (state, action) => {
+      state.status = "Loading";
+    }).
+    addCase(fetchWishList.fulfilled, (state, action) => {
       const newWishListItems = new Array();
       state.ids = [];
       state.entities = {};
@@ -50,11 +54,6 @@ export const WLSlice = createSlice({
         newWishListItems[WishListItem.id] = WishListItem;
       });
       state.items = newWishListItems;
-      for (let i = 0; i < state.items.length; i++) {
-        console.log(
-          `State of wishListItems index ${i}: ${state.items[i].product.name}`
-        );
-      }
       state.status = "success";
     });
   },
