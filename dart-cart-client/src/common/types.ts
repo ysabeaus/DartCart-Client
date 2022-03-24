@@ -18,6 +18,8 @@ export interface User {
     phone: string;
     location: string;
     registrationDate: number;
+    imageURL: string;
+    aboutMe: string;
 }
 
 export interface CartItem {
