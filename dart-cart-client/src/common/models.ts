@@ -35,15 +35,3 @@ export class ShopProduct {
         this.discount = discount;
     }
 }
-
-export class WishListItem {
-    wishListId: number;
-    customer: User;
-    product: Product;
-
-    constructor(wishListId: number, customer: User, product: Product) {
-        this.wishListId = wishListId;
-        this.customer = customer;
-        this.product = product;
-    }
-}

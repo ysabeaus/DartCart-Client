@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 import authHeader from "../../features/authentication/AuthHeader";
 import { RootState } from "../types";
-import { WishListItem } from "../../common/models";
+import { WishListItem } from "../../common/types";
 
 const MOCK_SERVER = process.env.REACT_APP_API_URL;
 
@@ -19,7 +19,7 @@ export const fetchWishList = createAsyncThunk(
     const response = await axios.get(`${MOCK_SERVER}myWishList`, {
       headers: authHeader(),
     });
-
+    console.log(response.data);
     return response.data;
   }
 );
@@ -29,7 +29,7 @@ const intitialState = WLAdapter.getInitialState({
   items: new Array(),
 });
 
-export const WLSlice = createSlice({
+const WLSlice = createSlice({
   name: "WishList",
   initialState: intitialState,
   reducers: {
@@ -50,11 +50,12 @@ export const WLSlice = createSlice({
       state.entities = {};
       action.payload.forEach((WishListItem) => {
         state.ids.push(WishListItem.wishListId);
-        state.entities[WishListItem.id] = WishListItem;
-        newWishListItems[WishListItem.id] = WishListItem;
+        state.entities[WishListItem.wishListId] = WishListItem;
+        newWishListItems[WishListItem.wishListId] = WishListItem;
       });
       state.items = newWishListItems;
       state.status = "success";
+      console.log(state.items);
     });
   },
 });
@@ -64,11 +65,13 @@ export const {} = WLSlice.actions;
 export const {
   selectAll: selectAllWishListItems,
   selectById: selectWishListItemById,
-} = WLAdapter.getSelectors((state: RootState) => state.wishlist);
+} = WLAdapter.getSelectors((state: any) => state.wishlist);
 
 export const selectStatus = createSelector(
   (state: RootState) => state.wishlist,
-  (wishlist) => wishlist.status
+  (status) =>  {
+    return status;
+  }
   );
   
   export default WLSlice.reducer;

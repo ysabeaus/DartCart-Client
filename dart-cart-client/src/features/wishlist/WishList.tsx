@@ -7,7 +7,7 @@ import {
   selectStatus,
 } from "../../common/slices/wishlistSlice";
 import WishListItemView from "./WishListItemView";
-import { WishListItem } from "../../common/models";
+import { WishListItem } from "../../common/types";
 
 // const removeFromWishList = (id) => {
 
@@ -24,27 +24,17 @@ const WishList = () => {
   const status = useSelector(selectStatus);
 
   useEffect(() => {
-    console.log("useEffect hit");
-    if (status === "idle") {
       dispatch(fetchWishList());
-    }
-  }, [WishListItems]);
+  }, []);
 
-  console.log(`WishList.tsx wish list items: ${WishListItems}`);
-  
   return (
     <>
       <h2 className="wishListHeader">Your Wish List</h2>
-      {status === "success" ? (
+      {
         WishListItems.map((WishListItem) => {
-          console.log(`Current item in map: ${WishListItem}`);
           return <WishListItemView key={WishListItem.wishListId} {...WishListItem} />;
         })
-      ) : (
-        <div>
-          <h3>Fetching your wish list...</h3>
-        </div>
-      )}
+      }
     </>
   );
 };

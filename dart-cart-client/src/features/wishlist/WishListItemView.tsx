@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from "../../common/types"
-import { WishListItem } from "../../common/models";
+import { WishListItem } from "../../common/types";
 import { selectWishListItemById, fetchWishList } from "../../common/slices/wishlistSlice";
 
 const WishListItemView = ({ wishListId }: WishListItem) => {
