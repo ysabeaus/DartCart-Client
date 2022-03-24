@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from "../../common/types"
 import { WishListItem } from "../../common/types";
 import { selectWishListItemById, fetchWishList } from "../../common/slices/wishlistSlice";
+import { Link } from "react-router-dom";
 
 const WishListItemView = ({ wishListId }: WishListItem) => {
 
@@ -13,14 +14,12 @@ const WishListItemView = ({ wishListId }: WishListItem) => {
         dispatch(fetchWishList())
     }, [])
 
-    console.log(`Returned item in wish list item view: ${item}`);
-
     return(
         <div className="productContainer">
             <img className="productImg" src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg"/>
             <section className="wishListBody">
                 <h5 className="productName">{ item?.product.name }</h5>
-                <div className="btn viewProductBtn">View Product</div>
+                <Link to={`/shop-product/${ item?.product.id }`} className="btn viewProductBtn">View Product</Link>
                 <div className="btn removeWishBtn">Remove from Wishlist</div>
             </section>
         </div>
