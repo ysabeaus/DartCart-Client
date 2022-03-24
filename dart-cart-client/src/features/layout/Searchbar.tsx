@@ -7,6 +7,8 @@ import {
 } from "../../common/slices/shopProductSlice";
 import { useNavigate } from "react-router-dom";
 
+import "../authentication/protect_btn.css";
+
 const Searchbar = () => {
   const dispatch = useDispatch();
   const string = useRef<HTMLInputElement>(null);
@@ -27,6 +29,7 @@ const Searchbar = () => {
       <div className="form-inline my-2 my-lg-0">
         <button
           onClick={(e) => handleSearch(e)}
+          id="protect_btn"
           className="btn btn-success"
           value="Search"
           style={{ float: "right", backgroundColor: "#198754" }}
