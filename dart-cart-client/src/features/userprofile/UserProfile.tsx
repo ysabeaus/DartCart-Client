@@ -20,9 +20,10 @@ export function UserP() {
     const [initialUser, setInitialUser] = useState({});
     const [imageURL, setImageURL] = useState("");
     const [aboutMe, setAboutMe] = useState("");
+    const API_URL = "http://localhost:9005/";
 
     async function fetchUser() {
-        const response = await axios.get("http://localhost:9005/getProfile", { headers: authHeader() });
+        const response = await axios.get(API_URL + "getProfile", { headers: authHeader() });
         const fetchedUser = await response.data;
         console.log(fetchedUser);
         setInitialUser(fetchedUser);

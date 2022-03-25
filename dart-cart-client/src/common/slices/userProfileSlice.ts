@@ -6,7 +6,7 @@ import authHeader from "../../features/authentication/AuthHeader";
 
 // Change URL for testing vs. production
 // const API_URL = process.env.REACT_APP_API_URL;
-const API_URL = "http://localhost:3000/";
+const API_URL = "http://localhost:9005/";
 
 
 // createEntityAdapter gives us several premade reducer functions for manipulating state
