@@ -84,7 +84,7 @@ export const ResetPassword = () => {
             setShowSendingRequest(false);
             if(error.response) {
                 if( (error.response.status == 404) ) {
-                    setReqReturnedError("404.");                    
+                    setReqReturnedError("404. Reset Password Request not found.");                    
                 }
             }
             else if (error.request) {
