@@ -14,17 +14,6 @@ const ComputerUrl =
 
 
 
-<<<<<<< HEAD
-          <Link
-            id="Chosen Shop Product"
-            className="btn  stretched-link"
-            to={`/product-review/${Product?.id}` || ""}
-          ></Link>
-        </div>
-      </div>
-    </>
-  );
-=======
 
 function addToWishList(productId){
    return axios.post("http://localhost:9005/addToWishList", {
@@ -41,7 +30,6 @@ function addToWishList(productId){
 async function addToWL(productId){
   const y = await addToWishList(productId);
   return React.createElement("span", {class : "wishListNotice  youCanSeeMe"}, y);
->>>>>>> 961eadde6e9aeb51b00265455b45e4e168b9e74f
 }
 
 export function ShopProductCard({ Product }: IShopProductCard) {
