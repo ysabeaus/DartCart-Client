@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import useLocalStorage from "use-local-storage";
 import { logout } from "../../common/slices/authSlice";
 import { clearCart } from "../../common/slices/cartSlice";
 import { RootState } from "../../common/types";
@@ -21,10 +22,11 @@ const Nav = (props) => {
   const handleLogout = () => {
     dispatch(logout(null));
     dispatch(clearCart());
+    window.location.reload();
   };
 
   return (
-    <nav className="navbar-header">
+    <nav className="navbar-header" >
       <ul
         className="navbar-nav mr-auto link-container"
         style={!props.footer ? { textAlign: "center" } : {}}
@@ -44,8 +46,20 @@ const Nav = (props) => {
               </Link>
             </li>
             <li className="nav-item-mb-3 nav-item">
+            <Link to="/userprofile" className="text-reset nav-link">
+                User Profile
+              </Link>
+            </li>
+
+
+            <li className="nav-item-mb-3 nav-item">
               <Link to="/signup" className="text-reset nav-link">
                 Create a Shop
+              </Link>
+            </li>
+            <li className="nav-item-mb-3 nav-item">
+              <Link to="/wishlist" className="text-reset nav-link">
+                View Wishlist
               </Link>
             </li>
             <li className="nav-item-mb-3 nav-item">

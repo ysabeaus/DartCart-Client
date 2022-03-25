@@ -61,7 +61,10 @@
 
 .ProductCardContainer {
     margin: 2%;
-    display: flex;
+    padding: .5%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    row-gap: 20px;
     background-color: #1b1b1b;
     border-style: solid;
     border-width: .5rem;

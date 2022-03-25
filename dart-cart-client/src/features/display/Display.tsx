@@ -9,6 +9,7 @@ import {
   selectShopProducts,
   clearSlice,
 } from "../../common/slices/shopProductSlice";
+import Featured_Products from "../Featured_Products";
 
 const Display = () => {
   const dispatch = useDispatch();
@@ -21,13 +22,15 @@ const Display = () => {
 
   return (
     <>
-      <div className=""></div>
+      <div className="ProductCardContainer">
+      <Featured_Products/>
+      </div>
 
       <div className="ProductCardContainer">
         {status === "success" ? (
           (ReduxShopProducts.length &&
-            ReduxShopProducts.map((Product) => {
-              return <ShopProductCard Product={Product}></ShopProductCard>;
+            ReduxShopProducts.map((Product, i) => {
+                return <div><ShopProductCard Product={Product}></ShopProductCard></div>;
             })) || (
             <>
               <h1 style={{ color: "white" }}>No Items Found</h1>

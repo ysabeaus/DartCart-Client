@@ -9,12 +9,34 @@ import ProductReview from '../ProductReview'
 // import ProductReviewDetail from '../ProductReviewDetail';
 
 function ProductReviewLayout() {
-    const layoutRef = useRef()
-    const [formData, setFormData] = useState({ layoutSections: "" })
-    const [sections, setSections] = useState([
-        { title: "", fluid: true, cols: ["z"], featureTypesArry: ['l'] },
-    ])
-    const [showLayoutControls, setLayoutControls] = useState(false)
+
+    // const components = {
+    //     "ProductReviewCard": ProductReviewCard,
+    //     "ProductImages": ProductImages,
+    //     "MiscTableOne": MiscTableOne,
+    //     "ProductReviewDetail": ProductReviewDetail,
+    //     "ProductPurchaseCard": ProductPurchaseCard,
+    //     "ReactIcon": ReactIcon
+    // };
+
+    // const components = [
+    //     { "name": "ProductReviewCard", "path": require("../product-review-card/ProductReviewCard").default },
+    //     { "name": "ProductImages", "path": require("../ProductImages").default },
+    //     { "name": "MiscTableOne", "path": require("../misc/MiscTableOne").default },
+    //     { "name": "ProductReviewDetail", "path": require("../ProductReviewDetail").default },
+    //     { "name": "ProductPurchaseCard", "path": require("../product-purchase-card/ProductPurchaseCard").default },
+    //     { "name": "ReactIcon", "path": require("../misc/ReactIcon").default },
+    //     { "name": "ReviewCrousel", "path": require("../misc/ReviewCrousel").default },
+    //     { "name": "ProductCrousel", "path": require("../misc/ProductCrousel").default }
+    // ].reduce((acc, curr, i) => {
+    //     // const curr_path = curr.path
+    //     return { ...acc, [curr.name]: curr.path }
+    // }, {});
+
+
+    // console.log('components2: ', components2)
+
+
 
     const components = {
         "ProductReviewCard": require('../product-review-card/ProductReviewCard').default,
@@ -28,39 +50,9 @@ function ProductReviewLayout() {
         "ProductCrousel": require('../misc/ProductCrousel').default,
     };
 
-    // const components2 = [
-    //     { "name": "ProductReviewCard", "path": "../product-review-card/ProductReviewCard" },
-    //     // { "name": "ProductImages", "path": "../ProductImages" },
-    //     // { "name": "MiscTableOne", "path": "../misc/MiscTableOne" },
-    //     // { "name": "ProductReviewDetail", "path": "../ProductReviewDetail" },
-    //     // { "name": "ProductPurchaseCard", "path": "../product-purchase-card/ProductPurchaseCard" },
-    //     // { "name": "ReactIcon", "path": "../misc/ReactIcon" }
-    // ].reduce((res, e) => {
-    //     return { [e.name]: require(e.path).default }
-    //     // return { ["ProductReviewCard"]: require('../product-review-card/ProductReviewCard').default }
-    // }, {})
 
 
-    // const components2 = [
-    //     { "name": "ProductReviewCard", "path": "../product-review-card/ProductReviewCard" },
-    //     { "name": "ProductImages", "path": "../ProductImages" },
-    //     { "name": "MiscTableOne", "path": "../misc/MiscTableOne" },
-    //     { "name": "ProductReviewDetail", "path": "../ProductReviewDetail" },
-    //     { "name": "ProductPurchaseCard", "path": "../product-purchase-card/ProductPurchaseCard" },
-    //     { "name": "ReactIcon", "path": "../misc/ReactIcon" }
-    // ].reduce((acc, curr, i) => acc[curr.name] = `${curr.path}`, {});
-
-    // console.log('components2: ', components2)
-
-    // const components = {
-    //     "ProductReviewCard": ProductReviewCard,
-    //     "ProductImages": ProductImages,
-    //     "MiscTableOne": MiscTableOne,
-    //     "ProductReviewDetail": ProductReviewDetail,
-    //     "ProductPurchaseCard": ProductPurchaseCard,
-    //     "ReactIcon": ReactIcon
-    // };
-
+    console.log('components: ', components)
 
     const jsonData = [
         {
@@ -161,7 +153,6 @@ function ProductReviewLayout() {
             props: {
                 cols: [3, 3, 3, 3]
             },
-
         },
         {
             code: "j",
@@ -169,7 +160,13 @@ function ProductReviewLayout() {
             props: {
                 cols: [4, 4, 4]
             },
-
+        },
+        {
+            code: "h",
+            componentType: "ProductCrousel",
+            props: {
+                cols: [2, 2, 2, 2, 2, 2]
+            },
         }
     ]
 
@@ -189,7 +186,7 @@ function ProductReviewLayout() {
         {
             title: "Product Reviews",
             fluid: true,
-            cols: ["z", "z"],
+            cols: ["z", "z", "z"],
             featureTypesArry: ['k', 'j']
         },
         {
@@ -247,6 +244,13 @@ function ProductReviewLayout() {
         //     featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
         // }
     ]
+
+    const layoutRef = useRef()
+    const [formData, setFormData] = useState({ layoutSections: "" })
+    const [sections, setSections] = useState([
+        { title: "", fluid: true, cols: ["z"], featureTypesArry: ['l'] },
+    ])
+    const [showLayoutControls, setLayoutControls] = useState(false)
 
     useEffect(() => {
         console.log(showLayoutControls)

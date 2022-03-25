@@ -32,6 +32,8 @@ export function UserRegister() {
     phone: "",
     location: "",
     registrationDate: 0,
+    aboutMe : "",
+    imageURL: ""
   };
 
   // BASIC input validation: no empty fields, passwords must match, formatting requirements
@@ -119,7 +121,6 @@ export function UserRegister() {
                 </div>
                 <div
                   className="card-body p-5 text-center"
-                  style={{ backgroundColor: "#a6a6a6" }}
                 >
                   {error ? <Alert variant="danger">{error}</Alert> : null}
 

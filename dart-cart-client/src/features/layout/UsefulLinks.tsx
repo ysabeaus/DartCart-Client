@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 const UsefulLinks = () => {
   const links = {
     "Sell on Dart Cart": "#",
-    Returns: "#",
+    "Register Product": "/product-register",
+    "Add Inventory": "/shop-product-add",
     Orders: "/orders",
     Help: "#",
   };

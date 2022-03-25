@@ -9,7 +9,7 @@
 }
 
 .fa {
-    padding: 20px;
+   padding: 20px;
     font-size: 30px;
     width: 50px;
     text-align: center;
@@ -69,4 +69,8 @@
 .navbar-custom .nav-item.active .nav-link,
 .navbar-custom .nav-item:hover .nav-link {
     color: black;
+}
+
+.textarea {
+  height:200px;
 }

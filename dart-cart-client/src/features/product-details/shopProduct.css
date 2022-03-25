@@ -1,5 +1,5 @@
 .ProductContainer {
-  background-color: white !important;
+  background-color: var(--background) !important;
   color: black;
   padding: 2%;
   width: 100%;
@@ -7,7 +7,7 @@
 }
 
 .InnerProduct {
-  background-color: white;
+  background-color: var(--background);
   margin-left: 10%;
   margin-right: 3%;
   display: flex;
@@ -59,4 +59,51 @@
   border-color: #5f5f5f;
   border-radius: 12px;
   border-width: 0.2rem;
+}
+
+.addToWishList{
+  display: block;
+  width: 70%;
+}
+
+.wishListNotice {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.addToWishList .wishListNotice {
+  visibility: hidden;
+  font-size: 2vh;
+  width: 240px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -120px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  
+}
+
+.addToWishList .wishListNotice::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+
+}
+
+.addToWishList .youCanSeeMe {
+  visibility: visible;
+  opacity: 1;
 }
