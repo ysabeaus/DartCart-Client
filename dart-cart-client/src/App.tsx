@@ -23,8 +23,12 @@ import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 import Product from "./Models/Product";
+
 import UserP from "./features/userprofile/UserProfile";
 import useLocalStorage from "use-local-storage";
+
+import WishList from "./features/wishlist/WishList";
+
 
 function App() {
 
@@ -75,6 +79,7 @@ function App() {
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
             ></Route>
+            <Route path="/wishlist" element={<WishList/>}></Route>
             <Route
               path="/FeatureProduct/:product_id"
               element={<Product />}
