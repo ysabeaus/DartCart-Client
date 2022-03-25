@@ -59,7 +59,6 @@ export function UserP() {
         email: "",
         phone: "",
         location: "",
-        imgUrl: "",
         registrationDate: 0,
         aboutMe: "",
         imageURL: ""
