@@ -11,6 +11,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import LoadingIcons from 'react-loading-icons';
 import { Redirect } from "react-router-dom";
 
+import "./protect_btn.css";
+
 
 // Change URL for testing vs. production
 const API_URL = process.env.REACT_APP_API_URL;
@@ -25,8 +27,8 @@ function ShowEmailSentModal(props) {
     }
     return(
         <Modal show={showThis} onHide={handleClose}>
-            <Modal.Header closeButton>
-                <Modal.Title>Reset Password</Modal.Title>
+            <Modal.Header closeButton style={{ backgroundColor:"#198754", color:"#fff"}}>
+                <Modal.Title >Reset Password</Modal.Title>
             </Modal.Header>
             
             <Modal.Body>
@@ -37,7 +39,7 @@ function ShowEmailSentModal(props) {
                         <p>If you do not see the email check your spam folder</p>
                     </div>) :
                     (<div className="">
-                        <p>{props.error} Reset password email not sent.</p>
+                        <p>{props.error} <br /> Reset password email not sent.</p>
                     
                     </div>)}
             </Modal.Body>
@@ -215,7 +217,7 @@ export const Login = () => {
                                         </div>
                                         <div className="row">
                                             <div className="form-outline mb-4 col-12">
-                                                <button className="btn btn-success btn-lg" onClick={handleLogin}>
+                                                <button id="protect_btn" className="btn btn-success btn-lg" onClick={handleLogin}>
                                                     Login
                                                 </button>
                                             </div>
@@ -223,7 +225,7 @@ export const Login = () => {
                                         <div className="row">
                                             <div className="form-outline mb-4 col-12">
                                                  {showSendingEmail ? (<LoadingIcons.BallTriangle height="2em"stroke="#198754" show={showSendingEmail} />) : 
-                                                (<button className="btn btn-success btn-sm" onClick={showResetPasswordModal}>
+                                                (<button id="protect_btn" className="btn btn-success btn-sm" onClick={showResetPasswordModal}>
                                                     Reset Password
                                                 </button> )}
                                             </div>
@@ -246,7 +248,7 @@ export const Login = () => {
                                     <div className="card-body p-4 text-center">
                                         <div className="row">
                                             <div className="form-outline mb-4 col-12">
-                                                <button className="btn btn-success btn-lg" onClick={handleLogout}>
+                                                <button id="protect_btn" className="btn btn-success btn-lg" onClick={handleLogout}>
                                                     Logout
                                                 </button>
 

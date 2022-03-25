@@ -87,7 +87,12 @@ export interface InventoryProduct{
   quantity: number,
   discount: number,
   price:number
+}
 
+export interface WishListItem {
+  wishListId: number,
+  customer: User,
+  product: Product
 }
 
 export type RootState = ReturnType<typeof store.getState>;
