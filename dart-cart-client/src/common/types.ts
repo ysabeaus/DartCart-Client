@@ -17,7 +17,10 @@ export interface User {
     email: string;
     phone: string;
     location: string;
+    imgUrl: string;
     registrationDate: number;
+    imageURL: string;
+    aboutMe: string;
 }
 
 export interface CartItem {
