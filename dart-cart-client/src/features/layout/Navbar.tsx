@@ -22,6 +22,7 @@ const Nav = (props) => {
   const handleLogout = () => {
     dispatch(logout(null));
     dispatch(clearCart());
+    window.location.reload();
   };
 
   return (
