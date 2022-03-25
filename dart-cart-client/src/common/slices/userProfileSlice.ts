@@ -5,7 +5,9 @@ import authHeader from "../../features/authentication/AuthHeader";
 
 
 // Change URL for testing vs. production
-const API_URL = process.env.REACT_APP_API_URL;
+// const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "http://localhost:9005/";
+
 
 // createEntityAdapter gives us several premade reducer functions for manipulating state
 const userProfileAdapter = createEntityAdapter<User>();
@@ -41,24 +43,6 @@ export const { homeRedirect } = userUpdateProfileSlice.actions;
 export default userUpdateProfileSlice.reducer;
 
 
-// // Async thunk to update user profile
-// export const updateUser = createAsyncThunk("userUpdateProfile/updateUser", async (user: User) => {
-//     console.log(user);
-//     return await axios.patch(API_URL + "updateProfile", {
-//         firstName: user.firstName,
-//         lastName: user.lastName,
-//         email: user.email,
-//         phone: user.phone,
-//         location: user.location
-//         firstName: "Hannah",
-//         lastName: "Test",
-//         email: "hannah@test.com",
-//         phone: "5555555555",
-//         location: "bay area"
-//     });
-// });
-
-
 export const updateUser = createAsyncThunk("userUpdateProfile/updateUser", async (user: User) => {
     return await axios.patch(
         API_URL + "updateProfile",
@@ -67,7 +51,11 @@ export const updateUser = createAsyncThunk("userUpdateProfile/updateUser", async
             lastName: user.lastName,
             email: user.email,
             phone: user.phone,
-            location: user.location
+            location: user.location,
+            imageURL: user.imageURL,
+            aboutMe: user.aboutMe
+        
+            
         },
         { headers: authHeader() }
     );

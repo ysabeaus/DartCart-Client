@@ -19,6 +19,8 @@ export interface User {
     location: string;
     imgUrl: string;
     registrationDate: number;
+    imageURL: string;
+    aboutMe: string;
 }
 
 export interface CartItem {

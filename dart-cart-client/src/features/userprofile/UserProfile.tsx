@@ -18,9 +18,12 @@ export function UserP() {
     const [error, setError] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [initialUser, setInitialUser] = useState({});
+    const [imageURL, setImageURL] = useState("");
+    const [aboutMe, setAboutMe] = useState("");
+    const API_URL = "http://localhost:9005/";
 
     async function fetchUser() {
-        const response = await axios.get("http://localhost:9005/getProfile", { headers: authHeader() });
+        const response = await axios.get(API_URL + "getProfile", { headers: authHeader() });
         const fetchedUser = await response.data;
         console.log(fetchedUser);
         setInitialUser(fetchedUser);
@@ -29,6 +32,8 @@ export function UserP() {
         setEmail(fetchedUser.email);
         setPhone(fetchedUser.phone);
         setLocation(fetchedUser.location);
+        setImageURL(fetchedUser.imageURL);
+        setAboutMe(fetchedUser.aboutMe);
 
 
     }
@@ -54,6 +59,8 @@ export function UserP() {
         location: "",
         imgUrl: "",
         registrationDate: 0,
+        aboutMe: "",
+        imageURL: ""
     };
 
     // BASIC input validation: no empty fields, passwords must match, formatting requirements
@@ -82,11 +89,14 @@ export function UserP() {
       };
 
     const updateUserProfile = async () => {
+        user.aboutMe = aboutMe;
+        user.imageURL = imageURL;
         user.firstName = firstName;
         user.lastName = lastName;
         user.location = location;
         user.email = email;
         user.phone = phone;
+
 
 
         if (!validateInput()) {
@@ -110,6 +120,8 @@ export function UserP() {
         setEmail("");
         setPhone("");
         setLocation("");
+        setImageURL("");
+        setAboutMe("");
     }
 
     // Redirect upon modal close
@@ -131,11 +143,44 @@ export function UserP() {
                             >
                                 <div className="card-header card text-center bg-success text-white">
                                     <h3 className="mb-0">Update your profile</h3>
+                                    <img></img>
                                 </div>
                                 <div
                                     className="card-body p-5 text-center"
                                 >
                                     {error ? <Alert variant="danger">{error}</Alert> : null}
+
+                                    <div className="row align-items-center">
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="text"
+                                                placeholder="AboutMe"
+                                                id="typePasswordX-2"
+                                                className="form-control form-control-lg"
+                                                value={aboutMe}
+                                                onChange={(e) => {
+                                                    setAboutMe(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+
+
+                                    {/* <div className="row align-items-center">
+                                        <div className="form-outline mb-4">
+                                            <input
+                                                type="text"
+                                                placeholder="Profile Image"
+                                                id="typePasswordX-2"
+                                                className="form-control form-control-lg"
+                                                value={imageURL}
+                                                onChange={(e) => {
+                                                    setImageURL(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </div> */}
+
 
                                     <div className="row align-items-center">
                                         <div className="form-outline mb-4">
