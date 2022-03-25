@@ -86,7 +86,7 @@ function App() {
               element={<Product />}
             ></Route>
             <Route
-              path="/product-review/:product_id"
+              path="/product-review"
               element={<ProductReviewLayout />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
