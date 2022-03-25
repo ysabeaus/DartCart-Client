@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userRegisterReducer from "./slices/userRegisterSlice";
+import userUpdateProfileReducer from "./slices/userProfileSlice";
 import sellerRegisterReducer from "./slices/sellerRegisterSlice";
 import SPSlice from "./slices/shopProductSlice";
 import SSlice from "./slices/shopSlice";
@@ -14,7 +15,9 @@ import WLSlice from "./slices/wishlistSlice"
 // Each slice's reducer is added as a reducer here
 const store = configureStore({
   reducer: {
+
     userRegister: userRegisterReducer,
+    userUpdate: userUpdateProfileReducer,
     sellerRegister: sellerRegisterReducer,
     authentication: authenticationReducer,
     ShopProducts: SPSlice,

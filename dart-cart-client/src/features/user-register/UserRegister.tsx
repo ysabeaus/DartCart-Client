@@ -32,6 +32,8 @@ export function UserRegister() {
     phone: "",
     location: "",
     registrationDate: 0,
+    aboutMe : "",
+    imageURL: ""
   };
 
   // BASIC input validation: no empty fields, passwords must match, formatting requirements
