@@ -54,8 +54,7 @@ function ProductReview(props) {
         console.log("handleLayoutColsFeatureTypes: ", layoutString)
         const [layoutCols, feature_types] = layoutString.split("-")
 
-        setFormData({ ...formData, "layoutCols": layoutCols })
-        setFormData({ ...formData, "feature_types": feature_types })
+        setFormData({ ...formData, "layoutCols": layoutCols, "feature_types": feature_types  })
 
         setCols(layoutCols.split(""))
         setFeatureTypesArry(feature_types.split(""))
@@ -68,15 +67,8 @@ function ProductReview(props) {
 
                     <Form.Select name="layoutColsFeature_types"  id="layoutColsFeature_types" placeholder="Disabled input" onChange={e => handleLayoutColsFeatureTypes(e)} >
                         <option >Select Preset</option>
-                        {/* <option value={`z-l`}>12 Col-Carousel</option>
-                        <option value={`453453453453-i5pi4pi3p`}>453453453453-i5pi4pi3p</option>
-                        <option value={`363363363363-i5pi4pi3p`}>363363363363-i5pi4pi3p</option>
-                        <option value={`66666666666-i54ii32i`}>66666666666-i54ii32i</option>
-                        <option value={`488448844884-i54ii32i`}>488448844884-i54ii32i</option>
-                        <option value={`33333333-iiii5432`}>33333333-iiii5432</option>
-                        <option value={`444444444444-iii543iii543`}>444444444444-iii543iii543</option> */}
                         {props.dLayoutData.map(e => {
-                            return (<option value={`${e.cols.join('')}-${e.featureTypesArry.join('')}`}>{`${e.cols.join('')}-${e.featureTypesArry.join('')}`}</option>)
+                            return (<option value={`${e.cols.join('')}-${e.featureTypesArry.join('')}`}>{`${e.title}-${e.cols.join('')}-${e.featureTypesArry.join('')}`}</option>)
                         })}
                     </Form.Select>
                     {/* <Form.Control name="layoutCols" value={formData.layoutCols} id="disabledTextInput" placeholder="Disabled input" onChange={e => handleChange(e)} /> */}
@@ -93,7 +85,7 @@ function ProductReview(props) {
                         <option value={`33333333`}>33333333</option>
                         <option value={`444444444444`}>444444444444</option>
                     </Form.Select> */}
-                    {/* <Form.Control name="layoutCols" value={formData.layoutCols} id="disabledTextInput" placeholder="Disabled input" onChange={e => handleChange(e)} /> */}
+                    <Form.Control name="layoutCols" value={formData.layoutCols} id="disabledTextInput" placeholder="Disabled input" onChange={e => handleChange(e)} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     {/* <Form.Label htmlFor="disabledTextInput">Layout input</Form.Label> */}
@@ -104,7 +96,7 @@ function ProductReview(props) {
                         <option value={`iiii5432`}>iiii5432</option>
                         <option value={`iii543iii543`}>iii543iii543</option>
                     </Form.Select> */}
-                    {/* <Form.Control name="feature_types" value={formData.feature_types} id="disabledTextInput" placeholder="Disabled input" onChange={e => handleChange(e)} /> */}
+                    <Form.Control name="feature_types" value={formData.feature_types} id="disabledTextInput" placeholder="Disabled input" onChange={e => handleChange(e)} />
                 </Form.Group>
 
             </fieldset>
