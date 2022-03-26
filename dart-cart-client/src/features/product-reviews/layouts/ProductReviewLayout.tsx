@@ -310,13 +310,18 @@ function ProductReviewLayout() {
             </Form.Group>
             {
                 showLayoutControls && <Form>
-                    <Button onClick={loadLayouts}>LoadLayouts</Button>
                     <fieldset >
                         <Form.Group id="fg-2" className="mb-3">
                             {/* <Form.Label htmlFor="disabledTextInput">Layout input</Form.Label> */}
+
+                            {/* <Form.Select name="layoutSections" value={formData.layoutSections} id="disabledTextInput" placeholder="Disabled input" onChange={e => handleChange(e)} >
+                                <option value={`000000`}>0</option>
+                                <option value={`1111111`}>1</option>
+                            </Form.Select> */}
                             <Form.Control name="layoutSections" value={formData.layoutSections} id="disabledTextInput" placeholder="Disabled input" onChange={e => handleChange(e)} />
                         </Form.Group>
                     </fieldset>
+                    {/* <Button onClick={loadLayouts}>LoadLayouts</Button> */}
                 </Form>
             }
             {sections.map((e, i) => <div key={`div-${i}`}>
@@ -326,6 +331,7 @@ function ProductReviewLayout() {
                 <ProductReview key={`prl-${i}`} showLayoutControls={showLayoutControls}
                     components={components}
                     jsonData={jsonData}
+                    dLayoutData={dLayoutData}
                     cols={e.cols}
                     featureTypesArry={e.featureTypesArry}
                     fluid={e.fluid} />
