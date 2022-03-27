@@ -232,22 +232,41 @@ function ProductReviewLayout() {
 
     useEffect(() => {
         console.log('jsonData: ', jsonData)
-        setDLayoutData([...dLayoutData, {
-            title: "Product Reviews",
-            fluid: true,
-            cols: ["z", "z", "z"],
-            featureTypesArry: ['18', '19']
-        }])
+
+        axios.get('http://localhost:9005/product-reviews/product/1', {
+            headers: authHeader()
+        })
+            .then(res => {
+                console.log('axios2: ', res.data)
+                const result = res.data.map((e) => ({
+                    title: "Product Reviews",
+                    fluid: true,
+                    cols: ["3", "6", "3"],
+                    featureTypesArry: ["i", e.id, "p"]
+                }), []);
+
+                console.log('result: ', result)
+                setDLayoutData([...result, ...dLayoutData])
+
+            })
+            .catch(e => console.log(e))
+
+        // setDLayoutData([...dLayoutData, {
+        //     title: "Product Reviews",
+        //     fluid: true,
+        //     cols: ["z", "z", "z"],
+        //     featureTypesArry: ['18', '19']
+        // }])
     }, [jsonData])
 
     useEffect(() => {
         console.log('dLayoutData: ', dLayoutData)
-        setSections(dLayoutData.map(e => e))
+        setSections(dLayoutData)
     }, [dLayoutData])
 
     useEffect(() => {
         console.log('formData: ', formData)
-        setSections(formData.layoutSections.split(":").map((e, i) => i < sections.length ? e === "1" ? {
+        setSections(formData.layoutSections.split("").map((e, i) => i < sections.length ? e === "1" ? {
             ...sections[i],
             fluid: true,
             title: sections[i].title,
@@ -296,14 +315,23 @@ function ProductReviewLayout() {
                 console.log('axios: ', res.data)
                 const result = res.data.map((e) => ({
                     code: e.id,
-                    componentType: "ProductCrousel",
+                    componentType: "ProductReviewCard",
                     props: {
-                        cols: [6, 6]
+                        title: e.title,
+                        comment: e.comment,
+                        rating: e.rating
                     },
-                }), []);
+                }));
+                // const result2 = res.data.map((e) => ({
+                //     code: e.id,
+                //     componentType: "ProductImages",
+                //     props: {
+                //         pics: e.pics
+                //     },
+                // }));
 
                 console.log('result: ', result)
-                setJsonData([...jsonData, ...result])
+                setJsonData([...result, ...jsonData])
 
             })
             .catch(e => console.log(e))
@@ -311,9 +339,32 @@ function ProductReviewLayout() {
         // setSections(dLayoutData)
 
     }, [])
+
+    const seedDb = () => {
+
+        const dataDb = require('../misc/data.json')
+        // console.log(dataDb)
+        dataDb.map(e => {
+            console.log(e)
+            axios.post('http://localhost:9005/create-product-review/product/1', {
+                "title": e['Product Name'],
+                "comment": e['Product Description'],
+                "rating": 4
+            }, {
+                headers: authHeader()
+            })
+                .then(res => {
+                    console.log('axios: ', res.data)
+                })
+                .catch(e => console.log(e))
+        })
+
+
+    }
     return (
         <>
             <Form.Group id="fg-1" className="mb-3" controlId="formBasicCheckbox">
+                <button onClick={() => seedDb()}>Seed DB</button>
                 <Form.Check type="checkbox" checked={showLayoutControls}
                     onChange={e => handleChange(e)}
                     label="Set Layout" />

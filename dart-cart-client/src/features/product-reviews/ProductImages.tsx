@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Col, Row, Container, Image, Card } from "react-bootstrap";
 
-function ProductImages() {
-    const pics = ['cellphone', 'shirt', 'shoes', 'drone', 'scooter', 'pants', 'travel', 'calm', 'javascript']
+function ProductImages({ pics = ['cellphone', 'shirt', 'shoes', 'drone', 'scooter', 'pants', 'travel', 'calm', 'javascript'] }) {
+    // const pics = ['cellphone', 'shirt', 'shoes', 'drone', 'scooter', 'pants', 'travel', 'calm', 'javascript']
     const [currentPic, setCurrentPic] = useState(Math.floor(Math.random() * (pics.length + 1)))
     const randNum = Math.floor(Math.random() * (pics.length - 2))
     return (
