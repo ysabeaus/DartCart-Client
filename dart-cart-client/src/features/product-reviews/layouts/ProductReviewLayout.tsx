@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React, { useState, useEffect, useRef, lazy } from 'react'
 import { Col, Row, Container, Image, Form, Button } from "react-bootstrap";
 import ProductReview from '../ProductReview'
+import authHeader from "../../authentication/AuthHeader";
+
 // import MiscTableOne from '../misc/MiscTableOne';
 // import ReactIcon from '../misc/ReactIcon';
 // import ProductPurchaseCard from '../product-purchase-card/ProductPurchaseCard';
@@ -9,34 +12,6 @@ import ProductReview from '../ProductReview'
 // import ProductReviewDetail from '../ProductReviewDetail';
 
 function ProductReviewLayout() {
-
-    // const components = {
-    //     "ProductReviewCard": ProductReviewCard,
-    //     "ProductImages": ProductImages,
-    //     "MiscTableOne": MiscTableOne,
-    //     "ProductReviewDetail": ProductReviewDetail,
-    //     "ProductPurchaseCard": ProductPurchaseCard,
-    //     "ReactIcon": ReactIcon
-    // };
-
-    // const components = [
-    //     { "name": "ProductReviewCard", "path": require("../product-review-card/ProductReviewCard").default },
-    //     { "name": "ProductImages", "path": require("../ProductImages").default },
-    //     { "name": "MiscTableOne", "path": require("../misc/MiscTableOne").default },
-    //     { "name": "ProductReviewDetail", "path": require("../ProductReviewDetail").default },
-    //     { "name": "ProductPurchaseCard", "path": require("../product-purchase-card/ProductPurchaseCard").default },
-    //     { "name": "ReactIcon", "path": require("../misc/ReactIcon").default },
-    //     { "name": "ReviewCrousel", "path": require("../misc/ReviewCrousel").default },
-    //     { "name": "ProductCrousel", "path": require("../misc/ProductCrousel").default }
-    // ].reduce((acc, curr, i) => {
-    //     // const curr_path = curr.path
-    //     return { ...acc, [curr.name]: curr.path }
-    // }, {});
-
-
-    // console.log('components2: ', components2)
-
-
 
     const components = {
         "ProductReviewCard": require('../product-review-card/ProductReviewCard').default,
@@ -50,11 +25,9 @@ function ProductReviewLayout() {
         "ProductCrousel": require('../misc/ProductCrousel').default,
     };
 
-
-
     console.log('components: ', components)
 
-    const jsonData = [
+    const [jsonData, setJsonData] = useState([
         {
             code: "0",
             componentType: "ProductReviewCard",
@@ -168,9 +141,9 @@ function ProductReviewLayout() {
                 cols: [2, 2, 2, 2, 2, 2]
             },
         }
-    ]
+    ])
 
-    const dLayoutData = [
+    const [dLayoutData, setDLayoutData] = useState([
         {
             title: "Product Reviews",
             fluid: true,
@@ -237,13 +210,13 @@ function ProductReviewLayout() {
             cols: ["6", "6", "6", "6", "6", "6"],
             featureTypesArry: ['5', 'r', 'r', '5', '5', 'r', 'r', '5']
         },
-        // {
-        //     title: "Stories",
-        //     fluid: true,
-        //     cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
-        //     featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
-        // }
-    ]
+        {
+            title: "Stories",
+            fluid: true,
+            cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
+            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
+        }
+    ])
 
     const layoutRef = useRef()
     const [formData, setFormData] = useState({ layoutSections: "" })
@@ -258,8 +231,23 @@ function ProductReviewLayout() {
     }, [sections, showLayoutControls])
 
     useEffect(() => {
+        console.log('jsonData: ', jsonData)
+        setDLayoutData([...dLayoutData, {
+            title: "Product Reviews",
+            fluid: true,
+            cols: ["z", "z", "z"],
+            featureTypesArry: ['18', '19']
+        }])
+    }, [jsonData])
+
+    useEffect(() => {
+        console.log('dLayoutData: ', dLayoutData)
+        setSections(dLayoutData.map(e => e))
+    }, [dLayoutData])
+
+    useEffect(() => {
         console.log('formData: ', formData)
-        setSections(formData.layoutSections.split("").map((e, i) => i < sections.length ? e === "1" ? {
+        setSections(formData.layoutSections.split(":").map((e, i) => i < sections.length ? e === "1" ? {
             ...sections[i],
             fluid: true,
             title: sections[i].title,
@@ -300,10 +288,28 @@ function ProductReviewLayout() {
 
 
     useEffect(() => {
-        // console.log(showLayoutControls)
-        // console.log(sections)
-        // setSections(dLayoutData)
         loadLayouts()
+        axios.get('http://localhost:9005/product-reviews/product/1', {
+            headers: authHeader()
+        })
+            .then(res => {
+                console.log('axios: ', res.data)
+                const result = res.data.map((e) => ({
+                    code: e.id,
+                    componentType: "ProductCrousel",
+                    props: {
+                        cols: [6, 6]
+                    },
+                }), []);
+
+                console.log('result: ', result)
+                setJsonData([...jsonData, ...result])
+
+            })
+            .catch(e => console.log(e))
+
+        // setSections(dLayoutData)
+
     }, [])
     return (
         <>

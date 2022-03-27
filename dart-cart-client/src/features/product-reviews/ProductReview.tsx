@@ -46,7 +46,7 @@ function ProductReview(props) {
         const layoutString = e.target.value;
         console.log(layoutString)
         setFormData({ ...formData, [e.target.name]: e.target.value })
-        e.target.name === 'layoutCols' ? setCols(layoutString.split("")) : setFeatureTypesArry(layoutString.split(""))
+        e.target.name === 'layoutCols' ? setCols(layoutString.split(":")) : setFeatureTypesArry(layoutString.split(":"))
     }
 
     const handleLayoutColsFeatureTypes = (e) => {
@@ -56,8 +56,8 @@ function ProductReview(props) {
 
         setFormData({ ...formData, "layoutCols": layoutCols, "feature_types": feature_types  })
 
-        setCols(layoutCols.split(""))
-        setFeatureTypesArry(feature_types.split(""))
+        setCols(layoutCols.split(":"))
+        setFeatureTypesArry(feature_types.split(":"))
     }
     return (<>
         {props.showLayoutControls && <Form >
@@ -68,7 +68,7 @@ function ProductReview(props) {
                     <Form.Select name="layoutColsFeature_types"  id="layoutColsFeature_types" placeholder="Disabled input" onChange={e => handleLayoutColsFeatureTypes(e)} >
                         <option >Select Preset</option>
                         {props.dLayoutData.map(e => {
-                            return (<option value={`${e.cols.join('')}-${e.featureTypesArry.join('')}`}>{`${e.title}-${e.cols.join('')}-${e.featureTypesArry.join('')}`}</option>)
+                            return (<option value={`${e.cols.join(':')}-${e.featureTypesArry.join(':')}`}>{`${e.title}-${e.cols.join(':')}-${e.featureTypesArry.join(':')}`}</option>)
                         })}
                     </Form.Select>
                     {/* <Form.Control name="layoutCols" value={formData.layoutCols} id="disabledTextInput" placeholder="Disabled input" onChange={e => handleChange(e)} /> */}
