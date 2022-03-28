@@ -22,11 +22,13 @@ const Display = () => {
 
   return (
     <>
-      <div className="ProductCardContainer">
+    <h1>Featured Products</h1>
+      <div className="ProductCardContainer" style={{ width: "100%" }}>
+      
       <Featured_Products/>
       </div>
 
-      <div className="ProductCardContainer">
+      <div className="ProductCardContainer" >
         {status === "success" ? (
           (ReduxShopProducts.length &&
             ReduxShopProducts.map((Product, i) => {

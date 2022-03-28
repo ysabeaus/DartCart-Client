@@ -29,20 +29,22 @@ export default function Featured_Products() {
 
     useEffect(fetchData, []);
     useEffect(() => {
-        console.log(anyThing);
+        // console.log(anyThing);
     }, [anyThing]);
     // anyThing.then(data => console.log(data));
 
-    return (<>
-        
-        <table><tr><th><h1>Featured Products</h1></th></tr> <tr> {anyThing.map(elem => {
-            return <td><FeaturedProduct
+    return (
+    
+        <div className="card-group bg-black text-warning" style={{ width: "100%" }}>
+         {anyThing.map(elem => {
+             const imagUrl = `https://picsum.photos/100/100?random= ${elem.id}`;
+            return <div className='card' style={{ width: "500px", margin:"1%"}}><FeaturedProduct
                 key={elem.id} price={elem.price} discount={elem.discount}
                 productName={elem.product.name} id={elem.product.id} discprice={elem.price}
-                imageUrl="https://picsum.photos/100/100?random=1" /></td>
+                imageUrl={imagUrl} /></div>
                
         }
-        )}</tr></table>
+        )}</div>
 
-    </>);
+    );
 }
