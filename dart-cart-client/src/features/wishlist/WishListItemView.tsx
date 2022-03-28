@@ -4,7 +4,6 @@ import { RootState } from "../../common/types"
 import { WishListItem } from "../../common/types";
 import { selectWishListItemById, fetchWishList, deleteFromWishList } from "../../common/slices/wishlistSlice";
 import { Link } from "react-router-dom";
-import productRegisterSlice from "../../common/slices/productRegisterSlice";
 import axios, { AxiosRequestConfig } from "axios";
 
 const WishListItemView = ({ wishListId }: WishListItem) => {
@@ -19,7 +18,6 @@ const WishListItemView = ({ wishListId }: WishListItem) => {
     }, [])
 
     const getImage = async (productName) => {
-        console.log(productName);
 
         const options: AxiosRequestConfig = {
             method: 'GET',
@@ -35,7 +33,7 @@ const WishListItemView = ({ wishListId }: WishListItem) => {
             }
         };
 
-        axios.request(options)
+        await axios.request(options)
             .then((response) => {
                 console.log(response.data)
                 setImage(response.data.value[0].url)
