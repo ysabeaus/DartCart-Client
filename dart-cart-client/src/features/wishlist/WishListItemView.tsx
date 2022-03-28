@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from "../../common/types"
 import { WishListItem } from "../../common/types";
@@ -14,13 +14,9 @@ const WishListItemView = ({ wishListId }: WishListItem) => {
         dispatch(fetchWishList())
     }, [])
 
-    const sendDelete = async (e) => {
-        await dispatch(deleteFromWishList(e));
-        setTimeout(refresh, 500);
-    }
-
-    function refresh() {
-        window.location.reload();
+    const sendDelete = async (productId) => {
+        await dispatch(deleteFromWishList(productId));
+        dispatch(fetchWishList());
     }
 
     return(
