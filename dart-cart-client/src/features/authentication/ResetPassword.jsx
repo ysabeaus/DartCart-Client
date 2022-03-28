@@ -8,6 +8,7 @@ import axios from "axios";
 import LoadingIcons from 'react-loading-icons';
 
 import "../../App.css";
+import "./protect_btn.css";
 
 // Change URL for testing vs. production
 const API_URL = process.env.REACT_APP_API_URL;
@@ -83,7 +84,7 @@ export const ResetPassword = () => {
             setShowSendingRequest(false);
             if(error.response) {
                 if( (error.response.status == 404) ) {
-                    setReqReturnedError("404.");                    
+                    setReqReturnedError("404. Reset Password Request not found.");                    
                 }
             }
             else if (error.request) {
@@ -164,7 +165,7 @@ export const ResetPassword = () => {
                                             {showSendingRequest ? 
                                             (<LoadingIcons.BallTriangle height="2em"stroke="#198754" />) 
                                             : 
-                                            (<button className="btn btn-success btn-lg" onClick={handleResetPassword}>
+                                            (<button id="protect_btn" className="btn btn-success btn-lg" onClick={handleResetPassword}>
                                                 Reset Password
                                             </button> )}
                                         </div>

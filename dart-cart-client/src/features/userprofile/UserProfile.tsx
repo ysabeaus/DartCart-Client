@@ -20,7 +20,9 @@ export function UserP() {
     const [initialUser, setInitialUser] = useState({});
     const [imageURL, setImageURL] = useState("");
     const [aboutMe, setAboutMe] = useState("");
-    const API_URL = "http://localhost:9005/";
+//     const API_URL = "http://localhost:9005/";
+    const API_URL = process.env.REACT_APP_API_URL;
+    
 
     async function fetchUser() {
         const response = await axios.get(API_URL + "getProfile", { headers: authHeader() });
@@ -57,7 +59,6 @@ export function UserP() {
         email: "",
         phone: "",
         location: "",
-        imgUrl: "",
         registrationDate: 0,
         aboutMe: "",
         imageURL: ""

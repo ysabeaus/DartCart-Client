@@ -22,6 +22,7 @@ const Nav = (props) => {
   const handleLogout = () => {
     dispatch(logout(null));
     dispatch(clearCart());
+    window.location.reload();
   };
 
   return (
@@ -54,6 +55,11 @@ const Nav = (props) => {
             <li className="nav-item-mb-3 nav-item">
               <Link to="/signup" className="text-reset nav-link">
                 Create a Shop
+              </Link>
+            </li>
+            <li className="nav-item-mb-3 nav-item">
+              <Link to="/wishlist" className="text-reset nav-link">
+                View Wishlist
               </Link>
             </li>
             <li className="nav-item-mb-3 nav-item">

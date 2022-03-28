@@ -17,7 +17,6 @@ export interface User {
     email: string;
     phone: string;
     location: string;
-    imgUrl: string;
     registrationDate: number;
     imageURL: string;
     aboutMe: string;
@@ -90,7 +89,12 @@ export interface InventoryProduct{
   quantity: number,
   discount: number,
   price:number
+}
 
+export interface WishListItem {
+  wishListId: number,
+  customer: User,
+  product: Product
 }
 
 export type RootState = ReturnType<typeof store.getState>;
