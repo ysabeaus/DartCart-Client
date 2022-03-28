@@ -230,34 +230,34 @@ function ProductReviewLayout() {
         console.log('sections: ', sections)
     }, [sections, showLayoutControls])
 
-    useEffect(() => {
-        console.log('jsonData: ', jsonData)
+    // useEffect(() => {
+    //     console.log('jsonData: ', jsonData)
 
-        axios.get('http://localhost:9005/product-reviews/product/1', {
-            headers: authHeader()
-        })
-            .then(res => {
-                console.log('axios2: ', res.data)
-                const result = res.data.map((e) => ({
-                    title: "Product Reviews",
-                    fluid: true,
-                    cols: ["3", "6", "3"],
-                    featureTypesArry: ["i", e.id, "p"]
-                }), []);
+    //     axios.get('http://localhost:9005/product-reviews/product/1', {
+    //         headers: authHeader()
+    //     })
+    //         .then(res => {
+    //             console.log('axios2: ', res.data)
+    //             const result = res.data.map((e) => ({
+    //                 title: "Product Reviews",
+    //                 fluid: true,
+    //                 cols: ["3", "6", "3"],
+    //                 featureTypesArry: ["i", e.id, "p"]
+    //             }), []);
 
-                console.log('result: ', result)
-                setDLayoutData([...result, ...dLayoutData])
+    //             console.log('result: ', result)
+    //             setDLayoutData([...result, ...dLayoutData])
 
-            })
-            .catch(e => console.log(e))
+    //         })
+    //         .catch(e => console.log(e))
 
-        // setDLayoutData([...dLayoutData, {
-        //     title: "Product Reviews",
-        //     fluid: true,
-        //     cols: ["z", "z", "z"],
-        //     featureTypesArry: ['18', '19']
-        // }])
-    }, [jsonData])
+    //     // setDLayoutData([...dLayoutData, {
+    //     //     title: "Product Reviews",
+    //     //     fluid: true,
+    //     //     cols: ["z", "z", "z"],
+    //     //     featureTypesArry: ['18', '19']
+    //     // }])
+    // }, [jsonData])
 
     useEffect(() => {
         console.log('dLayoutData: ', dLayoutData)
@@ -332,6 +332,17 @@ function ProductReviewLayout() {
 
                 console.log('result: ', result)
                 setJsonData([...result, ...jsonData])
+
+                console.log('axios2: ', res.data)
+                const result2 = res.data.map((e) => ({
+                    title: "Product Reviews",
+                    fluid: true,
+                    cols: ["3", "6", "3"],
+                    featureTypesArry: ["i", e.id, "p"]
+                }), []);
+
+                console.log('result: ', result2)
+                setDLayoutData([...result2, ...dLayoutData])
 
             })
             .catch(e => console.log(e))
