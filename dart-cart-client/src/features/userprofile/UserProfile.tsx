@@ -159,7 +159,7 @@ export function UserP() {
     await dispatch(updateUser(user))
       .unwrap()
       .then((originalPromiseResult) => {
-        setShowModal(true);
+       // setShowModal(true);
       })
       .catch((rejectedValueSerializedError) => {
         setError("No picture provided");
