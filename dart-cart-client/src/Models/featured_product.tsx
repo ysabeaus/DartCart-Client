@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 export default function FeaturedProduct(props:any) {
-    return (<div className=" card bg-black text-warning" style={{ width: "18rem" }}>
+    return (<div style={{ width: "100%" }}>
         <img
-         className="card-img-top"
+         className="card-img-top" 
           src={props.imageUrl}
           alt="Card product cap"
         ></img>
