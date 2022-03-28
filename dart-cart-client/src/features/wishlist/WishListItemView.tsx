@@ -16,11 +16,7 @@ const WishListItemView = ({ wishListId }: WishListItem) => {
 
     const sendDelete = async (productId) => {
         await dispatch(deleteFromWishList(productId));
-        setTimeout(refresh, 500);
-    }
-
-    function refresh() {
-        window.location.reload();
+        dispatch(fetchWishList());
     }
 
     return(
