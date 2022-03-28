@@ -13,6 +13,7 @@ import SellerRegister from "./features/seller-register/SellerRegister";
 import Error404Page from "./components/Error";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
+import ProductReviewLayout from "./features/product-reviews/layouts/ProductReviewLayout";
 import store from "./common/store";
 import Header from "./features/layout/Header";
 import Footer from "./features/layout/Footer";
@@ -83,6 +84,10 @@ function App() {
             <Route
               path="/FeatureProduct/:product_id"
               element={<Product />}
+            ></Route>
+            <Route
+              path="/product-review"
+              element={<ProductReviewLayout />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>
