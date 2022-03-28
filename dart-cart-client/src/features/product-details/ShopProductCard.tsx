@@ -12,11 +12,11 @@ interface IShopProductCard {
 const ComputerUrl =
   "https://images.unsplash.com/photo-1587831990711-23ca6441447b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGVza3RvcCUyMGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80";
 
-
+const MOCK_SERVER = process.env.REACT_APP_API_URL;
 
 
 function addToWishList(productId){
-   return axios.post("http://localhost:9005/addToWishList", {
+   return axios.post(`${MOCK_SERVER}addToWishList`, {
       productId: productId
     },
       { headers: authHeader() }
