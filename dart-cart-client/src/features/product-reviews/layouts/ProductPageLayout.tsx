@@ -15,7 +15,7 @@ import authHeader from "../../authentication/AuthHeader";
 // import ProductImages from '../ProductImages';
 // import ProductReviewDetail from '../ProductReviewDetail';
 
-function ProductReviewLayout() {
+function ProductPageLayout() {
     let { product_id } = useParams();
     console.log('product_id: ', product_id)
 
@@ -152,76 +152,10 @@ function ProductReviewLayout() {
 
     const [dLayoutData, setDLayoutData] = useState([
         {
-            title: "Product Reviews",
-            fluid: true,
-            cols: ["z"],
-            featureTypesArry: ['l']
-        },
-        {
             title: "Stories",
             fluid: false,
             cols: ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
             featureTypesArry: ['i', 'i', 'i', '5', '4', '3', 'c', 'c', 'c']
-        },
-        {
-            title: "Product Reviews",
-            fluid: true,
-            cols: ["z", "z", "z"],
-            featureTypesArry: ['k', 'j']
-        },
-        {
-            title: "Stories",
-            fluid: false,
-            cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
-            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
-        },
-        {
-            title: "Featured Review",
-            fluid: false,
-            cols: ["z", "4", "5", "3", "4", "5", "3"],
-            featureTypesArry: ['i', 's', '5', 'p', 't', '5', 'p']
-        },
-        {
-            title: "Featured Review",
-            fluid: false,
-            cols: ["4", "5", "3", "4", "5", "3", "4", "5", "3", "4", "5", "3"],
-            featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
-        },
-        {
-            title: "Featured Review",
-            fluid: false,
-            cols: ["3", "6", "3", "3", "6", "3", "3", "6", "3", "3", "6", "3"],
-            featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
-        },
-        {
-            title: "Reviews",
-            fluid: false,
-            cols: ["4", "5", "3", "4", "5", "3"],
-            featureTypesArry: ['i', '5', 'p', 's', 't', 'c']
-        },
-        {
-            title: "Stories",
-            fluid: true,
-            cols: ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
-            featureTypesArry: ['i', 'i', 'i', 'i', '5', '4', '3', '2']
-        },
-        {
-            title: "Stories",
-            fluid: false,
-            cols: ["6", "6", "6", "6", "6", "6"],
-            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
-        },
-        {
-            title: "Stories",
-            fluid: false,
-            cols: ["6", "6", "6", "6", "6", "6"],
-            featureTypesArry: ['5', 'r', 'r', '5', '5', 'r', 'r', '5']
-        },
-        {
-            title: "Stories",
-            fluid: true,
-            cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
-            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
         }
     ])
 
@@ -428,4 +362,4 @@ function ProductReviewLayout() {
     )
 }
 
-export default ProductReviewLayout
+export default ProductPageLayout

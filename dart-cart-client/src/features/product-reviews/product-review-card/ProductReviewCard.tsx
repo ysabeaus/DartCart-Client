@@ -1,6 +1,7 @@
 import React from 'react'
 import { AiFillStar } from 'react-icons/ai';
 function ProductReviewCard({ 
+    fullName = "Unknown",
     title = 'After Years of FireTV, I am switching to Roku.', 
     rating = 5, 
     comment = `After the update I hate the interface for the following reasons;
@@ -14,7 +15,7 @@ function ProductReviewCard({
                 <img src="/man.jpg" />
             </span>
             <span style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
-                <h5>Unknown</h5>
+                <h5>{fullName}</h5>
 
 
             </span>
