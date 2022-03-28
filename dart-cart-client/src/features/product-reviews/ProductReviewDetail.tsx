@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Alert, Modal, Button, Form } from "react-bootstrap";
-function ProductReviewDetail() {
+import axios from 'axios'
+import authHeader from "../authentication/AuthHeader";
+
+function ProductReviewDetail(props) {
     const [showModal, setShowModal] = useState(false);
+    const [submitData, setSubmitData] = useState({rating: 5, title:"Fake title"})
 
     const handleClose = () => {
         setShowModal(false);
@@ -10,29 +14,51 @@ function ProductReviewDetail() {
         setShowModal(true);
     };
 
+    const handleChange = (e) => {
+        const layoutString = e.target.value;
+        console.log(layoutString)
+        setSubmitData({...submitData, [e.target.name]: e.target.value})
+    }
+
+    const submitForm = () => {
+        console.log('submitForm: ', `http://localhost:9005/create-product-review/product/${props.product_id}`, submitData)
+        axios.post(`http://localhost:9005/create-product-review/product/${props.product_id}`, submitData, {
+            headers: authHeader()
+        })
+            .then(res => {
+                console.log('axios: ', res.data)
+
+            })
+            .catch(e => console.log(e))
+    }
+
     return (
         <div>
             <Button onClick={handleOpen}>Leave a Product Review</Button>
-            <Modal show={showModal}  onHide={() => setShowModal(false)}>
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Leave a Product Review</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     Please tell us how you feel about this product.
-                    <br />                    
+                    <br />
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="name@example.com" />
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control type="text" name="title" onChange={handleChange} placeholder="Enter Title" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Example textarea</Form.Label>
-                            <Form.Control as="textarea" rows={11} style={{height:'200px'}}/>
+                            <Form.Label>Comment Here</Form.Label>
+                            <Form.Control as="textarea" maxLength={500} name="comment" onChange={handleChange}  rows={11} style={{ height: '200px' }} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                            <Form.Label>Rating</Form.Label>
+                            <Form.Control type="text" name="rating" onChange={handleChange} placeholder="Enter Number 1-5" />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={handleClose}>Close</Button>
+                    <Button onClick={() => submitForm()}>Submit</Button>
                 </Modal.Footer>
             </Modal>
 

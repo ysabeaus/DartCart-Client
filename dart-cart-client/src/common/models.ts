@@ -1,4 +1,4 @@
-import { Shop } from "./types";
+import { Shop, User } from "./types";
 
 export class Product {
     product_id: number;
@@ -35,5 +35,3 @@ export class ShopProduct {
         this.discount = discount;
     }
 }
-
-

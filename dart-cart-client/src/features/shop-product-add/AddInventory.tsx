@@ -51,6 +51,7 @@ export function AddInventory() {
     } else if (discount < 0) {
       setError("Please enter a discount.");
     } else if (price < .01) {
+
       setError("Please enter a price.");
     }
     else {
@@ -64,6 +65,7 @@ export function AddInventory() {
     inventoryProduct.quantity = quantity;
     inventoryProduct.discount = discount;
     inventoryProduct.price = price;
+
 
 
     if (!validateInput()) {
