@@ -20,7 +20,7 @@ export default function Featured_Products() {
             headers: authHeader(),
             // params: { name },
         }).then((data) => {
-            let d = data.data.slice(0, 3);
+            let d = data.data.slice(0, 5);
 
             return setanyThing(d)
         });
@@ -35,10 +35,10 @@ export default function Featured_Products() {
 
     return (
     
-        <div className="card-group bg-black text-warning" style={{ width: "100%" }}>
+        <div className="card-group" style={{ height: "30rem"}}>
          {anyThing.map(elem => {
              const imagUrl = `https://picsum.photos/100/100?random= ${elem.id}`;
-            return <div className='card' style={{ width: "500px", margin:"1%"}}><FeaturedProduct
+            return <div className='card-group bg-black text-warning'><FeaturedProduct
                 key={elem.id} price={elem.price} discount={elem.discount}
                 productName={elem.product.name} id={elem.product.id} discprice={elem.price}
                 imageUrl={imagUrl} /></div>
