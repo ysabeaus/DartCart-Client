@@ -360,6 +360,8 @@ function ProductReviewLayout() {
                 console.log('result: ', result2)
                 setDLayoutData([...result2, ...dLayoutData])
 
+                setFormData({...formData, layoutSections: "0010000"})
+
             })
             .catch(e => console.log(e))
 
