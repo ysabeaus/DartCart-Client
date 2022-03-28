@@ -13,6 +13,7 @@ import SellerRegister from "./features/seller-register/SellerRegister";
 import Error404Page from "./components/Error";
 import { Provider } from "react-redux";
 import ShopProductDisplay from "./features/product-details/ShopProductDisplay";
+import ProductReviewLayout from "./features/product-reviews/layouts/ProductReviewLayout";
 import store from "./common/store";
 import Header from "./features/layout/Header";
 import Footer from "./features/layout/Footer";
@@ -23,9 +24,12 @@ import ListItem from "./features/list-item/ListItem";
 import ShopPage from "./features/shop-page/ShopPage";
 import SellerHomepage from "./features/seller-homepage/SellerHomepage";
 import Product from "./Models/Product";
+
+import UserP from "./features/userprofile/UserProfile";
+import useLocalStorage from "use-local-storage";
+
 import WishList from "./features/wishlist/WishList";
 
-import useLocalStorage from 'use-local-storage';
 
 function App() {
 
@@ -71,6 +75,7 @@ function App() {
             <Route path="/orders" element={<PreviousOrders />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/display" element={<Display />}></Route>
+            <Route path="/userprofile" element={<UserP />}></Route>
             <Route
               path="/shop-product/:shop_product_id"
               element={<ShopProductDisplay />}
@@ -79,6 +84,10 @@ function App() {
             <Route
               path="/FeatureProduct/:product_id"
               element={<Product />}
+            ></Route>
+            <Route
+              path="/product-review"
+              element={<ProductReviewLayout />}
             ></Route>
             <Route path="/*" element={<Error404Page />}></Route>
           </Routes>
