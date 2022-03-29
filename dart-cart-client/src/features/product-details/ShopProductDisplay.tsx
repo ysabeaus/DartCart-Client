@@ -13,6 +13,8 @@ import cartoonDiamond from "../../imgs/diamond-ring.png";
 import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
 import { useEffect } from "react";
+import ProductPageLayout from '../product-reviews/layouts/ProductPageLayout'
+import ProductReviewDetail from "../product-reviews/ProductReviewDetail";
 
 const ShopProductDisplay = () => {
   const { shop_product_id } = useParams();
@@ -71,24 +73,17 @@ const ShopProductDisplay = () => {
 
   return (
     <>
-    <div className="productInfoContainer">
-      <div className="productIMGcontainer">
-        <img className="testIMG" src={ReduxShopProducts?.imageURL} alt="Card image cap"></img>
+      <div className="productInfoContainer">
+        <div className="productIMGcontainer">
+          <img className="testIMG" src={ReduxShopProducts?.imageURL} alt="Card image cap"></img>
+        </div>
       </div>
-      <div className="productName">
-        <h1>{ReduxShopProducts?.name?.toUpperCase()}</h1>
+      <div>
+        <ProductReviewDetail product_id={shop_product_id} />
+        <ProductPageLayout />
       </div>
-      <div className="productDesc">
-        <p>{ReduxShopProducts?.description}</p>
-      </div>
-    </div>
-    <div className="sellersContainer">
-      <div className="sellerColumn">
-        <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
-      </div>
-    </div>
     </>
-   );
-};
+  );
 
+}
 export default ShopProductDisplay;
