@@ -107,3 +107,68 @@
   visibility: visible;
   opacity: 1;
 }
+
+.productInfoContainer {
+  height: 250px;
+  margin: 2%;
+  padding: .5%;
+  display: grid;
+  grid-template-columns: 3% 25% 4% 65% 3%;
+  grid-template-rows: 5% 45% 45% 5%;
+  color: var(--text-primary);
+  background-color: var(--background);
+  border-style: solid;
+  border-width: .5rem;
+  border-color: #5f5f5f;
+  grid-template-areas:
+  ". . . . ."
+  ". productIMG . productName ."
+  ". productIMG . productDesc ."
+  ". . . . ."
+}
+.sellersContainer {
+  margin: 2%;
+  padding: .5%;
+  display: grid;
+  grid-template-columns: 3% 94% 3%;
+  row-gap: 20px;
+  color: var(--text-primary);
+  background-color: var(--background);
+  border-style: solid;
+  border-width: .5rem;
+  border-color: #5f5f5f;
+  grid-template-areas:
+  ". sellerColumn ."
+}
+
+.sellerColumn{
+  grid-area: sellerColumn;
+}
+
+
+.productIMGcontainer{
+  grid-area: productIMG;
+}
+
+.productImage{
+  height: 100%;
+  width: 100%;
+}
+
+.productName{
+  grid-area: productName;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: var(--text-primary);
+  background-color: var(--background);
+}
+
+.productDesc{
+  grid-area: productDesc;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: var(--text-primary);
+  background-color: var(--background);
+}
+
+

@@ -152,19 +152,12 @@ export function UserP() {
         clearInputs();
       });
   };
-  const updatePfp = async () => {
+
+
+  const setProfileImage = async () => {
     setImageURL(imageURL); //asigns new ims url
 
     user.imageURL = imageURL;
-    await dispatch(updateUser(user))
-      .unwrap()
-      .then((originalPromiseResult) => {
-       // setShowModal(true);
-      })
-      .catch((rejectedValueSerializedError) => {
-        setError("No picture provided");
-        clearInputs();
-      });
   };
 
   function clearInputs() {
@@ -191,7 +184,7 @@ export function UserP() {
           <img src={imageURL} height={150} alt="Profile Picture" />
           <form onSubmit={handleFireBaseUpload}>
             <input type="file" />
-            <button onClick={updatePfp}>Upload</button>
+            <button onClick={setProfileImage}>Upload</button>
             <h4>{progress}%</h4>
           </form>
         </div>
