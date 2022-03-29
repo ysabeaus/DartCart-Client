@@ -319,7 +319,7 @@ function ProductReviewLayout() {
         
         console.log()
         loadLayouts()
-        axios.get('${API_URL}product-reviews/product/1', {
+        axios.get(`${API_URL}product-reviews/product/${product_id}`, {
             headers: authHeader()
         })
             .then(res => {
@@ -378,7 +378,7 @@ function ProductReviewLayout() {
         // console.log(dataDb)
         dataDb.map(e => {
             console.log(e)
-            axios.post('${API_URL}create-product-review/product/1', {
+            axios.post(`${API_URL}create-product-review/product/${product_id}`, {
                 "title": e['Product Name'],
                 "comment": e['Product Description'],
                 "rating": 4
