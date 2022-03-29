@@ -48,7 +48,6 @@ const WLSlice = createSlice({
       state.items = [];
       state.entities = {};
     },
-    removeWishListItem(state, action) {},
   },
   extraReducers: (builder) => {
     builder.addCase(fetchWishList.pending, (state, action) => {
