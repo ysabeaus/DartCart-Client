@@ -14,6 +14,7 @@ import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
 import { useEffect } from "react";
 import ProductPageLayout from '../product-reviews/layouts/ProductPageLayout'
+import ReviewsRouteButton from "../product-reviews/ReviewsRouteButton";
 
 const ShopProductDisplay = () => {
   const { shop_product_id } = useParams();
@@ -81,11 +82,12 @@ const ShopProductDisplay = () => {
         </div>
         <div className="ProductDescriptionPocket">
           <p>{ReduxShopProducts?.description}</p>
+          <ReviewsRouteButton />
         </div>
-        <div>
+        {/* <div>
           <ProductPageLayout />
 
-        </div>
+        </div> */}
       </div>
       <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
 
