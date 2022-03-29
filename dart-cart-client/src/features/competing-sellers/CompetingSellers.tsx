@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Product, ShopProduct } from "../../common/models";
+import { Product, ShopProduct, Shop, Seller} from "../../common/models";
 import { addToCart } from "../../common/slices/cartSlice";
 import {
   fetchCompetitorProducts,
@@ -30,34 +30,24 @@ export function CompetingSellers({ Seller }: SellerProduct) {
   }
 
   return (
-    <div className="Competitors">
+    <>
       {(ReduxCompetitorProducts &&
         ReduxCompetitorProducts.map((competitors) => {
           return (
-            <div className="SellerContainer">
-              <div className="SellerWindow"></div>
-
-              <div className="SellerPocket">
-                <div className="SellerInfo">
-                  <span>{competitors.product.name}</span>
-                  <br />
-                  <span>Price: {competitors.price}</span>
-                  <br />
-                  {competitors.discount > 0 && (
-                    <span className="SellerDiscount">
-                      Discount: {competitors.discount}
-                    </span>
-                  )}
+            <div className="sellerInfo">
+                <div className="shopNameAndPrice">
+                  {competitors.discount > 0 ? 
+                  (<span>Seller: {competitors.shop.seller.name} - <s>${competitors.price}</s>  ${(competitors.price) - (competitors.discount)} <br />Discount: {Math.floor((competitors.discount)/(competitors.price)*100)}%</span>): 
+                  (<span>Seller: {competitors.shop.seller.name} - ${competitors.price}</span>)}
                 </div>
-                <div className="SellerInfo">
-                  <span>Location: {competitors.location}</span>
-                  <br />
-                  <span>In Stock: {competitors.quantity}</span>
-                  <br />
+                <div className="shopLocation">
+                  <span>Seller Location: {competitors.location}</span>
                 </div>
-              </div>
+                <div className="shopQuant">
+                  <span>Quantity In Stock: {competitors.quantity}</span>
+                </div>
               <button
-                className="btn btn-primary"
+                className="btn btn-primary addToCart"
                 value={competitors.shop_product_id}
                 onClick={(e) => handleAddtoCart(e)}
               >
@@ -67,6 +57,6 @@ export function CompetingSellers({ Seller }: SellerProduct) {
           );
         })) ||
         ""}
-    </div>
+    </>
   );
 }
