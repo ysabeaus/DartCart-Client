@@ -1,4 +1,3 @@
-import { EntityState } from "@reduxjs/toolkit";
 import { ShopProduct } from "./models";
 import store from "./store";
 
@@ -6,6 +5,7 @@ export interface Product {
   id: number,
   name: string;
   description: string;
+  imageURL: string;
 }
 
 export interface User {
