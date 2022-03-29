@@ -52,7 +52,7 @@ export const ResetPassword = () => {
 
     // reset user password in database 
     const handleResetPassword = () => { 
-        if(password1 == "" && password2 == "" || !doPasswordsMatch) {
+        if(password1 == "" || password2 == "" || !doPasswordsMatch) {
             return;
         }
         setShowSendingRequest(true);
