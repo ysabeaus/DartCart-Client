@@ -16,8 +16,8 @@ import authHeader from "../../authentication/AuthHeader";
 // import ProductReviewDetail from '../ProductReviewDetail';
 
 function ProductPageLayout() {
-    let { product_id } = useParams();
-    console.log('product_id: ', product_id)
+    let { shop_product_id } = useParams();
+    console.log('product_id: ', shop_product_id)
 
     const components = {
         "ProductReviewCard": require('../product-review-card/ProductReviewCard').default,
@@ -114,7 +114,7 @@ function ProductPageLayout() {
             componentType: "ProductReviewDetail",
             props: {
                 title: "FREE devlivery",
-                product_id: product_id
+                product_id: shop_product_id
             },
         },
         {
