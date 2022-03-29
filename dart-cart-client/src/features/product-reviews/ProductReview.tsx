@@ -68,7 +68,7 @@ function ProductReview(props) {
                     <Form.Select name="layoutColsFeature_types"  id="layoutColsFeature_types" placeholder="Disabled input" onChange={e => handleLayoutColsFeatureTypes(e)} >
                         <option >Select Preset</option>
                         {props.dLayoutData.map(e => {
-                            return (<option value={`${e.cols.join(':')}-${e.featureTypesArry.join(':')}`}>{`${e.title}-${e.cols.join(':')}-${e.featureTypesArry.join(':')}`}</option>)
+                            return (<option value={`${e.cols.join(':')}-${e.featureTypesArry.join(':')}`}>{`${e.title}`}</option>)
                         })}
                     </Form.Select>
                     {/* <Form.Control name="layoutCols" value={formData.layoutCols} id="disabledTextInput" placeholder="Disabled input" onChange={e => handleChange(e)} /> */}

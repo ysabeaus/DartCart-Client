@@ -6,13 +6,15 @@ export class Product {
     name: string;
     description: string;
     categories: string[];
+    imageURL: string;
 
-    constructor(product_id: number, id: number, name: string, description: string, categories: string[]) {
+    constructor(product_id: number, id: number, name: string, description: string, categories: string[], imageURL: string) {
         this.product_id = product_id;
         this.id = id;
         this.name = name;
         this.description = description;
         this.categories = categories;
+        this.imageURL = imageURL;
     }
 }
 

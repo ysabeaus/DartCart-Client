@@ -152,43 +152,43 @@ function ProductReviewLayout() {
 
     const [dLayoutData, setDLayoutData] = useState([
         {
-            title: "Product Reviews",
+            title: "Carousel",
             fluid: true,
             cols: ["z"],
             featureTypesArry: ['l']
         },
         {
-            title: "Stories",
+            title: "3 - Column Layout Images and Reviews",
             fluid: false,
             cols: ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
             featureTypesArry: ['i', 'i', 'i', '5', '4', '3', 'c', 'c', 'c']
         },
         {
-            title: "Product Reviews",
+            title: "Gallery 4 by 3",
             fluid: true,
             cols: ["z", "z", "z"],
             featureTypesArry: ['k', 'j']
         },
         {
-            title: "Stories",
+            title: "Alernating Image and Review 8 by 4",
             fluid: false,
             cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
             featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
         },
         {
-            title: "Featured Review",
+            title: "Featured Review 1",
             fluid: false,
             cols: ["z", "4", "5", "3", "4", "5", "3"],
             featureTypesArry: ['i', 's', '5', 'p', 't', '5', 'p']
         },
         {
-            title: "Featured Review",
+            title: "Featured Review 2",
             fluid: false,
             cols: ["4", "5", "3", "4", "5", "3", "4", "5", "3", "4", "5", "3"],
             featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
         },
         {
-            title: "Featured Review",
+            title: "Image, Review, and Purchase 3 6 3",
             fluid: false,
             cols: ["3", "6", "3", "3", "6", "3", "3", "6", "3", "3", "6", "3"],
             featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
@@ -200,19 +200,19 @@ function ProductReviewLayout() {
             featureTypesArry: ['i', '5', 'p', 's', 't', 'c']
         },
         {
-            title: "Stories",
+            title: "4 - Column Layout Images and Reviews",
             fluid: true,
             cols: ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
             featureTypesArry: ['i', 'i', 'i', 'i', '5', '4', '3', '2']
         },
         {
-            title: "Stories",
+            title: "Alernate Image, Review 6 by 6",
             fluid: false,
             cols: ["6", "6", "6", "6", "6", "6"],
             featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
         },
         {
-            title: "Stories",
+            title: "Alernate Icon, Review 6 by 6",
             fluid: false,
             cols: ["6", "6", "6", "6", "6", "6"],
             featureTypesArry: ['5', 'r', 'r', '5', '5', 'r', 'r', '5']
@@ -269,6 +269,7 @@ function ProductReviewLayout() {
     useEffect(() => {
         console.log('dLayoutData: ', dLayoutData)
         setSections(dLayoutData)
+        // setFormData({...formData, layoutSections: "1010000"})
     }, [dLayoutData])
 
     useEffect(() => {
@@ -351,7 +352,7 @@ function ProductReviewLayout() {
                 //     featureTypesArry: ["i", e.id, "p"]
                 // }), []);
                 const result2 = result.map((e) => ({
-                    title: "Product Reviews",
+                    title: `Product Reviews`,
                     fluid: true,
                     cols: ["3", "6", "3"],
                     featureTypesArry: ["i", e.code, "p"]
@@ -359,8 +360,9 @@ function ProductReviewLayout() {
 
                 console.log('result: ', result2)
                 setDLayoutData([...result2, ...dLayoutData])
+                // setDLayoutData(result2)
 
-                // setFormData({...formData, layoutSections: "0010000"})
+                // setFormData({...formData, layoutSections: "1010000"})
 
             })
             .catch(e => console.log(e))

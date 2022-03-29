@@ -37,11 +37,10 @@ export default function Featured_Products() {
     
         <div className="card-group" style={{ height: "30rem" }}>
          {anyThing.map(elem => {
-             const imagUrl = `https://picsum.photos/100/100?random= ${elem.id}`;
             return <div className='card-group bg-black text-warning'><FeaturedProduct
                 key={elem.id} price={elem.price} discount={elem.discount}
                 productName={elem.product.name} id={elem.product.id} discprice={elem.price}
-                imageUrl={imagUrl} /></div>
+                imageUrl={elem.product.imageURL} /></div>
                
         }
         )}</div>

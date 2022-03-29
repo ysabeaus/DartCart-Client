@@ -287,12 +287,13 @@ function ProductPageLayout() {
                 const result2 = result.map((e) => ({
                     title: "Product Reviews",
                     fluid: true,
-                    cols: ["3", "6", "3"],
-                    featureTypesArry: ["i", e.code, "p"]
+                    cols: ["6", "6"],
+                    featureTypesArry: ["i", e.code]
                 }), []);
 
                 console.log('result: ', result2)
                 setDLayoutData([...result2, ...dLayoutData])
+                
 
             })
             .catch(e => console.log(e))

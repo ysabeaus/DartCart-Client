@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from "../../common/types"
 import { WishListItem } from "../../common/types";
@@ -10,10 +9,6 @@ const WishListItemView = ({ wishListId }: WishListItem) => {
     const dispatch = useDispatch();
     const item = useSelector((state: RootState) => selectWishListItemById(state, wishListId));
 
-    useEffect(() => {
-        dispatch(fetchWishList())
-    }, [])
-
     const sendDelete = async (productId) => {
         await dispatch(deleteFromWishList(productId));
         dispatch(fetchWishList());
@@ -21,7 +16,7 @@ const WishListItemView = ({ wishListId }: WishListItem) => {
 
     return(
         <div className="productContainer">
-            <img className="productImg" src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg"/>
+            <img className="productImg" src={ item?.product.imageURL }/>
             <section className="wishListBody">
                 <h5 className="productName">{ item?.product.name }</h5>
                 <Link to={`/shop-product/${ item?.product.id }`} className="btn viewProductBtn">View Product</Link>
