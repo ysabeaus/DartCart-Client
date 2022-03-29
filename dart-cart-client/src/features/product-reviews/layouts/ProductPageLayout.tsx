@@ -18,7 +18,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function ProductPageLayout() {
     let { shop_product_id } = useParams();
-    console.log('product_id: ', shop_product_id)
+    console.log('product_id: ', API_URL)
 
     const components = {
         "ProductReviewCard": require('../product-review-card/ProductReviewCard').default,
@@ -318,7 +318,7 @@ function ProductPageLayout() {
         
         console.log()
         loadLayouts()
-        axios.get('${API_URL}product-reviews/product/1', {
+        axios.get(`${API_URL}product-reviews/product/${shop_product_id}`, {
             headers: authHeader()
         })
             .then(res => {
@@ -376,7 +376,7 @@ function ProductPageLayout() {
         // console.log(dataDb)
         dataDb.map(e => {
             console.log(e)
-            axios.post(`${API_URL}create-product-review/product/1`, {
+            axios.post(`${API_URL}create-product-review/product/${shop_product_id}`, {
                 "title": e['Product Name'],
                 "comment": e['Product Description'],
                 "rating": 4
