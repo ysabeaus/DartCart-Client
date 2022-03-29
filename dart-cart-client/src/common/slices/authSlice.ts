@@ -111,7 +111,7 @@ export const loginUser = createAsyncThunk(
     "authentication/login",
     async (user: { username: string; password: string }) => {
         return axios
-            .post(API_URL + "/login", {
+            .post(API_URL + "login", {
                 username: user.username,
                 password: user.password
             })
