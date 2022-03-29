@@ -36,7 +36,7 @@ export function ShopProductCard({ Product }: IShopProductCard) {
       <Link to={`/shop-product/${Product?.id}` || ""} style={{ textDecoration: 'none' }}>
         <div className=" card bg-black text-warning" style={{ height: "26rem", width: "18rem" }}>
           <img
-            className="card-img-top"
+            className="testIMG"
             src={Product?.imageURL}
             alt="Card image cap"
           ></img>

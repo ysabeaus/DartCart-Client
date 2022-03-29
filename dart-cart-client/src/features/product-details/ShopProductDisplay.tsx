@@ -73,7 +73,7 @@ const ShopProductDisplay = () => {
     <>
     <div className="productInfoContainer">
       <div className="productIMGcontainer">
-        <img className="productImage" src={ReduxShopProducts?.imageURL} alt="Card image cap"></img>
+        <img className="testIMG" src={ReduxShopProducts?.imageURL} alt="Card image cap"></img>
       </div>
       <div className="productName">
         <h1>{ReduxShopProducts?.name?.toUpperCase()}</h1>
