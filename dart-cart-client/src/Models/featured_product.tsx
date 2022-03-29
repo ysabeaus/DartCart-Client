@@ -29,7 +29,7 @@ export default function FeaturedProduct(props: any) {
         <Link to={`/shop-product/${props?.id}` || ""} style={{ textDecoration: 'none' }}>
             <div className=" card bg-black text-warning" style={{ height: "26rem", width: "18rem" }}>
                 <img
-                    className="card-img-top"
+                    className="testIMG"
                     src={props.imageUrl}
                     alt="Card product cap"
                 ></img>

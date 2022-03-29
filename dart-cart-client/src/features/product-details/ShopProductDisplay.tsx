@@ -14,6 +14,7 @@ import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
 import { useEffect } from "react";
 import ProductPageLayout from '../product-reviews/layouts/ProductPageLayout'
+import ProductReviewDetail from "../product-reviews/ProductReviewDetail";
 
 const ShopProductDisplay = () => {
   const { shop_product_id } = useParams();
@@ -74,16 +75,12 @@ const ShopProductDisplay = () => {
     <>
       <div className="productInfoContainer">
         <div className="productIMGcontainer">
-          <img className="productImage" src={ReduxShopProducts?.imageURL} alt="Card image cap"></img>
+          <img className="testIMG" src={ReduxShopProducts?.imageURL} alt="Card image cap"></img>
         </div>
-        <div className="sellersContainer">
-          <div className="sellerColumn">
-            <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
-          </div>
-        </div>
-        <div>
-          <ProductPageLayout />
-        </div>
+      </div>
+      <div>
+        <ProductReviewDetail product_id={shop_product_id} />
+        <ProductPageLayout />
       </div>
     </>
   );
