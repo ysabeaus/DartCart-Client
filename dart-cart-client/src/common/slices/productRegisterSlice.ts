@@ -43,7 +43,8 @@ export const saveProduct = createAsyncThunk("productRegister/createProduct", asy
     return await axios.post(API_URL + "products", {
         id: product.id,
         name: product.name,
-        description: product.description
+        description: product.description,
+        imageURL: product.imageURL
     },
     { headers: authHeader() } 
     );

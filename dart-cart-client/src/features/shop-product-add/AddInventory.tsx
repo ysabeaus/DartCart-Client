@@ -76,6 +76,7 @@ export function AddInventory() {
       .unwrap()
       .then((originalPromiseResult) => {
         setShowModal(true); //need to make sure this says product created, not user registered
+        clearInputs();
       })
       .catch((rejectedValueOrSerializedError) => {
         setError("Server error.");

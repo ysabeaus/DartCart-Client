@@ -4,6 +4,8 @@ import { Product } from "../../common/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
+import { storage } from "../userprofile/firebase";
+import { getDownloadURL, uploadBytesResumable, ref } from "firebase/storage";
 
 export function ProductRegister() {
   const currentDate = Date.now();
@@ -11,14 +13,58 @@ export function ProductRegister() {
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [imageURL, setImageURL] = useState("");
+  const [progress, setProgress] = useState(0);
 
   const dispatch = useAppDispatch();
   const nav = useNavigate();
+
+  const handleFireBaseUpload = (e) => {
+    e.preventDefault();
+    const image = e.target[0].files[0];
+    console.log("uploading pic");
+    console.log(image);
+    uploadImage(image);
+  };
+
+  const uploadImage = (image) => {
+    if (!image) {
+      alert(`image format not supported${typeof image}`);
+      return;
+    }
+    const storageRef = ref(storage, `/images/${image.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, image);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(prog);
+      },
+      (err) => console.log(err),
+      () => {
+        //fetching download Url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setImageURL(url); //changes from setUrl
+          product.imageURL = url;
+          console.log(url);
+        });
+      }
+    );
+  };
+
+  const updatePfp = async () => {
+    setImageURL(imageURL); //asigns new img url
+    product.imageURL = imageURL;
+  };
 
   const product: Product = {
     id: 0,
     name: "",
     description: "",
+    imageURL: ""
   };
 
   // BASIC input validation: no empty fields, passwords must match, formatting requirements
@@ -37,6 +83,7 @@ export function ProductRegister() {
   const createProduct = async () => {
     product.name = name;
     product.description = description;
+    product.imageURL = imageURL;
 
     if (!validateInput()) {
       return;
@@ -57,6 +104,7 @@ export function ProductRegister() {
   function clearInputs() {
     setName("");
     setDescription("");
+    setImageURL("");
   }
 
   // Redirect upon modal close
@@ -81,6 +129,16 @@ export function ProductRegister() {
                   className="card-body p-5 text-center"
                 >
                   {error ? <Alert variant="danger">{error}</Alert> : null}
+
+                  <div className="row">
+                    <img src={imageURL} height={150} alt="Product Image" />
+                    <form onSubmit={handleFireBaseUpload}>
+                      <input type="file" />
+                      <button onClick={updatePfp}>Upload</button>
+                      <h4>{progress}%</h4>
+                    </form>
+                  </div>
+
                   <div className="row">
                     <div className="form-outline mb-4">
                       <input
