@@ -22,9 +22,7 @@ export function AddInventory() {
   const status = useSelector(getStatus);
 
   useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchShops("")); // places return value into REDUX global state
-    } 
+      dispatch(fetchShops(""));
   }, []);
 
 
