@@ -7,6 +7,7 @@ import {
 import { Col, Row, Container, Image, Form, Button } from "react-bootstrap";
 import ProductReview from '../ProductReview'
 import authHeader from "../../authentication/AuthHeader";
+const API_URL = process.env.REACT_APP_API_URL;
 
 // import MiscTableOne from '../misc/MiscTableOne';
 // import ReactIcon from '../misc/ReactIcon';
@@ -240,7 +241,7 @@ function ProductReviewLayout() {
     // useEffect(() => {
     //     console.log('jsonData: ', jsonData)
 
-    //     axios.get('http://localhost:9005/product-reviews/product/1', {
+    //     axios.get('${API_URL}product-reviews/product/1', {
     //         headers: authHeader()
     //     })
     //         .then(res => {
@@ -318,7 +319,7 @@ function ProductReviewLayout() {
         
         console.log()
         loadLayouts()
-        axios.get('http://localhost:9005/product-reviews/product/1', {
+        axios.get('${API_URL}product-reviews/product/1', {
             headers: authHeader()
         })
             .then(res => {
@@ -362,7 +363,7 @@ function ProductReviewLayout() {
                 setDLayoutData([...result2, ...dLayoutData])
                 // setDLayoutData(result2)
 
-                // setFormData({...formData, layoutSections: "1010000"})
+                setFormData({...formData, layoutSections: "1010000"})
 
             })
             .catch(e => console.log(e))
@@ -377,7 +378,7 @@ function ProductReviewLayout() {
         // console.log(dataDb)
         dataDb.map(e => {
             console.log(e)
-            axios.post('http://localhost:9005/create-product-review/product/1', {
+            axios.post('${API_URL}create-product-review/product/1', {
                 "title": e['Product Name'],
                 "comment": e['Product Description'],
                 "rating": 4
