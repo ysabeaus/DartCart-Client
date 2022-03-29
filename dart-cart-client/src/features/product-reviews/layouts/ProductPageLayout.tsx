@@ -287,8 +287,8 @@ function ProductPageLayout() {
                 const result2 = result.map((e) => ({
                     title: "Product Reviews",
                     fluid: true,
-                    cols: ["3", "6", "3"],
-                    featureTypesArry: ["i", e.code, "p"]
+                    cols: ["4", "8"],
+                    featureTypesArry: ["i", e.code]
                 }), []);
 
                 console.log('result: ', result2)
@@ -325,10 +325,10 @@ function ProductPageLayout() {
     return (
         <>
             <Form.Group id="fg-1" className="mb-3" controlId="formBasicCheckbox">
-                <button onClick={() => seedDb()}>Seed DB</button>
-                <Form.Check type="checkbox" checked={showLayoutControls}
+                {/*<button onClick={() => seedDb()}>Seed DB</button>
+                 <Form.Check type="checkbox" checked={showLayoutControls}
                     onChange={e => handleChange(e)}
-                    label="Set Layout" />
+                    label="Set Layout" /> */}
             </Form.Group>
             {
                 showLayoutControls && <Form>
@@ -347,9 +347,9 @@ function ProductPageLayout() {
                 </Form>
             }
             {sections.map((e, i) => <div key={`div-${i}`}>
-                <section key={`prl-sec-${i}`} style={{ backgroundColor: 'whitesmoke', padding: '25px', marginBottom: '25px' }}>
+                {/* <section key={`prl-sec-${i}`} style={{ backgroundColor: 'whitesmoke', padding: '25px', marginBottom: '25px' }}>
                     <h1 key={`prl-sec-h1-${i}`}>{e.title}</h1>
-                </section>
+                </section> */}
                 <ProductReview key={`prl-${i}`} showLayoutControls={showLayoutControls}
                     components={components}
                     jsonData={jsonData}

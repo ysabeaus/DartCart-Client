@@ -14,6 +14,8 @@ import cartoonMeds from "../../imgs/Free-medica.png";
 import cartoonShoes from "../../imgs/Sneaker-tennis-shoes.png";
 import { useEffect } from "react";
 import ProductPageLayout from '../product-reviews/layouts/ProductPageLayout'
+import ProductReviewDetail from "../product-reviews/ProductReviewDetail";
+import ProductReview from "../product-reviews/ProductReview";
 
 const ShopProductDisplay = () => {
   const { shop_product_id } = useParams();
@@ -92,6 +94,7 @@ const ShopProductDisplay = () => {
         </div>
       </div>
       <div>
+        <ProductReviewDetail product_id={shop_product_id}/>
         <ProductPageLayout />
       </div>
     </>
