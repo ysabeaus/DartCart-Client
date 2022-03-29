@@ -69,28 +69,32 @@ const ShopProductDisplay = () => {
     return newImg;
   }
 
+  const ComputerUrl =
+    "https://images.unsplash.com/photo-1587831990711-23ca6441447b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGVza3RvcCUyMGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80";
+
+
   return (
-    <div className="ProductContainer">
-      <div className="InnerProduct">
-        <div className="ProductInfoContainer">
-          {ReduxShopProducts && <div style={ImgStyleBase}></div>}
-          <div className="ProductInfoPocket">
-            <h2>{ReduxShopProducts?.name?.toUpperCase()}</h2>
-            <br />
-          </div>
+    <>
+      <div className="productInfoContainer">
+        <div className="productIMGcontainer">
+          <img className="productImage" src={ComputerUrl} alt="Card image cap"></img>
         </div>
-        <div className="ProductDescriptionPocket">
+        <div className="productName">
+          <h1>{ReduxShopProducts?.name?.toUpperCase()}</h1>
+        </div>
+        <div className="productDesc">
           <p>{ReduxShopProducts?.description}</p>
         </div>
-        <div>
-          <ProductPageLayout />
-
+      </div>
+      <div className="sellersContainer">
+        <div className="sellerColumn">
+          <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
         </div>
       </div>
-      <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
-
-
-    </div>
+      <div>
+        <ProductPageLayout />
+      </div>
+    </>
   );
 };
 

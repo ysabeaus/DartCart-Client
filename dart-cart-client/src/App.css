@@ -131,3 +131,7 @@ input[type="checkbox"]{
     color: var(--text-primary);
     background-color: var(--background);
 }
+.card-img-top{
+    width: 18rem;
+    height: 10rem;
+}

@@ -35,10 +35,10 @@ function App() {
 
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
-  
+
   const switchTheme = () => {
-      const newTheme = theme === 'light' ? 'dark' : 'light';
-      setTheme(newTheme);
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
   }
 
   useEffect(() => {
@@ -49,10 +49,10 @@ function App() {
 
   return (
     <div className="App" data-theme={theme}>
-      { theme==='dark' ?
-      (<input onClick={switchTheme} type="checkbox" name="" checked />)  
-      : 
-      (<input onClick={switchTheme} type="checkbox" name="" />)
+      {theme === 'dark' ?
+        (<input onClick={switchTheme} type="checkbox" name="" checked />)
+        :
+        (<input onClick={switchTheme} type="checkbox" name="" />)
       }
       <BrowserRouter>
         <Provider store={store}>
