@@ -16,9 +16,9 @@ const API_URL = process.env.REACT_APP_API_URL;
 // import ProductImages from '../ProductImages';
 // import ProductReviewDetail from '../ProductReviewDetail';
 
-function ProductReviewLayout() {
-    let { product_id } = useParams();
-    console.log('product_id: ', product_id)
+function ProductPageLayout() {
+    let { shop_product_id } = useParams();
+    console.log('product_id: ', shop_product_id)
 
     const components = {
         "ProductReviewCard": require('../product-review-card/ProductReviewCard').default,
@@ -115,7 +115,7 @@ function ProductReviewLayout() {
             componentType: "ProductReviewDetail",
             props: {
                 title: "FREE devlivery",
-                product_id: product_id
+                product_id: shop_product_id
             },
         },
         {
@@ -270,7 +270,6 @@ function ProductReviewLayout() {
     useEffect(() => {
         console.log('dLayoutData: ', dLayoutData)
         setSections(dLayoutData)
-        // setFormData({...formData, layoutSections: "1010000"})
     }, [dLayoutData])
 
     useEffect(() => {
@@ -353,17 +352,16 @@ function ProductReviewLayout() {
                 //     featureTypesArry: ["i", e.id, "p"]
                 // }), []);
                 const result2 = result.map((e) => ({
-                    title: `Product Reviews`,
+                    title: "Product Reviews",
                     fluid: true,
-                    cols: ["3", "6", "3"],
-                    featureTypesArry: ["i", e.code, "p"]
+                    cols: ["4", "8"],
+                    featureTypesArry: ["i", e.code]
                 }), []);
 
                 console.log('result: ', result2)
                 setDLayoutData([...result2, ...dLayoutData])
-                // setDLayoutData(result2)
-
-                setFormData({...formData, layoutSections: "1010000"})
+                setFormData({...formData, layoutSections: "1000000"})
+                
 
             })
             .catch(e => console.log(e))
@@ -378,7 +376,7 @@ function ProductReviewLayout() {
         // console.log(dataDb)
         dataDb.map(e => {
             console.log(e)
-            axios.post('${API_URL}create-product-review/product/1', {
+            axios.post(`${API_URL}create-product-review/product/1`, {
                 "title": e['Product Name'],
                 "comment": e['Product Description'],
                 "rating": 4
@@ -418,9 +416,9 @@ function ProductReviewLayout() {
                 </Form>
             }
             {sections.map((e, i) => <div key={`div-${i}`}>
-                <section key={`prl-sec-${i}`} style={{ backgroundColor: 'whitesmoke', padding: '25px', marginBottom: '25px' }}>
+                {/* <section key={`prl-sec-${i}`} style={{ backgroundColor: 'whitesmoke', padding: '25px', marginBottom: '25px' }}>
                     <h1 key={`prl-sec-h1-${i}`}>{e.title}</h1>
-                </section>
+                </section> */}
                 <ProductReview key={`prl-${i}`} showLayoutControls={showLayoutControls}
                     components={components}
                     jsonData={jsonData}
@@ -433,4 +431,4 @@ function ProductReviewLayout() {
     )
 }
 
-export default ProductReviewLayout
+export default ProductPageLayout

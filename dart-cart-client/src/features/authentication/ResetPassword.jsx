@@ -31,20 +31,7 @@ export const ResetPassword = () => {
     const dispatch = useAppDispatch();
 
     // get username
-    let userName = searchParams.get("data").split(""); // puts 'data's value from query param into username
-    // unshift the caesar cipher 
-    let unShift = -1;
-    let base = 96; 
-    for(let i = 0; i < userName.length; i++) {
-        let shiftedLetter = userName[i].charCodeAt(0)+unShift 
-        if(shiftedLetter > 122) {
-            shiftedLetter = (base + shiftedLetter % 122);
-        }
-        else if(shiftedLetter < 97) {
-            shiftedLetter = 123 - (97 - shiftedLetter);
-        }
-        userName[i] = String.fromCharCode( shiftedLetter );
-    }
+    let userName = searchParams.get("data").split(""); // puts 'data's value from query param into username   
 
     // get imail id for reset password request
     let emailId = searchParams.get("data2");
@@ -65,7 +52,7 @@ export const ResetPassword = () => {
 
     // reset user password in database 
     const handleResetPassword = () => { 
-        if(password1 == "" && password2 == "" || !doPasswordsMatch) {
+        if(password1 == "" || password2 == "" || !doPasswordsMatch) {
             return;
         }
         setShowSendingRequest(true);
