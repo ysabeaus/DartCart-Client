@@ -49,6 +49,7 @@ export const saveUser = createAsyncThunk("userRegister/createUser", async (user:
         email: user.email,
         phone: user.phone,
         location: user.location,
+        imageURL: user.imageURL,
         registrationDate: user.registrationDate
     });
 });

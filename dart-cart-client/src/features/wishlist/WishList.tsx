@@ -9,15 +9,6 @@ import {
 import WishListItemView from "./WishListItemView";
 import { WishListItem } from "../../common/types";
 
-// const removeFromWishList = (id) => {
-
-//   return axios.post("http://localhost:9005/removeFromWishList", {
-//     shopProductId: id
-//   },
-//   { headers: authHeader() }
-//   )
-// }
-
 const WishList = () => {
   const WishListItems: WishListItem[] = useSelector(selectAllWishListItems);
   const dispatch = useDispatch();
