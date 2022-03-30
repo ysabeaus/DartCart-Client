@@ -19,7 +19,6 @@ export const fetchCompetitorProducts = createAsyncThunk(
     const response = await axios.get(MOCK_SERVER + "sellers/" + shopProductId, {
       headers: authHeader(),
     });
-
     return response.data;
   }
 );

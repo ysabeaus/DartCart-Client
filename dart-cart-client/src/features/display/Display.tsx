@@ -49,11 +49,10 @@ useEffect(fetchData, []);
       <div className="ProductCardContainer" >
       
       {anyThing.map(elem => {
-             const imagUrl = `https://picsum.photos/100/100?random= ${elem.id}`;
             return <div className='card-group'><FeaturedProduct
                 key={elem.id} price={elem.price} discount={elem.discount}
                 productName={elem.product.name} id={elem.product.id} discprice={elem.price}
-                imageUrl={imagUrl} /></div>
+                imageUrl={elem.product.imageURL} /></div>
                
         })}
       </div>

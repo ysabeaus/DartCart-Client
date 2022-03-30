@@ -28,7 +28,7 @@ const CartItemView = ({ id }: CartItem) => {
         <div className="card">
             <div className="row no-gutters">
                 <div className="col-3">
-                    <img className="cardImg" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00&q=90&m=6&h=705&w=1253&b=%23FFFFFFFF&f=jpg&o=f&p=140&aim=true"/>
+                    <img className="cardImg" src={item?.shopProduct.product.imageURL}/>
                 </div>
                 <div className="col-9">
                     <div className="card-block px-2" style={{ textAlign: 'left' }}>

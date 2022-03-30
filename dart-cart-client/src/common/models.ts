@@ -1,4 +1,4 @@
-import { Shop, User } from "./types";
+import { User } from "./types";
 
 export class Product {
     product_id: number;
@@ -6,13 +6,15 @@ export class Product {
     name: string;
     description: string;
     categories: string[];
+    imageURL: string;
 
-    constructor(product_id: number, id: number, name: string, description: string, categories: string[]) {
+    constructor(product_id: number, id: number, name: string, description: string, categories: string[], imageURL: string) {
         this.product_id = product_id;
         this.id = id;
         this.name = name;
         this.description = description;
         this.categories = categories;
+        this.imageURL = imageURL;
     }
 }
 
@@ -33,5 +35,33 @@ export class ShopProduct {
         this.location = location;
         this.quantity = quantity;
         this.discount = discount;
+    }
+}
+
+export class Shop {
+    id: number;
+    location: string;
+    seller: Seller;
+
+    constructor(id: number, location: string, seller: Seller){
+        this.id = id;
+        this.location = location;
+        this.seller = seller;
+    }
+}
+
+export class Seller{
+    id: number;
+    name: string;
+    homepage: string;
+    description: string;
+    user: User;
+
+    constructor(id: number, name: string, homepage: string, description: string, user: User){
+        this.id = id;
+        this.name = name;
+        this.homepage = homepage;
+        this.description = description;
+        this.user = user;
     }
 }
