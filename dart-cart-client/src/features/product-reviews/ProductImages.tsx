@@ -15,38 +15,7 @@ function ProductImages({ pics = [
     const randNum = Math.floor(Math.random() * (pics.length - 2))
     return (
         <Container>
-            <Row>
-                {[12].map((e, i) => {
-                    return (<Col key={`imc-${i}`} lg={e}>
-                        <Card key={`imca-${i}`} style={{ height: '100%' }}>
-                            <Image key={`im-${i}`} src={
-                                `https://source.unsplash.com/1600x900/?${pics[currentPic]}`
-                                // `${pics[currentPic]}`
-                                } />
-                            <Card.Body>
-                                <Card.Title>{`${pics[currentPic]}`}</Card.Title>
-                            </Card.Body>
-                        </Card>
-                    </Col>)
-                })}
-            </Row>
-            <Row>
-                {[3, 3, 3, 3].map((e, i) => {
-                    return (<Col key={`imc2-${i}`} lg={e}>
-
-                        <Card key={`imca2-${i}`} style={{ height: '100%' }}>
-                            <Image onClick={() => setCurrentPic(randNum + i)} key={`im2-${i}`} src={
-                                `https://source.unsplash.com/1600x900/?${pics[randNum + i]}`
-                                // `${pics[currentPic]}`
-                                } />
-                            {/* <Card.Body>
-            <Card.Title></Card.Title>
-          </Card.Body> */}
-                        </Card>
-                    </Col>)
-                })}
-
-            </Row>
+            
         </Container>
     )
 }
