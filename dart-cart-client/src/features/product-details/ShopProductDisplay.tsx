@@ -76,6 +76,8 @@ const ShopProductDisplay = () => {
       <div className="productInfoContainer">
         <div className="productIMGcontainer">
           <img className="testIMG" src={ReduxShopProducts?.imageURL} alt="Card image cap"></img>
+          <div className="productName"><h1>{ReduxShopProducts?.name}</h1></div>
+          <div className="productDesc"><p>{ReduxShopProducts?.description}</p></div>
         </div>
         {/* <div className="sellersContainer">
           <div className="sellerColumn">
