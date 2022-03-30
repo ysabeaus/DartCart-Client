@@ -7,6 +7,7 @@ import {
 import { Col, Row, Container, Image, Form, Button } from "react-bootstrap";
 import ProductReview from '../ProductReview'
 import authHeader from "../../authentication/AuthHeader";
+const API_URL = process.env.REACT_APP_API_URL;
 
 // import MiscTableOne from '../misc/MiscTableOne';
 // import ReactIcon from '../misc/ReactIcon';
@@ -17,7 +18,7 @@ import authHeader from "../../authentication/AuthHeader";
 
 function ProductPageLayout() {
     let { shop_product_id } = useParams();
-    console.log('product_id: ', shop_product_id)
+    console.log('product_id: ', API_URL)
 
     const components = {
         "ProductReviewCard": require('../product-review-card/ProductReviewCard').default,
@@ -152,10 +153,76 @@ function ProductPageLayout() {
 
     const [dLayoutData, setDLayoutData] = useState([
         {
-            title: "Stories",
+            title: "Carousel",
+            fluid: true,
+            cols: ["z"],
+            featureTypesArry: ['l']
+        },
+        {
+            title: "3 - Column Layout Images and Reviews",
             fluid: false,
             cols: ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
             featureTypesArry: ['i', 'i', 'i', '5', '4', '3', 'c', 'c', 'c']
+        },
+        {
+            title: "Gallery 4 by 3",
+            fluid: true,
+            cols: ["z", "z", "z"],
+            featureTypesArry: ['k', 'j']
+        },
+        {
+            title: "Alernating Image and Review 8 by 4",
+            fluid: false,
+            cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
+            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
+        },
+        {
+            title: "Featured Review 1",
+            fluid: false,
+            cols: ["z", "4", "5", "3", "4", "5", "3"],
+            featureTypesArry: ['i', 's', '5', 'p', 't', '5', 'p']
+        },
+        {
+            title: "Featured Review 2",
+            fluid: false,
+            cols: ["4", "5", "3", "4", "5", "3", "4", "5", "3", "4", "5", "3"],
+            featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
+        },
+        {
+            title: "Image, Review, and Purchase 3 6 3",
+            fluid: false,
+            cols: ["3", "6", "3", "3", "6", "3", "3", "6", "3", "3", "6", "3"],
+            featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
+        },
+        {
+            title: "Reviews",
+            fluid: false,
+            cols: ["4", "5", "3", "4", "5", "3"],
+            featureTypesArry: ['i', '5', 'p', 's', 't', 'c']
+        },
+        {
+            title: "4 - Column Layout Images and Reviews",
+            fluid: true,
+            cols: ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
+            featureTypesArry: ['i', 'i', 'i', 'i', '5', '4', '3', '2']
+        },
+        {
+            title: "Alernate Image, Review 6 by 6",
+            fluid: false,
+            cols: ["6", "6", "6", "6", "6", "6"],
+            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
+        },
+        {
+            title: "Alernate Icon, Review 6 by 6",
+            fluid: false,
+            cols: ["6", "6", "6", "6", "6", "6"],
+            featureTypesArry: ['5', 'r', 'r', '5', '5', 'r', 'r', '5']
+        },
+        {
+            title: "Stories",
+            fluid: true,
+            cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
+            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
         }
     ])
 
@@ -174,7 +241,7 @@ function ProductPageLayout() {
     // useEffect(() => {
     //     console.log('jsonData: ', jsonData)
 
-    //     axios.get('http://localhost:9005/product-reviews/product/1', {
+    //     axios.get('${API_URL}product-reviews/product/1', {
     //         headers: authHeader()
     //     })
     //         .then(res => {
@@ -251,7 +318,7 @@ function ProductPageLayout() {
         
         console.log()
         loadLayouts()
-        axios.get('http://localhost:9005/product-reviews/product/1', {
+        axios.get(`${API_URL}product-reviews/product/${shop_product_id}`, {
             headers: authHeader()
         })
             .then(res => {
@@ -293,6 +360,8 @@ function ProductPageLayout() {
 
                 console.log('result: ', result2)
                 setDLayoutData([...result2, ...dLayoutData])
+                setFormData({...formData, layoutSections: "1000000"})
+                
 
             })
             .catch(e => console.log(e))
@@ -307,7 +376,7 @@ function ProductPageLayout() {
         // console.log(dataDb)
         dataDb.map(e => {
             console.log(e)
-            axios.post('http://localhost:9005/create-product-review/product/1', {
+            axios.post(`${API_URL}create-product-review/product/${shop_product_id}`, {
                 "title": e['Product Name'],
                 "comment": e['Product Description'],
                 "rating": 4

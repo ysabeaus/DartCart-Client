@@ -6,6 +6,7 @@ import authHeader from "../authentication/AuthHeader";
 function ProductReviewDetail(props) {
     const [showModal, setShowModal] = useState(false);
     const [submitData, setSubmitData] = useState({rating: 5, title:"Fake title"})
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const handleClose = () => {
         setShowModal(false);
@@ -21,8 +22,8 @@ function ProductReviewDetail(props) {
     }
 
     const submitForm = () => {
-        console.log('submitForm: ', `http://localhost:9005/create-product-review/product/${props.product_id}`, submitData)
-        axios.post(`http://localhost:9005/create-product-review/product/${props.product_id}`, submitData, {
+        console.log('submitForm: ', `${API_URL}create-product-review/product/${props.product_id}`, submitData)
+        axios.post(`${API_URL}create-product-review/product/${props.product_id}`, submitData, {
             headers: authHeader()
         })
             .then(res => {
