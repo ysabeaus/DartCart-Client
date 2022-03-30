@@ -28,9 +28,9 @@ function ProductReviewCard({
             })}
             <br />
             <h5><strong>{title}</strong></h5>
-            <p style={{ fontSize: 12 }}>Reviewed in the United States on April 29, 2021
+            <p style={{ fontSize: 12 }}>
                 <br />
-                Configuration: Fire TV StickVerified Purchase</p>
+                </p>
             <p>{comment}</p>
         </div>
     )

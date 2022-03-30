@@ -18,7 +18,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function ProductPageLayout() {
     let { shop_product_id } = useParams();
-    console.log('product_id: ', API_URL)
+    console.log('product_id: ', shop_product_id)
 
     const components = {
         "ProductReviewCard": require('../product-review-card/ProductReviewCard').default,
@@ -152,78 +152,78 @@ function ProductPageLayout() {
     ])
 
     const [dLayoutData, setDLayoutData] = useState([
-        {
-            title: "Carousel",
-            fluid: true,
-            cols: ["z"],
-            featureTypesArry: ['l']
-        },
-        {
-            title: "3 - Column Layout Images and Reviews",
-            fluid: false,
-            cols: ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
-            featureTypesArry: ['i', 'i', 'i', '5', '4', '3', 'c', 'c', 'c']
-        },
+        // {
+        //     title: "Carousel",
+        //     fluid: true,
+        //     cols: ["z"],
+        //     featureTypesArry: ['l']
+        // },
+        // {
+        //     title: "3 - Column Layout Images and Reviews",
+        //     fluid: false,
+        //     cols: ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
+        //     featureTypesArry: ['i', 'i', 'i', '5', '4', '3', 'c', 'c', 'c']
+        // },
         {
             title: "Gallery 4 by 3",
             fluid: true,
             cols: ["z", "z", "z"],
-            featureTypesArry: ['k', 'j']
+            featureTypesArry: []
         },
-        {
-            title: "Alernating Image and Review 8 by 4",
-            fluid: false,
-            cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
-            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
-        },
-        {
-            title: "Featured Review 1",
-            fluid: false,
-            cols: ["z", "4", "5", "3", "4", "5", "3"],
-            featureTypesArry: ['i', 's', '5', 'p', 't', '5', 'p']
-        },
-        {
-            title: "Featured Review 2",
-            fluid: false,
-            cols: ["4", "5", "3", "4", "5", "3", "4", "5", "3", "4", "5", "3"],
-            featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
-        },
-        {
-            title: "Image, Review, and Purchase 3 6 3",
-            fluid: false,
-            cols: ["3", "6", "3", "3", "6", "3", "3", "6", "3", "3", "6", "3"],
-            featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
-        },
-        {
-            title: "Reviews",
-            fluid: false,
-            cols: ["4", "5", "3", "4", "5", "3"],
-            featureTypesArry: ['i', '5', 'p', 's', 't', 'c']
-        },
-        {
-            title: "4 - Column Layout Images and Reviews",
-            fluid: true,
-            cols: ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
-            featureTypesArry: ['i', 'i', 'i', 'i', '5', '4', '3', '2']
-        },
-        {
-            title: "Alernate Image, Review 6 by 6",
-            fluid: false,
-            cols: ["6", "6", "6", "6", "6", "6"],
-            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
-        },
-        {
-            title: "Alernate Icon, Review 6 by 6",
-            fluid: false,
-            cols: ["6", "6", "6", "6", "6", "6"],
-            featureTypesArry: ['5', 'r', 'r', '5', '5', 'r', 'r', '5']
-        },
-        {
-            title: "Stories",
-            fluid: true,
-            cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
-            featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
-        }
+        // {
+        //     title: "Alernating Image and Review 8 by 4",
+        //     fluid: false,
+        //     cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
+        //     featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
+        // },
+        // {
+        //     title: "Featured Review 1",
+        //     fluid: false,
+        //     cols: ["z", "4", "5", "3", "4", "5", "3"],
+        //     featureTypesArry: ['i', 's', '5', 'p', 't', '5', 'p']
+        // },
+        // {
+        //     title: "Featured Review 2",
+        //     fluid: false,
+        //     cols: ["4", "5", "3", "4", "5", "3", "4", "5", "3", "4", "5", "3"],
+        //     featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
+        // },
+        // {
+        //     title: "Image, Review, and Purchase 3 6 3",
+        //     fluid: false,
+        //     cols: ["3", "6", "3", "3", "6", "3", "3", "6", "3", "3", "6", "3"],
+        //     featureTypesArry: ['i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p', 'i', '5', 'p']
+        // },
+        // {
+        //     title: "Reviews",
+        //     fluid: false,
+        //     cols: ["4", "5", "3", "4", "5", "3"],
+        //     featureTypesArry: ['i', '5', 'p', 's', 't', 'c']
+        // },
+        // {
+        //     title: "4 - Column Layout Images and Reviews",
+        //     fluid: true,
+        //     cols: ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
+        //     featureTypesArry: ['i', 'i', 'i', 'i', '5', '4', '3', '2']
+        // },
+        // {
+        //     title: "Alernate Image, Review 6 by 6",
+        //     fluid: false,
+        //     cols: ["6", "6", "6", "6", "6", "6"],
+        //     featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
+        // },
+        // {
+        //     title: "Alernate Icon, Review 6 by 6",
+        //     fluid: false,
+        //     cols: ["6", "6", "6", "6", "6", "6"],
+        //     featureTypesArry: ['5', 'r', 'r', '5', '5', 'r', 'r', '5']
+        // },
+        // {
+        //     title: "Stories",
+        //     fluid: true,
+        //     cols: ["8", "4", "4", "8", "8", "4", "4", "8"],
+        //     featureTypesArry: ['5', 'i', 'i', '5', '5', 'i', 'i', '5']
+        // }
     ])
 
     const layoutRef = useRef()
@@ -317,7 +317,7 @@ function ProductPageLayout() {
     useEffect(() => {
         
         console.log()
-        loadLayouts()
+        // loadLayouts()
         axios.get(`${API_URL}product-reviews/product/${shop_product_id}`, {
             headers: authHeader()
         })
@@ -359,9 +359,10 @@ function ProductPageLayout() {
                 }), []);
 
                 console.log('result: ', result2)
-                setDLayoutData([...result2, ...dLayoutData])
-                setFormData({...formData, layoutSections: "1000000"})
+                setTimeout(() => setDLayoutData([...result2, ...dLayoutData]), 1000)
+                setTimeout(() => setFormData({...formData, layoutSections: "1000000"}), 2000)
                 
+                setTimeout(() => loadLayouts(), 3000)
 
             })
             .catch(e => console.log(e))
@@ -394,10 +395,10 @@ function ProductPageLayout() {
     return (
         <>
             <Form.Group id="fg-1" className="mb-3" controlId="formBasicCheckbox">
-                <button onClick={() => seedDb()}>Seed DB</button>
-                <Form.Check type="checkbox" checked={showLayoutControls}
+                {/*<button onClick={() => seedDb()}>Seed DB</button>
+                 <Form.Check type="checkbox" checked={showLayoutControls}
                     onChange={e => handleChange(e)}
-                    label="Set Layout" />
+                    label="Set Layout" /> */}
             </Form.Group>
             {
                 showLayoutControls && <Form>

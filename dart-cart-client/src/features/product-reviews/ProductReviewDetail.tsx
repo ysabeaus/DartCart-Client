@@ -28,7 +28,7 @@ function ProductReviewDetail(props) {
         })
             .then(res => {
                 console.log('axios: ', res.data)
-
+                
             })
             .catch(e => console.log(e))
     }
@@ -59,7 +59,9 @@ function ProductReviewDetail(props) {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => submitForm()}>Submit</Button>
+                    <Button onClick={() => {
+                        submitForm(); 
+                        handleClose()}}>Submit</Button>
                 </Modal.Footer>
             </Modal>
 
