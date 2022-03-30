@@ -23,6 +23,7 @@ export function AddInventory() {
 
   useEffect(() => {
       dispatch(fetchShops(""));
+      dispatch(fetchShopProducts(""));
   }, []);
 
 
