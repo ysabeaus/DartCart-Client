@@ -168,7 +168,7 @@ function ProductPageLayout() {
             title: "Gallery 4 by 3",
             fluid: true,
             cols: ["z", "z", "z"],
-            featureTypesArry: ['k', 'j']
+            featureTypesArry: []
         },
         // {
         //     title: "Alernating Image and Review 8 by 4",

@@ -77,15 +77,15 @@ const ShopProductDisplay = () => {
         <div className="productIMGcontainer">
           <img className="testIMG" src={ReduxShopProducts?.imageURL} alt="Card image cap"></img>
         </div>
-        <div className="sellersContainer">
+        {/* <div className="sellersContainer">
           <div className="sellerColumn">
             <CompetingSellers Seller={ReduxShopProducts?.id!}></CompetingSellers>
           </div>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <ProductReviewDetail product_id={shop_product_id} />
           <ProductPageLayout />
-        </div>
+        </div> */}
       </div>
       <div className="sellersContainer">
         <div className="sellerColumn">
