@@ -63,7 +63,7 @@
   border-color: #333;
   grid-template-areas:
   ". . . . . . ."
-  ". shopNameAndPrice . . . addToCart ."
+  ". shopNameAndPrice shopNameAndPrice shopNameAndPrice . addToCart ."
   ". shopLocation . shopQuant . addToCart ."
   ". . . . . . ."
 }
