@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../common/hooks";
-import { privateEncrypt } from "crypto";
 import { Product } from "../../common/models";
 
 export function AddInventory() {
@@ -21,14 +20,13 @@ export function AddInventory() {
   const ReduxMyShops: Shop[] = useSelector(selectShops);
   const status = useSelector(getStatus);
 
+  const dispatch = useAppDispatch();
+  const nav = useNavigate();
+
   useEffect(() => {
       dispatch(fetchShops(""));
       dispatch(fetchShopProducts(""));
   }, []);
-
-
-  const dispatch = useAppDispatch();
-  const nav = useNavigate();
 
   const inventoryProduct: InventoryProduct = {
     id: 0,

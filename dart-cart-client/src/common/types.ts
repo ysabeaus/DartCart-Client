@@ -8,6 +8,15 @@ export interface Product {
   imageURL: string;
 }
 
+export interface ProductReview {
+  id: number,
+  comment: string,
+  rating: number,
+  title: string,
+  user: any,
+  product: any
+}
+
 export interface User {
     id: number;
     username: string;

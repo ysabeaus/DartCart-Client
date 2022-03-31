@@ -10,6 +10,7 @@ function ProductReviewDetail(props) {
 
     const handleClose = () => {
         setShowModal(false);
+        props.callback();
     };
     const handleOpen = () => {
         setShowModal(true);
@@ -17,7 +18,6 @@ function ProductReviewDetail(props) {
 
     const handleChange = (e) => {
         const layoutString = e.target.value;
-        console.log(layoutString)
         setSubmitData({...submitData, [e.target.name]: e.target.value})
     }
 
