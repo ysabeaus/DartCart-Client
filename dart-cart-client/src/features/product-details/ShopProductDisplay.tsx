@@ -47,7 +47,7 @@ const ShopProductDisplay = () => {
         <ProductReviewDetail product_id={shop_product_id} callback={updateProductReviews} />
       </div>
       <table className="table">
-        {ReduxProductReviews.map((ProductReview) => {
+        {ReduxProductReviews.map((ProductReview) => { if (ProductReview.product.id==shop_product_id)
                           return <ProductReviewCard 
                           profilePic = {ProductReview.user.imageURL}
                           title = {ProductReview.title}
