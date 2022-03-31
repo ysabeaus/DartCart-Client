@@ -11,6 +11,7 @@ import listItemReducer from "./slices/listItemSlice";
 import cartSlice from "./slices/cartSlice";
 import shippingSlice from "./slices/shippingSlice";
 import WLSlice from "./slices/wishlistSlice"
+import PRSlice from "./slices/productReviewSlice";
 // Here we configure the store object that redux uses for storing data
 // Each slice's reducer is added as a reducer here
 const store = configureStore({
@@ -27,7 +28,8 @@ const store = configureStore({
     shipping: shippingSlice,
     invoices: invoiceReducer,
     products: listItemReducer,
-    wishlist: WLSlice
+    wishlist: WLSlice,
+    ProductReviews: PRSlice
   },
 });
 

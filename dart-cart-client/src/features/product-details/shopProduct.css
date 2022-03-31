@@ -171,4 +171,8 @@
   background-color: var(--background);
 }
 
-
+.table {
+  background-color: var(--background);
+  color: var(--text-color);
+  margin: 50px;
+}

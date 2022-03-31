@@ -1,6 +1,7 @@
 import React from 'react'
 import { AiFillStar } from 'react-icons/ai';
 function ProductReviewCard({ 
+    profilePic = "/man.jpg",
     fullName = "Unknown",
     title = 'After Years of FireTV, I am switching to Roku.', 
     rating = 5, 
@@ -12,7 +13,9 @@ function ProductReviewCard({
     return (
         <div style={{ textAlign: 'left' }}>
             <span >
-                <img src="/man.jpg" />
+                <img className="profile" src={
+                   ( (profilePic!='') ? profilePic : "/man.jpg")
+                } />
             </span>
             <span style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
                 <h5>{fullName}</h5>

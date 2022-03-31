@@ -135,3 +135,8 @@ input[type="checkbox"]{
     object-fit: contain;
     max-height: 10rem;
 }
+
+.profile {
+    height:48px;
+    width:48px;
+}
